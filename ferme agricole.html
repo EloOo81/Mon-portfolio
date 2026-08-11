@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferme du Bosc — Vente directe de viande fermière près de Castres</title>
+<style>
+  :root {
+    --charcoal: #241f1a;
+    --charcoal-soft: #362f27;
+    --barn: #7a2e2a;
+    --barn-dark: #5e211e;
+    --cream: #f6f0e4;
+    --stone: #ece2cd;
+    --gold: #b8923a;
+    --grey: #6b6259;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--charcoal);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--charcoal);
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+  .logo span { color: var(--gold); }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: #fff; font-size: 14.5px; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--gold); }
+  .nav-cta { background: var(--barn); padding: 9px 18px; border-radius: 4px; font-weight: 600; }
+  .nav-cta:hover { background: var(--barn-dark); color: #fff; }
+  .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .burger span { width: 24px; height: 2.5px; background: #fff; border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, rgba(36,31,26,0.94), rgba(54,47,39,0.9)),
+                repeating-linear-gradient(45deg, #423a30 0, #423a30 2px, #362f27 2px, #362f27 40px);
+    color: #fff;
+    padding: 90px 24px 80px;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--barn);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero h1 { font-size: 38px; line-height: 1.2; max-width: 720px; margin: 0 auto 16px; }
+  .hero p { font-size: 16px; color: #d9d1c4; max-width: 580px; margin: 0 auto 32px; }
+  .btn-primary {
+    display: inline-block; background: var(--barn); color: #fff;
+    padding: 14px 30px; border-radius: 4px; font-weight: 700; font-size: 15px;
+    margin: 0 8px 8px; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--barn-dark); }
+  .btn-secondary {
+    display: inline-block; border: 1.5px solid #fff; color: #fff;
+    padding: 12.5px 28px; border-radius: 4px; font-weight: 600; font-size: 15px;
+    margin: 0 8px 8px; transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: #fff; color: var(--charcoal); }
+
+  .trust-strip { background: var(--stone); padding: 20px 24px; }
+  .trust-strip .container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; text-align: center; }
+  .trust-item { font-size: 14px; font-weight: 600; color: var(--charcoal-soft); }
+  .trust-item strong { color: var(--barn); display: block; font-size: 22px; }
+
+  /* SECTIONS */
+  section { padding: 70px 24px; }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 44px; }
+  .eyebrow {
+    color: var(--barn); font-weight: 700; font-size: 13px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 8px; display: block;
+  }
+  .section-head h2 { font-size: 30px; color: var(--charcoal); margin-bottom: 10px; }
+  .section-head p { color: var(--grey); font-size: 15px; }
+
+  /* PRODUITS OVERVIEW */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .service-card {
+    background: #fff; border-radius: 8px; padding: 26px 22px;
+    border: 1px solid #e6dcc4; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
+  .service-icon {
+    width: 44px; height: 44px; background: var(--barn); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 19px; font-weight: 700; margin-bottom: 14px;
+  }
+  .service-card h3 { font-size: 16.5px; margin-bottom: 6px; color: var(--charcoal); }
+  .service-card p { font-size: 13.5px; color: var(--grey); }
+
+  /* CART / COMPOSEZ VOTRE COLIS */
+  .cart-section { background: var(--stone); }
+  .cart-box {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07); max-width: 780px; margin: 0 auto;
+  }
+  .cart-item {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+    gap: 16px; padding: 16px 24px; border-bottom: 1px solid #f0e9d8;
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-item-name { font-weight: 700; font-size: 14.5px; color: var(--charcoal); }
+  .cart-item-unit { font-weight: 400; font-size: 12.5px; color: var(--grey); display: block; margin-top: 2px; }
+  .cart-item-price { font-size: 14px; color: var(--grey); font-weight: 600; min-width: 60px; text-align: right; }
+  .stepper { display: flex; align-items: center; gap: 10px; }
+  .stepper button {
+    width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--barn);
+    background: #fff; color: var(--barn); font-size: 16px; font-weight: 700;
+    cursor: pointer; line-height: 1; transition: all 0.15s;
+  }
+  .stepper button:hover { background: var(--barn); color: #fff; }
+  .stepper span { min-width: 18px; text-align: center; font-weight: 700; font-size: 14.5px; }
+  .cart-summary {
+    background: var(--charcoal); color: #fff; padding: 22px 24px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  }
+  .cart-total { font-size: 15px; }
+  .cart-total strong { color: var(--gold); font-size: 22px; display: block; }
+  .cart-note { text-align: center; font-size: 12.5px; color: var(--grey); margin-top: 16px; font-style: italic; }
+
+  /* WHY */
+  .why { background: var(--charcoal); color: #fff; }
+  .why .section-head h2 { color: #fff; }
+  .why .section-head p { color: #c4bcae; }
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+  .why-item { display: flex; gap: 14px; align-items: flex-start; background: rgba(255,255,255,0.06); padding: 18px 20px; border-radius: 8px; }
+  .why-check {
+    width: 26px; height: 26px; min-width: 26px; background: var(--barn); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
+  }
+  .why-item h4 { font-size: 15px; margin-bottom: 4px; }
+  .why-item p { font-size: 13.5px; color: #c4bcae; }
+
+  /* GALLERY */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .gallery-item {
+    aspect-ratio: 4/3; border-radius: 8px; display: flex; align-items: flex-end;
+    padding: 16px; color: #fff; font-weight: 600; font-size: 14px; position: relative; overflow: hidden;
+  }
+  .gallery-item::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.55), transparent 60%); }
+  .gallery-item span { position: relative; z-index: 1; }
+  .g1 { background: linear-gradient(135deg,#8a7358,#5a4630); }
+  .g2 { background: linear-gradient(135deg,#7a2e2a,#4a1c19); }
+  .g3 { background: linear-gradient(135deg,#9c8c5f,#6b5c37); }
+  .g4 { background: linear-gradient(135deg,#6b6259,#3f3931); }
+  .g5 { background: linear-gradient(135deg,#b8923a,#7d621f); }
+  .g6 { background: linear-gradient(135deg,#5a4630,#362a1c); }
+  .gallery-note { text-align: center; font-size: 12.5px; color: var(--grey); margin-top: 16px; font-style: italic; }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px;
+    background: #fff; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+  .contact-info h3 { font-size: 20px; margin-bottom: 14px; }
+  .contact-info p { font-size: 14px; color: var(--grey); margin-bottom: 20px; }
+  .info-line { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14.5px; }
+  .info-icon {
+    width: 34px; height: 34px; min-width: 34px; background: var(--stone); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--barn); font-weight: 700;
+  }
+  .form-row { display: flex; gap: 14px; margin-bottom: 14px; }
+  .form-group { flex: 1; margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--charcoal-soft); }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 11px 13px; border: 1.5px solid #e2d8c0; border-radius: 6px; font-size: 14px; font-family: inherit;
+  }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--barn); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    background: var(--barn); color: #fff; border: none; padding: 13px 28px; border-radius: 6px;
+    font-weight: 700; font-size: 14.5px; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--barn-dark); }
+  .form-msg { margin-top: 12px; font-size: 13.5px; font-weight: 600; display: none; }
+  .form-msg.show { display: block; color: #2b7a4b; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal-soft); color: #d3c9b8; text-align: center; padding: 28px 24px; font-size: 13px; }
+  footer strong { color: #fff; }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    nav ul { display: none; }
+    .burger { display: flex; }
+    .hero h1 { font-size: 29px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-wrap { grid-template-columns: 1fr; padding: 26px; }
+    .trust-strip .container { justify-content: space-between; }
+    .form-row { flex-direction: column; gap: 0; }
+    .cart-item { grid-template-columns: 1fr; gap: 8px; }
+    .cart-item-price { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo">FERME <span>DU BOSC</span></div>
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#produits">Nos produits</a></li>
+        <li><a href="#colis">Composer un colis</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="accueil">
+  <span class="hero-tag">Élevage fermier • Vente directe • Castres et environs (Tarn)</span>
+  <h1>Une viande fermière élevée près de chez vous, en vente directe</h1>
+  <p>Bœuf et porc élevés en plein air sur notre exploitation familiale, transformés en circuit court et vendus sans intermédiaire. Une viande dont vous connaissez l'origine, du pré à votre assiette.</p>
+  <a href="#colis" class="btn-primary">Composer mon colis</a>
+  <a href="#contact" class="btn-secondary">Nous contacter</a>
+</section>
+
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-item"><strong>3 générations</strong>d'éleveurs</div>
+    <div class="trust-item"><strong>0</strong>intermédiaire</div>
+    <div class="trust-item"><strong>100%</strong>né et élevé à la ferme</div>
+    <div class="trust-item"><strong>Tarn</strong>production locale</div>
+  </div>
+</div>
+
+<section id="produits">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Nos produits</span>
+      <h2>Une viande fermière, du bœuf au porc</h2>
+      <p>Élevés sur place, préparés en circuit court, disponibles toute l'année à la ferme ou sur les marchés.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">B</div><h3>Bœuf fermier</h3><p>Races à viande élevées en plein air et nourries à l'herbe, pour une viande goûteuse et persillée.</p></div>
+      <div class="service-card"><div class="service-icon">P</div><h3>Porc fermier</h3><p>Porcs élevés en extérieur, nourris aux céréales de la ferme, pour une viande savoureuse.</p></div>
+      <div class="service-card"><div class="service-icon">C</div><h3>Charcuterie maison</h3><p>Saucisses, pâtés et terrines préparés à la ferme selon des recettes traditionnelles.</p></div>
+      <div class="service-card"><div class="service-icon">V</div><h3>Colis de viande</h3><p>Colis prêts à congeler, composés selon vos besoins : 5, 10 ou 15 kg, assortiment sur demande.</p></div>
+      <div class="service-card"><div class="service-icon">M</div><h3>Marchés locaux</h3><p>Retrouvez-nous chaque semaine sur les marchés de Castres et des communes voisines.</p></div>
+      <div class="service-card"><div class="service-icon">R</div><h3>Réservation en ligne</h3><p>Composez votre colis ci-dessous et réservez votre créneau de retrait à la ferme.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="colis" class="cart-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Composez votre colis</span>
+      <h2>Choisissez vos quantités</h2>
+      <p>Sélectionnez ce qui vous intéresse, le total se met à jour automatiquement. Envoyez ensuite votre sélection, nous la préparons pour vous.</p>
+    </div>
+    <div class="cart-box">
+      <div id="cart-items"></div>
+      <div class="cart-summary">
+        <div class="cart-total">Total estimé<strong id="cart-total">0,00 €</strong></div>
+        <button class="btn-primary" id="cart-send" style="margin:0;">Envoyer ma sélection</button>
+      </div>
+    </div>
+    <p class="cart-note">Simulateur de démonstration — les prix sont indicatifs, la commande réelle est confirmée par email.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pourquoi nous choisir</span>
+      <h2>Une viande que vous pouvez tracer, à un prix juste</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-check">✓</div><div><h4>Traçabilité totale</h4><p>Vous savez exactement d'où vient votre viande et comment l'animal a été élevé.</p></div></div>
+      <div class="why-item"><div class="why-check">✓</div><div><h4>Circuit court</h4><p>Du producteur à votre table, sans intermédiaire ni transport interminable.</p></div></div>
+      <div class="why-item"><div class="why-check">✓</div><div><h4>Bien-être animal</h4><p>Nos bêtes sont élevées en plein air, dans le respect de leur rythme naturel.</p></div></div>
+      <div class="why-item"><div class="why-check">✓</div><div><h4>Prix juste</h4><p>Un tarif équitable, à la fois pour vous et pour l'éleveur.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="realisations">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">La ferme en images</span>
+      <h2>Découvrez notre exploitation</h2>
+      <p>Un aperçu de nos pâturages, de notre atelier et de nos points de vente.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item g1"><span>Pâturages — élevage en plein air</span></div>
+      <div class="gallery-item g2"><span>Atelier de découpe</span></div>
+      <div class="gallery-item g3"><span>Bœufs au pré</span></div>
+      <div class="gallery-item g4"><span>Élevage porcin en extérieur</span></div>
+      <div class="gallery-item g5"><span>Colis de viande prêts</span></div>
+      <div class="gallery-item g6"><span>Marché de Castres</span></div>
+    </div>
+    <p class="gallery-note">Photos réelles de la ferme à intégrer — visuels de démonstration.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2>Réservez votre colis ou votre visite</h2>
+      <p>Écrivez-nous pour réserver un colis, connaître nos disponibilités ou organiser votre venue à la ferme.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Coordonnées</h3>
+        <p>Basés à quelques kilomètres de Castres (Tarn), nous accueillons les visiteurs à la ferme sur rendez-vous, et sommes présents sur les marchés locaux.</p>
+        <div class="info-line"><div class="info-icon">T</div><div>05 63 00 00 00</div></div>
+        <div class="info-line"><div class="info-icon">@</div><div>contact@fermedubosc.fr</div></div>
+        <div class="info-line"><div class="info-icon">A</div><div>Route du Bosc, à proximité de Castres (81)</div></div>
+        <div class="info-line"><div class="info-icon">H</div><div>Vente à la ferme : mercredi et samedi après-midi, ou sur rendez-vous</div></div>
+      </div>
+      <div>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label for="nom">Nom</label><input type="text" id="nom" required></div>
+            <div class="form-group"><label for="tel">Téléphone</label><input type="tel" id="tel" required></div>
+          </div>
+          <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
+          <div class="form-group"><label for="message">Votre demande</label><textarea id="message" required placeholder="Type de colis souhaité, quantité, date de retrait..."></textarea></div>
+          <button type="submit" class="btn-submit">Envoyer ma demande</button>
+          <p class="form-msg" id="form-msg">Merci ! Votre demande a bien été enregistrée (démo — à connecter à un envoi réel).</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Ferme du Bosc</strong> — Élevage et vente directe de viande fermière, Castres et environs</p>
+  <p>Site de démonstration — réalisé par Elodie</p>
+</footer>
+
+<script>
+  // Menu mobile
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('nav-menu');
+  burger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    if (navMenu.classList.contains('open')) {
+      navMenu.style.display = 'block';
+      navMenu.querySelector('ul').style.cssText = 'display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:#241f1a;padding:20px 24px;';
+    } else {
+      navMenu.querySelector('ul').style.display = 'none';
+    }
+  });
+
+  // ---- Panier interactif "Composez votre colis" ----
+  const products = [
+    { id: 'boeuf-hache', name: 'Bœuf haché', unit: 'barquette 500g', price: 6, qty: 0 },
+    { id: 'roti-boeuf',  name: 'Rôti de bœuf', unit: 'pièce ~1kg', price: 14, qty: 0 },
+    { id: 'saucisses',   name: 'Saucisses fermières', unit: 'barquette 500g', price: 5, qty: 0 },
+    { id: 'pate',        name: 'Pâté maison', unit: 'bocal 200g', price: 4, qty: 0 },
+    { id: 'cotes-porc',  name: 'Côtes de porc', unit: 'barquette 500g', price: 7, qty: 0 },
+    { id: 'roti-porc',   name: 'Rôti de porc', unit: 'pièce ~1kg', price: 11, qty: 0 },
+  ];
+
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+
+  function renderCart() {
+    cartItemsEl.innerHTML = products.map(p => `
+      <div class="cart-item">
+        <div>
+          <div class="cart-item-name">${p.name}<span class="cart-item-unit">${p.unit}</span></div>
+        </div>
+        <div class="cart-item-price">${p.price.toFixed(2)} €</div>
+        <div class="stepper">
+          <button type="button" data-action="minus" data-id="${p.id}">−</button>
+          <span>${p.qty}</span>
+          <button type="button" data-action="plus" data-id="${p.id}">+</button>
+        </div>
+      </div>
+    `).join('');
+    updateTotal();
+  }
+
+  function updateTotal() {
+    const total = products.reduce((sum, p) => sum + p.qty * p.price, 0);
+    cartTotalEl.textContent = total.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  cartItemsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const product = products.find(p => p.id === btn.dataset.id);
+    if (!product) return;
+    if (btn.dataset.action === 'plus') product.qty += 1;
+    if (btn.dataset.action === 'minus') product.qty = Math.max(0, product.qty - 1);
+    renderCart();
+  });
+
+  document.getElementById('cart-send').addEventListener('click', () => {
+    const chosen = products.filter(p => p.qty > 0);
+    const messageField = document.getElementById('message');
+    if (chosen.length === 0) {
+      messageField.placeholder = 'Sélectionnez au moins un produit dans "Composez votre colis" ci-dessus.';
+    } else {
+      const lines = chosen.map(p => `- ${p.name} x${p.qty} (${(p.qty * p.price).toFixed(2)} €)`);
+      const total = chosen.reduce((sum, p) => sum + p.qty * p.price, 0);
+      messageField.value = 'Je souhaite réserver :\n' + lines.join('\n') + `\nTotal estimé : ${total.toFixed(2)} €`;
+    }
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('nom').focus(), 500);
+  });
+
+  renderCart();
+
+  // Formulaire de contact (démo, sans envoi réel)
+  const form = document.getElementById('contact-form');
+  const msg = document.getElementById('form-msg');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    msg.classList.add('show');
+    form.reset();
+    setTimeout(() => msg.classList.remove('show'), 5000);
+  });
+</script>
+
+</body>
+</html>
