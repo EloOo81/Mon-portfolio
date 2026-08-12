@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulle de Sérénité — Institut de beauté, Albi</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fdf3f0;
+    color: #3a2c33;
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+  .blob-bg {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Header */
+  header {
+    background: #fdf3f0;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .logo { font-size: 22px; font-weight: 700; color: #b8567a; letter-spacing: 0.5px; }
+  .logo span { color: #cf9f6f; }
+  nav ul { display: flex; gap: 30px; list-style: none; }
+  nav a { font-size: 14.5px; font-weight: 600; color: #3a2c33; }
+  nav a:hover { color: #b8567a; }
+  .nav-cta {
+    background: #b8567a;
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 30px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 90px 6% 70px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-text { flex: 1; min-width: 300px; }
+  .hero-tag {
+    display: inline-block;
+    background: #f7e3e8;
+    color: #8a5a68;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    color: #93375a;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    font-weight: 800;
+  }
+  .hero h1 span { color: #cf9f6f; }
+  .hero p { font-size: 17px; color: #5a5a5a; max-width: 480px; margin-bottom: 28px; }
+  .btn {
+    display: inline-block;
+    background: #b8567a;
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: #6b3550; }
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid #b8567a;
+    color: #b8567a;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-left: 12px;
+    cursor: pointer;
+  }
+  .hero-visual {
+    flex: 1;
+    min-width: 280px;
+    height: 340px;
+    background: linear-gradient(135deg, #f7e3e8 0%, #f3c9d6 45%, #e8b8c8 100%);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(184,86,122,0.18);
+  }
+  .hero-visual::before {
+    content: "🌸";
+    position: absolute;
+    font-size: 130px;
+    opacity: 0.4;
+    top: 42%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.5) 0, transparent 35%),
+      radial-gradient(circle at 85% 80%, rgba(207,159,111,0.25) 0, transparent 40%);
+  }
+
+  /* Trust strip */
+  .trust {
+    background: #b8567a;
+    padding: 30px 6%;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .trust div { color: #fff; }
+  .trust .num { font-size: 26px; font-weight: 800; color: #f7e3e8; }
+  .trust .label { font-size: 13px; color: #f0d9e0; }
+
+  section { padding: 70px 6%; max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    text-align: center;
+    color: #cf9f6f;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h2.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #93375a;
+    margin-bottom: 45px;
+    font-weight: 800;
+  }
+
+  /* Services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #f7e3e8;
+  }
+  .service-card .icon { font-size: 30px; margin-bottom: 12px; }
+  .service-card h3 { color: #93375a; font-size: 18px; margin-bottom: 8px; }
+  .service-card p { color: #777; font-size: 14px; margin-bottom: 14px; }
+  .service-card .price { color: #cf9f6f; font-weight: 800; font-size: 20px; }
+
+  /* Quiz */
+  .quiz-section {
+    background: #fdf0f3;
+    border-radius: 28px;
+    padding: 50px 6%;
+  }
+  .quiz-box {
+    max-width: 620px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .quiz-box h3 { color: #93375a; font-size: 22px; margin-bottom: 6px; }
+  .quiz-box .quiz-sub { color: #888; font-size: 14px; margin-bottom: 26px; }
+  .quiz-question { display: none; }
+  .quiz-question.active { display: block; }
+  .quiz-question p.q-text { font-weight: 700; color: #93375a; margin-bottom: 18px; font-size: 17px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt {
+    background: #fdf3f0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: #3a2c33;
+  }
+  .quiz-opt:hover { border-color: #cf9f6f; background: #fbeef2; }
+  .quiz-progress { display: flex; justify-content: center; gap: 6px; margin-bottom: 26px; }
+  .quiz-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; }
+  .quiz-dot.done { background: #b8567a; }
+  .quiz-result { display: none; }
+  .quiz-result.active { display: block; }
+  .quiz-result .badge { font-size: 44px; margin-bottom: 10px; }
+  .quiz-result h4 { color: #93375a; font-size: 22px; margin-bottom: 10px; }
+  .quiz-result p { color: #666; font-size: 15px; margin-bottom: 20px; }
+  .quiz-restart { background: none; border: none; color: #b8567a; font-weight: 700; cursor: pointer; font-size: 13.5px; margin-top: 14px; }
+
+  /* Testimonials */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .testi-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px;
+    border-left: 4px solid #cf9f6f;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .testi-card p { font-style: italic; color: #555; margin-bottom: 14px; font-size: 14.5px; }
+  .testi-card .name { font-weight: 700; color: #93375a; font-size: 14px; }
+  .stars { color: #cf9f6f; margin-bottom: 8px; }
+
+  /* Contact */
+  .contact-wrap {
+    background: #93375a;
+    border-radius: 28px;
+    padding: 50px 6%;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    color: #fff;
+  }
+  .contact-info { flex: 1; min-width: 260px; }
+  .contact-info h2 { font-size: 28px; margin-bottom: 16px; }
+  .contact-info p { color: #e8d9dd; margin-bottom: 10px; font-size: 15px; }
+  .contact-form { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14.5px;
+    font-family: inherit;
+  }
+  .contact-form textarea { resize: vertical; min-height: 80px; }
+  .contact-form button {
+    background: #cf9f6f;
+    color: #3a2c33;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-size: 13px;
+  }
+
+  /* Chat widget */
+  .chat-bubble {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #b8567a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 200;
+    border: none;
+  }
+  .chat-window {
+    position: fixed;
+    bottom: 96px;
+    right: 26px;
+    width: 330px;
+    max-width: 90vw;
+    height: 430px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 200;
+  }
+  .chat-window.open { display: flex; }
+  .chat-head {
+    background: #93375a;
+    color: #fff;
+    padding: 16px 18px;
+  }
+  .chat-head .title-row { display: flex; justify-content: space-between; align-items: center; }
+  .chat-head .status { font-size: 12px; color: #f3c9d6; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .chat-head .status .dot { width: 7px; height: 7px; background: #f3c9d6; border-radius: 50%; }
+  .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .chat-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #fdf3f0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+  .msg.bot { background: #fff; border: 1px solid #eee; align-self: flex-start; border-bottom-left-radius: 3px; }
+  .msg.user { background: #b8567a; color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+  .sugg-btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #93375a;
+  }
+  .chat-input-row { display: flex; border-top: 1px solid #eee; padding: 10px; gap: 8px; }
+  .chat-input-row input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; }
+  .chat-input-row button { background: #93375a; color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .hero h1 { font-size: 32px; }
+    .contact-wrap { padding: 36px 6%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Bulle de <span>Sérénité</span></div>
+  <nav><ul>
+    <li><a href="#soins">Soins</a></li>
+    <li><a href="#quiz">Trouvez votre soin</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Réserver</a></li>
+  </ul></nav>
+</header>
+
+<section class="hero">
+  <div class="blob-bg" style="width:260px;height:260px;background:#f3c9d6;top:-60px;left:-60px;opacity:0.6;"></div>
+  <div class="blob-bg" style="width:200px;height:200px;background:#cf9f6f;bottom:-40px;left:38%;opacity:0.25;"></div>
+  <div class="hero-text" style="position:relative;z-index:1;">
+    <div class="hero-tag">Institut de beauté · Albi</div>
+    <h1>Offrez à votre peau <span>une vraie pause</span></h1>
+    <p>Soins du visage, massages et rituels bien-être dans un cadre calme, au cœur d'Albi. Produits naturels, gestes justes, zéro précipitation.</p>
+    <a href="#contact" class="btn">Prendre rendez-vous</a>
+    <a href="#quiz" class="btn-outline">Trouver mon soin</a>
+  </div>
+  <div class="hero-visual"></div>
+</section>
+
+<div class="trust">
+  <div><div class="num">1200+</div><div class="label">Soins réalisés</div></div>
+  <div><div class="num">8 ans</div><div class="label">D'expérience</div></div>
+  <div><div class="num">100%</div><div class="label">Produits naturels</div></div>
+  <div><div class="num">4.9/5</div><div class="label">Note moyenne</div></div>
+</div>
+
+<section id="soins">
+  <div class="section-tag">Nos soins</div>
+  <h2 class="section-title">Une prestation pour chaque besoin</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="icon">🌸</div>
+      <h3>Soin du visage éclat</h3>
+      <p>Nettoyage, gommage doux, masque adapté à votre peau.</p>
+      <div class="price">55€ · 45 min</div>
+    </div>
+    <div class="service-card">
+      <div class="icon">💆‍♀️</div>
+      <h3>Massage relaxant</h3>
+      <p>Détente profonde du dos, de la nuque et des épaules.</p>
+      <div class="price">65€ · 50 min</div>
+    </div>
+    <div class="service-card">
+      <div class="icon">✨</div>
+      <h3>Rituel signature</h3>
+      <p>Visage + massage combinés, notre soin le plus complet.</p>
+      <div class="price">95€ · 90 min</div>
+    </div>
+    <div class="service-card">
+      <div class="icon">💅</div>
+      <h3>Manucure soignée</h3>
+      <p>Limage, cuticules, pose de vernis longue tenue.</p>
+      <div class="price">35€ · 40 min</div>
+    </div>
+    <div class="service-card">
+      <div class="icon">🌿</div>
+      <h3>Gommage corps</h3>
+      <p>Exfoliation douce et enveloppement hydratant.</p>
+      <div class="price">50€ · 40 min</div>
+    </div>
+    <div class="service-card">
+      <div class="icon">👁️</div>
+      <h3>Regard sublimé</h3>
+      <p>Épilation sourcils, teinture cils et sourcils.</p>
+      <div class="price">28€ · 30 min</div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="quiz-section">
+    <div class="quiz-box">
+      <h3>Quel soin vous correspond ?</h3>
+      <p class="quiz-sub">Répondez à 3 petites questions, on vous propose un soin adapté.</p>
+      <div class="quiz-progress">
+        <div class="quiz-dot" data-dot="1"></div>
+        <div class="quiz-dot" data-dot="2"></div>
+        <div class="quiz-dot" data-dot="3"></div>
+      </div>
+
+      <div class="quiz-question active" data-step="1">
+        <p class="q-text">De quoi avez-vous le plus envie aujourd'hui ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="detente">Me détendre, décompresser</button>
+          <button class="quiz-opt" data-key="peau">Chouchouter ma peau</button>
+          <button class="quiz-opt" data-key="complet">Un moment complet, pour moi</button>
+        </div>
+      </div>
+
+      <div class="quiz-question" data-step="2">
+        <p class="q-text">Combien de temps avez-vous devant vous ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="court">Moins de 45 minutes</button>
+          <button class="quiz-opt" data-key="moyen">Environ 1 heure</button>
+          <button class="quiz-opt" data-key="long">Je prends mon temps, 1h30</button>
+        </div>
+      </div>
+
+      <div class="quiz-question" data-step="3">
+        <p class="q-text">Votre peau ou votre corps a plutôt besoin de...</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="hydrater">Hydratation, douceur</button>
+          <button class="quiz-opt" data-key="relacher">Relâcher les tensions</button>
+          <button class="quiz-opt" data-key="eclat">Un coup d'éclat visible</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="badge">✨</div>
+        <h4 id="resultTitle"></h4>
+        <p id="resultText"></p>
+        <a href="#contact" class="btn">Réserver ce soin</a>
+        <br>
+        <button class="quiz-restart" id="quizRestart">Refaire le quiz</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="section-tag">Elles en parlent</div>
+  <h2 class="section-title">Ce que disent nos clientes</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Un vrai cocon, j'en ressors toujours apaisée. Le rituel signature est incroyable."</p>
+      <div class="name">Camille R.</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Accueil chaleureux, produits naturels, on sent vraiment la différence sur la peau."</p>
+      <div class="name">Nadia B.</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Le quiz m'a proposé exactement le soin qu'il me fallait. Je recommande à 100%."</p>
+      <div class="name">Sophie L.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h2>Réservez votre moment</h2>
+      <p>📍 14 rue Sainte-Cécile, 81000 Albi</p>
+      <p>📞 05 63 00 00 00</p>
+      <p>🕐 Mardi – Samedi, 9h30 – 19h</p>
+      <p style="margin-top:20px; color:#f3c9d6;">Réponse sous 24h pour toute demande.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Nous revenons vers vous très vite.';">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="tel" placeholder="Votre téléphone" required>
+      <select required>
+        <option value="">Quel soin vous intéresse ?</option>
+        <option>Soin du visage éclat</option>
+        <option>Massage relaxant</option>
+        <option>Rituel signature</option>
+        <option>Manucure soignée</option>
+        <option>Gommage corps</option>
+        <option>Regard sublimé</option>
+      </select>
+      <textarea placeholder="Vos disponibilités, une précision..."></textarea>
+      <button type="submit">Envoyer ma demande</button>
+      <p id="formMsg" style="color:#f3c9d6; font-size:13px;"></p>
+    </form>
+  </div>
+</section>
+
+<footer>&copy; 2026 Bulle de Sérénité — Institut de beauté, Albi</footer>
+
+<button class="chat-bubble" id="bubble">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="title-row">
+      <div>Assistant Bulle de Sérénité</div>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+    <div class="status"><span class="dot"></span>En ligne</div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Bonjour ! Je peux vous renseigner sur nos soins, nos horaires ou la prise de rendez-vous.</div>
+  </div>
+  <div class="suggestions" id="suggestions">
+    <div class="sugg-btn" data-q="horaires">Vos horaires ?</div>
+    <div class="sugg-btn" data-q="prix">Prix d'un soin ?</div>
+    <div class="sugg-btn" data-q="rdv">Prendre rendez-vous</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <button id="chatSend">Envoyer</button>
+  </div>
+</div>
+
+<script>
+  // Chat widget
+  const bubble = document.getElementById('bubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const suggestions = document.getElementById('suggestions');
+
+  bubble.addEventListener('click', () => chatWindow.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+
+  const responses = {
+    horaires: "Nous sommes ouverts du mardi au samedi, de 9h30 à 19h. Fermé dimanche et lundi.",
+    prix: "Nos soins vont de 28€ (regard sublimé) à 95€ (rituel signature de 90 minutes). Le détail complet est dans la section \"Nos soins\" plus haut.",
+    rdv: "Vous pouvez réserver directement via le formulaire en bas de page, ou nous appeler au 05 63 00 00 00.",
+    default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous."
+  };
+
+  function addMsg(text, who) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function respondTo(text) {
+    addMsg(text, 'user');
+    const lower = text.toLowerCase();
+    const key = Object.keys(responses).find(k => lower.includes(k) ||
+      (k === 'horaires' && /heure|ouvert|ferm/.test(lower)) ||
+      (k === 'prix' && /coût|euro|tarif|cher|combien/.test(lower)) ||
+      (k === 'rdv' && /rendez|réserv|book/.test(lower)));
+    setTimeout(() => addMsg(responses[key] || responses.default, 'bot'), 500);
+  }
+
+  suggestions.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sugg-btn');
+    if (!btn) return;
+    respondTo(btn.textContent);
+  });
+  chatSend.addEventListener('click', () => {
+    if (!chatInput.value.trim()) return;
+    respondTo(chatInput.value.trim());
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') chatSend.click(); });
+
+  // Quiz
+  let quizAnswers = {};
+  const quizQuestions = document.querySelectorAll('.quiz-question');
+  const quizDots = document.querySelectorAll('.quiz-dot');
+  const quizResult = document.getElementById('quizResult');
+  const quizBox = document.querySelector('.quiz-box');
+
+  document.querySelectorAll('.quiz-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const questionEl = opt.closest('.quiz-question');
+      const step = parseInt(questionEl.dataset.step);
+      quizAnswers[step] = opt.dataset.key;
+      quizDots[step - 1].classList.add('done');
+
+      if (step < 3) {
+        questionEl.classList.remove('active');
+        document.querySelector('.quiz-question[data-step="' + (step + 1) + '"]').classList.add('active');
+      } else {
+        questionEl.classList.remove('active');
+        showQuizResult();
+      }
+    });
+  });
+
+  function showQuizResult() {
+    const results = {
+      detente: { title: "Le Massage relaxant", text: "Vous avez surtout besoin de décompresser. Le massage relaxant (65€, 50 min) est fait pour vous." },
+      peau: { title: "Le Soin du visage éclat", text: "Votre peau mérite toute l'attention. Le soin visage éclat (55€, 45 min) va lui redonner de la lumière." },
+      complet: { title: "Le Rituel signature", text: "Vous voulez un vrai moment pour vous. Le rituel signature (95€, 90 min) combine visage et massage." }
+    };
+    const choice = quizAnswers[1];
+    const r = results[choice] || results.complet;
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultText').textContent = r.text;
+    quizResult.classList.add('active');
+  }
+
+  document.getElementById('quizRestart').addEventListener('click', () => {
+    quizAnswers = {};
+    quizResult.classList.remove('active');
+    quizDots.forEach(d => d.classList.remove('done'));
+    quizQuestions.forEach(q => q.classList.remove('active'));
+    document.querySelector('.quiz-question[data-step="1"]').classList.add('active');
+  });
+</script>
+
+</body>
+</html>
