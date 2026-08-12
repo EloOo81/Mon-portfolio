@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizon Voyages — Agence de voyage</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fdf8ef;
+    color: #0891a8;
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  header {
+    background: #0891a8;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-size: 22px; font-weight: 700; color: #fff; }
+  .logo span { color: #ff8c42; }
+  nav ul { display: flex; gap: 30px; list-style: none; }
+  nav a { font-size: 14.5px; font-weight: 600; color: #d4f3f4; }
+  nav a:hover { color: #fff; }
+  .nav-cta { background: #ff8c42; color: #fff !important; padding: 10px 22px; border-radius: 30px; }
+
+  .hero {
+    background: linear-gradient(135deg, #0891a8, #046380);
+    color: #fff;
+    padding: 90px 6% 70px;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #d4f3f4;
+  }
+  .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 16px; }
+  .hero h1 span { color: #ff8c42; }
+  .hero p { font-size: 17px; color: #d4f3f4; max-width: 560px; margin: 0 auto 30px; }
+
+  section { padding: 70px 6%; max-width: 1200px; margin: 0 auto; }
+  .section-tag { text-align: center; color: #ff8c42; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  h2.section-title { text-align: center; font-size: 32px; color: #0891a8; margin-bottom: 20px; font-weight: 800; }
+  .section-sub { text-align: center; color: #5f7d85; max-width: 560px; margin: 0 auto 40px; font-size: 15px; }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .filter-btn {
+    background: #fff;
+    border: 2px solid #d8cdb8;
+    color: #0891a8;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .filter-btn.active, .filter-btn:hover { background: #0891a8; border-color: #0891a8; color: #fff; }
+
+  .budget-filter {
+    max-width: 420px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .budget-filter label { font-size: 13.5px; font-weight: 700; color: #5f7d85; display: block; margin-bottom: 10px; }
+  .budget-filter input[type="range"] { width: 100%; accent-color: #ff8c42; }
+  .budget-val { color: #ff8c42; font-weight: 800; font-size: 16px; margin-top: 6px; }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 26px;
+  }
+  .dest-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .dest-card.hidden { display: none; }
+  .dest-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+  }
+  .dest-body { padding: 20px; }
+  .dest-body .type-tag {
+    display: inline-block;
+    background: #fdf8ef;
+    color: #3d7a8c;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .dest-body h3 { font-size: 19px; color: #0891a8; margin-bottom: 6px; }
+  .dest-body p { color: #777; font-size: 13.5px; margin-bottom: 14px; }
+  .dest-body .price-row { display: flex; justify-content: space-between; align-items: center; }
+  .dest-body .price { color: #ff8c42; font-weight: 800; font-size: 19px; }
+  .dest-body .price small { color: #999; font-weight: 500; font-size: 12px; }
+  .dest-body .btn-small {
+    background: #0891a8; color: #fff; border: none; padding: 8px 16px;
+    border-radius: 20px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+  }
+  .no-result { text-align: center; color: #999; padding: 30px; display: none; }
+  .no-result.show { display: block; }
+
+  /* Testimonials */
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .testi-card { background: #fff; border-radius: 16px; padding: 26px; border-left: 4px solid #ff8c42; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  .testi-card p { font-style: italic; color: #555; margin-bottom: 14px; font-size: 14.5px; }
+  .testi-card .name { font-weight: 700; color: #0891a8; font-size: 14px; }
+  .stars { color: #ff8c42; margin-bottom: 8px; }
+
+  /* Contact */
+  .contact-wrap {
+    background: #0891a8;
+    border-radius: 28px;
+    padding: 50px 6%;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    color: #fff;
+  }
+  .contact-info { flex: 1; min-width: 260px; }
+  .contact-info h2 { font-size: 28px; margin-bottom: 16px; }
+  .contact-info p { color: #c7e8ea; margin-bottom: 10px; font-size: 15px; }
+  .contact-form { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    padding: 13px 16px; border-radius: 10px; border: none; font-size: 14.5px; font-family: inherit;
+  }
+  .contact-form textarea { resize: vertical; min-height: 80px; }
+  .contact-form button { background: #ff8c42; color: #fff; border: none; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 15px; }
+
+  footer { text-align: center; padding: 30px; color: #999; font-size: 13px; }
+
+  /* Chat widget */
+  .chat-bubble {
+    position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; border-radius: 50%;
+    background: #ff8c42; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 200; border: none;
+  }
+  .chat-window {
+    position: fixed; bottom: 96px; right: 26px; width: 330px; max-width: 90vw; height: 430px;
+    background: #fff; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    display: none; flex-direction: column; overflow: hidden; z-index: 200;
+  }
+  .chat-window.open { display: flex; }
+  .chat-head { background: #0891a8; color: #fff; padding: 16px 18px; }
+  .chat-head .title-row { display: flex; justify-content: space-between; align-items: center; }
+  .chat-head .status { font-size: 12px; color: #d4f3f4; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .chat-head .status .dot { width: 7px; height: 7px; background: #d4f3f4; border-radius: 50%; }
+  .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .chat-body { flex: 1; padding: 16px; overflow-y: auto; background: #fdf8ef; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+  .msg.bot { background: #fff; border: 1px solid #eee; align-self: flex-start; border-bottom-left-radius: 3px; }
+  .msg.user { background: #ff8c42; color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+  .sugg-btn { background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: #0891a8; }
+  .chat-input-row { display: flex; border-top: 1px solid #eee; padding: 10px; gap: 8px; }
+  .chat-input-row input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; }
+  .chat-input-row button { background: #0891a8; color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .hero h1 { font-size: 30px; }
+    .contact-wrap { padding: 36px 6%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Horizon <span>Voyages</span></div>
+  <nav><ul>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Devis gratuit</a></li>
+  </ul></nav>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">Agence de voyage · Depuis 2016</div>
+  <h1>Votre prochain voyage <span>commence ici</span></h1>
+  <p>Séjours sur mesure, vols et hôtels sélectionnés avec soin, et un conseiller qui répond vraiment à vos questions.</p>
+  <a href="#destinations" class="btn" style="display:inline-block;background:#ff8c42;color:#fff;padding:14px 30px;border-radius:30px;font-weight:700;">Voir les destinations</a>
+</div>
+
+<section id="destinations">
+  <div class="section-tag">Destinations</div>
+  <h2 class="section-title">Trouvez votre prochaine escapade</h2>
+  <p class="section-sub">Filtrez par type de séjour et ajustez votre budget, les destinations s'actualisent automatiquement.</p>
+
+  <div class="filters">
+    <button class="filter-btn active" data-type="tous">Tous</button>
+    <button class="filter-btn" data-type="plage">🏖️ Plage</button>
+    <button class="filter-btn" data-type="montagne">⛰️ Montagne</button>
+    <button class="filter-btn" data-type="ville">🏙️ Ville</button>
+    <button class="filter-btn" data-type="aventure">🌋 Aventure</button>
+  </div>
+
+  <div class="budget-filter">
+    <label for="budgetRange">Budget maximum par personne</label>
+    <input type="range" id="budgetRange" min="300" max="2500" step="50" value="2500">
+    <div class="budget-val" id="budgetVal">2500€</div>
+  </div>
+
+  <div class="dest-grid" id="destGrid">
+    <div class="dest-card" data-type="plage" data-price="890">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#d4f3f4,#2fa9b8);">🏖️</div>
+      <div class="dest-body">
+        <span class="type-tag">Plage</span>
+        <h3>Zanzibar, Tanzanie</h3>
+        <p>7 nuits en bord de mer, vol + hôtel 4 étoiles inclus.</p>
+        <div class="price-row"><div class="price">890€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="montagne" data-price="650">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#d9f0f0,#4a90a4);">⛰️</div>
+      <div class="dest-body">
+        <span class="type-tag">Montagne</span>
+        <h3>Chamonix, France</h3>
+        <p>5 nuits en chalet, randonnée et vue sur le Mont-Blanc.</p>
+        <div class="price-row"><div class="price">650€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="ville" data-price="450">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#fdf8ef,#ffb703);">🏙️</div>
+      <div class="dest-body">
+        <span class="type-tag">Ville</span>
+        <h3>Lisbonne, Portugal</h3>
+        <p>4 nuits, vol + hôtel centre-ville, petit-déjeuner inclus.</p>
+        <div class="price-row"><div class="price">450€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="aventure" data-price="1450">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#ffcf8a,#e8734a);">🌋</div>
+      <div class="dest-body">
+        <span class="type-tag">Aventure</span>
+        <h3>Islande</h3>
+        <p>8 jours en circuit, geysers, volcans et aurores boréales.</p>
+        <div class="price-row"><div class="price">1450€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="plage" data-price="1290">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#d4f3f4,#e8734a);">🏝️</div>
+      <div class="dest-body">
+        <span class="type-tag">Plage</span>
+        <h3>Maldives</h3>
+        <p>6 nuits en bungalow sur pilotis, tout inclus.</p>
+        <div class="price-row"><div class="price">1290€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="ville" data-price="380">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#fdf8ef,#3d7a8c);">🕌</div>
+      <div class="dest-body">
+        <span class="type-tag">Ville</span>
+        <h3>Marrakech, Maroc</h3>
+        <p>4 nuits en riad, souks et excursion désert en option.</p>
+        <div class="price-row"><div class="price">380€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="montagne" data-price="2100">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#d9f0f0,#3d7a94);">🏔️</div>
+      <div class="dest-body">
+        <span class="type-tag">Montagne</span>
+        <h3>Pérou, Trek Machu Picchu</h3>
+        <p>10 jours, trek accompagné et découverte de la cité inca.</p>
+        <div class="price-row"><div class="price">2100€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+    <div class="dest-card" data-type="aventure" data-price="1780">
+      <div class="dest-visual" style="background:linear-gradient(135deg,#8bd4a0,#2e9e5b);">🦁</div>
+      <div class="dest-body">
+        <span class="type-tag">Aventure</span>
+        <h3>Safari, Kenya</h3>
+        <p>7 jours en camp, safaris quotidiens dans le Masaï Mara.</p>
+        <div class="price-row"><div class="price">1780€ <small>/pers.</small></div><button class="btn-small">Voir l'offre</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="no-result" id="noResult">Aucune destination ne correspond à ces filtres pour l'instant. Essayez d'élargir votre budget.</div>
+</section>
+
+<section id="avis">
+  <div class="section-tag">Ils sont partis avec nous</div>
+  <h2 class="section-title">Ce que disent nos voyageurs</h2>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Séjour aux Maldives organisé au millimètre, aucun souci du départ au retour."</p><div class="name">Julien D.</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Le trek au Pérou restera le plus beau voyage de ma vie. Merci pour les conseils !"</p><div class="name">Marine T.</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Réactifs, honnêtes sur les prix, et un vrai accompagnement avant le départ."</p><div class="name">Karim S.</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h2>Un projet de voyage ?</h2>
+      <p>📍 22 place du Capitole, 31000 Toulouse</p>
+      <p>📞 05 61 00 00 00</p>
+      <p>🕐 Lundi – Vendredi, 9h – 18h</p>
+      <p style="margin-top:20px; color:#d4f3f4;">Devis personnalisé sous 48h, sans engagement.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Votre demande de devis a bien été envoyée.';">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="Votre email" required>
+      <select required>
+        <option value="">Type de séjour souhaité</option>
+        <option>Plage</option>
+        <option>Montagne</option>
+        <option>Ville</option>
+        <option>Aventure</option>
+      </select>
+      <textarea placeholder="Dates envisagées, budget, nombre de voyageurs..."></textarea>
+      <button type="submit">Demander un devis</button>
+      <p id="formMsg" style="color:#d4f3f4; font-size:13px;"></p>
+    </form>
+  </div>
+</section>
+
+<footer>&copy; 2026 Horizon Voyages — Agence de voyage, Toulouse</footer>
+
+<button class="chat-bubble" id="bubble">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="title-row">
+      <div>Assistant Horizon Voyages</div>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+    <div class="status"><span class="dot"></span>En ligne</div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Bonjour ! Je peux vous renseigner sur nos destinations, nos tarifs ou les conditions d'annulation.</div>
+  </div>
+  <div class="suggestions" id="suggestions">
+    <div class="sugg-btn" data-q="destinations">Vos destinations ?</div>
+    <div class="sugg-btn" data-q="prix">Budget minimum ?</div>
+    <div class="sugg-btn" data-q="annulation">Annulation possible ?</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <button id="chatSend">Envoyer</button>
+  </div>
+</div>
+
+<script>
+  // Chat widget
+  const bubble = document.getElementById('bubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const suggestions = document.getElementById('suggestions');
+
+  bubble.addEventListener('click', () => chatWindow.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+
+  const responses = {
+    destinations: "Nous proposons des séjours plage, montagne, ville et aventure : Zanzibar, Maldives, Chamonix, Pérou, Islande, Kenya, Lisbonne, Marrakech... Le détail est dans la section \"Destinations\".",
+    prix: "Nos séjours démarrent à 380€ par personne (Marrakech) et montent jusqu'à 2100€ pour un trek complet au Pérou.",
+    annulation: "L'annulation est possible jusqu'à 30 jours avant le départ avec remboursement partiel. Les conditions exactes dépendent de la destination, on vous les précise au moment du devis.",
+    default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous."
+  };
+
+  function addMsg(text, who) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function respondTo(text) {
+    addMsg(text, 'user');
+    const lower = text.toLowerCase();
+    const key = Object.keys(responses).find(k => lower.includes(k) ||
+      (k === 'destinations' && /o[uù] |partir|pays|voyage/.test(lower)) ||
+      (k === 'prix' && /coût|euro|tarif|cher|combien|budget/.test(lower)) ||
+      (k === 'annulation' && /annul|rembours/.test(lower)));
+    setTimeout(() => addMsg(responses[key] || responses.default, 'bot'), 500);
+  }
+
+  suggestions.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sugg-btn');
+    if (!btn) return;
+    respondTo(btn.textContent);
+  });
+  chatSend.addEventListener('click', () => {
+    if (!chatInput.value.trim()) return;
+    respondTo(chatInput.value.trim());
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') chatSend.click(); });
+
+  // Filters
+  let activeType = 'tous';
+  let maxBudget = 2500;
+  const destCards = document.querySelectorAll('.dest-card');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const budgetRange = document.getElementById('budgetRange');
+  const budgetVal = document.getElementById('budgetVal');
+  const noResult = document.getElementById('noResult');
+
+  function applyFilters() {
+    let visibleCount = 0;
+    destCards.forEach(card => {
+      const type = card.dataset.type;
+      const price = parseInt(card.dataset.price);
+      const matchType = activeType === 'tous' || type === activeType;
+      const matchBudget = price <= maxBudget;
+      if (matchType && matchBudget) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    noResult.classList.toggle('show', visibleCount === 0);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeType = btn.dataset.type;
+      applyFilters();
+    });
+  });
+
+  budgetRange.addEventListener('input', () => {
+    maxBudget = parseInt(budgetRange.value);
+    budgetVal.textContent = maxBudget + '€';
+    applyFilters();
+  });
+</script>
+
+</body>
+</html>
