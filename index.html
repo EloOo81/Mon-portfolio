@@ -183,6 +183,12 @@
   .pricing-card li { padding: 9px 0; font-size: 14.5px; display: flex; gap: 10px; align-items: flex-start; }
   .pricing-card li::before { content: "✓"; color: var(--mint); font-weight: 700; }
   .pricing-card .btn-primary { width: 100%; }
+  .security-badge {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #c3ccd4;
+    text-align: center;
+  }
 
   /* PORTFOLIO */
   .portfolio-grid {
@@ -250,6 +256,7 @@
   }
   .step-card h3 { font-size: 16px; margin-bottom: 8px; }
   .step-card p { font-size: 13.5px; color: var(--grey); }
+  .section-cta { text-align: center; margin-top: 40px; }
 
   /* TEMOIGNAGES */
   .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -371,7 +378,7 @@
         <li><a href="#services">Tarifs</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="styles.html">Nos styles</a></li>
-        <li><a href="#contact" class="nav-cta">Me contacter</a></li>
+        <li><a href="commande.html" class="nav-cta">Commander mon site</a></li>
       </ul>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -383,7 +390,7 @@
     <span class="hero-tag">● Disponible pour de nouveaux projets</span>
     <h1>Votre site vitrine, clé en main et <span>livré en 3 jours</span></h1>
     <p>Je conçois des sites simples, rapides et efficaces pour les artisans, commerçants et indépendants — sans mauvaise surprise, sans jargon.</p>
-    <a href="#contact" class="btn-primary">Demander un devis</a>
+    <a href="commande.html" class="btn-primary">Demander un devis</a>
     <a href="#portfolio" class="btn-secondary">Voir mes réalisations</a>
   </div>
 </section>
@@ -417,6 +424,7 @@
         <p>Votre site est livré, prêt à être mis en ligne sur votre hébergement et votre domaine.</p>
       </div>
     </div>
+    <p class="section-cta"><a href="commande.html" class="btn-primary">Lancer ma commande</a></p>
   </div>
 </section>
 
@@ -471,7 +479,8 @@
         <li>Livraison en 3 jours ouvrés</li>
         <li>Un tour de modifications inclus après livraison</li>
       </ul>
-      <a href="#contact" class="btn-primary">Demander un devis gratuit</a>
+      <a href="commande.html" class="btn-primary">Demander un devis gratuit</a>
+      <p class="security-badge">🔒 Paiement 100% sécurisé via Stripe — après devis, aucune donnée bancaire ne transite par ce site</p>
     </div>
     <p class="portfolio-note">Envie d'un site plus poussé, avec agent IA intégré ? <a href="styles.html#premium" style="color:var(--coral); font-weight:700;">Découvrez nos styles premium</a> — à partir de 450 €.</p>
   </div>
@@ -568,6 +577,7 @@
       </div>
     </div>
     <p class="testi-note">Activité récemment lancée — premiers avis clients à venir.</p>
+    <p class="section-cta"><a href="commande.html" class="btn-primary">Demander mon devis gratuit</a></p>
   </div>
 </section>
 
