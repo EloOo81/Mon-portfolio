@@ -3,130 +3,342 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Villa Sérénité — Démo Concierge IA</title>
+<title>Villa Sérénité — Location avec concierge IA</title>
 <meta name="description" content="Démonstration d'un site d'hôtellerie / location saisonnière avec concierge IA intégré.">
 <style>
-  :root {
-    --navy: #1c2b3a;
-    --navy-light: #2c4258;
-    --coral: #e8623d;
-    --coral-dark: #c94f2e;
-    --mint: #4fb0a5;
-    --cream: #f7f5f1;
-    --grey: #6b7280;
-    --line: #e5e1d8;
-    --gold: #c9a227;
-  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--navy); background: var(--cream); line-height: 1.6; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f6f2ea; color: #1f3a37; line-height: 1.6; }
   a { text-decoration: none; color: inherit; }
+  .blob-bg { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0; pointer-events: none; }
 
-  .demo-banner { background: var(--gold); color: #1c2b3a; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner { background: #c9a227; color: #1c2b3a; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
   .demo-banner a { text-decoration: underline; }
 
-  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background: #ffffff; border-bottom: 1px solid var(--line); }
-  .navbar h2 { font-size: 19px; }
-  .navbar h2 span { color: var(--mint); }
-  .navbar nav a { margin-left: 24px; color: var(--grey); font-weight: 600; font-size: 14px; }
-  .navbar nav a:hover { color: var(--mint); }
+  header { background: #f6f2ea; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .logo { font-size: 22px; font-weight: 800; color: #0e5c56; letter-spacing: 0.3px; }
+  .logo span { color: #e0785a; }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { font-size: 14.5px; font-weight: 600; color: #1f3a37; }
+  nav a:hover { color: #e0785a; }
+  .nav-cta { background: #0e5c56; color: #fff !important; padding: 10px 22px; border-radius: 30px; }
 
-  .hero { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; text-align: center; }
-  .hero-content h1 { font-size: 2.1rem; color: var(--navy); margin-bottom: 12px; max-width: 640px; }
-  .hero-content p { color: var(--grey); font-size: 1.05rem; margin-bottom: 34px; max-width: 560px; }
+  .hero { padding: 90px 6% 70px; display: flex; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; position: relative; overflow: hidden; }
+  .hero-text { flex: 1; min-width: 300px; position: relative; z-index: 1; }
+  .hero-tag { display: inline-block; background: #e2ede9; color: #0e5c56; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+  .hero h1 { font-size: 42px; color: #0e5c56; line-height: 1.2; margin-bottom: 18px; font-weight: 800; }
+  .hero h1 span { color: #e0785a; }
+  .hero p { font-size: 17px; color: #567168; max-width: 480px; margin-bottom: 28px; }
+  .btn { display: inline-block; background: #e0785a; color: #fff; padding: 14px 30px; border-radius: 30px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; }
+  .btn:hover { background: #c05e42; }
+  .btn-outline { display: inline-block; background: transparent; border: 2px solid #0e5c56; color: #0e5c56; padding: 12px 28px; border-radius: 30px; font-weight: 700; font-size: 15px; margin-left: 12px; cursor: pointer; }
+  .hero-visual { flex: 1; min-width: 280px; height: 340px; border-radius: 24px; position: relative; overflow: hidden; background: linear-gradient(135deg, #0e5c56 0%, #1b8177 50%, #e0785a 130%); box-shadow: 0 20px 50px rgba(14,92,86,0.25); }
+  .hero-visual::before { content: "🏖️"; position: absolute; font-size: 130px; opacity: 0.3; top: 42%; left: 50%; transform: translate(-50%, -50%); }
 
-  .ai-agent-container { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: left; }
-  .ai-header { background: var(--navy); color: white; padding: 15px 20px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-  .status-dot { width: 10px; height: 10px; background-color: var(--mint); border-radius: 50%; display: inline-block; }
-  .ai-chat-box { height: 260px; padding: 20px; overflow-y: auto; background: var(--cream); display: flex; flex-direction: column; gap: 12px; }
-  .ai-message { background: #e9e5dd; padding: 10px 14px; border-radius: 8px; max-width: 80%; font-size: 0.95rem; }
-  .user-message { background: var(--navy); color: white; padding: 10px 14px; border-radius: 8px; max-width: 80%; margin-left: auto; text-align: right; font-size: 0.95rem; }
-  .ai-input-area { display: flex; padding: 15px; background: white; border-top: 1px solid var(--line); }
-  .ai-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; outline: none; font-size: 0.95rem; font-family: inherit; }
-  .ai-input-area input:focus { border-color: var(--mint); }
-  .ai-input-area button { background: var(--mint); color: white; border: none; padding: 0 20px; margin-left: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-  .ai-input-area button:hover { background: #3d8f86; }
+  .trust { background: #0e5c56; padding: 30px 6%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; text-align: center; }
+  .trust div { color: #fff; } .trust .num { font-size: 26px; font-weight: 800; color: #f5d0bd; } .trust .label { font-size: 13px; color: #cfe6e1; }
 
-  .choose-band { text-align: center; padding: 20px 20px 60px; }
-  .choose-band a { display: inline-block; background: var(--navy); color: #fff; padding: 13px 30px; border-radius: 6px; font-weight: 700; font-size: 14.5px; }
-  .choose-band a:hover { background: var(--navy-light); }
+  section { padding: 70px 6%; max-width: 1200px; margin: 0 auto; }
+  .section-tag { text-align: center; color: #e0785a; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  h2.section-title { text-align: center; font-size: 32px; color: #0e5c56; margin-bottom: 45px; font-weight: 800; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .service-card { background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #e2ede9; }
+  .service-card .icon { font-size: 30px; margin-bottom: 12px; }
+  .service-card h3 { color: #0e5c56; font-size: 18px; margin-bottom: 8px; }
+  .service-card p { color: #6b8079; font-size: 14px; margin-bottom: 14px; }
+  .service-card .price { color: #e0785a; font-weight: 800; font-size: 18px; }
+
+  .quiz-section { background: #eef4f1; border-radius: 28px; padding: 50px 6%; }
+  .quiz-box { max-width: 620px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); text-align: center; }
+  .quiz-box h3 { color: #0e5c56; font-size: 22px; margin-bottom: 6px; }
+  .quiz-box .quiz-sub { color: #6b8079; font-size: 14px; margin-bottom: 26px; }
+  .quiz-question { display: none; } .quiz-question.active { display: block; }
+  .quiz-question p.q-text { font-weight: 700; color: #0e5c56; margin-bottom: 18px; font-size: 17px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt { background: #f6f2ea; border: 2px solid transparent; border-radius: 12px; padding: 14px; font-size: 15px; cursor: pointer; text-align: left; font-family: inherit; color: #1f3a37; }
+  .quiz-opt:hover { border-color: #e0785a; background: #fbe9e2; }
+  .quiz-progress { display: flex; justify-content: center; gap: 6px; margin-bottom: 26px; }
+  .quiz-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; } .quiz-dot.done { background: #0e5c56; }
+  .quiz-result { display: none; } .quiz-result.active { display: block; }
+  .quiz-result .badge { font-size: 44px; margin-bottom: 10px; }
+  .quiz-result h4 { color: #0e5c56; font-size: 22px; margin-bottom: 10px; }
+  .quiz-result p { color: #567168; font-size: 15px; margin-bottom: 20px; }
+  .quiz-restart { background: none; border: none; color: #0e5c56; font-weight: 700; cursor: pointer; font-size: 13.5px; margin-top: 14px; }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .testi-card { background: #fff; border-radius: 16px; padding: 26px; border-left: 4px solid #e0785a; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  .testi-card p { font-style: italic; color: #4a5c56; margin-bottom: 14px; font-size: 14.5px; }
+  .testi-card .name { font-weight: 700; color: #0e5c56; font-size: 14px; }
+  .stars { color: #e0785a; margin-bottom: 8px; }
+
+  .contact-wrap { background: #0e5c56; border-radius: 28px; padding: 50px 6%; display: flex; gap: 50px; flex-wrap: wrap; color: #fff; }
+  .contact-info { flex: 1; min-width: 260px; } .contact-info h2 { font-size: 28px; margin-bottom: 16px; }
+  .contact-info p { color: #cfe6e1; margin-bottom: 10px; font-size: 15px; }
+  .contact-form { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 14px; }
+  .contact-form input, .contact-form select, .contact-form textarea { padding: 13px 16px; border-radius: 10px; border: none; font-size: 14.5px; font-family: inherit; }
+  .contact-form textarea { resize: vertical; min-height: 80px; }
+  .contact-form button { background: #e0785a; color: #fff; border: none; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 15px; }
+
+  footer { text-align: center; padding: 30px; color: #8ba39c; font-size: 13px; }
+  footer a { color: #0e5c56; font-weight: 700; }
+
+  .chat-bubble { position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; border-radius: 50%; background: #0e5c56; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.25); z-index: 200; border: none; }
+  .chat-window { position: fixed; bottom: 96px; right: 26px; width: 330px; max-width: 90vw; height: 430px; background: #fff; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+  .chat-window.open { display: flex; }
+  .chat-head { background: #0e5c56; color: #fff; padding: 16px 18px; }
+  .chat-head .title-row { display: flex; justify-content: space-between; align-items: center; }
+  .chat-head .status { font-size: 12px; color: #f5d0bd; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .chat-head .status .dot { width: 7px; height: 7px; background: #f5d0bd; border-radius: 50%; }
+  .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .chat-body { flex: 1; padding: 16px; overflow-y: auto; background: #f6f2ea; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+  .msg.bot { background: #fff; border: 1px solid #eee; align-self: flex-start; border-bottom-left-radius: 3px; }
+  .msg.user { background: #0e5c56; color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+  .sugg-btn { background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: #0e5c56; }
+  .chat-input-row { display: flex; border-top: 1px solid #eee; padding: 10px; gap: 8px; }
+  .chat-input-row input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; }
+  .chat-input-row button { background: #0e5c56; color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+
+  @media (max-width: 640px) { nav ul { display: none; } .hero h1 { font-size: 30px; } .contact-wrap { padding: 36px 6%; } }
 </style>
 </head>
 <body>
 
 <div class="demo-banner">Ceci est une démonstration — <a href="commande.html?style=hotel-conciergerie-ia">commander ce style</a></div>
 
-<header class="navbar">
-    <h2>Villa<span> Sérénité</span></h2>
-    <nav>
-        <a href="styles.html">← Tous les styles</a>
-        <a href="index.html">Elodie.dev</a>
-    </nav>
+<header>
+  <div class="logo">Villa <span>Sérénité</span></div>
+  <nav><ul>
+    <li><a href="#hebergements">Hébergements</a></li>
+    <li><a href="#recherche">Mon séjour idéal</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Réserver</a></li>
+  </ul></nav>
 </header>
 
-<main class="hero">
-    <div class="hero-content">
-        <h1>Un séjour sur mesure, organisé par votre concierge virtuel</h1>
-        <p>Un assistant IA qui recueille les envies de vos visiteurs (dates, nombre de personnes, budget) et prépare une proposition personnalisée — démonstration de l'expérience proposée.</p>
-    </div>
-
-    <div class="ai-agent-container">
-        <div class="ai-header">
-            <span class="status-dot"></span> Concierge Virtuel (Actif)
-        </div>
-        <div id="ai-chat-box" class="ai-chat-box">
-            <div class="ai-message">
-                Bienvenue à Villa Sérénité ! Je suis votre concierge virtuel. Pour quelles dates et combien de personnes souhaitez-vous réserver ?
-            </div>
-        </div>
-        <div class="ai-input-area">
-            <input type="text" id="ai-user-input" placeholder="Ex: Du 12 au 19 juillet, 4 personnes...">
-            <button id="ai-send-btn">Envoyer</button>
-        </div>
-    </div>
-</main>
-
-<section class="choose-band">
-    <a href="commande.html?style=hotel-conciergerie-ia">Choisir ce style pour mon site</a>
+<section class="hero">
+  <div class="blob-bg" style="width:260px;height:260px;background:#e0785a;top:-60px;right:-60px;opacity:0.12;"></div>
+  <div class="hero-text">
+    <div class="hero-tag">Location saisonnière · Concierge IA 24/7</div>
+    <h1>Votre séjour, <span>organisé par votre concierge virtuel</span></h1>
+    <p>Un assistant disponible à toute heure pour renseigner vos voyageurs sur les disponibilités, les tarifs et les options — même pendant que vous dormez.</p>
+    <a href="#contact" class="btn">Vérifier les disponibilités</a>
+    <a href="#recherche" class="btn-outline">Trouver mon séjour</a>
+  </div>
+  <div class="hero-visual"></div>
 </section>
 
+<div class="trust">
+  <div><div class="num">4.9/5</div><div class="label">Note voyageurs</div></div>
+  <div><div class="num">6 ans</div><div class="label">D'accueil</div></div>
+  <div><div class="num">24/7</div><div class="label">Concierge disponible</div></div>
+  <div><div class="num">96%</div><div class="label">Taux de réservation</div></div>
+</div>
+
+<section id="hebergements">
+  <div class="section-tag">Nos hébergements</div>
+  <h2 class="section-title">Un séjour pour chaque envie</h2>
+  <div class="services-grid">
+    <div class="service-card"><div class="icon">🏡</div><h3>Villa vue mer</h3><p>4 chambres, piscine privée, jusqu'à 8 personnes.</p><div class="price">280 € / nuit</div></div>
+    <div class="service-card"><div class="icon">🌴</div><h3>Bungalow jardin</h3><p>Cocon romantique pour 2, terrasse privée.</p><div class="price">120 € / nuit</div></div>
+    <div class="service-card"><div class="icon">🏙️</div><h3>Loft centre-ville</h3><p>Idéal city-trip, à 5 min à pied de tout.</p><div class="price">95 € / nuit</div></div>
+    <div class="service-card"><div class="icon">🧺</div><h3>Ménage inclus</h3><p>Linge de maison et ménage de fin de séjour.</p><div class="price">Inclus</div></div>
+    <div class="service-card"><div class="icon">🥐</div><h3>Petit-déjeuner</h3><p>Panier gourmand local livré chaque matin.</p><div class="price">+15 € / jour</div></div>
+    <div class="service-card"><div class="icon">🐾</div><h3>Animaux acceptés</h3><p>Sur demande, dans une sélection de logements.</p><div class="price">Sans supplément</div></div>
+  </div>
+</section>
+
+<section id="recherche">
+  <div class="quiz-section">
+    <div class="quiz-box">
+      <h3>Quel séjour vous correspond ?</h3>
+      <p class="quiz-sub">3 questions pour vous proposer l'hébergement idéal.</p>
+      <div class="quiz-progress"><div class="quiz-dot" data-dot="1"></div><div class="quiz-dot" data-dot="2"></div><div class="quiz-dot" data-dot="3"></div></div>
+
+      <div class="quiz-question active" data-step="1">
+        <p class="q-text">Vous partez...</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="couple">En couple, pour se ressourcer</button>
+          <button class="quiz-opt" data-key="famille">En famille ou entre amis</button>
+          <button class="quiz-opt" data-key="citytrip">Seul(e), pour un city-trip</button>
+        </div>
+      </div>
+      <div class="quiz-question" data-step="2">
+        <p class="q-text">Combien de temps restez-vous ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="court">Un week-end</button>
+          <button class="quiz-opt" data-key="moyen">Une semaine</button>
+          <button class="quiz-opt" data-key="long">Plus de 10 jours</button>
+        </div>
+      </div>
+      <div class="quiz-question" data-step="3">
+        <p class="q-text">Ce qui compte le plus pour vous ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="calme">Le calme et la nature</button>
+          <button class="quiz-opt" data-key="confort">Le confort et les prestations</button>
+          <button class="quiz-opt" data-key="animation">La proximité des animations</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="badge">🏖️</div>
+        <h4 id="resultTitle"></h4>
+        <p id="resultText"></p>
+        <a href="#contact" class="btn">Vérifier les disponibilités</a>
+        <br><button class="quiz-restart" id="quizRestart">Recommencer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="section-tag">Ils y étaient</div>
+  <h2 class="section-title">Ce que disent nos voyageurs</h2>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Réponse en 2 minutes à minuit sur une question de check-in, incroyable."</p><div class="name">Laura & Tom</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"La villa était encore mieux qu'en photo, on revient l'été prochain."</p><div class="name">Famille Petit</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Process de réservation ultra simple du début à la fin."</p><div class="name">Marc D.</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h2>Réservez votre séjour</h2>
+      <p>📍 Côte d'Azur, France</p>
+      <p>📞 04 93 00 00 00</p>
+      <p>🕐 Concierge disponible 24h/24, 7j/7</p>
+      <p style="margin-top:20px; color:#f5d0bd;">Réponse sous quelques minutes en journée.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Nous revenons vers vous très vite.';">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="tel" placeholder="Votre téléphone" required>
+      <select required>
+        <option value="">Type de séjour</option>
+        <option>Villa vue mer</option>
+        <option>Bungalow jardin</option>
+        <option>Loft centre-ville</option>
+      </select>
+      <textarea placeholder="Dates souhaitées, nombre de personnes..."></textarea>
+      <button type="submit">Envoyer ma demande</button>
+      <p id="formMsg" style="color:#f5d0bd; font-size:13px;"></p>
+    </form>
+  </div>
+</section>
+
+<footer>&copy; 2026 Villa Sérénité — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Elodie.dev</a></footer>
+
+<button class="chat-bubble" id="bubble">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="title-row"><div>Concierge Villa Sérénité</div><button class="chat-close" id="chatClose">✕</button></div>
+    <div class="status"><span class="dot"></span>En ligne</div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Bonjour ! Je peux vous renseigner sur les disponibilités, les tarifs ou les options de votre séjour.</div>
+  </div>
+  <div class="suggestions" id="suggestions">
+    <div class="sugg-btn" data-q="dispo">Disponibilités ?</div>
+    <div class="sugg-btn" data-q="tarifs">Vos tarifs ?</div>
+    <div class="sugg-btn" data-q="reservation">Réserver</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <button id="chatSend">Envoyer</button>
+  </div>
+</div>
+
 <script>
-  const chatBox = document.getElementById('ai-chat-box');
-  const userInput = document.getElementById('ai-user-input');
-  const sendBtn = document.getElementById('ai-send-btn');
+  const bubble = document.getElementById('bubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const suggestions = document.getElementById('suggestions');
 
-  const reponses = [
-    "Parfait, je vérifie les disponibilités pour ces dates... Avez-vous une préférence : vue mer, piscine privée, ou proximité du centre ?",
-    "Très bien noté. Souhaitez-vous que je vous propose un tarif tout compris avec ménage et petit-déjeuner inclus ?",
-    "Je transmets votre demande à notre équipe, qui vous enverra une proposition détaillée par email sous 24h. Avez-vous d'autres questions (animaux acceptés, arrivée tardive...) ?",
-    "Merci pour ces précisions, votre demande est bien enregistrée."
-  ];
-  let etape = 0;
+  bubble.addEventListener('click', () => chatWindow.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
 
-  function sendMessage() {
-    const text = userInput.value.trim();
-    if (text === '') return;
+  const responses = {
+    dispo: "Les disponibilités varient selon la saison. Indiquez vos dates dans le formulaire en bas de page et nous confirmons sous quelques minutes.",
+    tarifs: "Nos tarifs vont de 95€/nuit (loft) à 280€/nuit (villa vue mer). Le détail est dans la section \"Nos hébergements\" plus haut.",
+    reservation: "Vous pouvez réserver via le formulaire en bas de page, ou nous appeler au 04 93 00 00 00.",
+    default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous."
+  };
 
-    const userMsg = document.createElement('div');
-    userMsg.className = 'user-message';
-    userMsg.textContent = text;
-    chatBox.appendChild(userMsg);
-
-    userInput.value = '';
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    setTimeout(() => {
-      const aiMsg = document.createElement('div');
-      aiMsg.className = 'ai-message';
-      aiMsg.textContent = reponses[etape % reponses.length];
-      etape++;
-      chatBox.appendChild(aiMsg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }, 900);
+  function addMsg(text, who) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  sendBtn.addEventListener('click', sendMessage);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+  function respondTo(text) {
+    addMsg(text, 'user');
+    const lower = text.toLowerCase();
+    const key = Object.keys(responses).find(k => lower.includes(k) ||
+      (k === 'dispo' && /dispo|libre|date/.test(lower)) ||
+      (k === 'tarifs' && /prix|tarif|coût|combien/.test(lower)) ||
+      (k === 'reservation' && /réserv|book|rendez/.test(lower)));
+    setTimeout(() => addMsg(responses[key] || responses.default, 'bot'), 500);
+  }
+
+  suggestions.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sugg-btn');
+    if (!btn) return;
+    respondTo(btn.textContent);
+  });
+  chatSend.addEventListener('click', () => {
+    if (!chatInput.value.trim()) return;
+    respondTo(chatInput.value.trim());
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') chatSend.click(); });
+
+  let quizAnswers = {};
+  const quizQuestions = document.querySelectorAll('.quiz-question');
+  const quizDots = document.querySelectorAll('.quiz-dot');
+  const quizResult = document.getElementById('quizResult');
+
+  document.querySelectorAll('.quiz-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const questionEl = opt.closest('.quiz-question');
+      const step = parseInt(questionEl.dataset.step);
+      quizAnswers[step] = opt.dataset.key;
+      quizDots[step - 1].classList.add('done');
+      if (step < 3) {
+        questionEl.classList.remove('active');
+        document.querySelector('.quiz-question[data-step="' + (step + 1) + '"]').classList.add('active');
+      } else {
+        questionEl.classList.remove('active');
+        showQuizResult();
+      }
+    });
+  });
+
+  function showQuizResult() {
+    const results = {
+      couple: { title: "Le Bungalow jardin", text: "Un cocon pour deux, avec terrasse privée (120€/nuit) — parfait pour se ressourcer." },
+      famille: { title: "La Villa vue mer", text: "Assez d'espace pour tout le monde, piscine privée incluse (280€/nuit)." },
+      citytrip: { title: "Le Loft centre-ville", text: "À deux pas de tout pour explorer la ville (95€/nuit)." }
+    };
+    const choice = quizAnswers[1];
+    const r = results[choice] || results.famille;
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultText').textContent = r.text;
+    quizResult.classList.add('active');
+  }
+
+  document.getElementById('quizRestart').addEventListener('click', () => {
+    quizAnswers = {};
+    quizResult.classList.remove('active');
+    quizDots.forEach(d => d.classList.remove('done'));
+    quizQuestions.forEach(q => q.classList.remove('active'));
+    document.querySelector('.quiz-question[data-step="1"]').classList.add('active');
   });
 </script>
 

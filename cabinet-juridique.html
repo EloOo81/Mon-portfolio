@@ -3,130 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cabinet Lefèvre & Associés — Démo Assistant Juridique IA</title>
+<title>Cabinet Lefèvre &amp; Associés — Assistant juridique IA</title>
 <meta name="description" content="Démonstration d'un site de cabinet d'avocats / notaires avec assistant IA de pré-qualification.">
 <style>
-  :root {
-    --navy: #1c2b3a;
-    --navy-light: #2c4258;
-    --coral: #e8623d;
-    --coral-dark: #c94f2e;
-    --mint: #4fb0a5;
-    --cream: #f7f5f1;
-    --grey: #6b7280;
-    --line: #e5e1d8;
-    --gold: #c9a227;
-  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--navy); background: var(--cream); line-height: 1.6; }
+  html { scroll-behavior: smooth; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #f7f6f3; color: #14213d; line-height: 1.65; }
   a { text-decoration: none; color: inherit; }
+  .blob-bg { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0; pointer-events: none; }
 
-  .demo-banner { background: var(--gold); color: #1c2b3a; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner { background: #c9a227; color: #14213d; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; font-family: 'Segoe UI', Arial, sans-serif; }
   .demo-banner a { text-decoration: underline; }
 
-  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background: #ffffff; border-bottom: 1px solid var(--line); }
-  .navbar h2 { font-size: 19px; font-family: Georgia, serif; }
-  .navbar h2 span { color: var(--gold); }
-  .navbar nav a { margin-left: 24px; color: var(--grey); font-weight: 600; font-size: 14px; }
-  .navbar nav a:hover { color: var(--gold); }
+  header { background: #f7f6f3; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border-bottom: 1px solid #e3ded2; }
+  .logo { font-size: 21px; font-weight: 700; color: #14213d; letter-spacing: 0.3px; }
+  .logo span { color: #c9a227; }
+  nav ul { display: flex; gap: 28px; list-style: none; font-family: 'Segoe UI', Arial, sans-serif; }
+  nav a { font-size: 14px; font-weight: 600; color: #14213d; }
+  nav a:hover { color: #c9a227; }
+  .nav-cta { background: #14213d; color: #fff !important; padding: 10px 22px; }
 
-  .hero { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; text-align: center; }
-  .hero-content h1 { font-size: 2.1rem; color: var(--navy); margin-bottom: 12px; max-width: 640px; font-family: Georgia, serif; }
-  .hero-content p { color: var(--grey); font-size: 1.05rem; margin-bottom: 34px; max-width: 560px; }
+  .hero { padding: 90px 6% 70px; display: flex; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; position: relative; overflow: hidden; }
+  .hero-text { flex: 1; min-width: 300px; position: relative; z-index: 1; }
+  .hero-tag { display: inline-block; background: #eee9db; color: #14213d; padding: 6px 16px; font-size: 13px; font-weight: 700; margin-bottom: 18px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .hero h1 { font-size: 40px; color: #14213d; line-height: 1.25; margin-bottom: 18px; font-weight: 700; }
+  .hero h1 span { color: #c9a227; }
+  .hero p { font-size: 17px; color: #5a5f6b; max-width: 480px; margin-bottom: 28px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .btn { display: inline-block; background: #14213d; color: #fff; padding: 14px 30px; font-weight: 700; font-size: 14.5px; border: none; cursor: pointer; font-family: 'Segoe UI', Arial, sans-serif; }
+  .btn:hover { background: #0c1526; }
+  .btn-outline { display: inline-block; background: transparent; border: 2px solid #14213d; color: #14213d; padding: 12px 28px; font-weight: 700; font-size: 14.5px; margin-left: 12px; cursor: pointer; font-family: 'Segoe UI', Arial, sans-serif; }
+  .hero-visual { flex: 1; min-width: 280px; height: 340px; position: relative; overflow: hidden; background: linear-gradient(135deg, #14213d 0%, #2c4258 55%, #c9a227 140%); box-shadow: 0 20px 50px rgba(20,33,61,0.25); }
+  .hero-visual::before { content: "⚖️"; position: absolute; font-size: 120px; opacity: 0.25; top: 42%; left: 50%; transform: translate(-50%, -50%); }
 
-  .ai-agent-container { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: left; }
-  .ai-header { background: var(--navy); color: white; padding: 15px 20px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-  .status-dot { width: 10px; height: 10px; background-color: var(--gold); border-radius: 50%; display: inline-block; }
-  .ai-chat-box { height: 260px; padding: 20px; overflow-y: auto; background: var(--cream); display: flex; flex-direction: column; gap: 12px; }
-  .ai-message { background: #e9e5dd; padding: 10px 14px; border-radius: 8px; max-width: 80%; font-size: 0.95rem; }
-  .user-message { background: var(--navy); color: white; padding: 10px 14px; border-radius: 8px; max-width: 80%; margin-left: auto; text-align: right; font-size: 0.95rem; }
-  .ai-input-area { display: flex; padding: 15px; background: white; border-top: 1px solid var(--line); }
-  .ai-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; outline: none; font-size: 0.95rem; font-family: inherit; }
-  .ai-input-area input:focus { border-color: var(--gold); }
-  .ai-input-area button { background: var(--navy); color: white; border: none; padding: 0 20px; margin-left: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-  .ai-input-area button:hover { background: var(--navy-light); }
+  .trust { background: #14213d; padding: 30px 6%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; text-align: center; font-family: 'Segoe UI', Arial, sans-serif; }
+  .trust div { color: #fff; } .trust .num { font-size: 26px; font-weight: 800; color: #e6c667; } .trust .label { font-size: 13px; color: #c3ccd4; }
 
-  .choose-band { text-align: center; padding: 20px 20px 60px; }
-  .choose-band a { display: inline-block; background: var(--navy); color: #fff; padding: 13px 30px; border-radius: 6px; font-weight: 700; font-size: 14.5px; }
-  .choose-band a:hover { background: var(--navy-light); }
+  section { padding: 70px 6%; max-width: 1200px; margin: 0 auto; }
+  .section-tag { text-align: center; color: #c9a227; font-weight: 700; font-size: 12.5px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif; }
+  h2.section-title { text-align: center; font-size: 30px; color: #14213d; margin-bottom: 45px; font-weight: 700; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .service-card { background: #fff; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #e3ded2; }
+  .service-card .icon { font-size: 28px; margin-bottom: 12px; }
+  .service-card h3 { color: #14213d; font-size: 17.5px; margin-bottom: 8px; }
+  .service-card p { color: #6b7280; font-size: 14px; margin-bottom: 14px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .service-card .price { color: #c9a227; font-weight: 800; font-size: 15px; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  .quiz-section { background: #eeece4; padding: 50px 6%; }
+  .quiz-box { max-width: 620px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); text-align: center; font-family: 'Segoe UI', Arial, sans-serif; }
+  .quiz-box h3 { color: #14213d; font-size: 21px; margin-bottom: 6px; font-family: Georgia, serif; }
+  .quiz-box .quiz-sub { color: #6b7280; font-size: 14px; margin-bottom: 26px; }
+  .quiz-question { display: none; } .quiz-question.active { display: block; }
+  .quiz-question p.q-text { font-weight: 700; color: #14213d; margin-bottom: 18px; font-size: 16.5px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-opt { background: #f7f6f3; border: 2px solid transparent; padding: 14px; font-size: 14.5px; cursor: pointer; text-align: left; font-family: inherit; color: #14213d; }
+  .quiz-opt:hover { border-color: #c9a227; background: #f8f2df; }
+  .quiz-progress { display: flex; justify-content: center; gap: 6px; margin-bottom: 26px; }
+  .quiz-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; } .quiz-dot.done { background: #14213d; }
+  .quiz-result { display: none; } .quiz-result.active { display: block; }
+  .quiz-result .badge { font-size: 40px; margin-bottom: 10px; }
+  .quiz-result h4 { color: #14213d; font-size: 20px; margin-bottom: 10px; font-family: Georgia, serif; }
+  .quiz-result p { color: #6b7280; font-size: 14.5px; margin-bottom: 20px; }
+  .quiz-restart { background: none; border: none; color: #14213d; font-weight: 700; cursor: pointer; font-size: 13px; margin-top: 14px; }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .testi-card { background: #fff; padding: 26px; border-left: 4px solid #c9a227; box-shadow: 0 4px 20px rgba(0,0,0,0.04); font-family: 'Segoe UI', Arial, sans-serif; }
+  .testi-card p { font-style: italic; color: #4a5460; margin-bottom: 14px; font-size: 14px; }
+  .testi-card .name { font-weight: 700; color: #14213d; font-size: 13.5px; }
+  .stars { color: #c9a227; margin-bottom: 8px; }
+
+  .contact-wrap { background: #14213d; padding: 50px 6%; display: flex; gap: 50px; flex-wrap: wrap; color: #fff; }
+  .contact-info { flex: 1; min-width: 260px; } .contact-info h2 { font-size: 27px; margin-bottom: 16px; }
+  .contact-info p { color: #c3ccd4; margin-bottom: 10px; font-size: 14.5px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .contact-form { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 14px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .contact-form input, .contact-form select, .contact-form textarea { padding: 13px 16px; border: none; font-size: 14.5px; font-family: inherit; }
+  .contact-form textarea { resize: vertical; min-height: 80px; }
+  .contact-form button { background: #c9a227; color: #14213d; border: none; padding: 14px; font-weight: 800; cursor: pointer; font-size: 14.5px; }
+
+  footer { text-align: center; padding: 30px; color: #8b95a0; font-size: 13px; font-family: 'Segoe UI', Arial, sans-serif; }
+  footer a { color: #14213d; font-weight: 700; }
+
+  .chat-bubble { position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; border-radius: 50%; background: #14213d; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.25); z-index: 200; border: none; font-family: 'Segoe UI', Arial, sans-serif; }
+  .chat-window { position: fixed; bottom: 96px; right: 26px; width: 330px; max-width: 90vw; height: 430px; background: #fff; border-radius: 10px; box-shadow: 0 14px 40px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; z-index: 200; font-family: 'Segoe UI', Arial, sans-serif; }
+  .chat-window.open { display: flex; }
+  .chat-head { background: #14213d; color: #fff; padding: 16px 18px; }
+  .chat-head .title-row { display: flex; justify-content: space-between; align-items: center; }
+  .chat-head .status { font-size: 12px; color: #e6c667; display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .chat-head .status .dot { width: 7px; height: 7px; background: #e6c667; border-radius: 50%; }
+  .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .chat-body { flex: 1; padding: 16px; overflow-y: auto; background: #f7f6f3; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; line-height: 1.45; }
+  .msg.bot { background: #fff; border: 1px solid #eee; align-self: flex-start; border-bottom-left-radius: 3px; }
+  .msg.user { background: #14213d; color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+  .sugg-btn { background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: #14213d; }
+  .chat-input-row { display: flex; border-top: 1px solid #eee; padding: 10px; gap: 8px; }
+  .chat-input-row input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; font-family: inherit; }
+  .chat-input-row button { background: #14213d; color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+
+  @media (max-width: 640px) { nav ul { display: none; } .hero h1 { font-size: 28px; } .contact-wrap { padding: 36px 6%; } }
 </style>
 </head>
 <body>
 
 <div class="demo-banner">Ceci est une démonstration — <a href="commande.html?style=cabinet-juridique-ia">commander ce style</a></div>
 
-<header class="navbar">
-    <h2>Cabinet Lefèvre<span> & Associés</span></h2>
-    <nav>
-        <a href="styles.html">← Tous les styles</a>
-        <a href="index.html">Elodie.dev</a>
-    </nav>
+<header>
+  <div class="logo">Cabinet Lefèvre <span>&amp; Associés</span></div>
+  <nav><ul>
+    <li><a href="#domaines">Domaines</a></li>
+    <li><a href="#pre-qualification">Ma demande</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Consultation</a></li>
+  </ul></nav>
 </header>
 
-<main class="hero">
-    <div class="hero-content">
-        <h1>Un premier échange avec votre dossier, avant même le rendez-vous</h1>
-        <p>Un assistant IA qui recueille la nature de la demande et son degré d'urgence, pour orienter chaque visiteur vers le bon interlocuteur — démonstration de l'expérience proposée.</p>
-    </div>
-
-    <div class="ai-agent-container">
-        <div class="ai-header">
-            <span class="status-dot"></span> Assistant du Cabinet (Actif)
-        </div>
-        <div id="ai-chat-box" class="ai-chat-box">
-            <div class="ai-message">
-                Bonjour, je suis l'assistant du cabinet Lefèvre & Associés. Quel type de dossier souhaitez-vous évoquer (droit de la famille, immobilier, professionnel...) ?
-            </div>
-        </div>
-        <div class="ai-input-area">
-            <input type="text" id="ai-user-input" placeholder="Ex: Un litige avec mon employeur...">
-            <button id="ai-send-btn">Envoyer</button>
-        </div>
-    </div>
-</main>
-
-<section class="choose-band">
-    <a href="commande.html?style=cabinet-juridique-ia">Choisir ce style pour mon site</a>
+<section class="hero">
+  <div class="blob-bg" style="width:260px;height:260px;background:#c9a227;top:-60px;right:-60px;opacity:0.1;"></div>
+  <div class="hero-text">
+    <div class="hero-tag">Cabinet d'avocats &amp; notaires · Assistant IA</div>
+    <h1>Un premier échange <span>avant même le rendez-vous</span></h1>
+    <p>Un assistant virtuel recueille la nature de votre dossier et son degré d'urgence, pour vous orienter directement vers l'avocat compétent.</p>
+    <a href="#contact" class="btn">Demander une consultation</a>
+    <a href="#pre-qualification" class="btn-outline">Décrire mon dossier</a>
+  </div>
+  <div class="hero-visual"></div>
 </section>
 
+<div class="trust">
+  <div><div class="num">18 ans</div><div class="label">D'expérience</div></div>
+  <div><div class="num">1 200+</div><div class="label">Dossiers traités</div></div>
+  <div><div class="num">24/7</div><div class="label">Assistant disponible</div></div>
+  <div><div class="num">4.9/5</div><div class="label">Note clients</div></div>
+</div>
+
+<section id="domaines">
+  <div class="section-tag">Nos domaines</div>
+  <h2 class="section-title">Une expertise pour chaque situation</h2>
+  <div class="services-grid">
+    <div class="service-card"><div class="icon">👨‍👩‍👧</div><h3>Droit de la famille</h3><p>Divorce, garde d'enfants, succession.</p><div class="price">1ère consultation offerte</div></div>
+    <div class="service-card"><div class="icon">🏢</div><h3>Droit immobilier</h3><p>Litiges de copropriété, transactions, baux.</p><div class="price">Sur devis</div></div>
+    <div class="service-card"><div class="icon">💼</div><h3>Droit du travail</h3><p>Licenciement, harcèlement, contrats.</p><div class="price">Sur devis</div></div>
+    <div class="service-card"><div class="icon">🏛️</div><h3>Droit des affaires</h3><p>Création de société, contrats commerciaux.</p><div class="price">Sur devis</div></div>
+    <div class="service-card"><div class="icon">📜</div><h3>Actes notariés</h3><p>Vente immobilière, donation, testament.</p><div class="price">Tarifs réglementés</div></div>
+    <div class="service-card"><div class="icon">🛡️</div><h3>Urgence juridique</h3><p>Prise en charge sous 24h pour les dossiers urgents.</p><div class="price">Contactez-nous</div></div>
+  </div>
+</section>
+
+<section id="pre-qualification">
+  <div class="quiz-section">
+    <div class="quiz-box">
+      <h3>Décrivez votre dossier</h3>
+      <p class="quiz-sub">3 questions pour orienter votre demande vers le bon avocat.</p>
+      <div class="quiz-progress"><div class="quiz-dot" data-dot="1"></div><div class="quiz-dot" data-dot="2"></div><div class="quiz-dot" data-dot="3"></div></div>
+
+      <div class="quiz-question active" data-step="1">
+        <p class="q-text">Quel type de dossier vous concerne ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="famille">Famille (divorce, succession...)</button>
+          <button class="quiz-opt" data-key="travail">Travail (licenciement, contrat...)</button>
+          <button class="quiz-opt" data-key="immobilier">Immobilier (achat, litige...)</button>
+        </div>
+      </div>
+      <div class="quiz-question" data-step="2">
+        <p class="q-text">Ce dossier est-il urgent ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="urgent">Oui, une décision est attendue rapidement</button>
+          <button class="quiz-opt" data-key="pastres">Non, mais je souhaite avancer bientôt</button>
+          <button class="quiz-opt" data-key="info">Je me renseigne pour l'instant</button>
+        </div>
+      </div>
+      <div class="quiz-question" data-step="3">
+        <p class="q-text">Avez-vous déjà consulté un avocat pour ce dossier ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-key="jamais">Non, c'est ma première démarche</button>
+          <button class="quiz-opt" data-key="deja">Oui, je souhaite un second avis</button>
+          <button class="quiz-opt" data-key="suivi">Oui, je suis déjà accompagné(e)</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult">
+        <div class="badge">⚖️</div>
+        <h4 id="resultTitle"></h4>
+        <p id="resultText"></p>
+        <a href="#contact" class="btn">Être recontacté</a>
+        <br><button class="quiz-restart" id="quizRestart">Recommencer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="section-tag">Ils témoignent</div>
+  <h2 class="section-title">Ce que disent nos clients</h2>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Prise en charge rapide, dossier de licenciement bien défendu."</p><div class="name">Frédéric A.</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"L'assistant m'a rassurée dès le premier soir, avant même mon rendez-vous."</p><div class="name">Isabelle R.</div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Explications claires, sans jargon inutile. Très professionnel."</p><div class="name">Thomas L.</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h2>Prendre contact</h2>
+      <p>📍 8 place du Palais, 81000 Albi</p>
+      <p>📞 05 63 00 00 00</p>
+      <p>🕐 Lundi – Vendredi, 9h – 18h30</p>
+      <p style="margin-top:20px; color:#e6c667;">Première consultation offerte, sous 48h.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Nous revenons vers vous très vite.';">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="tel" placeholder="Votre téléphone" required>
+      <select required>
+        <option value="">Type de dossier</option>
+        <option>Droit de la famille</option>
+        <option>Droit du travail</option>
+        <option>Droit immobilier</option>
+        <option>Autre</option>
+      </select>
+      <textarea placeholder="Décrivez brièvement votre situation..."></textarea>
+      <button type="submit">Envoyer ma demande</button>
+      <p id="formMsg" style="color:#e6c667; font-size:13px;"></p>
+    </form>
+  </div>
+</section>
+
+<footer>&copy; 2026 Cabinet Lefèvre &amp; Associés — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Elodie.dev</a></footer>
+
+<button class="chat-bubble" id="bubble">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="title-row"><div>Assistant du Cabinet</div><button class="chat-close" id="chatClose">✕</button></div>
+    <div class="status"><span class="dot"></span>En ligne</div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Bonjour, je suis l'assistant du cabinet. Je peux vous renseigner sur nos domaines d'intervention ou organiser un premier contact.</div>
+  </div>
+  <div class="suggestions" id="suggestions">
+    <div class="sugg-btn" data-q="domaines">Vos domaines ?</div>
+    <div class="sugg-btn" data-q="urgence">Dossier urgent</div>
+    <div class="sugg-btn" data-q="rdv">Prendre rendez-vous</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <button id="chatSend">Envoyer</button>
+  </div>
+</div>
+
 <script>
-  const chatBox = document.getElementById('ai-chat-box');
-  const userInput = document.getElementById('ai-user-input');
-  const sendBtn = document.getElementById('ai-send-btn');
+  const bubble = document.getElementById('bubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const suggestions = document.getElementById('suggestions');
 
-  const reponses = [
-    "Je vous remercie pour ces précisions. Ce dossier vous semble-t-il urgent, ou avez-vous le temps d'attendre un premier rendez-vous sous quelques jours ?",
-    "Très bien. Un avocat du cabinet spécialisé dans ce domaine reviendra vers vous par email pour fixer un premier échange, gratuit et sans engagement.",
-    "Souhaitez-vous joindre un document ou préciser un élément important avant ce rendez-vous ?",
-    "Merci, votre demande a bien été transmise au cabinet."
-  ];
-  let etape = 0;
+  bubble.addEventListener('click', () => chatWindow.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
 
-  function sendMessage() {
-    const text = userInput.value.trim();
-    if (text === '') return;
+  const responses = {
+    domaines: "Le cabinet intervient en droit de la famille, droit du travail, droit immobilier, droit des affaires et actes notariés. Le détail est dans la section \"Nos domaines\" plus haut.",
+    urgence: "Pour un dossier urgent, nous priorisons une prise en charge sous 24h. Indiquez-le dans le formulaire de contact en bas de page.",
+    rdv: "Vous pouvez demander un premier rendez-vous via le formulaire, ou nous appeler au 05 63 00 00 00.",
+    default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous."
+  };
 
-    const userMsg = document.createElement('div');
-    userMsg.className = 'user-message';
-    userMsg.textContent = text;
-    chatBox.appendChild(userMsg);
-
-    userInput.value = '';
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    setTimeout(() => {
-      const aiMsg = document.createElement('div');
-      aiMsg.className = 'ai-message';
-      aiMsg.textContent = reponses[etape % reponses.length];
-      etape++;
-      chatBox.appendChild(aiMsg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }, 900);
+  function addMsg(text, who) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  sendBtn.addEventListener('click', sendMessage);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+  function respondTo(text) {
+    addMsg(text, 'user');
+    const lower = text.toLowerCase();
+    const key = Object.keys(responses).find(k => lower.includes(k) ||
+      (k === 'domaines' && /domaine|spécialité|droit/.test(lower)) ||
+      (k === 'urgence' && /urgent|vite|rapide/.test(lower)) ||
+      (k === 'rdv' && /rendez|consult|contact/.test(lower)));
+    setTimeout(() => addMsg(responses[key] || responses.default, 'bot'), 500);
+  }
+
+  suggestions.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sugg-btn');
+    if (!btn) return;
+    respondTo(btn.textContent);
+  });
+  chatSend.addEventListener('click', () => {
+    if (!chatInput.value.trim()) return;
+    respondTo(chatInput.value.trim());
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') chatSend.click(); });
+
+  let quizAnswers = {};
+  const quizQuestions = document.querySelectorAll('.quiz-question');
+  const quizDots = document.querySelectorAll('.quiz-dot');
+  const quizResult = document.getElementById('quizResult');
+
+  document.querySelectorAll('.quiz-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const questionEl = opt.closest('.quiz-question');
+      const step = parseInt(questionEl.dataset.step);
+      quizAnswers[step] = opt.dataset.key;
+      quizDots[step - 1].classList.add('done');
+      if (step < 3) {
+        questionEl.classList.remove('active');
+        document.querySelector('.quiz-question[data-step="' + (step + 1) + '"]').classList.add('active');
+      } else {
+        questionEl.classList.remove('active');
+        showQuizResult();
+      }
+    });
+  });
+
+  function showQuizResult() {
+    const results = {
+      famille: { title: "Droit de la famille", text: "Un avocat spécialisé en droit de la famille vous recontacte pour une première consultation offerte." },
+      travail: { title: "Droit du travail", text: "Un avocat spécialisé en droit du travail examine votre dossier dès votre premier échange." },
+      immobilier: { title: "Droit immobilier", text: "Un avocat spécialisé en droit immobilier vous accompagne pour sécuriser votre projet." }
+    };
+    const choice = quizAnswers[1];
+    const r = results[choice] || results.famille;
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultText').textContent = r.text;
+    quizResult.classList.add('active');
+  }
+
+  document.getElementById('quizRestart').addEventListener('click', () => {
+    quizAnswers = {};
+    quizResult.classList.remove('active');
+    quizDots.forEach(d => d.classList.remove('done'));
+    quizQuestions.forEach(q => q.classList.remove('active'));
+    document.querySelector('.quiz-question[data-step="1"]').classList.add('active');
   });
 </script>
 
