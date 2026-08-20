@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Commander mon site — Elodie.dev</title>
-<meta name="description" content="Passez commande pour votre site vitrine sur mesure.">
+<meta name="description" content="Passez commande pour votre site vitrine sur mesure, en répondant à quelques questions simples.">
 <style>
   :root {
     --navy: #1c2b3a;
+    --navy-light: #2c4258;
     --coral: #e8623d;
     --coral-dark: #c94f2e;
     --mint: #4fb0a5;
@@ -16,31 +17,12 @@
     --line: #e5e1d8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    color: var(--navy);
-    background: var(--cream);
-    line-height: 1.6;
-  }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--navy); background: var(--cream); line-height: 1.6; }
   a { text-decoration: none; color: inherit; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  header {
-    position: sticky;
-    top: 0;
-    background: rgba(247,245,241,0.95);
-    backdrop-filter: blur(6px);
-    z-index: 100;
-    border-bottom: 1px solid var(--line);
-  }
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    max-width: 1080px;
-    margin: 0 auto;
-  }
+  header { position: sticky; top: 0; background: rgba(247,245,241,0.95); backdrop-filter: blur(6px); z-index: 100; border-bottom: 1px solid var(--line); }
+  .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1080px; margin: 0 auto; }
   .logo { font-size: 19px; font-weight: 800; }
   .logo span { color: var(--coral); }
   nav ul { display: flex; gap: 30px; list-style: none; }
@@ -48,69 +30,110 @@
   nav a:hover { color: var(--coral); }
   .nav-cta { background: var(--coral); color: #fff !important; padding: 9px 18px; border-radius: 6px; }
 
-  .order-section { padding: 70px 24px; }
-  .section-head { text-align: center; max-width: 560px; margin: 0 auto 40px; }
+  .order-section { padding: 60px 24px 90px; }
+  .section-head { text-align: center; max-width: 560px; margin: 0 auto 30px; }
   .eyebrow { color: var(--coral); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
   .section-head h1 { font-size: 28px; margin-bottom: 10px; }
   .section-head p { color: var(--grey); font-size: 15px; }
 
-  .order-form {
+  .chat-card {
     max-width: 560px;
     margin: 0 auto;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 36px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
   }
-  .field { margin-bottom: 20px; }
-  .field label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
-  .field .hint { font-weight: 400; color: var(--grey); font-size: 12.5px; }
-  .field input, .field select, .field textarea {
+  .chat-progress-wrap { padding: 14px 24px 0; }
+  .chat-progress-bar { height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+  .chat-progress-fill { height: 100%; width: 0%; background: var(--coral); transition: width .3s ease; }
+  .chat-progress-label { font-size: 11.5px; color: var(--grey); margin-top: 6px; text-align: right; }
+
+  .chat-transcript {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 22px 24px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bubble { max-width: 88%; padding: 11px 15px; border-radius: 12px; font-size: 14.5px; line-height: 1.5; }
+  .bubble.bot { background: var(--cream); color: var(--navy); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .bubble.user { background: var(--navy); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; white-space: pre-wrap; }
+  .bubble.note { background: #fbeee6; color: #8a4a2a; align-self: flex-start; border-bottom-left-radius: 3px; font-size: 13px; }
+
+  .chat-input-zone { padding: 16px 24px 24px; border-top: 1px solid var(--line); }
+  .chat-input-zone input[type="text"],
+  .chat-input-zone input[type="email"],
+  .chat-input-zone input[type="tel"],
+  .chat-input-zone textarea {
     width: 100%;
-    padding: 11px 13px;
+    padding: 12px 14px;
     border: 1.5px solid var(--line);
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14.5px;
     font-family: inherit;
     color: var(--navy);
     background: var(--cream);
+    margin-bottom: 12px;
   }
-  .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none;
-    border-color: var(--coral);
-  }
-  .field textarea { resize: vertical; min-height: 110px; }
-  .hidden-field { position: absolute; left: -9999px; }
+  .chat-input-zone textarea { resize: vertical; min-height: 90px; }
+  .chat-input-zone input:focus, .chat-input-zone textarea:focus { outline: none; border-color: var(--coral); }
 
-  .submit-btn {
-    width: 100%;
+  .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .radio-opt {
+    display: block;
+    background: var(--cream);
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .radio-opt:hover { border-color: var(--coral); }
+  .radio-opt.selected { border-color: var(--coral); background: #fbe9e2; font-weight: 600; }
+
+  .chat-actions { display: flex; gap: 10px; }
+  .btn-next {
+    flex: 1;
     background: var(--coral);
     color: #fff;
     border: none;
-    padding: 14px;
-    border-radius: 6px;
+    padding: 13px;
+    border-radius: 8px;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14.5px;
     cursor: pointer;
     transition: background .2s;
   }
-  .submit-btn:hover { background: var(--coral-dark); }
+  .btn-next:hover { background: var(--coral-dark); }
+  .btn-next:disabled { background: #d8cfc6; cursor: not-allowed; }
+  .btn-skip {
+    background: none;
+    border: 1.5px solid var(--line);
+    color: var(--grey);
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .btn-skip:hover { border-color: var(--grey); }
+
+  .recap-list { font-size: 13.5px; color: var(--navy); margin-bottom: 16px; }
+  .recap-list div { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .recap-list b { color: var(--grey); font-weight: 600; display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px; }
 
   .form-note { text-align: center; font-size: 12.5px; color: var(--grey); margin-top: 16px; }
+  .hidden-form { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
-  footer {
-    background: #14202b;
-    color: #8b95a0;
-    text-align: center;
-    padding: 26px 24px;
-    font-size: 13px;
-  }
+  footer { background: #14202b; color: #8b95a0; text-align: center; padding: 26px 24px; font-size: 13px; }
   footer a { color: var(--mint); font-weight: 600; }
   footer a:hover { text-decoration: underline; }
 
-  @media (max-width: 800px) {
-    nav ul { display: none; }
-  }
+  @media (max-width: 800px) { nav ul { display: none; } }
 </style>
 </head>
 <body>
@@ -133,58 +156,19 @@
     <div class="section-head">
       <span class="eyebrow">Commande</span>
       <h1>Lançons votre projet</h1>
-      <p>Remplissez ce formulaire, je reviens vers vous par email sous 48h avec un devis précis.</p>
+      <p>Répondez à quelques questions simples, une par une — ça prend 3 minutes. Je reviens vers vous par email sous 48h avec un devis précis.</p>
     </div>
 
-    <form class="order-form" name="commande" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
-      <input type="hidden" name="form-name" value="commande">
-      <p class="hidden-field"><label>Ne pas remplir : <input name="bot-field"></label></p>
-
-      <div class="field">
-        <label for="nom">Nom complet</label>
-        <input type="text" id="nom" name="nom" required>
+    <div class="chat-card">
+      <div class="chat-progress-wrap">
+        <div class="chat-progress-bar"><div class="chat-progress-fill" id="progressFill"></div></div>
+        <div class="chat-progress-label" id="progressLabel"></div>
       </div>
+      <div class="chat-transcript" id="transcript"></div>
+      <div class="chat-input-zone" id="inputZone"></div>
+    </div>
 
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="field">
-        <label for="telephone">Téléphone <span class="hint">(optionnel)</span></label>
-        <input type="tel" id="telephone" name="telephone">
-      </div>
-
-      <div class="field">
-        <label for="activite">Nom de votre activité</label>
-        <input type="text" id="activite" name="activite">
-      </div>
-
-      <div class="field">
-        <label for="style-select">Style choisi</label>
-        <select id="style-select" name="style" required>
-          <option value="" disabled selected>-- Choisissez un style --</option>
-          <option value="agence-de-voyage">Agence de voyage — Horizon Voyages</option>
-          <option value="institut-de-beaute">Institut de beauté — Bulle de Sérénité</option>
-          <option value="artisan-btp">Artisan / BTP — Maçonnerie Bertrand</option>
-          <option value="fleuriste">Fleuriste — Fleur de Mai</option>
-          <option value="vente-directe">Vente directe — Ferme du Bosc</option>
-          <option value="agent-immobilier-ia">Premium — Agent Immobilier IA</option>
-          <option value="hotel-conciergerie-ia">Premium — Concierge IA (Hôtel / location)</option>
-          <option value="cabinet-juridique-ia">Premium — Assistant Juridique IA (Avocat / notaire)</option>
-          <option value="spa-premium-ia">Premium — Assistante Beauté IA (Spa / institut)</option>
-          <option value="autre">Autre / projet sur mesure</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="message">Message <span class="hint">(vos idées, couleurs, délais...)</span></label>
-        <textarea id="message" name="message"></textarea>
-      </div>
-
-      <button type="submit" class="submit-btn">Envoyer ma demande</button>
-      <p class="form-note">Aucun paiement n'est demandé à cette étape — seulement la prise de contact.</p>
-    </form>
+    <p class="form-note">Aucun paiement n'est demandé à cette étape — seulement la prise de contact.</p>
   </div>
 </section>
 
@@ -192,14 +176,266 @@
   <p>Elodie — Développeuse web freelance · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
+<!-- Formulaire statique caché : sert uniquement à Netlify pour détecter les champs du formulaire au moment du déploiement (le formulaire visible est piloté par JavaScript). -->
+<form name="commande" data-netlify="true" netlify-honeypot="bot-field" class="hidden-form" aria-hidden="true">
+  <input type="hidden" name="form-name" value="commande">
+  <input name="bot-field">
+  <input name="nom"><input name="email"><input name="activite"><textarea name="description"></textarea>
+  <input name="style"><textarea name="contenu"></textarea><input name="hebergement">
+  <input name="statut_juridique"><input name="siret"><input name="adresse"><input name="telephone">
+  <textarea name="message"></textarea>
+</form>
+
 <script>
+  const STYLE_LABELS = {
+    'agence-de-voyage': 'Agence de voyage — Horizon Voyages',
+    'institut-de-beaute': 'Institut de beauté — Bulle de Sérénité',
+    'artisan-btp': 'Artisan / BTP — Maçonnerie Bertrand',
+    'fleuriste': 'Fleuriste — Fleur de Mai',
+    'vente-directe': 'Vente directe — Ferme du Bosc',
+    'agent-immobilier-ia': 'Premium — Agent Immobilier IA',
+    'hotel-conciergerie-ia': 'Premium — Concierge IA (Hôtel / location)',
+    'cabinet-juridique-ia': 'Premium — Assistant Juridique IA (Avocat / notaire)',
+    'spa-premium-ia': 'Premium — Assistante Beauté IA (Spa / institut)',
+    'autre': 'Autre / projet sur mesure'
+  };
   const params = new URLSearchParams(window.location.search);
-  const styleParam = params.get('style');
-  if (styleParam) {
-    const select = document.getElementById('style-select');
-    const match = Array.from(select.options).find(o => o.value === styleParam);
-    if (match) select.value = styleParam;
+  const preselectedStyle = params.get('style');
+  const preselectedLabel = STYLE_LABELS[preselectedStyle] || null;
+
+  const answers = {};
+  let stepIndex = 0;
+
+  const steps = [
+    {
+      key: 'nom', type: 'text', required: true,
+      bot: () => "Bonjour ! Je vais vous poser quelques questions simples pour bien démarrer votre projet — une à la fois, ça prend 3 minutes. Pour commencer, comment vous appelez-vous ?",
+      placeholder: 'Votre prénom et nom'
+    },
+    {
+      key: 'email', type: 'email', required: true,
+      bot: () => `Enchantée${answers.nom ? ', ' + answers.nom.split(' ')[0] : ''} ! Quelle est votre adresse email, pour qu'on puisse échanger sur votre projet ?`,
+      placeholder: 'vous@exemple.fr'
+    },
+    {
+      key: 'activite', type: 'text', required: true,
+      bot: () => "Quel est le nom de votre activité ou de votre entreprise ?",
+      placeholder: 'Ex : Salon Coiffure Élégance'
+    },
+    {
+      key: 'description', type: 'textarea', required: true,
+      bot: () => "En une ou deux phrases, que proposez-vous à vos clients ?",
+      placeholder: 'Ex : Institut de beauté spécialisé dans les soins du visage et massages...'
+    },
+    {
+      key: 'style', type: 'text', required: true,
+      bot: () => preselectedLabel
+        ? `Je vois que le style « ${preselectedLabel} » vous intéresse — parfait, c'est noté ! Vous pourrez préciser ou changer d'avis plus tard dans le message.`
+        : "Quel style de site avez-vous en tête ? Vous pouvez piocher parmi les styles vus sur la page « Nos styles », ou décrire votre propre idée.",
+      placeholder: 'Ex : Style classique, plutôt élégant',
+      presetValue: preselectedLabel
+    },
+    {
+      key: 'contenu', type: 'textarea', required: false,
+      bot: () => "Avez-vous déjà des couleurs, un logo ou des photos à utiliser, ou faut-il imaginer tout ça ensemble ?",
+      placeholder: 'Optionnel'
+    },
+    {
+      key: 'hebergement', type: 'radio', required: true,
+      bot: () => "Petite précision importante avant de continuer : le site sera bien à vous, mais il vous faudra votre propre nom de domaine et votre propre hébergement web — ce sont des services séparés (comme OVH, Netlify...), que je ne fournis pas moi-même. Où en êtes-vous ?",
+      options: [
+        "J'ai déjà un nom de domaine et un hébergeur",
+        "Je n'ai ni l'un ni l'autre, j'aurai besoin d'aide",
+        "Je ne suis pas sûr(e) de comprendre, on en parlera ensemble"
+      ]
+    },
+    {
+      key: 'statut_juridique', type: 'text', required: false,
+      note: "Les questions suivantes servent uniquement à générer la page « Mentions légales » de votre site (obligatoire en France) — elles resteront strictement confidentielles.",
+      bot: () => "Quel est votre statut juridique ? (auto-entrepreneur, SARL, association...)",
+      placeholder: 'Ex : Auto-entrepreneur'
+    },
+    {
+      key: 'siret', type: 'text', required: false,
+      bot: () => "Quel est votre numéro SIRET ? Si vous ne l'avez pas sous la main, pas de souci, vous pourrez me l'envoyer par email plus tard.",
+      placeholder: '14 chiffres — optionnel pour l\'instant'
+    },
+    {
+      key: 'adresse', type: 'text', required: false,
+      bot: () => "Quelle est l'adresse de votre activité (numéro, rue, ville, code postal) ?",
+      placeholder: 'Optionnel'
+    },
+    {
+      key: 'telephone', type: 'tel', required: false,
+      bot: () => "Un numéro de téléphone à afficher sur le site, si vous le souhaitez ?",
+      placeholder: 'Optionnel'
+    },
+    {
+      key: 'message', type: 'textarea', required: false,
+      bot: () => "Pour finir, une envie particulière, une contrainte, ou une question avant qu'on se lance ?",
+      placeholder: 'Optionnel'
+    }
+  ];
+
+  const transcript = document.getElementById('transcript');
+  const inputZone = document.getElementById('inputZone');
+  const progressFill = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+
+  function addBubble(text, who) {
+    const div = document.createElement('div');
+    div.className = 'bubble ' + who;
+    div.textContent = text;
+    transcript.appendChild(div);
+    transcript.scrollTop = transcript.scrollHeight;
   }
+
+  function updateProgress() {
+    const pct = Math.round((stepIndex / steps.length) * 100);
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = stepIndex < steps.length ? `Question ${stepIndex + 1} / ${steps.length}` : 'Terminé';
+  }
+
+  function renderStep() {
+    updateProgress();
+    if (stepIndex >= steps.length) { renderRecap(); return; }
+    const step = steps[stepIndex];
+
+    if (step.note) addBubble(step.note, 'note');
+    addBubble(step.bot(), 'bot');
+
+    if (step.presetValue) {
+      answers[step.key] = step.presetValue;
+      inputZone.innerHTML = '';
+      const btn = document.createElement('button');
+      btn.className = 'btn-next';
+      btn.textContent = 'Continuer';
+      btn.addEventListener('click', () => { addBubble(step.presetValue, 'user'); stepIndex++; renderStep(); });
+      inputZone.appendChild(btn);
+      return;
+    }
+
+    inputZone.innerHTML = '';
+
+    let getValue;
+    if (step.type === 'radio') {
+      const group = document.createElement('div');
+      group.className = 'radio-group';
+      let selected = null;
+      step.options.forEach(opt => {
+        const optDiv = document.createElement('div');
+        optDiv.className = 'radio-opt';
+        optDiv.textContent = opt;
+        optDiv.addEventListener('click', () => {
+          group.querySelectorAll('.radio-opt').forEach(o => o.classList.remove('selected'));
+          optDiv.classList.add('selected');
+          selected = opt;
+          nextBtn.disabled = false;
+        });
+        group.appendChild(optDiv);
+      });
+      inputZone.appendChild(group);
+      getValue = () => selected;
+    } else {
+      const field = step.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
+      if (step.type !== 'textarea') field.type = step.type;
+      field.placeholder = step.placeholder || '';
+      field.id = 'field-' + step.key;
+      inputZone.appendChild(field);
+      setTimeout(() => field.focus(), 50);
+      getValue = () => field.value.trim();
+      field.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && step.type !== 'textarea') { e.preventDefault(); goNext(); }
+      });
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'chat-actions';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'btn-next';
+    nextBtn.textContent = stepIndex === steps.length - 1 ? 'Terminer' : 'Suivant';
+    if (step.required) nextBtn.disabled = true;
+    nextBtn.addEventListener('click', goNext);
+    actions.appendChild(nextBtn);
+
+    if (!step.required) {
+      const skipBtn = document.createElement('button');
+      skipBtn.className = 'btn-skip';
+      skipBtn.textContent = 'Passer';
+      skipBtn.addEventListener('click', () => { answers[step.key] = ''; stepIndex++; renderStep(); });
+      actions.appendChild(skipBtn);
+    }
+
+    inputZone.appendChild(actions);
+
+    if (step.required && step.type !== 'radio') {
+      const field = inputZone.querySelector('input, textarea');
+      field.addEventListener('input', () => { nextBtn.disabled = field.value.trim() === ''; });
+    }
+
+    function goNext() {
+      const value = getValue();
+      if (step.required && !value) return;
+      answers[step.key] = value || '';
+      if (value) addBubble(value, 'user');
+      stepIndex++;
+      renderStep();
+    }
+  }
+
+  function renderRecap() {
+    inputZone.innerHTML = '';
+    addBubble("Merci ! Voici un récapitulatif avant l'envoi :", 'bot');
+
+    const recap = document.createElement('div');
+    recap.className = 'recap-list';
+    const labels = {
+      nom: 'Nom', email: 'Email', activite: 'Activité', description: 'Description',
+      style: 'Style choisi', contenu: 'Contenu existant', hebergement: 'Hébergement / domaine',
+      statut_juridique: 'Statut juridique', siret: 'SIRET', adresse: 'Adresse',
+      telephone: 'Téléphone', message: 'Message'
+    };
+    Object.keys(labels).forEach(key => {
+      if (!answers[key]) return;
+      const row = document.createElement('div');
+      const b = document.createElement('b');
+      b.textContent = labels[key];
+      row.appendChild(b);
+      row.appendChild(document.createTextNode(answers[key]));
+      recap.appendChild(row);
+    });
+    inputZone.appendChild(recap);
+
+    const sendBtn = document.createElement('button');
+    sendBtn.className = 'btn-next';
+    sendBtn.style.width = '100%';
+    sendBtn.textContent = 'Envoyer ma demande';
+    sendBtn.addEventListener('click', submitForm);
+    inputZone.appendChild(sendBtn);
+  }
+
+  function submitForm(e) {
+    const btn = e.target;
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const body = new URLSearchParams({ 'form-name': 'commande', ...answers }).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    })
+      .then(() => { window.location.href = '/merci.html'; })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = 'Réessayer';
+        addBubble("Un souci est survenu lors de l'envoi. Réessayez, ou écrivez-moi directement à elomonchet@gmail.com.", 'note');
+      });
+  }
+
+  renderStep();
 </script>
 
 </body>
