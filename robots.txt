@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://elodev-ia.netlify.app/sitemap.xml
+Sitemap: https://eloOo81.github.io/Mon-portfolio/sitemap.xml
