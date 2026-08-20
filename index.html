@@ -212,6 +212,42 @@
     margin-top: 30px;
   }
 
+  /* COMMENT CA MARCHE */
+  .steps { background: #fff; }
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .step-card { text-align: center; padding: 10px; }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 17px;
+    margin: 0 auto 16px;
+  }
+  .step-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .step-card p { font-size: 13.5px; color: var(--grey); }
+
+  /* FAQ */
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 4px 20px;
+  }
+  .faq-item summary {
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--coral); font-weight: 400; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { padding-bottom: 16px; color: var(--grey); font-size: 14px; }
+
   /* CONTACT */
   .contact { background: var(--navy); color: #fff; text-align: center; }
   .contact .section-head h2 { color: #fff; }
@@ -239,12 +275,41 @@
   footer a { color: var(--mint); font-weight: 600; }
   footer a:hover { text-decoration: underline; }
 
+  /* CHAT WIDGET */
+  .chat-bubble {
+    position: fixed; bottom: 26px; right: 26px; width: 60px; height: 60px; border-radius: 50%;
+    background: var(--coral); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 200; border: none;
+  }
+  .chat-window {
+    position: fixed; bottom: 96px; right: 26px; width: 330px; max-width: 90vw; height: 430px;
+    background: #fff; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    display: none; flex-direction: column; overflow: hidden; z-index: 200;
+  }
+  .chat-window.open { display: flex; }
+  .chat-head { background: var(--navy); color: #fff; padding: 16px 18px; }
+  .chat-head .title-row { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+  .chat-head .status { font-size: 12px; color: var(--mint); display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+  .chat-head .status .dot { width: 7px; height: 7px; background: var(--mint); border-radius: 50%; }
+  .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+  .chat-body { flex: 1; padding: 16px; overflow-y: auto; background: var(--cream); display: flex; flex-direction: column; gap: 10px; }
+  .chat-msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+  .chat-msg.bot { background: #fff; border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .chat-msg.user { background: var(--navy); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+  .chat-sugg-btn { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: var(--navy); }
+  .chat-input-row { display: flex; border-top: 1px solid var(--line); padding: 10px; gap: 8px; }
+  .chat-input-row input { flex: 1; border: 1px solid var(--line); border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; font-family: inherit; }
+  .chat-input-row button { background: var(--navy); color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+
   @media (max-width: 800px) {
     nav ul { display: none; }
     .burger { display: flex; }
     .hero h1 { font-size: 30px; }
     .about-grid { grid-template-columns: 1fr; }
     .portfolio-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -273,6 +338,38 @@
     <p>Je conçois des sites simples, rapides et efficaces pour les artisans, commerçants et indépendants — sans mauvaise surprise, sans jargon.</p>
     <a href="#contact" class="btn-primary">Demander un devis</a>
     <a href="#portfolio" class="btn-secondary">Voir mes réalisations</a>
+  </div>
+</section>
+
+<section id="comment-ca-marche" class="steps">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Le processus</span>
+      <h2>Comment ça marche</h2>
+      <p>Quatre étapes simples, sans surprise.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Choisissez un style</h3>
+        <p>Parcourez nos styles classiques ou premium avec agent IA, ou décrivez votre propre idée.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Commandez en 3 min</h3>
+        <p>Répondez à quelques questions simples, une par une, pour cadrer votre projet.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Devis sous 48h</h3>
+        <p>Vous recevez un devis précis par email, sans engagement ni paiement à ce stade.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Livraison</h3>
+        <p>Votre site est livré, prêt à être mis en ligne sur votre hébergement et votre domaine.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -341,7 +438,7 @@
       <p>Des projets de démonstration réalisés pour montrer le rendu et la diversité des styles possibles.</p>
     </div>
     <div class="portfolio-grid">
-      <a class="p-card" href="https://eloOo81.github.io/Mon-portfolio/agence-voyage.html" target="_blank" rel="noopener">
+      <a class="p-card" href="agence-voyage.html" target="_blank" rel="noopener">
         <div class="p-thumb pt1">Horizon Voyages</div>
         <div class="p-body">
           <span class="p-tag">Voir le site ↗</span>
@@ -349,7 +446,7 @@
           <p>Site vitrine pour une agence de voyage — destinations, séjours et demande de devis en ligne.</p>
         </div>
       </a>
-      <a class="p-card" href="https://eloOo81.github.io/Mon-portfolio/institut-beaute.html" target="_blank" rel="noopener">
+      <a class="p-card" href="institut-beaute.html" target="_blank" rel="noopener">
         <div class="p-thumb pt2">Bulle de Sérénité</div>
         <div class="p-body">
           <span class="p-tag">Voir le site ↗</span>
@@ -357,7 +454,7 @@
           <p>Site vitrine pour un institut de beauté — soins, tarifs et réservation en ligne.</p>
         </div>
       </a>
-      <a class="p-card" href="https://eloOo81.github.io/Mon-portfolio/maconnerie.html" target="_blank" rel="noopener">
+      <a class="p-card" href="maconnerie.html" target="_blank" rel="noopener">
         <div class="p-thumb pt3">Maçonnerie Bertrand</div>
         <div class="p-body">
           <span class="p-tag">Voir le site ↗</span>
@@ -365,7 +462,7 @@
           <p>Site pour un artisan du bâtiment — services, réalisations, devis en ligne.</p>
         </div>
       </a>
-      <a class="p-card" href="https://eloOo81.github.io/Mon-portfolio/fleuriste.html" target="_blank" rel="noopener">
+      <a class="p-card" href="fleuriste.html" target="_blank" rel="noopener">
         <div class="p-thumb pt4">Fleur de Mai</div>
         <div class="p-body">
           <span class="p-tag">Voir le site ↗</span>
@@ -373,7 +470,7 @@
           <p>Commerce de vente — catalogue de créations et commande en ligne.</p>
         </div>
       </a>
-      <a class="p-card" href="https://eloOo81.github.io/Mon-portfolio/ferme%20agricole.html" target="_blank" rel="noopener">
+      <a class="p-card" href="ferme%20agricole.html" target="_blank" rel="noopener">
         <div class="p-thumb pt5">Ferme du Bosc</div>
         <div class="p-body">
           <span class="p-tag">Voir le site ↗</span>
@@ -382,7 +479,38 @@
         </div>
       </a>
     </div>
-    <p class="portfolio-note">Cliquez sur un projet pour le voir en ligne.</p>
+    <p class="portfolio-note">Cliquez sur un projet pour le voir en ligne, ou <a href="styles.html" style="color:var(--coral); font-weight:700;">découvrez tous nos styles</a> (classiques et premium avec agent IA).</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Avant de vous lancer</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Dois-je payer immédiatement pour commander ?</summary>
+        <p>Non. La commande via le formulaire est gratuite et sans engagement — vous recevez un devis précis par email sous 48h, et rien n'est débité avant que vous ayez validé.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Je n'ai pas de nom de domaine ni d'hébergement, que faire ?</summary>
+        <p>Ce sont des services séparés que vous devez souscrire de votre côté (par exemple chez OVH, Netlify ou un autre hébergeur) — je ne les fournis pas moi-même. Si vous ne savez pas par où commencer, indiquez-le dans le formulaire de commande, je peux vous orienter.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Combien de temps pour recevoir mon site ?</summary>
+        <p>Comptez environ 3 jours ouvrés pour un style classique après validation du devis. Les styles premium avec agent IA demandent un peu plus de temps selon la personnalisation souhaitée.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Combien de modifications sont incluses ?</summary>
+        <p>Un tour de modifications est inclus après la livraison, pour ajuster textes, couleurs ou petits détails.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Le chatbot des styles premium est-il une vraie intelligence artificielle ?</summary>
+        <p>Non, c'est une démonstration : les réponses sont pré-écrites et s'affichent selon des mots-clés, sans connexion à un service externe. Aucune clé API, aucun coût, aucun risque de facture — pour vous comme pour vos futurs clients. Un vrai assistant IA connecté peut être développé sur demande, avec un coût associé à en discuter.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -402,6 +530,26 @@
   <p>Elodie — Développeuse web freelance · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
+<button class="chat-bubble" id="bubble" aria-label="Ouvrir l'assistant">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="title-row"><div>Assistant Elodie.dev</div><button class="chat-close" id="chatClose">✕</button></div>
+    <div class="status"><span class="dot"></span>En ligne</div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Bonjour ! Je peux vous renseigner sur les tarifs, les délais, ou comment commander votre site.</div>
+  </div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <div class="chat-sugg-btn" data-q="tarifs">Vos tarifs ?</div>
+    <div class="chat-sugg-btn" data-q="delais">Délais de livraison ?</div>
+    <div class="chat-sugg-btn" data-q="commander">Comment commander ?</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <button id="chatSend">Envoyer</button>
+  </div>
+</div>
+
 <script>
   const burger = document.getElementById('burger');
   const navMenu = document.getElementById('nav-menu');
@@ -414,6 +562,54 @@
       navMenu.querySelector('ul').style.display = 'none';
     }
   });
+
+  const bubble = document.getElementById('bubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatSuggestions = document.getElementById('chatSuggestions');
+
+  bubble.addEventListener('click', () => chatWindow.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+
+  const chatResponses = {
+    tarifs: "Un site classique démarre à 200€, et un style premium avec agent IA intégré démarre à 450€. Le détail est dans la section \"Tarifs\" plus haut.",
+    delais: "Comptez environ 3 jours ouvrés après validation du devis pour un style classique, un peu plus pour un style premium personnalisé.",
+    commander: "Direction la page \"Nos styles\" pour choisir votre style, puis \"Commander\" — un parcours de quelques questions simples, sans engagement.",
+    default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous, ou écrivez-moi directement à elomonchet@gmail.com."
+  };
+
+  function addChatMsg(text, who) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function respondToChat(text) {
+    addChatMsg(text, 'user');
+    const lower = text.toLowerCase();
+    const key = Object.keys(chatResponses).find(k => lower.includes(k) ||
+      (k === 'tarifs' && /prix|tarif|coût|combien|cher/.test(lower)) ||
+      (k === 'delais' && /délai|temps|rapide|vite|quand/.test(lower)) ||
+      (k === 'commander' && /command|style|choisir|devis/.test(lower)));
+    setTimeout(() => addChatMsg(chatResponses[key] || chatResponses.default, 'bot'), 500);
+  }
+
+  chatSuggestions.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chat-sugg-btn');
+    if (!btn) return;
+    respondToChat(btn.textContent);
+  });
+  chatSend.addEventListener('click', () => {
+    if (!chatInput.value.trim()) return;
+    respondToChat(chatInput.value.trim());
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') chatSend.click(); });
 </script>
 
 </body>
