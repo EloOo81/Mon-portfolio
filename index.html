@@ -183,6 +183,7 @@
   .pricing-card li { padding: 9px 0; font-size: 14.5px; display: flex; gap: 10px; align-items: flex-start; }
   .pricing-card li::before { content: "✓"; color: var(--mint); font-weight: 700; }
   .pricing-card .btn-primary { width: 100%; }
+  .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; }
   .security-badge {
     margin-top: 16px;
     font-size: 12px;
@@ -244,6 +245,47 @@
     font-style: italic;
     margin-top: 30px;
   }
+
+  /* PREMIUM SHOWCASE */
+  .premium-showcase { background: var(--navy); color: #fff; }
+  .premium-showcase .section-head p { color: #c3ccd4; }
+  .premium-showcase .eyebrow { color: #e6c667; }
+  .premium-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .pp-card {
+    display: block;
+    background: #223244;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .pp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.3); }
+  .pp-thumb {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 10px;
+  }
+  .pp-body { padding: 16px 18px 18px; }
+  .pp-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #e6c667;
+    background: rgba(230,198,103,0.12);
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .pp-body h3 { font-size: 15px; margin-bottom: 4px; }
+  .pp-body p { font-size: 12.5px; color: #c3ccd4; }
 
   /* COMMENT CA MARCHE */
   .steps { background: #fff; }
@@ -364,6 +406,7 @@
     .portfolio-grid { grid-template-columns: 1fr; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
     .testi-grid { grid-template-columns: 1fr; }
+    .premium-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -478,6 +521,7 @@
         <li>Livraison en 3 jours ouvrés</li>
         <li>Un tour de modifications inclus après livraison</li>
       </ul>
+      <p class="pricing-fineprint">Au-delà du tour inclus, toute retouche ultérieure (texte, photo, information) est facturée 50 € par intervention.</p>
       <a href="commande.html" class="btn-primary">Demander un devis gratuit</a>
       <p class="security-badge">🔒 Paiement 100% sécurisé via Stripe — après devis, aucune donnée bancaire ne transite par ce site</p>
     </div>
@@ -536,6 +580,51 @@
     </div>
     <p class="portfolio-note">Cliquez sur un projet pour voir la démo en ligne.</p>
     <p class="section-cta"><a href="styles.html" class="btn-primary">Voir tous les styles et commander</a></p>
+  </div>
+</section>
+
+<section class="premium-showcase">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Premium</span>
+      <h2>Des sites encore plus poussés, avec agent IA</h2>
+      <p>Un assistant virtuel qui accueille vos visiteurs directement sur la page — pour se démarquer. À partir de 450 €.</p>
+    </div>
+    <div class="premium-grid">
+      <a class="pp-card" href="agent-immobilier.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#2c4258,#0d1620);">ImmoSmart AI</div>
+        <div class="pp-body">
+          <span class="pp-tag">Agence immobilière</span>
+          <h3>Agent Immobilier IA</h3>
+          <p>Assistant qui qualifie chaque recherche de bien.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="hotel-conciergerie.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#4fb0a5,#1c6b62);">Villa Sérénité</div>
+        <div class="pp-body">
+          <span class="pp-tag">Hôtel / location</span>
+          <h3>Concierge IA</h3>
+          <p>Assistant disponible 24/7 pour les réservations.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="cabinet-juridique.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#c9a227,#5a4610);">Cabinet Lefèvre</div>
+        <div class="pp-body">
+          <span class="pp-tag">Avocat / notaire</span>
+          <h3>Assistant Juridique IA</h3>
+          <p>Pré-qualifie chaque demande avant rendez-vous.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="spa-premium.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#9b7bd8,#4a3a70);">Spa Émeraude</div>
+        <div class="pp-body">
+          <span class="pp-tag">Institut / spa</span>
+          <h3>Assistante Beauté IA</h3>
+          <p>Recommande un soin selon les besoins exprimés.</p>
+        </div>
+      </a>
+    </div>
+    <p class="section-cta"><a href="styles.html#premium" class="btn-primary">Découvrir les styles premium</a></p>
   </div>
 </section>
 
@@ -603,6 +692,10 @@
       <details class="faq-item">
         <summary>Combien de modifications sont incluses ?</summary>
         <p>Un tour de modifications est inclus après la livraison, pour ajuster textes, couleurs ou petits détails.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Et si je veux modifier mon site plus tard, dans quelques semaines ou quelques mois ?</summary>
+        <p>Avec plaisir ! Le tour de modifications inclus couvre la mise au point juste après la livraison. Passé ce délai, chaque nouvelle demande (changer un texte, remplacer une photo, mettre à jour une information) est facturée 50 € par intervention. C'est un tarif simple et transparent, annoncé à l'avance : il permet de vous garantir une réponse rapide et soignée, sans vous imposer la charge d'un abonnement mensuel dont vous n'auriez pas toujours besoin.</p>
       </details>
       <details class="faq-item">
         <summary>Le chatbot des styles premium est-il une vraie intelligence artificielle ?</summary>
