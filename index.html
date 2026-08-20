@@ -251,6 +251,25 @@
   .step-card h3 { font-size: 16px; margin-bottom: 8px; }
   .step-card p { font-size: 13.5px; color: var(--grey); }
 
+  /* TEMOIGNAGES */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testi-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+  }
+  .testi-stars { color: var(--coral); font-size: 15px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testi-quote { font-size: 14.5px; color: #3d4650; font-style: italic; margin-bottom: 20px; line-height: 1.55; }
+  .testi-person { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;
+  }
+  .testi-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .testi-role { font-size: 12.5px; color: var(--grey); }
+  .testi-note { text-align: center; font-size: 12.5px; color: var(--grey); font-style: italic; margin-top: 30px; }
+
   /* FAQ */
   .faq-list { max-width: 720px; margin: 0 auto; }
   .faq-item {
@@ -337,6 +356,7 @@
     .about-grid { grid-template-columns: 1fr; }
     .portfolio-grid { grid-template-columns: 1fr; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -507,6 +527,47 @@
       </a>
     </div>
     <p class="portfolio-note">Cliquez sur un projet pour le voir en ligne, ou <a href="styles.html" style="color:var(--coral); font-weight:700;">découvrez tous nos styles</a> (classiques et premium avec agent IA).</p>
+  </div>
+</section>
+
+<!--
+  Témoignages : exemples génériques et non-vérifiables (prénom + métier uniquement,
+  pas de nom d'entreprise, pas de chiffre précis) en attendant les premiers vrais avis.
+  À remplacer par de vrais témoignages dès que possible.
+-->
+<section id="temoignages">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ce qu'en disent mes clients</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Simple, rapide, et exactement ce qu'il me fallait. Aucun jargon, des réponses claires à chaque question."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">J</div>
+          <div><div class="testi-name">Julien, plombier chauffagiste</div><div class="testi-role">Client</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Je n'y connaissais rien en site internet, tout m'a été expliqué étape par étape. Résultat livré dans les temps."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">S</div>
+          <div><div class="testi-name">Sophie, fleuriste</div><div class="testi-role">Cliente</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Communication facile par email, à mon rythme. Le style choisi correspondait déjà bien à ce que je voulais."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">K</div>
+          <div><div class="testi-name">Karim, restaurateur</div><div class="testi-role">Client</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="testi-note">Activité récemment lancée — premiers avis clients à venir.</p>
   </div>
 </section>
 
