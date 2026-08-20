@@ -201,13 +201,13 @@
       <div class="chat-input-zone" id="inputZone"></div>
     </div>
 
-    <p class="form-note">Aucun paiement n'est demandé à cette étape — seulement la prise de contact.</p>
+    <p class="form-note">Styles Classique et Premium : paiement sécurisé via Stripe en fin de parcours. Projet sur mesure : aucun paiement ici, un devis vous est envoyé par email.</p>
 
     <div class="mini-faq">
       <h2>Avant d'envoyer, quelques précisions</h2>
       <details class="faq-item">
         <summary>Que se passe-t-il juste après l'envoi ?</summary>
-        <p>Votre demande arrive directement dans ma messagerie. Je l'étudie et vous réponds par email sous 48h avec un devis précis, adapté à votre projet.</p>
+        <p>Pour un style Classique ou Premium : vous êtes redirigé(e) vers un paiement sécurisé Stripe, puis je démarre votre site. Pour un projet sur mesure : votre demande arrive dans ma messagerie et je vous réponds par email sous 48h avec un devis précis.</p>
       </details>
       <details class="faq-item">
         <summary>Vais-je être contacté(e) par téléphone ?</summary>
@@ -215,7 +215,7 @@
       </details>
       <details class="faq-item">
         <summary>Est-ce que je dois payer en remplissant ce formulaire ?</summary>
-        <p>Non, jamais. Ce formulaire ne fait que lancer la discussion. Le paiement n'intervient qu'après validation d'un devis, via un lien Stripe sécurisé.</p>
+        <p>Pour un style Classique (250 €) ou Premium (450 €), oui : le paiement intervient à la toute fin, une fois vos informations transmises, via un lien Stripe sécurisé. Pour un projet sur mesure, non : ce formulaire ne fait que lancer la discussion, le paiement n'intervient qu'après validation d'un devis.</p>
       </details>
       <details class="faq-item">
         <summary>Puis-je changer d'avis ou préciser ma demande après l'envoi ?</summary>
@@ -252,6 +252,17 @@
     'spa-premium-ia': 'Premium — Assistante Beauté IA (Spa / institut)',
     'autre': 'Autre / projet sur mesure'
   };
+  const CLASSIQUE_STYLES = ['agence-de-voyage', 'institut-de-beaute', 'artisan-btp', 'fleuriste', 'vente-directe'];
+  const PREMIUM_STYLES = ['agent-immobilier-ia', 'hotel-conciergerie-ia', 'cabinet-juridique-ia', 'spa-premium-ia'];
+  const STRIPE_LINKS = {
+    classique: 'https://buy.stripe.com/9B628tfrO0Oa5nQdclb3q00',
+    premium: 'https://buy.stripe.com/6oU14pa7u9kG6rUfktb3q01'
+  };
+  function getStripeLink(styleKey) {
+    if (CLASSIQUE_STYLES.includes(styleKey)) return STRIPE_LINKS.classique;
+    if (PREMIUM_STYLES.includes(styleKey)) return STRIPE_LINKS.premium;
+    return null;
+  }
   const params = new URLSearchParams(window.location.search);
   const preselectedStyle = params.get('style');
   const preselectedLabel = STYLE_LABELS[preselectedStyle] || null;
@@ -476,10 +487,23 @@
     });
     inputZone.appendChild(recap);
 
+    const stripeLink = getStripeLink(preselectedStyle);
+    const priceNote = document.createElement('p');
+    priceNote.className = 'field-error';
+    priceNote.style.color = 'var(--grey)';
+    priceNote.style.display = 'block';
+    priceNote.style.margin = '0 0 14px';
+    priceNote.textContent = stripeLink
+      ? (CLASSIQUE_STYLES.includes(preselectedStyle)
+          ? 'Prochaine étape : paiement sécurisé de 250 € via Stripe.'
+          : 'Prochaine étape : paiement sécurisé de 450 € via Stripe.')
+      : 'Prochaine étape : je reviens vers vous par email sous 48h avec un devis.';
+    inputZone.appendChild(priceNote);
+
     const sendBtn = document.createElement('button');
     sendBtn.className = 'btn-next';
     sendBtn.style.width = '100%';
-    sendBtn.textContent = 'Envoyer ma demande';
+    sendBtn.textContent = stripeLink ? 'Continuer vers le paiement' : 'Envoyer ma demande';
     sendBtn.addEventListener('click', submitForm);
     inputZone.appendChild(sendBtn);
   }
@@ -502,7 +526,8 @@
       });
       clearTimeout(timeout);
       if (!response.ok) throw new Error('Réponse serveur ' + response.status);
-      window.location.href = '/merci.html';
+      const stripeLink = getStripeLink(preselectedStyle);
+      window.location.href = stripeLink || '/merci.html';
     } catch (err) {
       clearTimeout(timeout);
       btn.disabled = false;
