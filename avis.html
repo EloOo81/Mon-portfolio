@@ -102,10 +102,7 @@
       <p>Votre retour aide d'autres artisans et commerçants à me faire confiance. Ça prend une minute.</p>
     </div>
 
-    <form class="avis-form" name="avis-client" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci-avis.html" id="avisForm">
-      <input type="hidden" name="form-name" value="avis-client">
-      <p class="hidden-field"><label>Ne pas remplir : <input name="bot-field"></label></p>
-
+    <div class="avis-form" id="avisForm">
       <div class="field">
         <label>Votre note</label>
         <input type="hidden" name="note" id="noteInput" value="" required>
@@ -143,9 +140,9 @@
         <label for="consent">J'autorise la publication de mon prénom, mon métier et mon avis sur le site elodev-ia.netlify.app.</label>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn" disabled>Envoyer mon avis</button>
-    </form>
-    <p class="form-note">Merci de prendre le temps de partager votre expérience !</p>
+      <button type="button" class="submit-btn" id="submitBtn" disabled>Envoyer mon avis par email</button>
+    </div>
+    <p class="form-note">Ce bouton ouvre votre messagerie avec un email pré-rempli — il ne reste qu'à cliquer sur "Envoyer".</p>
   </div>
 </section>
 
@@ -172,9 +169,40 @@
   });
 
   function checkValid() {
-    submitBtn.disabled = !(noteInput.value && consent.checked);
+    const nom = document.getElementById('nom').value.trim();
+    const metier = document.getElementById('metier').value.trim();
+    const commentaire = document.getElementById('commentaire').value.trim();
+    submitBtn.disabled = !(noteInput.value && consent.checked && nom && metier && commentaire);
   }
   consent.addEventListener('change', checkValid);
+  ['nom', 'metier', 'commentaire'].forEach(id => {
+    document.getElementById(id).addEventListener('input', checkValid);
+  });
+
+  submitBtn.addEventListener('click', () => {
+    const nom = document.getElementById('nom').value.trim();
+    const metier = document.getElementById('metier').value.trim();
+    const commentaire = document.getElementById('commentaire').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const note = noteInput.value;
+
+    if (!nom || !metier || !commentaire || !note || !consent.checked) return;
+
+    const lines = [
+      'Note : ' + note + ' / 5',
+      'Prénom : ' + nom,
+      'Métier : ' + metier,
+      'Avis : ' + commentaire,
+      email ? 'Email : ' + email : null,
+      'Autorisation de publication : oui'
+    ].filter(Boolean);
+
+    const subject = 'Nouvel avis client — ' + nom + ' (' + note + '/5)';
+    const mailto = 'mailto:elomonchet@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = mailto;
+    submitBtn.textContent = '✓ Messagerie ouverte — cliquez sur "Envoyer" dans votre boîte mail';
+    submitBtn.disabled = true;
+  });
 </script>
 
 </body>

@@ -229,16 +229,6 @@
   <p>Elodie — Développeuse web freelance · <a href="mentions-legales.html">Mentions légales</a></p>
 </footer>
 
-<!-- Formulaire statique caché : sert uniquement à Netlify pour détecter les champs du formulaire au moment du déploiement (le formulaire visible est piloté par JavaScript). -->
-<form name="commande" data-netlify="true" netlify-honeypot="bot-field" class="hidden-form" aria-hidden="true">
-  <input type="hidden" name="form-name" value="commande">
-  <input name="bot-field">
-  <input name="nom"><input name="email"><input name="activite"><textarea name="description"></textarea>
-  <input name="style"><textarea name="contenu"></textarea><input name="hebergement">
-  <input name="statut_juridique"><input name="siret"><input name="adresse"><input name="telephone">
-  <textarea name="message"></textarea>
-</form>
-
 <script>
   const STYLE_LABELS = {
     'agence-de-voyage': 'Agence de voyage — Horizon Voyages',
@@ -464,23 +454,33 @@
     }
   }
 
+  const RECAP_LABELS = {
+    nom: 'Nom', email: 'Email', activite: 'Activité', description: 'Description',
+    style: 'Style choisi', contenu: 'Contenu existant', hebergement: 'Hébergement / domaine',
+    statut_juridique: 'Statut juridique', siret: 'SIRET', adresse: 'Adresse',
+    telephone: 'Téléphone', message: 'Message'
+  };
+
+  function buildMailtoLink() {
+    const lines = Object.keys(RECAP_LABELS)
+      .filter(key => answers[key])
+      .map(key => RECAP_LABELS[key] + ' : ' + answers[key]);
+    const subject = 'Nouvelle commande de site — ' + (answers.style || 'style à préciser');
+    const body = lines.join('\n');
+    return 'mailto:elomonchet@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+
   function renderRecap() {
     inputZone.innerHTML = '';
     addBubble("Merci ! Voici un récapitulatif avant l'envoi :", 'bot');
 
     const recap = document.createElement('div');
     recap.className = 'recap-list';
-    const labels = {
-      nom: 'Nom', email: 'Email', activite: 'Activité', description: 'Description',
-      style: 'Style choisi', contenu: 'Contenu existant', hebergement: 'Hébergement / domaine',
-      statut_juridique: 'Statut juridique', siret: 'SIRET', adresse: 'Adresse',
-      telephone: 'Téléphone', message: 'Message'
-    };
-    Object.keys(labels).forEach(key => {
+    Object.keys(RECAP_LABELS).forEach(key => {
       if (!answers[key]) return;
       const row = document.createElement('div');
       const b = document.createElement('b');
-      b.textContent = labels[key];
+      b.textContent = RECAP_LABELS[key];
       row.appendChild(b);
       row.appendChild(document.createTextNode(answers[key]));
       recap.appendChild(row);
@@ -495,45 +495,41 @@
     priceNote.style.margin = '0 0 14px';
     priceNote.textContent = stripeLink
       ? (CLASSIQUE_STYLES.includes(preselectedStyle)
-          ? 'Prochaine étape : paiement sécurisé de 250 € via Stripe.'
-          : 'Prochaine étape : paiement sécurisé de 450 € via Stripe.')
-      : 'Prochaine étape : je reviens vers vous par email sous 48h avec un devis.';
+          ? 'Deux étapes pour finaliser : envoyer vos informations, puis payer 250 € en toute sécurité via Stripe.'
+          : 'Deux étapes pour finaliser : envoyer vos informations, puis payer 450 € en toute sécurité via Stripe.')
+      : 'Dernière étape : envoyer vos informations. Je reviens vers vous par email sous 48h avec un devis.';
     inputZone.appendChild(priceNote);
 
-    const sendBtn = document.createElement('button');
-    sendBtn.className = 'btn-next';
-    sendBtn.style.width = '100%';
-    sendBtn.textContent = stripeLink ? 'Continuer vers le paiement' : 'Envoyer ma demande';
-    sendBtn.addEventListener('click', submitForm);
-    inputZone.appendChild(sendBtn);
-  }
+    const mailBtn = document.createElement('button');
+    mailBtn.className = 'btn-next';
+    mailBtn.style.width = '100%';
+    mailBtn.textContent = stripeLink ? '1. Envoyer mes informations par email' : 'Envoyer ma demande par email';
+    mailBtn.addEventListener('click', () => {
+      window.location.href = buildMailtoLink();
+      mailBtn.textContent = '✓ Messagerie ouverte — cliquez sur "Envoyer" dans votre boîte mail';
+      mailBtn.disabled = true;
+      if (stripeLink && payBtn) {
+        payBtn.style.opacity = '1';
+        payBtn.style.pointerEvents = 'auto';
+      }
+    });
+    inputZone.appendChild(mailBtn);
 
-  async function submitForm(e) {
-    const btn = e.target;
-    btn.disabled = true;
-    btn.textContent = 'Envoi en cours...';
-
-    const body = new URLSearchParams({ 'form-name': 'commande', ...answers }).toString();
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
-        signal: controller.signal
-      });
-      clearTimeout(timeout);
-      if (!response.ok) throw new Error('Réponse serveur ' + response.status);
-      const stripeLink = getStripeLink(preselectedStyle);
-      window.location.href = stripeLink || '/merci.html';
-    } catch (err) {
-      clearTimeout(timeout);
-      btn.disabled = false;
-      btn.textContent = 'Réessayer l\'envoi';
-      const reason = err.name === 'AbortError' ? "la demande a mis trop de temps à répondre" : "une erreur réseau est survenue";
-      addBubble(`Désolée, ${reason}. Vos réponses sont conservées, vous pouvez réessayer — ou écrivez-moi directement à elomonchet@gmail.com.`, 'note');
+    let payBtn;
+    if (stripeLink) {
+      payBtn = document.createElement('a');
+      payBtn.href = stripeLink;
+      payBtn.className = 'btn-next';
+      payBtn.style.width = '100%';
+      payBtn.style.display = 'block';
+      payBtn.style.textAlign = 'center';
+      payBtn.style.textDecoration = 'none';
+      payBtn.style.marginTop = '10px';
+      payBtn.style.opacity = '0.5';
+      payBtn.style.pointerEvents = 'none';
+      payBtn.textContent = '2. Payer en ligne (' + (CLASSIQUE_STYLES.includes(preselectedStyle) ? '250 €' : '450 €') + ')';
+      payBtn.disabled = true;
+      inputZone.appendChild(payBtn);
     }
   }
 
