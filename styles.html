@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos styles de sites — Elodie.dev</title>
+<meta name="description" content="Choisissez le style de votre futur site vitrine : classique ou premium avec agent IA intégré.">
+<style>
+  :root {
+    --navy: #1c2b3a;
+    --navy-light: #2c4258;
+    --coral: #e8623d;
+    --coral-dark: #c94f2e;
+    --mint: #4fb0a5;
+    --gold: #c9a227;
+    --cream: #f7f5f1;
+    --grey: #6b7280;
+    --line: #e5e1d8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--navy);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(247,245,241,0.95);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    border-bottom: 1px solid var(--line);
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo { font-size: 19px; font-weight: 800; letter-spacing: 0.2px; }
+  .logo span { color: var(--coral); }
+  nav ul { display: flex; gap: 30px; list-style: none; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--navy); transition: color .2s; }
+  nav a:hover { color: var(--coral); }
+  .nav-cta { background: var(--coral); color: #fff !important; padding: 9px 18px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--coral-dark); color: #fff !important; }
+
+  .page-hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 70px 24px 60px;
+    text-align: center;
+  }
+  .page-hero h1 { font-size: 34px; margin-bottom: 14px; }
+  .page-hero h1 span { color: var(--coral); }
+  .page-hero p { color: #c3ccd4; max-width: 560px; margin: 0 auto; font-size: 16px; }
+
+  section { padding: 70px 24px; }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 40px; }
+  .eyebrow { color: var(--coral); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
+  .eyebrow.ia { color: var(--gold); }
+  .section-head h2 { font-size: 28px; margin-bottom: 10px; }
+  .section-head p { color: var(--grey); font-size: 15px; }
+
+  .style-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .s-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .s-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(28,43,58,0.1); }
+  .s-thumb {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 12px;
+  }
+  .pt1 { background: linear-gradient(135deg,#d8a0a8,#a8677a); }
+  .pt2 { background: linear-gradient(135deg,#e8b463,#c9863b); }
+  .pt3 { background: linear-gradient(135deg,#8a7a6a,#5a4f45); }
+  .pt4 { background: linear-gradient(135deg,#e3a5ad,#c98a94); }
+  .pt5 { background: linear-gradient(135deg,#c9a227,#7a2e2a); }
+  .pt6 { background: linear-gradient(135deg,#e8623d,#a8402a); }
+  .pt7 { background: linear-gradient(135deg,#9b7bd8,#5a4592); }
+  .pt-ia { background: linear-gradient(135deg,#2c4258,#0d1620); }
+
+  .s-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+  .s-tag {
+    display: inline-block;
+    width: fit-content;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--mint);
+    background: #eaf6f4;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .s-tag.ia { color: var(--gold); background: #faf3e0; }
+  .s-body h3 { font-size: 16.5px; margin-bottom: 6px; }
+  .s-body p { font-size: 13.5px; color: var(--grey); margin-bottom: 14px; flex: 1; }
+  .s-price { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+  .s-actions { display: flex; gap: 8px; }
+  .s-actions a {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 10px;
+    border-radius: 6px;
+  }
+  .s-demo { border: 1.5px solid var(--line); color: var(--navy); }
+  .s-demo:hover { border-color: var(--navy); }
+  .s-choose { background: var(--coral); color: #fff; }
+  .s-choose:hover { background: var(--coral-dark); }
+
+  .premium { background: var(--navy); color: #fff; }
+  .premium .section-head p { color: #c3ccd4; }
+  .premium .s-card { background: #223244; border-color: rgba(255,255,255,0.1); }
+  .premium .s-body p { color: #c3ccd4; }
+  .premium .s-price { color: #fff; }
+  .premium .s-demo { border-color: rgba(255,255,255,0.25); color: #fff; }
+  .premium .s-demo:hover { border-color: #fff; }
+  .premium .style-grid { grid-template-columns: repeat(3, 1fr); max-width: 760px; margin: 0 auto; }
+
+  .more-note {
+    text-align: center;
+    font-size: 13.5px;
+    color: #9aa5ad;
+    margin-top: 30px;
+  }
+
+  .cta-band { background: #fff; text-align: center; }
+  .cta-band .btn-primary {
+    display: inline-block;
+    background: var(--coral);
+    color: #fff;
+    padding: 15px 34px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .cta-band .btn-primary:hover { background: var(--coral-dark); }
+
+  footer {
+    background: #14202b;
+    color: #8b95a0;
+    text-align: center;
+    padding: 26px 24px;
+    font-size: 13px;
+  }
+  footer a { color: var(--mint); font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 800px) {
+    nav ul { display: none; }
+    .style-grid, .premium .style-grid { grid-template-columns: 1fr; }
+    .page-hero h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="index.html" class="logo">Elodie<span>.dev</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html#apropos">À propos</a></li>
+        <li><a href="index.html#services">Tarifs</a></li>
+        <li><a href="styles.html">Nos styles</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Me contacter</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <h1>Choisissez le <span>style</span> de votre futur site</h1>
+  <p>Chaque style est une base de départ, entièrement personnalisable à vos couleurs, vos textes et vos photos. Cliquez sur « Choisir ce style » pour lancer votre commande.</p>
+</section>
+
+<section id="classique">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Sites vitrines</span>
+      <h2>Styles classiques</h2>
+      <p>Élégants, sobres et efficaces — parfaits pour présenter une activité et être trouvé facilement.</p>
+    </div>
+    <div class="style-grid">
+      <div class="s-card">
+        <div class="s-thumb pt1">Horizon Voyages</div>
+        <div class="s-body">
+          <span class="s-tag">Agence de voyage</span>
+          <h3>Horizon Voyages</h3>
+          <p>Présentation de destinations, séjours et demande de devis en ligne.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="agence-voyage.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=agence-de-voyage">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt2">Bulle de Sérénité</div>
+        <div class="s-body">
+          <span class="s-tag">Institut de beauté</span>
+          <h3>Bulle de Sérénité</h3>
+          <p>Soins, tarifs et prise de rendez-vous en ligne.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="institut-beaute.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=institut-de-beaute">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt3">Maçonnerie Bertrand</div>
+        <div class="s-body">
+          <span class="s-tag">Artisan / BTP</span>
+          <h3>Maçonnerie Bertrand</h3>
+          <p>Services, réalisations et demande de devis pour un artisan du bâtiment.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="maconnerie.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=artisan-btp">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt4">Fleur de Mai</div>
+        <div class="s-body">
+          <span class="s-tag">Fleuriste</span>
+          <h3>Fleur de Mai</h3>
+          <p>Catalogue de créations florales et commande en ligne.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="fleuriste.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=fleuriste">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt5">Ferme du Bosc</div>
+        <div class="s-body">
+          <span class="s-tag">Vente directe</span>
+          <h3>Ferme du Bosc</h3>
+          <p>Vente directe avec simulateur de commande interactif.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="ferme%20agricole.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=vente-directe">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt6">Le Bon Plat</div>
+        <div class="s-body">
+          <span class="s-tag">Restaurant</span>
+          <h3>Le Bon Plat</h3>
+          <p>Menu, avis clients et horaires pour un restaurant.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="restaurant.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=restaurant">Choisir</a>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-thumb pt7">L'Atelier Coiffure</div>
+        <div class="s-body">
+          <span class="s-tag">Salon de coiffure</span>
+          <h3>L'Atelier Coiffure</h3>
+          <p>Prestations, horaires et avis clients pour un salon.</p>
+          <div class="s-price">À partir de 200 €</div>
+          <div class="s-actions">
+            <a class="s-demo" href="salon%20de%20coiffure.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=salon-coiffure">Choisir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="premium" class="premium">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow ia">Premium</span>
+      <h2>Styles avec agent IA intégré</h2>
+      <p>Des sites plus développés, avec un assistant virtuel qui accueille et oriente vos visiteurs directement sur la page. Idéal pour se démarquer.</p>
+    </div>
+    <div class="style-grid">
+      <div class="s-card">
+        <div class="s-thumb pt-ia">ImmoSmart AI</div>
+        <div class="s-body">
+          <span class="s-tag ia">Agence immobilière</span>
+          <h3>Agent Immobilier IA</h3>
+          <p>Un assistant virtuel qui interroge le visiteur sur son projet (budget, secteur, type de bien) directement depuis la page d'accueil.</p>
+          <div class="s-price">Sur devis</div>
+          <div class="s-actions">
+            <a class="s-demo" href="agent-immobilier.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="s-choose" href="commande.html?style=agent-immobilier-ia">Choisir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="more-note">D'autres styles premium (coiffure, restaurant, commerce...) avec agent IA arrivent bientôt.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Sur mesure</span>
+      <h2>Aucun style ne correspond exactement ?</h2>
+      <p>Décrivez-moi votre projet, je m'adapte.</p>
+    </div>
+    <a href="commande.html?style=autre" class="btn-primary">Demander un site sur mesure</a>
+  </div>
+</section>
+
+<footer>
+  <p>Elodie — Développeuse web freelance · <a href="mentions-legales.html">Mentions légales</a></p>
+</footer>
+
+</body>
+</html>
