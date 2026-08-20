@@ -80,6 +80,9 @@
   }
   .chat-input-zone textarea { resize: vertical; min-height: 90px; }
   .chat-input-zone input:focus, .chat-input-zone textarea:focus { outline: none; border-color: var(--coral); }
+  .chat-input-zone input.invalid, .chat-input-zone textarea.invalid { border-color: #c0392b; }
+  .field-error { color: #c0392b; font-size: 12.5px; margin: -6px 0 12px; display: none; }
+  .field-error.visible { display: block; }
 
   .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
   .radio-opt {
@@ -215,7 +218,8 @@
     {
       key: 'email', type: 'email', required: true,
       bot: () => `Enchantée${answers.nom ? ', ' + answers.nom.split(' ')[0] : ''} ! Quelle est votre adresse email, pour qu'on puisse échanger sur votre projet ?`,
-      placeholder: 'vous@exemple.fr'
+      placeholder: 'vous@exemple.fr',
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || "Cette adresse email ne semble pas valide (exemple : nom@exemple.fr)."
     },
     {
       key: 'activite', type: 'text', required: true,
@@ -258,7 +262,8 @@
     {
       key: 'siret', type: 'text', required: false,
       bot: () => "Quel est votre numéro SIRET ? Si vous ne l'avez pas sous la main, pas de souci, vous pourrez me l'envoyer par email plus tard.",
-      placeholder: '14 chiffres — optionnel pour l\'instant'
+      placeholder: '14 chiffres — optionnel pour l\'instant',
+      validate: (v) => /^\d{14}$/.test(v.replace(/\s/g, '')) || "Un SIRET contient exactement 14 chiffres (espaces autorisés). Vous pouvez aussi passer cette question si vous ne l'avez pas sous la main."
     },
     {
       key: 'adresse', type: 'text', required: false,
@@ -317,7 +322,10 @@
 
     inputZone.innerHTML = '';
 
-    let getValue;
+    const errorEl = document.createElement('div');
+    errorEl.className = 'field-error';
+
+    let getValue, inputField = null;
     if (step.type === 'radio') {
       const group = document.createElement('div');
       group.className = 'radio-group';
@@ -337,15 +345,21 @@
       inputZone.appendChild(group);
       getValue = () => selected;
     } else {
-      const field = step.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
-      if (step.type !== 'textarea') field.type = step.type;
-      field.placeholder = step.placeholder || '';
-      field.id = 'field-' + step.key;
-      inputZone.appendChild(field);
-      setTimeout(() => field.focus(), 50);
-      getValue = () => field.value.trim();
-      field.addEventListener('keydown', (e) => {
+      inputField = step.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
+      if (step.type !== 'textarea') inputField.type = step.type;
+      inputField.placeholder = step.placeholder || '';
+      inputField.id = 'field-' + step.key;
+      inputZone.appendChild(inputField);
+      inputZone.appendChild(errorEl);
+      setTimeout(() => inputField.focus(), 50);
+      getValue = () => inputField.value.trim();
+      inputField.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && step.type !== 'textarea') { e.preventDefault(); goNext(); }
+      });
+      inputField.addEventListener('input', () => {
+        inputField.classList.remove('invalid');
+        errorEl.classList.remove('visible');
+        if (step.required) nextBtn.disabled = inputField.value.trim() === '';
       });
     }
 
@@ -369,14 +383,19 @@
 
     inputZone.appendChild(actions);
 
-    if (step.required && step.type !== 'radio') {
-      const field = inputZone.querySelector('input, textarea');
-      field.addEventListener('input', () => { nextBtn.disabled = field.value.trim() === ''; });
+    function showError(message) {
+      if (inputField) inputField.classList.add('invalid');
+      errorEl.textContent = message;
+      errorEl.classList.add('visible');
     }
 
     function goNext() {
       const value = getValue();
       if (step.required && !value) return;
+      if (value && typeof step.validate === 'function') {
+        const result = step.validate(value);
+        if (result !== true) { showError(result); return; }
+      }
       answers[step.key] = value || '';
       if (value) addBubble(value, 'user');
       stepIndex++;
@@ -415,24 +434,32 @@
     inputZone.appendChild(sendBtn);
   }
 
-  function submitForm(e) {
+  async function submitForm(e) {
     const btn = e.target;
     btn.disabled = true;
     btn.textContent = 'Envoi en cours...';
 
     const body = new URLSearchParams({ 'form-name': 'commande', ...answers }).toString();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body
-    })
-      .then(() => { window.location.href = '/merci.html'; })
-      .catch(() => {
-        btn.disabled = false;
-        btn.textContent = 'Réessayer';
-        addBubble("Un souci est survenu lors de l'envoi. Réessayez, ou écrivez-moi directement à elomonchet@gmail.com.", 'note');
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+        signal: controller.signal
       });
+      clearTimeout(timeout);
+      if (!response.ok) throw new Error('Réponse serveur ' + response.status);
+      window.location.href = '/merci.html';
+    } catch (err) {
+      clearTimeout(timeout);
+      btn.disabled = false;
+      btn.textContent = 'Réessayer l\'envoi';
+      const reason = err.name === 'AbortError' ? "la demande a mis trop de temps à répondre" : "une erreur réseau est survenue";
+      addBubble(`Désolée, ${reason}. Vos réponses sont conservées, vous pouvez réessayer — ou écrivez-moi directement à elomonchet@gmail.com.`, 'note');
+    }
   }
 
   renderStep();
