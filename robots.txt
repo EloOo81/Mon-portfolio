@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elodev-ia.netlify.app/sitemap.xml
