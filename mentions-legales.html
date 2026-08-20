@@ -84,7 +84,9 @@
   footer a:hover { text-decoration: underline; }
 
   @media (max-width: 800px) {
-    nav ul { display: none; }
+    .navbar { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    nav a { font-size: 13px; }
   }
 </style>
 </head>

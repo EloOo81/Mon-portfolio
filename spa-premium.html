@@ -102,7 +102,12 @@
   .chat-input-row input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; }
   .chat-input-row button { background: #4a6b5a; color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
 
-  @media (max-width: 640px) { nav ul { display: none; } .hero h1 { font-size: 32px; } .contact-wrap { padding: 36px 6%; } }
+  @media (max-width: 640px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .hero h1 { font-size: 32px; }
+    .contact-wrap { padding: 36px 6%; }
+  }
 </style>
 </head>
 <body>
