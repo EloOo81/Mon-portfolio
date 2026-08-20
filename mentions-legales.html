@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales — Elodie.dev</title>
+<meta name="description" content="Mentions légales du site Elodie.dev.">
+<style>
+  :root {
+    --navy: #1c2b3a;
+    --navy-light: #2c4258;
+    --coral: #e8623d;
+    --coral-dark: #c94f2e;
+    --mint: #4fb0a5;
+    --cream: #f7f5f1;
+    --grey: #6b7280;
+    --line: #e5e1d8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--navy);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(247,245,241,0.95);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    border-bottom: 1px solid var(--line);
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo { font-size: 19px; font-weight: 800; letter-spacing: 0.2px; }
+  .logo span { color: var(--coral); }
+  nav ul { display: flex; gap: 30px; list-style: none; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--navy); transition: color .2s; }
+  nav a:hover { color: var(--coral); }
+  .nav-cta { background: var(--coral); color: #fff !important; padding: 9px 18px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--coral-dark); color: #fff !important; }
+
+  .legal {
+    padding: 76px 24px;
+  }
+  .legal-header { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+  .eyebrow { color: var(--coral); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
+  .legal-header h1 { font-size: 30px; margin-bottom: 10px; }
+
+  .legal-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 40px;
+  }
+  .legal-card h2 { font-size: 15px; margin: 26px 0 8px; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; }
+  .legal-card h2:first-child { margin-top: 0; }
+  .legal-card p { font-size: 14.5px; color: #3d4650; }
+  .legal-card a { color: var(--coral); font-weight: 600; }
+  .legal-card a:hover { text-decoration: underline; }
+
+  footer {
+    background: #14202b;
+    color: #8b95a0;
+    text-align: center;
+    padding: 26px 24px;
+    font-size: 13px;
+  }
+  footer a { color: var(--mint); font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 800px) {
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="index.html" class="logo">Elodie<span>.dev</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html#apropos">À propos</a></li>
+        <li><a href="index.html#services">Tarifs</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Me contacter</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="legal">
+  <div class="container">
+    <div class="legal-header">
+      <span class="eyebrow">Informations légales</span>
+      <h1>Mentions légales</h1>
+    </div>
+    <div class="legal-card">
+      <h2>Éditeur du site</h2>
+      <p>
+        Le site <a href="https://elodev-ia.netlify.app/">https://elodev-ia.netlify.app/</a> est édité par Elodie Monchet, entrepreneur individuel (micro-entreprise).<br>
+        SIRET : 108 684 564 00017<br>
+        Adresse : 3 rue du Mas, 81200 Mazamet, France<br>
+        Email : <a href="mailto:elomonchet@gmail.com">elomonchet@gmail.com</a>
+      </p>
+
+      <h2>Directrice de la publication</h2>
+      <p>Elodie Monchet</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Netlify, Inc. — 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis — <a href="https://www.netlify.com" target="_blank" rel="noopener">www.netlify.com</a>
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        Le contenu de ce site (textes, visuels, code) est la propriété d'Elodie Monchet, sauf mention contraire. Toute reproduction sans autorisation est interdite.
+      </p>
+
+      <h2>Données personnelles</h2>
+      <p>
+        Ce site ne collecte aucune donnée via un formulaire. Les seules données transmises le sont volontairement par email, à l'initiative du visiteur.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Elodie — Développeuse web freelance · <a href="mentions-legales.html">Mentions légales</a></p>
+</footer>
+
+</body>
+</html>
