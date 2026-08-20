@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa Émeraude — Démo Assistant Beauté IA</title>
+<meta name="description" content="Démonstration d'un site d'institut de beauté / spa haut de gamme avec assistant IA de prise de rendez-vous.">
+<style>
+  :root {
+    --navy: #1c2b3a;
+    --navy-light: #2c4258;
+    --coral: #e8623d;
+    --coral-dark: #c94f2e;
+    --mint: #4fb0a5;
+    --cream: #f7f5f1;
+    --grey: #6b7280;
+    --line: #e5e1d8;
+    --gold: #c9a227;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--navy); background: var(--cream); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+
+  .demo-banner { background: var(--gold); color: #1c2b3a; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; background: #ffffff; border-bottom: 1px solid var(--line); }
+  .navbar h2 { font-size: 19px; letter-spacing: 0.5px; }
+  .navbar h2 span { color: var(--mint); }
+  .navbar nav a { margin-left: 24px; color: var(--grey); font-weight: 600; font-size: 14px; }
+  .navbar nav a:hover { color: var(--mint); }
+
+  .hero { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; text-align: center; }
+  .hero-content h1 { font-size: 2.1rem; color: var(--navy); margin-bottom: 12px; max-width: 640px; }
+  .hero-content p { color: var(--grey); font-size: 1.05rem; margin-bottom: 34px; max-width: 560px; }
+
+  .ai-agent-container { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: left; }
+  .ai-header { background: var(--navy); color: white; padding: 15px 20px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+  .status-dot { width: 10px; height: 10px; background-color: var(--mint); border-radius: 50%; display: inline-block; }
+  .ai-chat-box { height: 260px; padding: 20px; overflow-y: auto; background: var(--cream); display: flex; flex-direction: column; gap: 12px; }
+  .ai-message { background: #e9e5dd; padding: 10px 14px; border-radius: 8px; max-width: 80%; font-size: 0.95rem; }
+  .user-message { background: var(--navy); color: white; padding: 10px 14px; border-radius: 8px; max-width: 80%; margin-left: auto; text-align: right; font-size: 0.95rem; }
+  .ai-input-area { display: flex; padding: 15px; background: white; border-top: 1px solid var(--line); }
+  .ai-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; outline: none; font-size: 0.95rem; font-family: inherit; }
+  .ai-input-area input:focus { border-color: var(--mint); }
+  .ai-input-area button { background: var(--mint); color: white; border: none; padding: 0 20px; margin-left: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+  .ai-input-area button:hover { background: #3d8f86; }
+
+  .choose-band { text-align: center; padding: 20px 20px 60px; }
+  .choose-band a { display: inline-block; background: var(--navy); color: #fff; padding: 13px 30px; border-radius: 6px; font-weight: 700; font-size: 14.5px; }
+  .choose-band a:hover { background: var(--navy-light); }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — <a href="commande.html?style=spa-premium-ia">commander ce style</a></div>
+
+<header class="navbar">
+    <h2>Spa<span> Émeraude</span></h2>
+    <nav>
+        <a href="styles.html">← Tous les styles</a>
+        <a href="index.html">Elodie.dev</a>
+    </nav>
+</header>
+
+<main class="hero">
+    <div class="hero-content">
+        <h1>Votre rituel bien-être, réservé en quelques mots</h1>
+        <p>Un assistant IA qui propose un soin adapté selon les besoins exprimés par le visiteur, puis l'oriente vers une prise de rendez-vous — démonstration de l'expérience proposée.</p>
+    </div>
+
+    <div class="ai-agent-container">
+        <div class="ai-header">
+            <span class="status-dot"></span> Assistante Beauté Virtuelle (Active)
+        </div>
+        <div id="ai-chat-box" class="ai-chat-box">
+            <div class="ai-message">
+                Bienvenue au Spa Émeraude ! Je suis votre assistante virtuelle. Cherchez-vous plutôt un soin du visage, du corps, ou un massage relaxant ?
+            </div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" id="ai-user-input" placeholder="Ex: Un massage relaxant pour deux personnes...">
+            <button id="ai-send-btn">Envoyer</button>
+        </div>
+    </div>
+</main>
+
+<section class="choose-band">
+    <a href="commande.html?style=spa-premium-ia">Choisir ce style pour mon site</a>
+</section>
+
+<script>
+  const chatBox = document.getElementById('ai-chat-box');
+  const userInput = document.getElementById('ai-user-input');
+  const sendBtn = document.getElementById('ai-send-btn');
+
+  const reponses = [
+    "Excellent choix. Avez-vous une date et un créneau horaire préférés cette semaine ?",
+    "Parfait, je vérifie les disponibilités... Souhaitez-vous ajouter une option (accès hammam, thé de bienvenue) à votre soin ?",
+    "Votre demande est prête à être confirmée. Un membre de l'équipe vous enverra un email de confirmation sous peu.",
+    "Merci pour votre confiance, à très vite au Spa Émeraude !"
+  ];
+  let etape = 0;
+
+  function sendMessage() {
+    const text = userInput.value.trim();
+    if (text === '') return;
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'user-message';
+    userMsg.textContent = text;
+    chatBox.appendChild(userMsg);
+
+    userInput.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    setTimeout(() => {
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'ai-message';
+      aiMsg.textContent = reponses[etape % reponses.length];
+      etape++;
+      chatBox.appendChild(aiMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 900);
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+
+</body>
+</html>
