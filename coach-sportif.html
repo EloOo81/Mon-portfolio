@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Théo Lacroix — Coach sportif à domicile, Toulouse</title>
+<meta name="description" content="Démonstration d'un site multi-pages pour un coach sportif indépendant : programmes, à propos, témoignages, réservation.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #141414;
+    --dark-2: #1e1e1e;
+    --lime: #c6ff3d;
+    --lime-dark: #9fd819;
+    --bg: #f6f5f2;
+    --card: #ffffff;
+    --ink: #17181a;
+    --ink-soft: #6b6b6b;
+    --line: #e6e4de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo, .stat-num, .prog-price { font-family: 'Barlow Condensed', 'Segoe UI', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .demo-banner { background: var(--lime); color: var(--dark); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--dark); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 21px; color: #fff; letter-spacing: 0.02em; }
+  .logo span { color: var(--lime); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 13.5px; font-weight: 600; color: #cfcfcf; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav a:hover, nav a.active { color: var(--lime); }
+  .nav-cta { background: var(--lime); color: var(--dark) !important; padding: 9px 18px; border-radius: 4px; font-weight: 700 !important; }
+
+  .hero {
+    background:
+      linear-gradient(rgba(20,20,20,0.85), rgba(20,20,20,0.92)),
+      repeating-linear-gradient(135deg, #1c1c1c 0 2px, #141414 2px 26px);
+    color: #fff;
+    padding: 100px 6% 90px;
+    text-align: center;
+  }
+  .hero-tag { display: inline-block; background: rgba(198,255,61,0.12); color: var(--lime); border: 1px solid rgba(198,255,61,0.3); padding: 6px 16px; border-radius: 30px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 22px; text-transform: uppercase; }
+  .hero h1 { font-size: 56px; line-height: 1.05; margin-bottom: 20px; max-width: 780px; margin-left: auto; margin-right: auto; }
+  .hero h1 span { color: var(--lime); }
+  .hero p { font-size: 17px; color: #c9c9c9; max-width: 520px; margin: 0 auto 34px; font-family: 'Segoe UI', Arial, sans-serif; text-transform: none; }
+  .btn { display: inline-block; padding: 15px 32px; border-radius: 4px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Barlow Condensed', sans-serif; }
+  .btn-primary { background: var(--lime); color: var(--dark); }
+  .btn-primary:hover { background: var(--lime-dark); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,0.35); color: #fff; margin-left: 10px; }
+  .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+
+  .stats { background: var(--dark-2); padding: 30px 6%; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 32px; color: var(--lime); }
+  .stat-label { font-size: 12px; color: #a8a8a8; text-transform: uppercase; letter-spacing: 0.05em; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 600; }
+
+  section { padding: 80px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-tag { color: var(--lime-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .section-head { max-width: 620px; margin: 0 auto 46px; text-align: center; }
+  .section-head h2 { font-size: 36px; margin-bottom: 12px; color: var(--ink); }
+  .section-head p { color: var(--ink-soft); font-size: 15.5px; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 32px 26px; }
+  .pillar .num { font-family: 'Barlow Condensed', sans-serif; font-size: 42px; font-weight: 800; color: var(--line); margin-bottom: 6px; }
+  .pillar h3 { font-size: 22px; margin-bottom: 10px; }
+  .pillar p { color: var(--ink-soft); font-size: 14.5px; }
+
+  .prog-preview { background: var(--dark); color: #fff; }
+  .prog-preview .section-head p { color: #b8b8b8; }
+  .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .prog-card { background: var(--dark-2); border-radius: 10px; padding: 28px 24px; border-top: 3px solid var(--lime); }
+  .prog-card h3 { font-size: 22px; margin-bottom: 10px; }
+  .prog-card p { color: #b8b8b8; font-size: 14px; margin-bottom: 16px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .prog-price { color: var(--lime); font-size: 20px; }
+  .prog-price span { font-size: 12px; color: #999; text-transform: none; font-family: 'Segoe UI', Arial, sans-serif; }
+  .center-cta { text-align: center; margin-top: 44px; }
+
+  .testi-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .testi-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 26px; border-left: 4px solid var(--lime); }
+  .testi-stars { color: var(--lime-dark); margin-bottom: 10px; letter-spacing: 2px; }
+  .testi-card p { font-style: italic; color: var(--ink); font-size: 14.5px; margin-bottom: 14px; }
+  .testi-name { font-weight: 700; font-size: 13.5px; }
+  .testi-role { color: var(--ink-soft); font-size: 12.5px; }
+
+  .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tip-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .tip-thumb { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+  .tip-thumb.t1 { background: linear-gradient(135deg,#1c1c1c,#3a3a3a); }
+  .tip-thumb.t2 { background: linear-gradient(135deg,var(--dark),#3d4a12); }
+  .tip-thumb.t3 { background: linear-gradient(135deg,#1c1c1c,#2a2a2a); }
+  .tip-body { padding: 20px 22px; }
+  .tip-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--lime-dark); margin-bottom: 8px; display: block; }
+  .tip-body h3 { font-size: 18px; margin-bottom: 8px; text-transform: none; }
+  .tip-body p { color: var(--ink-soft); font-size: 13.5px; }
+
+  .cta-band { background: var(--dark); color: #fff; text-align: center; }
+  .cta-band h2 { font-size: 34px; margin-bottom: 14px; }
+  .cta-band p { color: #c9c9c9; margin-bottom: 30px; font-family: 'Segoe UI', Arial, sans-serif; text-transform: none; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  footer { background: var(--dark-2); color: #8b8b8b; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--lime); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .hero h1 { font-size: 38px; }
+    .pillars, .prog-grid, .testi-preview { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-coach">commander ce style</a></div>
+
+<header>
+  <a href="coach-sportif.html" class="logo">Théo<span> Lacroix</span></a>
+  <nav>
+    <ul>
+      <li><a href="coach-sportif.html" class="active">Accueil</a></li>
+      <li><a href="coach-sportif-programmes.html">Programmes</a></li>
+      <li><a href="coach-sportif-apropos.html">À propos</a></li>
+      <li><a href="coach-sportif-temoignages.html">Témoignages</a></li>
+      <li><a href="coach-sportif-contact.html" class="nav-cta">Réserver un bilan</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="hero-tag">Coach sportif certifié · Toulouse</span>
+  <h1>Reprenez le contrôle de <span>votre corps</span>, à votre rythme</h1>
+  <p>Coaching individuel à domicile ou en extérieur — programmes sur mesure en force, cardio et nutrition, pour de vrais résultats durables.</p>
+  <a href="coach-sportif-contact.html" class="btn btn-primary">Réserver un bilan gratuit</a>
+  <a href="coach-sportif-programmes.html" class="btn btn-outline">Voir les programmes</a>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">9 ans</div><div class="stat-label">D'expérience</div></div>
+  <div class="stat"><div class="stat-num">180+</div><div class="stat-label">Clients accompagnés</div></div>
+  <div class="stat"><div class="stat-num">4.9/5</div><div class="stat-label">Note moyenne</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Sur mesure</div></div>
+</div>
+
+<section id="approche">
+  <div class="section-head">
+    <div class="section-tag">Mon approche</div>
+    <h2>Trois piliers, un seul objectif</h2>
+    <p>Pas de méthode toute faite : un accompagnement construit autour de vous, votre niveau et votre emploi du temps.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><div class="num">01</div><h3>Renforcement</h3><p>Un programme de musculation structuré, adapté à votre niveau, pour gagner en force et en tonicité.</p></div>
+    <div class="pillar"><div class="num">02</div><h3>Cardio &amp; endurance</h3><p>Un travail cardiovasculaire progressif pour améliorer votre souffle et brûler durablement.</p></div>
+    <div class="pillar"><div class="num">03</div><h3>Nutrition</h3><p>Des conseils alimentaires simples et tenables, sans régime restrictif ni interdits.</p></div>
+  </div>
+</section>
+
+<section class="prog-preview">
+  <div class="section-head">
+    <div class="section-tag">Programmes</div>
+    <h2>Un accompagnement pour chaque objectif</h2>
+    <p>Trois formules parmi lesquelles choisir, ou un programme entièrement personnalisé.</p>
+  </div>
+  <div class="prog-grid">
+    <div class="prog-card">
+      <h3>Remise en forme</h3>
+      <p>Reprendre une activité physique en douceur, sans se blesser, avec un suivi rassurant.</p>
+      <div class="prog-price">45€ <span>/ séance</span></div>
+    </div>
+    <div class="prog-card">
+      <h3>Prise de muscle</h3>
+      <p>Un programme de musculation intensif avec suivi de la progression, séance par séance.</p>
+      <div class="prog-price">55€ <span>/ séance</span></div>
+    </div>
+    <div class="prog-card">
+      <h3>Préparation trail</h3>
+      <p>Préparation physique spécifique pour une course ou un trail, du plan à la ligne d'arrivée.</p>
+      <div class="prog-price">55€ <span>/ séance</span></div>
+    </div>
+  </div>
+  <div class="center-cta"><a href="coach-sportif-programmes.html" class="btn btn-primary">Voir tous les programmes</a></div>
+</section>
+
+<section id="avis">
+  <div class="section-head">
+    <div class="section-tag">Ils en parlent</div>
+    <h2>Ce que disent mes clients</h2>
+  </div>
+  <div class="testi-preview">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>"En 4 mois j'ai enfin retrouvé une vraie condition physique, sans me blesser. Théo adapte vraiment chaque séance."</p>
+      <div class="testi-name">Camille R.</div>
+      <div class="testi-role">Suivi remise en forme, 8 mois</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>"Préparation sérieuse pour mon premier trail. Arrivée sans douleur et avec un super chrono."</p>
+      <div class="testi-name">Nicolas B.</div>
+      <div class="testi-role">Préparation trail, 12 semaines</div>
+    </div>
+  </div>
+  <div class="center-cta"><a href="coach-sportif-temoignages.html" class="btn btn-outline" style="border-color:var(--line); color:var(--ink);">Lire tous les témoignages</a></div>
+</section>
+
+<section id="conseils">
+  <div class="section-head">
+    <div class="section-tag">Mes conseils</div>
+    <h2>Trois lectures pour bien démarrer</h2>
+    <p>Quelques repères simples, avant même la première séance.</p>
+  </div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-thumb t1">🏋️</div>
+      <div class="tip-body"><span class="tip-cat">Renforcement</span><h3>3 erreurs qui freinent la progression</h3><p>Les pièges les plus fréquents quand on débute la musculation seul.</p></div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-thumb t2">🥗</div>
+      <div class="tip-body"><span class="tip-cat">Nutrition</span><h3>Manger avant ou après le sport ?</h3><p>Ce qui compte vraiment selon votre objectif et l'heure de la séance.</p></div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-thumb t3">🏃</div>
+      <div class="tip-body"><span class="tip-cat">Cardio</span><h3>Reprendre la course sans se blesser</h3><p>La progression douce qui évite les blessures classiques du débutant.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Prêt(e) à vous lancer ?</h2>
+  <p>Le premier bilan est offert : on discute de vos objectifs, votre niveau et vos disponibilités, sans engagement.</p>
+  <a href="coach-sportif-contact.html" class="btn btn-primary">Réserver mon bilan gratuit</a>
+</section>
+
+<footer>
+  <p>Théo Lacroix — Coach sportif, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

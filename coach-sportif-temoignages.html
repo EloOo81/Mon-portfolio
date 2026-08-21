@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Témoignages — Théo Lacroix, Coach sportif</title>
+<meta name="description" content="Avis et témoignages des clients de Théo Lacroix, coach sportif à Toulouse.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #141414; --dark-2: #1e1e1e; --lime: #c6ff3d; --lime-dark: #9fd819;
+    --bg: #f6f5f2; --card: #ffffff; --ink: #17181a; --ink-soft: #6b6b6b; --line: #e6e4de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo, .agg-num { font-family: 'Barlow Condensed', 'Segoe UI', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .demo-banner { background: var(--lime); color: var(--dark); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--dark); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 21px; color: #fff; letter-spacing: 0.02em; }
+  .logo span { color: var(--lime); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 13.5px; font-weight: 600; color: #cfcfcf; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav a:hover, nav a.active { color: var(--lime); }
+  .nav-cta { background: var(--lime); color: var(--dark) !important; padding: 9px 18px; border-radius: 4px; font-weight: 700 !important; }
+
+  .page-hero { background: var(--dark); color: #fff; padding: 70px 6% 0; text-align: center; }
+  .page-hero .section-tag { color: var(--lime); }
+  .page-hero h1 { font-size: 44px; margin-bottom: 30px; }
+
+  .agg { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; padding-bottom: 50px; }
+  .agg-box { text-align: center; }
+  .agg-num { font-size: 46px; color: var(--lime); }
+  .agg-stars { color: var(--lime-dark); font-size: 14px; letter-spacing: 2px; margin-top: 2px; }
+  .agg-label { font-size: 12px; color: #a8a8a8; text-transform: uppercase; letter-spacing: 0.05em; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 600; margin-top: 4px; }
+
+  section { padding: 70px 6%; max-width: 1180px; margin: 0 auto; }
+  .filter-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+  .filter-chip { border: 1.5px solid var(--line); background: var(--card); padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .filter-chip.active { background: var(--dark); border-color: var(--dark); color: var(--lime); }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .testi-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 26px; border-left: 4px solid var(--lime); }
+  .testi-stars { color: var(--lime-dark); margin-bottom: 10px; letter-spacing: 2px; }
+  .testi-tag { display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); background: var(--bg); padding: 3px 9px; border-radius: 20px; margin-bottom: 12px; }
+  .testi-card p { font-style: italic; color: var(--ink); font-size: 14.5px; margin-bottom: 16px; }
+  .testi-person { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--dark); color: var(--lime); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  .testi-name { font-weight: 700; font-size: 13.5px; }
+  .testi-role { color: var(--ink-soft); font-size: 12px; }
+
+  .cta-band { background: var(--dark); color: #fff; text-align: center; }
+  .cta-band h2 { font-size: 32px; margin-bottom: 14px; }
+  .cta-band p { color: #c9c9c9; margin-bottom: 26px; font-family: 'Segoe UI', Arial, sans-serif; text-transform: none; }
+  .btn-primary { display: inline-block; background: var(--lime); color: var(--dark); padding: 15px 32px; border-radius: 4px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Barlow Condensed', sans-serif; }
+  .btn-primary:hover { background: var(--lime-dark); }
+
+  footer { background: var(--dark-2); color: #8b8b8b; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--lime); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 32px; }
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-coach">commander ce style</a></div>
+
+<header>
+  <a href="coach-sportif.html" class="logo">Théo<span> Lacroix</span></a>
+  <nav>
+    <ul>
+      <li><a href="coach-sportif.html">Accueil</a></li>
+      <li><a href="coach-sportif-programmes.html">Programmes</a></li>
+      <li><a href="coach-sportif-apropos.html">À propos</a></li>
+      <li><a href="coach-sportif-temoignages.html" class="active">Témoignages</a></li>
+      <li><a href="coach-sportif-contact.html" class="nav-cta">Réserver un bilan</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Témoignages</div>
+  <h1>180+ clients accompagnés</h1>
+  <div class="agg">
+    <div class="agg-box"><div class="agg-num">4.9/5</div><div class="agg-stars">★★★★★</div><div class="agg-label">Note moyenne</div></div>
+    <div class="agg-box"><div class="agg-num">96%</div><div class="agg-stars">&nbsp;</div><div class="agg-label">Renouvellent leur suivi</div></div>
+    <div class="agg-box"><div class="agg-num">62</div><div class="agg-stars">&nbsp;</div><div class="agg-label">Avis vérifiés</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="filter-row">
+    <span class="filter-chip active">Tous</span>
+    <span class="filter-chip">Remise en forme</span>
+    <span class="filter-chip">Prise de muscle</span>
+    <span class="filter-chip">Préparation trail</span>
+    <span class="filter-chip">Nutrition</span>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Remise en forme</span>
+      <p>"En 4 mois j'ai enfin retrouvé une vraie condition physique, sans me blesser. Théo adapte vraiment chaque séance."</p>
+      <div class="testi-person"><div class="testi-avatar">C</div><div><div class="testi-name">Camille R.</div><div class="testi-role">Suivi depuis 8 mois</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Préparation trail</span>
+      <p>"Préparation sérieuse pour mon premier trail. Arrivée sans douleur et avec un super chrono."</p>
+      <div class="testi-person"><div class="testi-avatar">N</div><div><div class="testi-name">Nicolas B.</div><div class="testi-role">Préparation 12 semaines</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Prise de muscle</span>
+      <p>"Progression visible dès le deuxième mois. Le suivi des charges à chaque séance, c'est ce qui fait vraiment la différence."</p>
+      <div class="testi-person"><div class="testi-avatar">K</div><div><div class="testi-name">Karim D.</div><div class="testi-role">Suivi depuis 1 an</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Nutrition</span>
+      <p>"Des conseils simples, sans culpabiliser sur rien. J'ai enfin des habitudes qui tiennent dans la durée."</p>
+      <div class="testi-person"><div class="testi-avatar">S</div><div><div class="testi-name">Sophie M.</div><div class="testi-role">Suivi nutrition, 6 mois</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Remise en forme</span>
+      <p>"Zéro pression, beaucoup d'écoute. Idéal pour reprendre le sport après plusieurs années d'arrêt."</p>
+      <div class="testi-person"><div class="testi-avatar">M</div><div><div class="testi-name">Marc L.</div><div class="testi-role">Suivi depuis 4 mois</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <span class="testi-tag">Coaching à domicile</span>
+      <p>"Créneaux flexibles, toujours à l'heure, et des séances qui changent vraiment selon ma forme du jour."</p>
+      <div class="testi-person"><div class="testi-avatar">A</div><div><div class="testi-name">Amandine T.</div><div class="testi-role">Suivi depuis 10 mois</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Prêt(e) à écrire votre propre histoire ?</h2>
+  <p>Le premier bilan est offert et sans engagement.</p>
+  <a href="coach-sportif-contact.html" class="btn-primary">Réserver mon bilan gratuit</a>
+</section>
+
+<footer>
+  <p>Théo Lacroix — Coach sportif, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Théo Lacroix, Coach sportif</title>
+<meta name="description" content="Théo Lacroix, coach sportif certifié à Toulouse : parcours, certifications et philosophie de coaching.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #141414; --dark-2: #1e1e1e; --lime: #c6ff3d; --lime-dark: #9fd819;
+    --bg: #f6f5f2; --card: #ffffff; --ink: #17181a; --ink-soft: #6b6b6b; --line: #e6e4de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Barlow Condensed', 'Segoe UI', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .demo-banner { background: var(--lime); color: var(--dark); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--dark); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 21px; color: #fff; letter-spacing: 0.02em; }
+  .logo span { color: var(--lime); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 13.5px; font-weight: 600; color: #cfcfcf; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav a:hover, nav a.active { color: var(--lime); }
+  .nav-cta { background: var(--lime); color: var(--dark) !important; padding: 9px 18px; border-radius: 4px; font-weight: 700 !important; }
+
+  .intro { padding: 80px 6% 70px; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+  .avatar-block {
+    width: 100%; aspect-ratio: 3/4; border-radius: 12px; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--dark) 0%, #2a2a2a 55%, var(--lime) 230%);
+  }
+  .avatar-block::before { content: "TL"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 110px; color: rgba(198,255,61,0.18); }
+  .avatar-badge { position: absolute; bottom: 18px; left: 18px; background: var(--lime); color: var(--dark); padding: 8px 14px; border-radius: 6px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; }
+  .intro-text .section-tag { color: var(--lime-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .intro-text h1 { font-size: 42px; margin-bottom: 18px; }
+  .intro-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; }
+
+  section { padding: 70px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-head { max-width: 620px; margin: 0 auto 44px; text-align: center; }
+  .section-tag { color: var(--lime-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .section-head h2 { font-size: 34px; margin-bottom: 12px; }
+  .section-head p { color: var(--ink-soft); font-size: 15.5px; }
+
+  .timeline { max-width: 720px; margin: 0 auto; position: relative; padding-left: 32px; border-left: 2px solid var(--line); }
+  .tl-item { position: relative; padding-bottom: 34px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ""; position: absolute; left: -38px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--lime); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--lime); }
+  .tl-year { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--lime-dark); font-size: 14px; letter-spacing: 0.05em; }
+  .tl-item h3 { font-size: 19px; margin: 4px 0 6px; text-transform: none; }
+  .tl-item p { color: var(--ink-soft); font-size: 14.5px; }
+
+  .certifs { background: var(--dark); color: #fff; }
+  .certifs .section-head p { color: #b8b8b8; }
+  .certif-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .certif-card { background: var(--dark-2); border-radius: 10px; padding: 22px 18px; text-align: center; }
+  .certif-icon { font-size: 26px; margin-bottom: 10px; }
+  .certif-card h3 { font-size: 15px; margin-bottom: 6px; text-transform: none; }
+  .certif-card p { color: #a8a8a8; font-size: 12.5px; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  .philo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .philo-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px 24px; }
+  .philo-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .philo-card p { color: var(--ink-soft); font-size: 14.5px; }
+
+  .cta-band { background: var(--dark); color: #fff; text-align: center; }
+  .cta-band h2 { font-size: 32px; margin-bottom: 14px; }
+  .cta-band p { color: #c9c9c9; margin-bottom: 26px; font-family: 'Segoe UI', Arial, sans-serif; text-transform: none; }
+  .btn-primary { display: inline-block; background: var(--lime); color: var(--dark); padding: 15px 32px; border-radius: 4px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'Barlow Condensed', sans-serif; }
+  .btn-primary:hover { background: var(--lime-dark); }
+
+  footer { background: var(--dark-2); color: #8b8b8b; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--lime); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .intro { grid-template-columns: 1fr; }
+    .avatar-block { max-width: 280px; margin: 0 auto; }
+    .certif-grid, .philo-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-coach">commander ce style</a></div>
+
+<header>
+  <a href="coach-sportif.html" class="logo">Théo<span> Lacroix</span></a>
+  <nav>
+    <ul>
+      <li><a href="coach-sportif.html">Accueil</a></li>
+      <li><a href="coach-sportif-programmes.html">Programmes</a></li>
+      <li><a href="coach-sportif-apropos.html" class="active">À propos</a></li>
+      <li><a href="coach-sportif-temoignages.html">Témoignages</a></li>
+      <li><a href="coach-sportif-contact.html" class="nav-cta">Réserver un bilan</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="avatar-block"><span class="avatar-badge">Coach certifié</span></div>
+  <div class="intro-text">
+    <div class="section-tag">À propos</div>
+    <h1>Bonjour, je suis Théo</h1>
+    <p>Coach sportif indépendant depuis 9 ans à Toulouse, j'accompagne des personnes de tous niveaux — du premier pas vers le sport jusqu'à la préparation de courses exigeantes.</p>
+    <p>Ma conviction : il n'existe pas de programme universel. Chaque corps, chaque emploi du temps et chaque objectif mérite un accompagnement pensé sur mesure, sans jargon ni pression inutile.</p>
+    <p>Diplômé d'État, formé en continu, je mets un point d'honneur à rester joignable entre les séances pour répondre à vos questions.</p>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="section-head">
+    <div class="section-tag">Parcours</div>
+    <h2>Neuf ans sur le terrain</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2015</div>
+      <h3>Diplôme d'État (BPJEPS AGFF)</h3>
+      <p>Obtention du diplôme d'État, spécialisation en activités gymniques, de la forme et de la force.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2016 – 2019</div>
+      <h3>Coach en salle de sport</h3>
+      <p>Encadrement de cours collectifs et suivi personnalisé au sein d'une salle toulousaine.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2019</div>
+      <h3>Lancement en indépendant</h3>
+      <p>Début du coaching à domicile, pour un accompagnement plus personnel et plus flexible.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <h3>Certification nutrition sportive</h3>
+      <p>Formation complémentaire pour intégrer un vrai volet nutritionnel à l'accompagnement.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Aujourd'hui</div>
+      <h3>180+ clients accompagnés</h3>
+      <p>Un accompagnement individuel, à domicile, en extérieur ou en visio, partout à Toulouse et alentours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="certifs">
+  <div class="section-head">
+    <div class="section-tag">Certifications</div>
+    <h2>Des compétences vérifiées</h2>
+    <p>Une formation initiale d'État et des mises à jour régulières.</p>
+  </div>
+  <div class="certif-grid">
+    <div class="certif-card"><div class="certif-icon">🎓</div><h3>BPJEPS AGFF</h3><p>Diplôme d'État, activités de la forme</p></div>
+    <div class="certif-card"><div class="certif-icon">❤️</div><h3>PSC1</h3><p>Premiers secours à jour</p></div>
+    <div class="certif-card"><div class="certif-icon">🥗</div><h3>Nutrition sportive</h3><p>Certification complémentaire, 2022</p></div>
+    <div class="certif-card"><div class="certif-icon">🏃</div><h3>Préparation trail</h3><p>Formation spécialisée course nature</p></div>
+  </div>
+</section>
+
+<section id="philosophie">
+  <div class="section-head">
+    <div class="section-tag">Philosophie</div>
+    <h2>Comment je travaille</h2>
+  </div>
+  <div class="philo-grid">
+    <div class="philo-card"><h3>Sur mesure</h3><p>Chaque programme part de votre niveau réel, pas d'une moyenne théorique.</p></div>
+    <div class="philo-card"><h3>Sans jugement</h3><p>Débutant ou sportif confirmé, l'accompagnement reste bienveillant et exigeant à la fois.</p></div>
+    <div class="philo-card"><h3>Dans la durée</h3><p>L'objectif : des habitudes qui tiennent, pas une remise en forme éclair qui s'arrête après l'été.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Envie d'en discuter ?</h2>
+  <p>Le premier échange est gratuit et sans engagement.</p>
+  <a href="coach-sportif-contact.html" class="btn-primary">Réserver mon bilan gratuit</a>
+</section>
+
+<footer>
+  <p>Théo Lacroix — Coach sportif, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

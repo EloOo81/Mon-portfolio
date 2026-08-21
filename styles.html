@@ -178,6 +178,46 @@
   .custom-note a { color: var(--coral); font-weight: 600; }
   .custom-note a:hover { text-decoration: underline; }
 
+  .signature { background: var(--cream); }
+  .sig-card {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid rgba(198,255,61,0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+  }
+  .sig-visual {
+    background:
+      linear-gradient(rgba(20,20,20,0.88), rgba(20,20,20,0.94)),
+      repeating-linear-gradient(135deg, #1c1c1c 0 2px, #141414 2px 26px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    color: #fff;
+  }
+  .sig-visual .sig-mono { font-size: 46px; font-weight: 800; color: #c6ff3d; margin-bottom: 8px; }
+  .sig-visual .sig-pages { font-size: 12px; color: #9a9ea3; text-transform: uppercase; letter-spacing: 0.06em; }
+  .sig-body { padding: 36px 36px 36px 8px; color: #fff; }
+  .sig-tag { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #c6ff3d; background: rgba(198,255,61,0.1); padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+  .sig-body h3 { font-size: 22px; margin-bottom: 10px; }
+  .sig-body > p { color: #c3ccd4; font-size: 14.5px; margin-bottom: 18px; }
+  .sig-pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .sig-pill { font-size: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); padding: 5px 12px; border-radius: 20px; color: #dcdcdc; }
+  .sig-price { font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 20px; }
+  .sig-price span { font-size: 13px; color: #9a9ea3; font-weight: 400; }
+  .sig-actions { display: flex; gap: 10px; }
+  .sig-actions a { flex: 1; text-align: center; font-size: 13.5px; font-weight: 600; padding: 12px 14px; border-radius: 6px; }
+  .sig-demo { border: 1.5px solid rgba(255,255,255,0.25); color: #fff; }
+  .sig-demo:hover { border-color: #fff; }
+  .sig-choose { background: var(--gold); color: var(--navy); }
+  .sig-choose:hover { background: #a8871f; }
+
   footer {
     background: #14202b;
     color: #8b95a0;
@@ -194,6 +234,8 @@
     nav a { font-size: 13px; }
     .style-grid, .premium .style-grid { grid-template-columns: 1fr; }
     .page-hero h1 { font-size: 26px; }
+    .sig-card { grid-template-columns: 1fr; }
+    .sig-body { padding: 28px; }
   }
 </style>
 </head>
@@ -359,6 +401,39 @@
       </div>
     </div>
     <p class="more-note">D'autres univers premium avec agent IA arrivent bientôt.</p>
+  </div>
+</section>
+
+<section class="signature">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Signature</span>
+      <h2>Le site multi-pages, sur mesure</h2>
+      <p>Plusieurs pages dédiées, une structure complète et des finitions poussées — pour une activité qui a besoin de plus qu'une seule page.</p>
+    </div>
+    <div class="sig-card">
+      <div class="sig-visual">
+        <div class="sig-mono">TL</div>
+        <div class="sig-pages">5 pages</div>
+      </div>
+      <div class="sig-body">
+        <span class="sig-tag">Coach sportif</span>
+        <h3>Théo Lacroix — Coach sportif à domicile</h3>
+        <p>Un site complet pour une activité de service premium : présentation, offre détaillée, preuve sociale et prise de rendez-vous, chacune sur sa propre page.</p>
+        <div class="sig-pill-row">
+          <span class="sig-pill">Accueil</span>
+          <span class="sig-pill">Programmes</span>
+          <span class="sig-pill">À propos</span>
+          <span class="sig-pill">Témoignages</span>
+          <span class="sig-pill">Contact / Réservation</span>
+        </div>
+        <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+        <div class="sig-actions">
+          <a class="sig-demo" href="coach-sportif.html" target="_blank" rel="noopener">Voir la démo</a>
+          <a class="sig-choose" href="commande.html?style=signature-coach">Commander</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

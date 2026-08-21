@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact &amp; Réservation — Théo Lacroix, Coach sportif</title>
+<meta name="description" content="Réservez votre bilan gratuit avec Théo Lacroix, coach sportif à Toulouse.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #141414; --dark-2: #1e1e1e; --lime: #c6ff3d; --lime-dark: #9fd819;
+    --bg: #f6f5f2; --card: #ffffff; --ink: #17181a; --ink-soft: #6b6b6b; --line: #e6e4de;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Barlow Condensed', 'Segoe UI', Arial, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .demo-banner { background: var(--lime); color: var(--dark); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--dark); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 21px; color: #fff; letter-spacing: 0.02em; }
+  .logo span { color: var(--lime); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 13.5px; font-weight: 600; color: #cfcfcf; text-transform: uppercase; letter-spacing: 0.04em; }
+  nav a:hover, nav a.active { color: var(--lime); }
+  .nav-cta { background: var(--lime); color: var(--dark) !important; padding: 9px 18px; border-radius: 4px; font-weight: 700 !important; }
+
+  .page-hero { background: var(--dark); color: #fff; padding: 70px 6% 56px; text-align: center; }
+  .page-hero .section-tag { color: var(--lime); }
+  .page-hero h1 { font-size: 44px; margin-bottom: 12px; }
+  .page-hero p { color: #c3c3c3; font-family: 'Segoe UI', Arial, sans-serif; text-transform: none; max-width: 520px; margin: 0 auto; font-size: 15.5px; }
+
+  section { padding: 70px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-tag { color: var(--lime-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .section-head { max-width: 620px; margin: 0 auto 40px; text-align: center; }
+  .section-head h2 { font-size: 32px; margin-bottom: 10px; }
+  .section-head p { color: var(--ink-soft); font-size: 15px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+  .contact-info-card { background: var(--dark); color: #fff; border-radius: 12px; padding: 32px; }
+  .contact-info-card h3 { font-size: 22px; margin-bottom: 20px; }
+  .info-row { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14.5px; color: #d8d8d8; font-family: 'Segoe UI', Arial, sans-serif; }
+  .info-row .ic { color: var(--lime); flex-shrink: 0; }
+  .zone-box { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .zone-box h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #a8a8a8; margin-bottom: 10px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .zone-tag { background: rgba(198,255,61,0.1); color: var(--lime); font-size: 12px; padding: 4px 10px; border-radius: 20px; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 600; }
+
+  .form-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 32px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 6px;
+    font-size: 14.5px; font-family: inherit; color: var(--ink); background: var(--bg);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--lime-dark); }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%; background: var(--dark); color: #fff; border: none; padding: 15px;
+    border-radius: 6px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em;
+    font-family: 'Barlow Condensed', sans-serif; cursor: pointer; transition: background .2s;
+  }
+  .submit-btn:hover { background: var(--lime); color: var(--dark); }
+  .form-msg { text-align: center; font-size: 13px; color: var(--lime-dark); margin-top: 12px; font-weight: 600; }
+
+  .schedule { background: var(--dark); color: #fff; }
+  .schedule .section-head p { color: #b8b8b8; }
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-width: 900px; margin: 0 auto; }
+  .day-col { background: var(--dark-2); border-radius: 8px; padding: 14px 8px; text-align: center; }
+  .day-name { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #a8a8a8; margin-bottom: 10px; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 600; }
+  .slot { font-size: 11.5px; padding: 5px 4px; border-radius: 4px; margin-bottom: 5px; font-family: 'Segoe UI', Arial, sans-serif; }
+  .slot.free { background: rgba(198,255,61,0.14); color: var(--lime); }
+  .slot.taken { background: rgba(255,255,255,0.05); color: #6a6a6a; text-decoration: line-through; }
+  .schedule-note { text-align: center; color: #a8a8a8; font-size: 12.5px; margin-top: 20px; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; padding: 4px 20px; }
+  .faq-item summary { padding: 16px 0; font-weight: 700; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: none; font-family: 'Segoe UI', Arial, sans-serif; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--lime-dark); font-weight: 400; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { padding-bottom: 16px; color: var(--ink-soft); font-size: 14px; }
+
+  footer { background: var(--dark-2); color: #8b8b8b; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--lime); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 32px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-coach">commander ce style</a></div>
+
+<header>
+  <a href="coach-sportif.html" class="logo">Théo<span> Lacroix</span></a>
+  <nav>
+    <ul>
+      <li><a href="coach-sportif.html">Accueil</a></li>
+      <li><a href="coach-sportif-programmes.html">Programmes</a></li>
+      <li><a href="coach-sportif-apropos.html">À propos</a></li>
+      <li><a href="coach-sportif-temoignages.html">Témoignages</a></li>
+      <li><a href="coach-sportif-contact.html" class="nav-cta active">Réserver un bilan</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Contact &amp; Réservation</div>
+  <h1>Réservons votre bilan gratuit</h1>
+  <p>20 minutes pour faire le point sur vos objectifs, votre niveau et vos disponibilités — sans engagement.</p>
+</section>
+
+<section>
+  <div class="contact-grid">
+    <div class="contact-info-card">
+      <h3>Coordonnées</h3>
+      <div class="info-row"><span class="ic">📍</span><span>Toulouse et périphérie (jusqu'à 15 km)</span></div>
+      <div class="info-row"><span class="ic">📞</span><span>06 12 34 56 78</span></div>
+      <div class="info-row"><span class="ic">✉️</span><span>contact@theolacroix-coaching.fr</span></div>
+      <div class="info-row"><span class="ic">🕐</span><span>Lundi – Samedi, 7h – 20h30</span></div>
+      <div class="zone-box">
+        <h4>Zone d'intervention</h4>
+        <div class="zone-tags">
+          <span class="zone-tag">Toulouse centre</span>
+          <span class="zone-tag">Blagnac</span>
+          <span class="zone-tag">Colomiers</span>
+          <span class="zone-tag">Balma</span>
+          <span class="zone-tag">Visio (partout)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Votre demande de bilan gratuit a bien été enregistrée, réponse sous 24h.';">
+        <div class="field-row">
+          <div class="field"><label for="nom">Nom</label><input type="text" id="nom" required></div>
+          <div class="field"><label for="tel">Téléphone</label><input type="tel" id="tel" required></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" required></div>
+        <div class="field">
+          <label for="programme">Programme qui vous intéresse</label>
+          <select id="programme" required>
+            <option value="">Choisissez un programme</option>
+            <option>Remise en forme</option>
+            <option>Prise de muscle</option>
+            <option>Préparation trail</option>
+            <option>Coaching à domicile</option>
+            <option>Suivi nutrition</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="field"><label for="dispo">Vos disponibilités</label><textarea id="dispo" placeholder="Ex : plutôt en semaine après 18h, ou le samedi matin..."></textarea></div>
+        <button type="submit" class="submit-btn">Réserver mon bilan gratuit</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="schedule">
+  <div class="section-head">
+    <div class="section-tag">Disponibilités</div>
+    <h2>Un aperçu des créneaux cette semaine</h2>
+    <p>À titre indicatif — les disponibilités réelles sont confirmées lors de votre bilan.</p>
+  </div>
+  <div class="week-grid">
+    <div class="day-col"><div class="day-name">Lun</div><div class="slot free">9h</div><div class="slot taken">14h</div><div class="slot free">18h</div></div>
+    <div class="day-col"><div class="day-name">Mar</div><div class="slot taken">9h</div><div class="slot free">14h</div><div class="slot free">18h</div></div>
+    <div class="day-col"><div class="day-name">Mer</div><div class="slot free">8h</div><div class="slot free">12h</div><div class="slot taken">19h</div></div>
+    <div class="day-col"><div class="day-name">Jeu</div><div class="slot taken">9h</div><div class="slot free">17h</div><div class="slot free">19h</div></div>
+    <div class="day-col"><div class="day-name">Ven</div><div class="slot free">10h</div><div class="slot taken">16h</div><div class="slot free">18h</div></div>
+    <div class="day-col"><div class="day-name">Sam</div><div class="slot free">8h</div><div class="slot free">10h</div><div class="slot taken">11h</div></div>
+    <div class="day-col"><div class="day-name">Dim</div><div class="slot taken">—</div><div class="slot taken">—</div><div class="slot taken">—</div></div>
+  </div>
+  <p class="schedule-note">Fermé le dimanche — créneau libre 🟢 / déjà réservé 🔒</p>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="section-tag">Questions fréquentes</div>
+    <h2>Avant de réserver</h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Le bilan initial est-il vraiment gratuit ?</summary>
+      <p>Oui, sans exception. C'est l'occasion de se rencontrer, de discuter de vos objectifs et de voir si l'accompagnement vous correspond, sans aucun engagement de votre part.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Je n'ai jamais fait de sport, est-ce un problème ?</summary>
+      <p>Pas du tout, c'est même la majorité des personnes que j'accompagne. Le programme démarre toujours au niveau réel de la personne, jamais d'un niveau supposé.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Puis-je changer de programme en cours de route ?</summary>
+      <p>Bien sûr, les objectifs évoluent souvent avec le temps — le programme s'ajuste avec vous, à tout moment.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Comment se passe le paiement des séances ?</summary>
+      <p>Par virement, carte ou espèces, au choix — à la séance ou par pack, selon la formule retenue lors du bilan.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p>Théo Lacroix — Coach sportif, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>
