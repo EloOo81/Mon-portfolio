@@ -75,7 +75,7 @@
     max-width: 1080px;
     margin: 0 auto;
   }
-  .logo { font-size: 19px; font-weight: 800; letter-spacing: 0.2px; }
+  .logo { font-size: 23px; font-weight: 800; letter-spacing: 0.2px; }
   .logo span { color: var(--coral); }
   nav ul { display: flex; gap: 30px; list-style: none; }
   nav a { font-size: 14px; font-weight: 600; color: var(--ink); transition: color .2s; }
@@ -93,8 +93,45 @@
     background-size: 42px 42px, 42px 42px, auto;
     color: #fff;
     padding: 100px 24px 90px;
+    position: relative;
+    overflow: hidden;
   }
-  .hero-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .hero-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 46vw;
+    line-height: 1;
+    color: var(--coral);
+    opacity: 0.05;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .hero-code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    color: rgba(201,162,39,0.55);
+    margin-bottom: 18px;
+  }
+  .hero-pricing { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+  .hero-price-chip {
+    display: block;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,162,39,0.3);
+    border-radius: 8px;
+    padding: 12px 22px;
+    text-align: center;
+    transition: border-color .2s, background .2s;
+  }
+  .hero-price-chip:hover { border-color: var(--coral); background: rgba(201,162,39,0.08); }
+  .hero-price-chip .tier { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #9aa5ad; margin-bottom: 4px; }
+  .hero-price-chip .amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; color: var(--coral); }
   .hero-tag {
     display: inline-flex;
     align-items: center;
@@ -423,6 +460,10 @@
     nav ul { display: none; }
     .burger { display: flex; }
     .hero h1 { font-size: 30px; }
+    .hero-code { font-size: 10.5px; word-break: break-word; white-space: normal; }
+    .hero-pricing { gap: 10px; }
+    .hero-price-chip { padding: 10px 16px; }
+    .hero-watermark { font-size: 60vw; }
     .about-grid { grid-template-columns: 1fr; }
     .portfolio-grid { grid-template-columns: 1fr; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
@@ -449,12 +490,19 @@
 </header>
 
 <section class="hero">
+  <div class="hero-watermark" aria-hidden="true">SC</div>
   <div class="hero-inner">
     <span class="hero-tag">● Disponible pour de nouveaux projets</span>
     <h1>Votre site vitrine, clé en main et <span>livré en 3 jours</span></h1>
+    <div class="hero-code" aria-hidden="true">// studio.code({ client: 'vous', style: 'sur-mesure', delai: '3 jours' })</div>
     <p>Je conçois des sites simples, rapides et efficaces pour les artisans, commerçants et indépendants — sans mauvaise surprise, sans jargon.</p>
     <a href="styles.html" class="btn-primary">Commander mon site</a>
     <a href="#portfolio" class="btn-secondary">Voir mes réalisations</a>
+    <div class="hero-pricing">
+      <a href="styles.html#classique" class="hero-price-chip"><span class="tier">Classique</span><span class="amount">250 €</span></a>
+      <a href="styles.html#premium" class="hero-price-chip"><span class="tier">Premium</span><span class="amount">450 €</span></a>
+      <a href="styles.html#signature" class="hero-price-chip"><span class="tier">Signature</span><span class="amount">750 €</span></a>
+    </div>
   </div>
 </section>
 
