@@ -179,9 +179,14 @@
   .custom-note a:hover { text-decoration: underline; }
 
   .signature { background: var(--cream); }
-  .sig-card {
+  .sig-list {
     max-width: 920px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .sig-card {
     background: var(--navy);
     border: 1px solid rgba(198,255,61,0.25);
     border-radius: 16px;
@@ -409,28 +414,126 @@
     <div class="section-head">
       <span class="eyebrow">Signature</span>
       <h2>Le site multi-pages, sur mesure</h2>
-      <p>Plusieurs pages dédiées, une structure complète et des finitions poussées — pour une activité qui a besoin de plus qu'une seule page.</p>
+      <p>Plusieurs pages dédiées, une structure complète et des finitions poussées — pour une activité qui a besoin de plus qu'une seule page. Chaque exemple ci-dessous a sa propre structure, pensée pour son métier.</p>
     </div>
-    <div class="sig-card">
-      <div class="sig-visual">
-        <div class="sig-mono">TL</div>
-        <div class="sig-pages">5 pages</div>
-      </div>
-      <div class="sig-body">
-        <span class="sig-tag">Coach sportif</span>
-        <h3>Théo Lacroix — Coach sportif à domicile</h3>
-        <p>Un site complet pour une activité de service premium : présentation, offre détaillée, preuve sociale et prise de rendez-vous, chacune sur sa propre page.</p>
-        <div class="sig-pill-row">
-          <span class="sig-pill">Accueil</span>
-          <span class="sig-pill">Programmes</span>
-          <span class="sig-pill">À propos</span>
-          <span class="sig-pill">Témoignages</span>
-          <span class="sig-pill">Contact / Réservation</span>
+    <div class="sig-list">
+      <div class="sig-card">
+        <div class="sig-visual" style="background:linear-gradient(rgba(20,20,20,0.88),rgba(20,20,20,0.94)),repeating-linear-gradient(135deg,#1c1c1c 0 2px,#141414 2px 26px);">
+          <div class="sig-mono" style="color:#c6ff3d;">TL</div>
+          <div class="sig-pages">5 pages</div>
         </div>
-        <div class="sig-price">750 € <span>site multi-pages complet</span></div>
-        <div class="sig-actions">
-          <a class="sig-demo" href="coach-sportif.html" target="_blank" rel="noopener">Voir la démo</a>
-          <a class="sig-choose" href="commande.html?style=signature-coach">Commander</a>
+        <div class="sig-body">
+          <span class="sig-tag">Coach sportif</span>
+          <h3>Théo Lacroix — Coach sportif à domicile</h3>
+          <p>Présentation, programmes détaillés, parcours du coach, témoignages filtrables et réservation avec aperçu de disponibilités.</p>
+          <div class="sig-pill-row">
+            <span class="sig-pill">Accueil</span>
+            <span class="sig-pill">Programmes</span>
+            <span class="sig-pill">À propos</span>
+            <span class="sig-pill">Témoignages</span>
+            <span class="sig-pill">Contact / Réservation</span>
+          </div>
+          <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+          <div class="sig-actions">
+            <a class="sig-demo" href="coach-sportif.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="sig-choose" href="commande.html?style=signature-coach">Commander</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="sig-visual" style="background:linear-gradient(155deg,#d9cdb8 0%,#c7a884 55%,#96603a 130%);">
+          <div class="sig-mono" style="color:#fff;">AV</div>
+          <div class="sig-pages">5 pages</div>
+        </div>
+        <div class="sig-body">
+          <span class="sig-tag">Architecte d'intérieur</span>
+          <h3>Atelier Vasseur — Architecture d'intérieur</h3>
+          <p>Galerie de réalisations filtrable, détail des prestations et tarifs, méthode en 4 étapes, parcours et mentions presse.</p>
+          <div class="sig-pill-row">
+            <span class="sig-pill">Accueil</span>
+            <span class="sig-pill">Réalisations</span>
+            <span class="sig-pill">Prestations</span>
+            <span class="sig-pill">À propos</span>
+            <span class="sig-pill">Contact</span>
+          </div>
+          <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+          <div class="sig-actions">
+            <a class="sig-demo" href="atelier-vasseur.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="sig-choose" href="commande.html?style=signature-architecte">Commander</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="sig-visual" style="background:linear-gradient(135deg,#1a2f4b 0%,#24406a 60%,#f0a202 140%);">
+          <div class="sig-mono" style="color:#fff;">HF</div>
+          <div class="sig-pages">5 pages</div>
+        </div>
+        <div class="sig-body">
+          <span class="sig-tag">Centre de formation</span>
+          <h3>Horizon Formations — Formation professionnelle</h3>
+          <p>Catalogue de formations filtrable, page dédiée au financement (CPF, OPCO...), certification Qualiopi, équipe de formateurs.</p>
+          <div class="sig-pill-row">
+            <span class="sig-pill">Accueil</span>
+            <span class="sig-pill">Nos formations</span>
+            <span class="sig-pill">Financement</span>
+            <span class="sig-pill">À propos</span>
+            <span class="sig-pill">Contact / Inscription</span>
+          </div>
+          <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+          <div class="sig-actions">
+            <a class="sig-demo" href="horizon-formations.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="sig-choose" href="commande.html?style=signature-formation">Commander</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="sig-visual" style="background:linear-gradient(135deg,#1c1c1e 0%,#2952e3 150%);">
+          <div class="sig-mono" style="color:#fff;">MG</div>
+          <div class="sig-pages">5 pages</div>
+        </div>
+        <div class="sig-body">
+          <span class="sig-tag">Consultant</span>
+          <h3>Maxime Girard — Conseil en stratégie</h3>
+          <p>Expertises détaillées, méthode en 5 étapes avec durées, études de cas chiffrées et prise de contact qualifiée.</p>
+          <div class="sig-pill-row">
+            <span class="sig-pill">Accueil</span>
+            <span class="sig-pill">Expertises</span>
+            <span class="sig-pill">Méthode</span>
+            <span class="sig-pill">Études de cas</span>
+            <span class="sig-pill">Contact</span>
+          </div>
+          <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+          <div class="sig-actions">
+            <a class="sig-demo" href="maxime-girard-conseil.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="sig-choose" href="commande.html?style=signature-consultant">Commander</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sig-card">
+        <div class="sig-visual" style="background:linear-gradient(150deg,#e7eff2 0%,#a9c5d4 55%,#2c5f7c 130%);">
+          <div class="sig-mono" style="color:#fff;">CD</div>
+          <div class="sig-pages">5 pages</div>
+        </div>
+        <div class="sig-body">
+          <span class="sig-tag">Kinésithérapie / Ostéopathie</span>
+          <h3>Cabinet Delmas — Kinésithérapie &amp; Ostéopathie</h3>
+          <p>Spécialités détaillées, présentation de l'équipe de praticiens, infos pratiques (remboursement, accès) et prise de rendez-vous.</p>
+          <div class="sig-pill-row">
+            <span class="sig-pill">Accueil</span>
+            <span class="sig-pill">Spécialités</span>
+            <span class="sig-pill">L'équipe</span>
+            <span class="sig-pill">Infos pratiques</span>
+            <span class="sig-pill">Prendre RDV</span>
+          </div>
+          <div class="sig-price">750 € <span>site multi-pages complet</span></div>
+          <div class="sig-actions">
+            <a class="sig-demo" href="cabinet-delmas.html" target="_blank" rel="noopener">Voir la démo</a>
+            <a class="sig-choose" href="commande.html?style=signature-kine">Commander</a>
+          </div>
         </div>
       </div>
     </div>
