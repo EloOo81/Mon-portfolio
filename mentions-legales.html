@@ -6,32 +6,39 @@
 <title>Mentions légales — Elodie.dev</title>
 <meta name="description" content="Mentions légales du site Elodie.dev.">
 <link rel="canonical" href="https://eloOo81.github.io/Mon-portfolio/mentions-legales.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1c2b3a;
-    --navy-light: #2c4258;
-    --coral: #e8623d;
-    --coral-dark: #c94f2e;
-    --mint: #4fb0a5;
-    --cream: #f7f5f1;
-    --grey: #6b7280;
-    --line: #e5e1d8;
+    --navy: #0d0e10;
+    --navy-light: #212327;
+    --coral: #c9a227;
+    --coral-dark: #a8871f;
+    --mint: #4a9b7f;
+    --cream: #17181b;
+    --grey: #9a9ea3;
+    --line: rgba(236,233,226,0.12);
+    --ink: #ece9e2;
+    --ink-soft: #c9c6c0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    color: var(--navy);
+    color: var(--ink);
     background: var(--cream);
     line-height: 1.6;
   }
+  h1, .logo { font-family: 'Manrope', 'Segoe UI', Arial, sans-serif; }
+  .eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; }
   a { text-decoration: none; color: inherit; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   header {
     position: sticky;
     top: 0;
-    background: rgba(247,245,241,0.95);
+    background: rgba(13,14,16,0.85);
     backdrop-filter: blur(6px);
     z-index: 100;
     border-bottom: 1px solid var(--line);
@@ -47,10 +54,10 @@
   .logo { font-size: 19px; font-weight: 800; letter-spacing: 0.2px; }
   .logo span { color: var(--coral); }
   nav ul { display: flex; gap: 30px; list-style: none; }
-  nav a { font-size: 14px; font-weight: 600; color: var(--navy); transition: color .2s; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--ink); transition: color .2s; }
   nav a:hover { color: var(--coral); }
-  .nav-cta { background: var(--coral); color: #fff !important; padding: 9px 18px; border-radius: 6px; }
-  .nav-cta:hover { background: var(--coral-dark); color: #fff !important; }
+  .nav-cta { background: var(--coral); color: var(--navy) !important; padding: 9px 18px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--coral-dark); color: var(--navy) !important; }
 
   .legal {
     padding: 76px 24px;
@@ -62,14 +69,14 @@
   .legal-card {
     max-width: 720px;
     margin: 0 auto;
-    background: #fff;
+    background: var(--navy-light);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 40px;
   }
   .legal-card h2 { font-size: 15px; margin: 26px 0 8px; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; }
   .legal-card h2:first-child { margin-top: 0; }
-  .legal-card p { font-size: 14.5px; color: #3d4650; }
+  .legal-card p { font-size: 14.5px; color: var(--ink-soft); }
   .legal-card a { color: var(--coral); font-weight: 600; }
   .legal-card a:hover { text-decoration: underline; }
 
