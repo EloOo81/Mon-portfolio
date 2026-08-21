@@ -122,16 +122,28 @@
   .hero-pricing { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
   .hero-price-chip {
     display: block;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,162,39,0.3);
-    border-radius: 8px;
-    padding: 12px 22px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 14px 22px;
     text-align: center;
-    transition: border-color .2s, background .2s;
+    min-width: 120px;
+    opacity: 0;
+    animation: chipAppear 6s ease-in-out infinite;
   }
+  .hero-price-chip:nth-child(1) { animation-delay: 0s; }
+  .hero-price-chip:nth-child(2) { animation-delay: 0.5s; }
+  .hero-price-chip:nth-child(3) { animation-delay: 1s; }
   .hero-price-chip:hover { border-color: var(--coral); background: rgba(201,162,39,0.08); }
   .hero-price-chip .tier { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #9aa5ad; margin-bottom: 4px; }
   .hero-price-chip .amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 20px; color: var(--coral); }
+  @keyframes chipAppear {
+    0% { opacity: 0; transform: translateY(14px) scale(0.92); box-shadow: none; border-color: rgba(255,255,255,0.15); }
+    12% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 0 22px rgba(201,162,39,0.35); border-color: rgba(201,162,39,0.65); }
+    70% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 0 22px rgba(201,162,39,0.35); border-color: rgba(201,162,39,0.65); }
+    88% { opacity: 0.1; transform: translateY(8px) scale(0.95); box-shadow: none; border-color: rgba(255,255,255,0.15); }
+    100% { opacity: 0; transform: translateY(14px) scale(0.92); box-shadow: none; border-color: rgba(255,255,255,0.15); }
+  }
   .hero-tag {
     display: inline-flex;
     align-items: center;
