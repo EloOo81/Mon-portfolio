@@ -77,6 +77,15 @@
   }
   .logo { font-size: 23px; font-weight: 800; letter-spacing: 0.2px; }
   .logo span { color: var(--coral); }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; }
+  .logo-badge {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: var(--navy); border: 1.5px solid var(--coral);
+    outline: 1px solid rgba(201,162,39,0.35); outline-offset: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', 'Segoe UI', sans-serif; font-weight: 800; font-size: 13px;
+    letter-spacing: 0.02em; color: var(--coral);
+  }
   nav ul { display: flex; gap: 30px; list-style: none; }
   nav a { font-size: 14px; font-weight: 600; color: var(--ink); transition: color .2s; }
   nav a:hover { color: var(--coral); }
@@ -488,7 +497,10 @@
 
 <header>
   <div class="navbar">
-    <div class="logo">Studio<span> Code</span></div>
+    <div class="logo-wrap">
+      <span class="logo-badge" aria-hidden="true">SC</span>
+      <div class="logo">Studio<span> Code</span></div>
+    </div>
     <nav id="nav-menu">
       <ul>
         <li><a href="#apropos">À propos</a></li>
