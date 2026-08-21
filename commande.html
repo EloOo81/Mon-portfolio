@@ -525,7 +525,11 @@
       });
       clearTimeout(timeout);
       if (!response.ok) throw new Error('Réponse serveur ' + response.status);
-      window.location.href = stripeLink || '/merci.html';
+      btn.textContent = '✓ Envoi confirmé — redirection...';
+      addBubble(stripeLink
+        ? "Vos informations ont bien été envoyées. Vous allez être redirigé(e) vers le paiement sécurisé."
+        : "Vos informations ont bien été envoyées. Je reviens vers vous par email sous 48h.", 'bot');
+      window.location.href = stripeLink || 'merci.html';
     } catch (err) {
       clearTimeout(timeout);
       const reason = err.name === 'AbortError' ? "la demande a mis trop de temps à répondre" : "une erreur réseau est survenue";
