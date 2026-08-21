@@ -222,7 +222,7 @@
       </details>
       <details class="faq-item">
         <summary>Est-ce que je dois payer en remplissant ce formulaire ?</summary>
-        <p>Pour un style Classique (250 €) ou Premium (450 €), oui : le paiement intervient à la toute fin, une fois vos informations transmises, via un lien Stripe sécurisé. Pour un projet sur mesure, non : ce formulaire ne fait que lancer la discussion, le paiement n'intervient qu'après validation d'un devis.</p>
+        <p>Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : le paiement intervient à la toute fin, une fois vos informations transmises, via un lien Stripe sécurisé. Pour un projet sur mesure, non : ce formulaire ne fait que lancer la discussion, le paiement n'intervient qu'après validation d'un devis.</p>
       </details>
       <details class="faq-item">
         <summary>Puis-je changer d'avis ou préciser ma demande après l'envoi ?</summary>
@@ -252,14 +252,17 @@
   };
   const CLASSIQUE_STYLES = ['agence-de-voyage', 'institut-de-beaute', 'artisan-btp', 'fleuriste', 'vente-directe'];
   const PREMIUM_STYLES = ['agent-immobilier-ia', 'hotel-conciergerie-ia', 'cabinet-juridique-ia', 'spa-premium-ia'];
+  const SIGNATURE_STYLES = ['signature-coach'];
   const STRIPE_LINKS = {
     classique: 'https://buy.stripe.com/9B628tfrO0Oa5nQdclb3q00',
-    premium: 'https://buy.stripe.com/6oU14pa7u9kG6rUfktb3q01'
+    premium: 'https://buy.stripe.com/6oU14pa7u9kG6rUfktb3q01',
+    signature: 'https://buy.stripe.com/4gM4gBdjG8gCcQi4FPb3q02'
   };
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xppabkve';
   function getStripeLink(styleKey) {
     if (CLASSIQUE_STYLES.includes(styleKey)) return STRIPE_LINKS.classique;
     if (PREMIUM_STYLES.includes(styleKey)) return STRIPE_LINKS.premium;
+    if (SIGNATURE_STYLES.includes(styleKey)) return STRIPE_LINKS.signature;
     return null;
   }
   const params = new URLSearchParams(window.location.search);
@@ -518,10 +521,11 @@
     priceNote.style.color = 'var(--grey)';
     priceNote.style.display = 'block';
     priceNote.style.margin = '0 0 14px';
+    let priceAmount = '450 €';
+    if (CLASSIQUE_STYLES.includes(preselectedStyle)) priceAmount = '250 €';
+    else if (SIGNATURE_STYLES.includes(preselectedStyle)) priceAmount = '750 €';
     priceNote.textContent = stripeLink
-      ? (CLASSIQUE_STYLES.includes(preselectedStyle)
-          ? 'Prochaine étape : paiement sécurisé de 250 € via Stripe.'
-          : 'Prochaine étape : paiement sécurisé de 450 € via Stripe.')
+      ? `Prochaine étape : paiement sécurisé de ${priceAmount} via Stripe.`
       : 'Prochaine étape : je reviens vers vous par email sous 48h avec un devis.';
     inputZone.appendChild(priceNote);
 
