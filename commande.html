@@ -248,6 +248,7 @@
     classique: 'https://buy.stripe.com/9B628tfrO0Oa5nQdclb3q00',
     premium: 'https://buy.stripe.com/6oU14pa7u9kG6rUfktb3q01'
   };
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xppabkve';
   function getStripeLink(styleKey) {
     if (CLASSIQUE_STYLES.includes(styleKey)) return STRIPE_LINKS.classique;
     if (PREMIUM_STYLES.includes(styleKey)) return STRIPE_LINKS.premium;
@@ -495,41 +496,59 @@
     priceNote.style.margin = '0 0 14px';
     priceNote.textContent = stripeLink
       ? (CLASSIQUE_STYLES.includes(preselectedStyle)
-          ? 'Deux étapes pour finaliser : envoyer vos informations, puis payer 250 € en toute sécurité via Stripe.'
-          : 'Deux étapes pour finaliser : envoyer vos informations, puis payer 450 € en toute sécurité via Stripe.')
-      : 'Dernière étape : envoyer vos informations. Je reviens vers vous par email sous 48h avec un devis.';
+          ? 'Prochaine étape : paiement sécurisé de 250 € via Stripe.'
+          : 'Prochaine étape : paiement sécurisé de 450 € via Stripe.')
+      : 'Prochaine étape : je reviens vers vous par email sous 48h avec un devis.';
     inputZone.appendChild(priceNote);
 
-    const mailBtn = document.createElement('button');
-    mailBtn.className = 'btn-next';
-    mailBtn.style.width = '100%';
-    mailBtn.textContent = stripeLink ? '1. Envoyer mes informations par email' : 'Envoyer ma demande par email';
-    mailBtn.addEventListener('click', () => {
-      window.location.href = buildMailtoLink();
-      mailBtn.textContent = '✓ Messagerie ouverte — cliquez sur "Envoyer" dans votre boîte mail';
-      mailBtn.disabled = true;
-      if (stripeLink && payBtn) {
-        payBtn.style.opacity = '1';
-        payBtn.style.pointerEvents = 'auto';
-      }
-    });
-    inputZone.appendChild(mailBtn);
+    const sendBtn = document.createElement('button');
+    sendBtn.className = 'btn-next';
+    sendBtn.style.width = '100%';
+    sendBtn.textContent = stripeLink ? 'Continuer vers le paiement' : 'Envoyer ma demande';
+    sendBtn.addEventListener('click', () => submitForm(sendBtn, stripeLink));
+    inputZone.appendChild(sendBtn);
+  }
 
-    let payBtn;
-    if (stripeLink) {
-      payBtn = document.createElement('a');
-      payBtn.href = stripeLink;
-      payBtn.className = 'btn-next';
-      payBtn.style.width = '100%';
-      payBtn.style.display = 'block';
-      payBtn.style.textAlign = 'center';
-      payBtn.style.textDecoration = 'none';
-      payBtn.style.marginTop = '10px';
-      payBtn.style.opacity = '0.5';
-      payBtn.style.pointerEvents = 'none';
-      payBtn.textContent = '2. Payer en ligne (' + (CLASSIQUE_STYLES.includes(preselectedStyle) ? '250 €' : '450 €') + ')';
-      payBtn.disabled = true;
-      inputZone.appendChild(payBtn);
+  async function submitForm(btn, stripeLink) {
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(answers),
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
+      if (!response.ok) throw new Error('Réponse serveur ' + response.status);
+      window.location.href = stripeLink || '/merci.html';
+    } catch (err) {
+      clearTimeout(timeout);
+      const reason = err.name === 'AbortError' ? "la demande a mis trop de temps à répondre" : "une erreur réseau est survenue";
+      addBubble(`Désolée, ${reason}. Vos réponses sont conservées.`, 'note');
+
+      const retryBtn = document.createElement('button');
+      retryBtn.className = 'btn-next';
+      retryBtn.style.width = '100%';
+      retryBtn.textContent = 'Réessayer l\'envoi';
+      retryBtn.addEventListener('click', () => submitForm(retryBtn, stripeLink));
+      inputZone.appendChild(retryBtn);
+
+      const fallbackBtn = document.createElement('a');
+      fallbackBtn.href = buildMailtoLink();
+      fallbackBtn.className = 'btn-skip';
+      fallbackBtn.style.display = 'block';
+      fallbackBtn.style.textAlign = 'center';
+      fallbackBtn.style.textDecoration = 'none';
+      fallbackBtn.style.marginTop = '10px';
+      fallbackBtn.textContent = 'Ou envoyer par email à la place';
+      inputZone.appendChild(fallbackBtn);
+
+      btn.remove();
     }
   }
 
