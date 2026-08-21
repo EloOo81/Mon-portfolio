@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Maxime Girard, Conseil</title>
+<meta name="description" content="Contactez Maxime Girard, consultant en stratégie et performance à Toulouse.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1c1e; --ink-soft: #6b6b6e; --cobalt: #2952e3; --cobalt-dark: #1e3fb8;
+    --paper: #faf9f7; --card: #ffffff; --line: #e6e4e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Archivo', 'Segoe UI', Arial, sans-serif; font-weight: 800; letter-spacing: -0.01em; }
+
+  .demo-banner { background: var(--cobalt); color: #fff; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--paper); padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 19px; }
+  .logo span { color: var(--cobalt); }
+  nav ul { display: flex; gap: 28px; list-style: none; align-items: center; }
+  nav a { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  nav a:hover, nav a.active { color: var(--cobalt); }
+  .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 9px 20px; border-radius: 3px; }
+  .nav-cta:hover { background: var(--cobalt); }
+
+  .page-hero { max-width: 700px; margin: 0 auto; padding: 70px 6% 20px; text-align: center; }
+  .section-tag { color: var(--cobalt); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 12px; }
+  .page-hero p { color: var(--ink-soft); font-size: 15.5px; }
+
+  section { padding: 40px 6% 80px; max-width: 1080px; margin: 0 auto; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+  .info-card { background: var(--ink); color: var(--paper); padding: 32px; }
+  .info-card h3 { font-size: 19px; margin-bottom: 20px; }
+  .info-row { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14px; color: #c8c8cb; }
+  .info-row .ic { color: var(--cobalt); flex-shrink: 0; }
+
+  .form-card { background: var(--card); border: 1px solid var(--line); padding: 32px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 3px;
+    font-size: 14.5px; font-family: inherit; color: var(--ink); background: var(--paper);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--cobalt); }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%; background: var(--ink); color: var(--paper); border: none; padding: 15px;
+    border-radius: 3px; font-weight: 700; font-size: 14.5px; cursor: pointer; transition: background .2s;
+  }
+  .submit-btn:hover { background: var(--cobalt); }
+  .form-msg { text-align: center; font-size: 13px; color: var(--cobalt); margin-top: 12px; font-weight: 600; }
+
+  .faq-list { max-width: 720px; margin: 60px auto 0; }
+  .faq-item { background: var(--card); border: 1px solid var(--line); margin-bottom: 10px; padding: 4px 20px; }
+  .faq-item summary { padding: 16px 0; font-weight: 700; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--cobalt); font-weight: 400; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { padding-bottom: 16px; color: var(--ink-soft); font-size: 14px; }
+  .section-head { max-width: 620px; margin: 0 auto 30px; text-align: center; }
+  .section-head h2 { font-size: 26px; }
+
+  footer { background: var(--ink); color: #9a9a9d; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--cobalt); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 30px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-consultant">commander ce style</a></div>
+
+<header>
+  <a href="maxime-girard-conseil.html" class="logo">Maxime Girard<span> · Conseil</span></a>
+  <nav>
+    <ul>
+      <li><a href="maxime-girard-conseil.html">Accueil</a></li>
+      <li><a href="maxime-girard-expertises.html">Expertises</a></li>
+      <li><a href="maxime-girard-methode.html">Méthode</a></li>
+      <li><a href="maxime-girard-etudes-de-cas.html">Études de cas</a></li>
+      <li><a href="maxime-girard-contact.html" class="nav-cta active">Échanger</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Contact</div>
+  <h1>Discutons de votre enjeu</h1>
+  <p>Un premier échange d'une heure, offert et sans engagement, pour cerner votre besoin.</p>
+</section>
+
+<section>
+  <div class="contact-grid">
+    <div class="info-card">
+      <h3>Coordonnées</h3>
+      <div class="info-row"><span class="ic">📍</span><span>Toulouse — déplacements possibles en région</span></div>
+      <div class="info-row"><span class="ic">📞</span><span>06 45 78 90 12</span></div>
+      <div class="info-row"><span class="ic">✉️</span><span>contact@maxime-girard-conseil.fr</span></div>
+      <div class="info-row"><span class="ic">🕐</span><span>Lundi – Vendredi, 8h30 – 19h</span></div>
+    </div>
+    <div class="form-card">
+      <form onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Je reviens vers vous sous 48h pour convenir d\'un premier échange.';">
+        <div class="field-row">
+          <div class="field"><label for="nom">Nom</label><input type="text" id="nom" required></div>
+          <div class="field"><label for="entreprise">Entreprise</label><input type="text" id="entreprise"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="email">Email</label><input type="email" id="email" required></div>
+          <div class="field"><label for="tel">Téléphone</label><input type="tel" id="tel"></div>
+        </div>
+        <div class="field">
+          <label for="besoin">Type de besoin</label>
+          <select id="besoin" required>
+            <option value="">Choisissez un type</option>
+            <option>Stratégie de croissance</option>
+            <option>Optimisation opérationnelle</option>
+            <option>Transformation digitale</option>
+            <option>Gestion de crise</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Décrivez brièvement votre contexte</label><textarea id="message"></textarea></div>
+        <button type="submit" class="submit-btn">Envoyer ma demande</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="faq-list">
+    <div class="section-head"><h2>Questions fréquentes</h2></div>
+    <details class="faq-item">
+      <summary>Le premier échange est-il vraiment gratuit ?</summary>
+      <p>Oui, sans exception. C'est l'occasion de vérifier que je peux réellement vous aider avant tout engagement financier.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Travaillez-vous avec les TPE ou seulement les grandes entreprises ?</summary>
+      <p>Je travaille principalement avec des TPE et PME, de 5 à 100 salariés — c'est mon terrain de prédilection.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Comment se déroule la facturation ?</summary>
+      <p>Selon la mission : forfait pour les missions courtes et cadrées, ou accompagnement mensuel pour un suivi dans la durée.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p>Maxime Girard — Conseil en stratégie &amp; performance, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>
