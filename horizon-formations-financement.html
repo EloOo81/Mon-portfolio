@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financement — Horizon Formations</title>
+<meta name="description" content="Toutes les options pour financer votre formation : CPF, OPCO, France Travail, financement personnel.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2f4b; --navy-light: #24406a; --amber: #f0a202; --amber-dark: #cc8500;
+    --bg: #f7f8fa; --card: #ffffff; --ink: #1a2233; --ink-soft: #5c6470; --line: #e2e6ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Outfit', 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+
+  .demo-banner { background: var(--amber); color: var(--navy); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--navy); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 20px; color: #fff; }
+  .logo span { color: var(--amber); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 14px; font-weight: 600; color: #cdd6e3; }
+  nav a:hover, nav a.active { color: var(--amber); }
+  .nav-cta { background: var(--amber); color: var(--navy) !important; padding: 9px 20px; border-radius: 6px; font-weight: 700 !important; }
+
+  .page-hero { background: var(--navy); color: #fff; padding: 60px 6% 44px; text-align: center; }
+  .section-tag { color: var(--amber); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 12px; }
+  .page-hero p { color: #c3ccd9; max-width: 540px; margin: 0 auto; font-size: 15.5px; }
+
+  section { padding: 60px 6% 80px; max-width: 1080px; margin: 0 auto; }
+  .section-head { max-width: 620px; margin: 0 auto 40px; text-align: center; }
+  .section-head h2 { font-size: 30px; margin-bottom: 12px; color: var(--navy); }
+  .section-head p { color: var(--ink-soft); font-size: 15px; }
+
+  .fund-detail { display: flex; flex-direction: column; gap: 16px; }
+  .fund-row {
+    display: grid; grid-template-columns: 60px 1fr; gap: 20px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--amber);
+    border-radius: 8px; padding: 26px 28px;
+  }
+  .fund-row .ic { font-size: 30px; }
+  .fund-row h3 { font-size: 19px; margin-bottom: 8px; color: var(--navy); }
+  .fund-row p { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 10px; }
+  .fund-row .tip { font-size: 13px; color: var(--amber-dark); font-weight: 600; }
+
+  .steps { background: var(--navy); color: #fff; }
+  .steps .section-head p { color: #c3ccd9; }
+  .steps .section-tag { color: var(--amber); }
+  .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .step { background: var(--navy-light); border-radius: 10px; padding: 26px 22px; }
+  .step .n { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 800; color: var(--amber); margin-bottom: 8px; }
+  .step h3 { font-size: 17px; margin-bottom: 8px; }
+  .step p { color: #b8c2d1; font-size: 13.5px; }
+
+  .cta-band { text-align: center; }
+  .cta-band h2 { font-size: 28px; margin-bottom: 14px; color: var(--navy); }
+  .cta-band p { color: var(--ink-soft); margin-bottom: 24px; }
+  .btn-primary { display: inline-block; background: var(--navy); color: #fff; padding: 14px 30px; border-radius: 6px; font-weight: 700; font-size: 14.5px; }
+  .btn-primary:hover { background: var(--navy-light); }
+
+  footer { background: var(--navy); color: #9fabbd; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--amber); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 30px; }
+    .steps-row { grid-template-columns: 1fr; }
+    .fund-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-formation">commander ce style</a></div>
+
+<header>
+  <a href="horizon-formations.html" class="logo">Horizon<span> Formations</span></a>
+  <nav>
+    <ul>
+      <li><a href="horizon-formations.html">Accueil</a></li>
+      <li><a href="horizon-formations-catalogue.html">Nos formations</a></li>
+      <li><a href="horizon-formations-financement.html" class="active">Financement</a></li>
+      <li><a href="horizon-formations-apropos.html">À propos</a></li>
+      <li><a href="horizon-formations-contact.html" class="nav-cta">S'inscrire</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Financement</div>
+  <h1>Se former sans avancer les frais</h1>
+  <p>La plupart de nos stagiaires financent leur formation sans rien débourser — voici comment.</p>
+</section>
+
+<section>
+  <div class="fund-detail">
+    <div class="fund-row">
+      <span class="ic">💳</span>
+      <div>
+        <h3>CPF — Compte Personnel de Formation</h3>
+        <p>Chaque actif dispose d'un compte CPF alimenté automatiquement chaque année. La formation est réservée et payée directement depuis la plateforme officielle, sans avance de frais.</p>
+        <span class="tip">→ Vérifiez vos droits sur moncompteformation.gouv.fr</span>
+      </div>
+    </div>
+    <div class="fund-row">
+      <span class="ic">🏢</span>
+      <div>
+        <h3>Plan de développement des compétences (entreprise)</h3>
+        <p>Votre employeur peut financer votre formation dans le cadre de son plan de formation, via son OPCO. Nous vous aidons à monter le dossier.</p>
+        <span class="tip">→ Idéal pour les formations management et bureautique</span>
+      </div>
+    </div>
+    <div class="fund-row">
+      <span class="ic">🧭</span>
+      <div>
+        <h3>France Travail (demandeurs d'emploi)</h3>
+        <p>Certaines formations peuvent être prises en charge dans le cadre d'un projet de reconversion, en complément ou à la place du CPF.</p>
+        <span class="tip">→ Se renseigner auprès de votre conseiller</span>
+      </div>
+    </div>
+    <div class="fund-row">
+      <span class="ic">👤</span>
+      <div>
+        <h3>Financement personnel</h3>
+        <p>Sans droits suffisants ou hors dispositif, un paiement en plusieurs fois est possible, sans frais supplémentaires.</p>
+        <span class="tip">→ Paiement en 2 à 4 fois selon la formation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="section-head">
+    <div class="section-tag">Démarches</div>
+    <h2>Comment on vous accompagne</h2>
+  </div>
+  <div class="steps-row">
+    <div class="step"><div class="n">01</div><h3>Diagnostic</h3><p>On identifie ensemble le meilleur dispositif selon votre situation.</p></div>
+    <div class="step"><div class="n">02</div><h3>Montage du dossier</h3><p>Nous préparons les pièces nécessaires et vous accompagnons dans les démarches.</p></div>
+    <div class="step"><div class="n">03</div><h3>Validation</h3><p>Une fois le financement validé, votre place est réservée.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Vous ne savez pas par où commencer ?</h2>
+  <p>Un conseiller étudie votre situation gratuitement et vous oriente vers le bon dispositif.</p>
+  <a href="horizon-formations-contact.html" class="btn-primary">Être rappelé(e)</a>
+</section>
+
+<footer>
+  <p>Horizon Formations — Centre de formation professionnelle, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

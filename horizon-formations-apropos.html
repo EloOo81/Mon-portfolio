@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Horizon Formations</title>
+<meta name="description" content="Horizon Formations, centre de formation professionnelle certifié Qualiopi à Toulouse : équipe, valeurs, certification.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2f4b; --navy-light: #24406a; --amber: #f0a202; --amber-dark: #cc8500;
+    --bg: #f7f8fa; --card: #ffffff; --ink: #1a2233; --ink-soft: #5c6470; --line: #e2e6ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Outfit', 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+
+  .demo-banner { background: var(--amber); color: var(--navy); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--navy); padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 20px; color: #fff; }
+  .logo span { color: var(--amber); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 14px; font-weight: 600; color: #cdd6e3; }
+  nav a:hover, nav a.active { color: var(--amber); }
+  .nav-cta { background: var(--amber); color: var(--navy) !important; padding: 9px 20px; border-radius: 6px; font-weight: 700 !important; }
+
+  .page-hero { background: var(--navy); color: #fff; padding: 60px 6% 44px; text-align: center; }
+  .section-tag { color: var(--amber); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 12px; }
+  .page-hero p { color: #c3ccd9; max-width: 540px; margin: 0 auto; font-size: 15.5px; }
+
+  section { padding: 60px 6% 80px; max-width: 1180px; margin: 0 auto; }
+  .section-head { max-width: 620px; margin: 0 auto 40px; text-align: center; }
+  .section-head h2 { font-size: 30px; margin-bottom: 12px; color: var(--navy); }
+  .section-head p { color: var(--ink-soft); font-size: 15px; }
+
+  .qualiopi { display: flex; align-items: center; gap: 30px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 30px 34px; max-width: 780px; margin: 0 auto 60px; }
+  .qualiopi-badge { width: 70px; height: 70px; border-radius: 50%; background: var(--navy); color: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; text-align: center; flex-shrink: 0; }
+  .qualiopi h3 { font-size: 18px; margin-bottom: 6px; color: var(--navy); }
+  .qualiopi p { color: var(--ink-soft); font-size: 14px; }
+
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .team-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 24px; text-align: center; }
+  .team-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--navy); color: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; margin: 0 auto 14px; }
+  .team-card h3 { font-size: 16px; margin-bottom: 4px; color: var(--navy); }
+  .team-card .role { font-size: 12.5px; color: var(--amber-dark); font-weight: 600; margin-bottom: 10px; }
+  .team-card p { color: var(--ink-soft); font-size: 13px; }
+
+  .values { background: var(--navy); color: #fff; }
+  .values .section-head p { color: #c3ccd9; }
+  .values .section-tag { color: var(--amber); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .value-card { background: var(--navy-light); border-radius: 10px; padding: 26px 22px; }
+  .value-card h3 { font-size: 17px; margin-bottom: 8px; }
+  .value-card p { color: #b8c2d1; font-size: 13.5px; }
+
+  .cta-band { text-align: center; }
+  .cta-band h2 { font-size: 28px; margin-bottom: 14px; color: var(--navy); }
+  .cta-band p { color: var(--ink-soft); margin-bottom: 24px; }
+  .btn-primary { display: inline-block; background: var(--navy); color: #fff; padding: 14px 30px; border-radius: 6px; font-weight: 700; font-size: 14.5px; }
+  .btn-primary:hover { background: var(--navy-light); }
+
+  footer { background: var(--navy); color: #9fabbd; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--amber); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 30px; }
+    .team-grid, .values-grid { grid-template-columns: 1fr 1fr; }
+    .qualiopi { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-formation">commander ce style</a></div>
+
+<header>
+  <a href="horizon-formations.html" class="logo">Horizon<span> Formations</span></a>
+  <nav>
+    <ul>
+      <li><a href="horizon-formations.html">Accueil</a></li>
+      <li><a href="horizon-formations-catalogue.html">Nos formations</a></li>
+      <li><a href="horizon-formations-financement.html">Financement</a></li>
+      <li><a href="horizon-formations-apropos.html" class="active">À propos</a></li>
+      <li><a href="horizon-formations-contact.html" class="nav-cta">S'inscrire</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">À propos</div>
+  <h1>Un centre à taille humaine</h1>
+  <p>Fondé en 2014, Horizon Formations accompagne chaque année plus de 450 stagiaires vers leurs objectifs professionnels.</p>
+</section>
+
+<section>
+  <div class="qualiopi">
+    <div class="qualiopi-badge">QUALIOPI</div>
+    <div>
+      <h3>Certification qualité reconnue par l'État</h3>
+      <p>Cette certification atteste de la qualité de notre processus de formation et conditionne l'accès à certains financements (CPF, OPCO, France Travail).</p>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="section-tag">Équipe</div>
+    <h2>Des formateurs professionnels en activité</h2>
+    <p>Chaque formateur exerce ou a exercé le métier qu'il enseigne.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-avatar">L</div><h3>Laura Fontaine</h3><div class="role">Développement web</div><p>10 ans d'expérience en agence, formatrice depuis 2018.</p></div>
+    <div class="team-card"><div class="team-avatar">M</div><h3>Marc Ibanez</h3><div class="role">Bureautique &amp; outils</div><p>Ancien formateur en entreprise, spécialiste Excel et automatisation.</p></div>
+    <div class="team-card"><div class="team-avatar">N</div><h3>Nadia Cherif</h3><div class="role">Management</div><p>Ex-responsable RH, spécialisée en accompagnement managérial.</p></div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="section-head">
+    <div class="section-tag">Nos valeurs</div>
+    <h2>Ce qui guide notre pédagogie</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card"><h3>Concret avant tout</h3><p>Des mises en situation réelles, pas de théorie qui ne sert jamais.</p></div>
+    <div class="value-card"><h3>Petits groupes</h3><p>12 stagiaires maximum par session, pour un vrai suivi individuel.</p></div>
+    <div class="value-card"><h3>Après la formation</h3><p>Un accompagnement à l'insertion, même une fois la session terminée.</p></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Envie de nous rencontrer ?</h2>
+  <p>Nos locaux sont ouverts pour une visite avant inscription.</p>
+  <a href="horizon-formations-contact.html" class="btn-primary">Nous contacter</a>
+</section>
+
+<footer>
+  <p>Horizon Formations — Centre de formation professionnelle, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>
