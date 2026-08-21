@@ -110,9 +110,20 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 34vw;
+    height: 34vw;
+    max-width: 460px;
+    max-height: 460px;
+    border-radius: 50%;
+    border: 2px solid var(--coral);
+    outline: 1px solid rgba(201,162,39,0.35);
+    outline-offset: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Manrope', sans-serif;
     font-weight: 800;
-    font-size: 46vw;
+    font-size: 11vw;
     line-height: 1;
     color: var(--coral);
     opacity: 0.12;
@@ -484,7 +495,7 @@
     .hero-code { font-size: 10.5px; word-break: break-word; white-space: normal; }
     .hero-pricing { gap: 10px; }
     .hero-price-chip { padding: 10px 16px; }
-    .hero-watermark { font-size: 60vw; }
+    .hero-watermark { width: 70vw; height: 70vw; font-size: 22vw; outline-offset: 10px; }
     .about-grid { grid-template-columns: 1fr; }
     .portfolio-grid { grid-template-columns: 1fr; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
