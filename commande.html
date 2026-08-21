@@ -303,7 +303,9 @@
         "J'ai déjà un nom de domaine et un hébergeur",
         "Je n'ai ni l'un ni l'autre, j'aurai besoin d'aide",
         "Je ne suis pas sûr(e) de comprendre, on en parlera ensemble"
-      ]
+      ],
+      detailTrigger: 0,
+      detailPlaceholder: 'Optionnel : nom de domaine et hébergeur (ex : monsite.fr chez OVH)'
     },
     {
       key: 'statut_juridique', type: 'text', required: false,
@@ -382,7 +384,8 @@
       const group = document.createElement('div');
       group.className = 'radio-group';
       let selected = null;
-      step.options.forEach(opt => {
+      let detailInput = null;
+      step.options.forEach((opt, i) => {
         const optDiv = document.createElement('div');
         optDiv.className = 'radio-opt';
         optDiv.textContent = opt;
@@ -391,11 +394,24 @@
           optDiv.classList.add('selected');
           selected = opt;
           nextBtn.disabled = false;
+          if (detailInput) detailInput.style.display = (i === step.detailTrigger) ? 'block' : 'none';
         });
         group.appendChild(optDiv);
       });
       inputZone.appendChild(group);
-      getValue = () => selected;
+      if (step.detailTrigger !== undefined) {
+        detailInput = document.createElement('input');
+        detailInput.type = 'text';
+        detailInput.placeholder = step.detailPlaceholder || '';
+        detailInput.style.display = 'none';
+        detailInput.style.marginTop = '10px';
+        inputZone.appendChild(detailInput);
+      }
+      getValue = () => {
+        if (!selected) return null;
+        const detail = detailInput && detailInput.style.display !== 'none' ? detailInput.value.trim() : '';
+        return detail ? selected + ' — ' + detail : selected;
+      };
     } else {
       inputField = step.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
       if (step.type !== 'textarea') inputField.type = step.type;
