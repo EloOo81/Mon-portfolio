@@ -9,9 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Elodie — Développeuse web freelance">
 <meta property="og:description" content="Création de sites vitrines clé en main pour artisans et commerçants, personnalisables à vos couleurs et vos textes. Sites rapides, responsives, codés à la main, livrés en 3 jours. 100% à distance.">
-<meta property="og:url" content="https://eloOo81.github.io/Mon-portfolio/">
-<meta property="og:image" content="https://eloOo81.github.io/Mon-portfolio/photo-elodie.jpg">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://eloOo81.github.io/Mon-portfolio/"><meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
 {
@@ -32,32 +30,39 @@
   "priceRange": "250€–450€"
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1c2b3a;
-    --navy-light: #2c4258;
-    --coral: #e8623d;
-    --coral-dark: #c94f2e;
-    --mint: #4fb0a5;
-    --cream: #f7f5f1;
-    --grey: #6b7280;
-    --line: #e5e1d8;
+    --navy: #0d0e10;
+    --navy-light: #212327;
+    --coral: #c9a227;
+    --coral-dark: #a8871f;
+    --mint: #4a9b7f;
+    --cream: #17181b;
+    --grey: #9a9ea3;
+    --line: rgba(236,233,226,0.12);
+    --ink: #ece9e2;
+    --ink-soft: #c9c6c0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    color: var(--navy);
+    color: var(--ink);
     background: var(--cream);
     line-height: 1.6;
   }
+  h1, h2, h3, .logo, .price, .step-num, .testi-avatar { font-family: 'Manrope', 'Segoe UI', Arial, sans-serif; }
+  .eyebrow, .payment-note, .pricing-fineprint, .security-badge, .price span { font-family: 'JetBrains Mono', ui-monospace, monospace; }
   a { text-decoration: none; color: inherit; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   header {
     position: sticky;
     top: 0;
-    background: rgba(247,245,241,0.95);
+    background: rgba(13,14,16,0.85);
     backdrop-filter: blur(6px);
     z-index: 100;
     border-bottom: 1px solid var(--line);
@@ -73,15 +78,19 @@
   .logo { font-size: 19px; font-weight: 800; letter-spacing: 0.2px; }
   .logo span { color: var(--coral); }
   nav ul { display: flex; gap: 30px; list-style: none; }
-  nav a { font-size: 14px; font-weight: 600; color: var(--navy); transition: color .2s; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--ink); transition: color .2s; }
   nav a:hover { color: var(--coral); }
-  .nav-cta { background: var(--coral); color: #fff !important; padding: 9px 18px; border-radius: 6px; }
-  .nav-cta:hover { background: var(--coral-dark); color: #fff !important; }
+  .nav-cta { background: var(--coral); color: var(--navy) !important; padding: 9px 18px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--coral-dark); color: var(--navy) !important; }
   .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-  .burger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; }
+  .burger span { width: 24px; height: 2.5px; background: var(--ink); border-radius: 2px; }
 
   .hero {
-    background: var(--navy);
+    background:
+      linear-gradient(rgba(236,233,226,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236,233,226,0.045) 1px, transparent 1px),
+      var(--navy);
+    background-size: 42px 42px, 42px 42px, auto;
     color: #fff;
     padding: 100px 24px 90px;
   }
@@ -125,7 +134,7 @@
     margin: 0 8px 8px;
     transition: all .2s;
   }
-  .btn-secondary:hover { background: #fff; color: var(--navy); }
+  .btn-secondary:hover { background: var(--coral); border-color: var(--coral); color: var(--navy); }
 
   section { padding: 76px 24px; }
   .section-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
@@ -135,12 +144,12 @@
 
   /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-  .about-text p { font-size: 15px; color: #3d4650; margin-bottom: 16px; }
+  .about-text p { font-size: 15px; color: var(--ink-soft); margin-bottom: 16px; }
   .about-points { list-style: none; }
   .about-points li { display: flex; gap: 12px; margin-bottom: 14px; font-size: 14.5px; }
   .about-points .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); margin-top: 7px; flex-shrink: 0; }
   .about-card {
-    background: #fff;
+    background: var(--navy-light);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 30px;
@@ -151,23 +160,33 @@
     gap: 18px;
     margin-bottom: 22px;
   }
-  .about-photo img {
-    width: 84px;
-    height: 84px;
+  .monogram {
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--mint);
+    background: var(--navy);
+    border: 1.5px solid var(--coral);
+    outline: 1px solid rgba(201,162,39,0.35);
+    outline-offset: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope', 'Segoe UI', serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--coral);
+    flex-shrink: 0;
   }
-  .about-photo .photo-name { font-size: 17px; font-weight: 700; color: var(--navy); }
+  .about-photo .photo-name { font-size: 17px; font-weight: 700; color: var(--ink); }
   .about-photo .photo-role { font-size: 13.5px; color: var(--grey); }
   .about-card h3 { font-size: 15px; margin-bottom: 18px; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; }
   .stat-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .stat-row:last-child { border-bottom: none; }
   .stat-row .label { font-size: 14px; color: var(--grey); }
-  .stat-row .value { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .stat-row .value { font-size: 14px; font-weight: 700; color: var(--ink); }
 
   /* SERVICES */
-  .services { background: #fff; }
+  .services { background: var(--cream); }
   .pricing-card {
     max-width: 480px;
     margin: 0 auto;
@@ -200,7 +219,7 @@
   }
   .p-card {
     display: block;
-    background: #fff;
+    background: var(--navy-light);
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
@@ -289,11 +308,11 @@
   .pp-body p { font-size: 12.5px; color: #c3ccd4; }
 
   /* COMMENT CA MARCHE */
-  .steps { background: #fff; }
+  .steps { background: var(--navy); }
   .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
   .step-card { text-align: center; padding: 10px; }
   .step-num {
-    width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--coral); color: var(--navy);
     display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 17px;
     margin: 0 auto 16px;
   }
@@ -304,26 +323,26 @@
   /* TEMOIGNAGES */
   .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .testi-card {
-    background: #fff;
+    background: var(--navy-light);
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 26px;
   }
   .testi-stars { color: var(--coral); font-size: 15px; margin-bottom: 12px; letter-spacing: 2px; }
-  .testi-quote { font-size: 14.5px; color: #3d4650; font-style: italic; margin-bottom: 20px; line-height: 1.55; }
+  .testi-quote { font-size: 14.5px; color: var(--ink-soft); font-style: italic; margin-bottom: 20px; line-height: 1.55; }
   .testi-person { display: flex; align-items: center; gap: 12px; }
   .testi-avatar {
-    width: 42px; height: 42px; border-radius: 50%; background: var(--navy); color: #fff;
+    width: 42px; height: 42px; border-radius: 50%; background: var(--coral); color: var(--navy);
     display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;
   }
-  .testi-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .testi-name { font-size: 14px; font-weight: 700; color: var(--ink); }
   .testi-role { font-size: 12.5px; color: var(--grey); }
   .testi-note { text-align: center; font-size: 12.5px; color: var(--grey); font-style: italic; margin-top: 30px; }
 
   /* FAQ */
   .faq-list { max-width: 720px; margin: 0 auto; }
   .faq-item {
-    background: #fff;
+    background: var(--navy-light);
     border: 1px solid var(--line);
     border-radius: 10px;
     margin-bottom: 12px;
@@ -358,7 +377,7 @@
     font-weight: 700;
     margin-top: 10px;
   }
-  .email-box a { color: var(--mint); }
+  .email-box a { color: var(--coral); }
   .contact-note { font-size: 13.5px; color: #9aa5ad; margin-top: 18px; }
 
   footer {
@@ -380,7 +399,7 @@
   }
   .chat-window {
     position: fixed; bottom: 96px; right: 26px; width: 330px; max-width: 90vw; height: 430px;
-    background: #fff; border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+    background: var(--navy-light); border-radius: 16px; box-shadow: 0 14px 40px rgba(0,0,0,0.4);
     display: none; flex-direction: column; overflow: hidden; z-index: 200;
   }
   .chat-window.open { display: flex; }
@@ -391,13 +410,13 @@
   .chat-close { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
   .chat-body { flex: 1; padding: 16px; overflow-y: auto; background: var(--cream); display: flex; flex-direction: column; gap: 10px; }
   .chat-msg { max-width: 82%; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
-  .chat-msg.bot { background: #fff; border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .chat-msg.bot { background: var(--navy-light); border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 3px; }
   .chat-msg.user { background: var(--navy); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
   .chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
-  .chat-sugg-btn { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: var(--navy); }
+  .chat-sugg-btn { background: var(--navy-light); border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px; font-size: 12px; cursor: pointer; color: var(--ink); }
   .chat-input-row { display: flex; border-top: 1px solid var(--line); padding: 10px; gap: 8px; }
   .chat-input-row input { flex: 1; border: 1px solid var(--line); border-radius: 20px; padding: 9px 14px; font-size: 13px; outline: none; font-family: inherit; }
-  .chat-input-row button { background: var(--navy); color: #fff; border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
+  .chat-input-row button { background: var(--coral); color: var(--navy); border: none; border-radius: 20px; padding: 0 16px; font-weight: 700; cursor: pointer; font-size: 12.5px; }
 
   @media (max-width: 800px) {
     nav ul { display: none; }
@@ -480,13 +499,13 @@
     <div class="about-grid">
       <div class="about-text">
         <div class="about-photo">
-          <img src="photo-elodie.jpg" alt="Photo d'Elodie, créatrice de sites internet">
+          <div class="monogram" aria-hidden="true">E</div>
           <div>
             <div class="photo-name">Elodie</div>
             <div class="photo-role">Créatrice de sites internet</div>
           </div>
         </div>
-        <p>Je m'appelle Elodie. Je me forme en autodidacte au développement web (HTML, CSS, JavaScript) avec un seul objectif : créer des sites vitrines clairs et efficaces pour les indépendants et petites entreprises qui n'en ont pas encore.</p>
+        <p>Je vous propose des sites simples et efficaces, clé en main : vous choisissez un style dans mon catalogue, et votre structure est déjà prête. Vous pouvez ensuite ajouter facilement votre logo, vos photos et votre contenu — sans complexité, sans y passer des heures.</p>
         <p>Je travaille exclusivement à distance, depuis mon bureau — pas de rendez-vous en personne nécessaire. Tout se passe par écrit, à votre rythme.</p>
         <ul class="about-points">
           <li><span class="dot"></span>Sites clé en main, choisis parmi nos styles et personnalisés à votre image</li>
@@ -750,7 +769,7 @@
     navMenu.classList.toggle('open');
     if (navMenu.classList.contains('open')) {
       navMenu.style.display = 'block';
-      navMenu.querySelector('ul').style.cssText = 'display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:#f7f5f1;padding:20px 24px;border-bottom:1px solid #e5e1d8;';
+      navMenu.querySelector('ul').style.cssText = 'display:flex;flex-direction:column;gap:14px;position:absolute;top:100%;left:0;right:0;background:#17181b;padding:20px 24px;border-bottom:1px solid rgba(236,233,226,0.12);';
     } else {
       navMenu.querySelector('ul').style.display = 'none';
     }
