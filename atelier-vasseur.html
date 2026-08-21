@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier Vasseur — Architecture d'intérieur, Toulouse</title>
+<meta name="description" content="Démonstration d'un site multi-pages pour une architecte d'intérieur : réalisations, prestations, à propos, contact.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2620; --ink-soft: #6e6656; --copper: #b5754a; --copper-dark: #96603a;
+    --paper: #f2ede4; --card: #fbf8f2; --line: #e2d9c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+  .demo-banner { background: var(--copper); color: #fff; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--paper); padding: 22px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 21px; letter-spacing: 0.01em; }
+  .logo span { color: var(--copper); font-style: italic; }
+  nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
+  nav a { font-size: 13px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+  nav a:hover, nav a.active { color: var(--copper); }
+  .nav-cta { border: 1.5px solid var(--ink); padding: 8px 18px; border-radius: 30px; }
+  .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+  .hero { max-width: 1180px; margin: 0 auto; padding: 60px 6% 90px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+  .hero-tag { display: inline-block; color: var(--copper-dark); font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; }
+  .hero h1 { font-size: 50px; line-height: 1.12; margin-bottom: 20px; font-weight: 500; }
+  .hero h1 em { color: var(--copper); font-style: italic; }
+  .hero p { color: var(--ink-soft); font-size: 16px; max-width: 460px; margin-bottom: 30px; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 30px; font-weight: 600; font-size: 14px; }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--copper-dark); }
+  .btn-outline { border: 1.5px solid var(--ink); color: var(--ink); margin-left: 10px; }
+  .btn-outline:hover { border-color: var(--copper); color: var(--copper); }
+  .hero-visual { aspect-ratio: 4/5; border-radius: 4px; background: linear-gradient(155deg, #d9cdb8 0%, #c7a884 55%, #96603a 130%); position: relative; }
+  .hero-visual::after { content: "AV"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 90px; color: rgba(255,255,255,0.25); }
+
+  section { padding: 80px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-tag { color: var(--copper-dark); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .section-head { max-width: 600px; margin: 0 auto 44px; text-align: center; }
+  .section-head h2 { font-size: 34px; margin-bottom: 12px; font-weight: 500; }
+  .section-head p { color: var(--ink-soft); font-size: 15.5px; }
+
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .work-card { border-radius: 4px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
+  .work-thumb { height: 190px; }
+  .work-body { padding: 18px 20px; }
+  .work-tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--copper-dark); font-weight: 700; }
+  .work-body h3 { font-size: 18px; margin: 6px 0 4px; font-weight: 500; }
+  .work-body p { color: var(--ink-soft); font-size: 13px; }
+  .center-cta { text-align: center; margin-top: 40px; }
+
+  .approach { background: var(--ink); color: var(--paper); }
+  .approach .section-head p { color: #c9c0ac; }
+  .approach .section-tag { color: var(--copper); }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .step { text-align: center; padding: 0 10px; }
+  .step .n { font-family: 'Fraunces', serif; font-size: 40px; color: var(--copper); margin-bottom: 8px; }
+  .step h3 { font-size: 17px; margin-bottom: 8px; font-weight: 500; }
+  .step p { color: #b8ae98; font-size: 13.5px; }
+
+  .quote-block { text-align: center; max-width: 700px; margin: 0 auto; padding: 90px 6%; }
+  .quote-block p { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; line-height: 1.5; color: var(--ink); margin-bottom: 20px; }
+  .quote-block .who { font-size: 13px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .cta-band { background: var(--card); text-align: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .cta-band h2 { font-size: 32px; margin-bottom: 14px; font-weight: 500; }
+  .cta-band p { color: var(--ink-soft); margin-bottom: 28px; }
+
+  footer { background: var(--ink); color: #b8ae98; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--copper); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .hero { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 34px; }
+    .work-grid, .steps-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-architecte">commander ce style</a></div>
+
+<header>
+  <a href="atelier-vasseur.html" class="logo">Atelier<span> Vasseur</span></a>
+  <nav>
+    <ul>
+      <li><a href="atelier-vasseur.html" class="active">Accueil</a></li>
+      <li><a href="atelier-vasseur-realisations.html">Réalisations</a></li>
+      <li><a href="atelier-vasseur-prestations.html">Prestations</a></li>
+      <li><a href="atelier-vasseur-apropos.html">À propos</a></li>
+      <li><a href="atelier-vasseur-contact.html" class="nav-cta">Prendre rendez-vous</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="hero-tag">Architecture d'intérieur · Toulouse</span>
+    <h1>Des intérieurs qui vous <em>ressemblent</em>, pensés jusqu'au moindre détail</h1>
+    <p>Conseil déco, plans d'aménagement et suivi de chantier — un accompagnement complet, du premier croquis à la dernière touche.</p>
+    <a href="atelier-vasseur-contact.html" class="btn btn-primary">Prendre rendez-vous</a>
+    <a href="atelier-vasseur-realisations.html" class="btn btn-outline">Voir les réalisations</a>
+  </div>
+  <div class="hero-visual"></div>
+</section>
+
+<section id="realisations">
+  <div class="section-head">
+    <div class="section-tag">Réalisations</div>
+    <h2>Quelques projets récents</h2>
+    <p>Appartements, maisons et espaces professionnels — chaque projet part d'une écoute attentive du lieu et de ses usages.</p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#d9cdb8,#a88a63);"></div>
+      <div class="work-body"><span class="work-tag">Appartement · 75 m²</span><h3>Loft Saint-Cyprien</h3><p>Réhabilitation complète d'un atelier en loft familial lumineux.</p></div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#c9b79a,#8a6a45);"></div>
+      <div class="work-body"><span class="work-tag">Maison · 140 m²</span><h3>Maison de Lardenne</h3><p>Extension et réaménagement complet du rez-de-chaussée.</p></div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#e3d5bc,#b5754a);"></div>
+      <div class="work-body"><span class="work-tag">Bureaux · 220 m²</span><h3>Siège Cabinet Lefèvre</h3><p>Réaménagement d'espaces de travail chaleureux et fonctionnels.</p></div>
+    </div>
+  </div>
+  <div class="center-cta"><a href="atelier-vasseur-realisations.html" class="btn btn-outline">Voir tous les projets</a></div>
+</section>
+
+<section class="approach">
+  <div class="section-head">
+    <div class="section-tag">Méthode</div>
+    <h2>Un accompagnement en quatre temps</h2>
+    <p>De la première visite à la remise des clés, un processus clair à chaque étape.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step"><div class="n">01</div><h3>Diagnostic</h3><p>Visite du lieu, écoute de vos usages et de vos envies.</p></div>
+    <div class="step"><div class="n">02</div><h3>Conception</h3><p>Plans, ambiances et sélection des matériaux.</p></div>
+    <div class="step"><div class="n">03</div><h3>Réalisation</h3><p>Coordination des artisans et suivi du chantier.</p></div>
+    <div class="step"><div class="n">04</div><h3>Livraison</h3><p>Réception des travaux et derniers réglages.</p></div>
+  </div>
+</section>
+
+<section class="quote-block">
+  <p>"Un travail d'écoute remarquable — le résultat nous ressemble bien plus que ce qu'on imaginait possible."</p>
+  <div class="who">Marie &amp; Julien — Loft Saint-Cyprien</div>
+</section>
+
+<section class="cta-band">
+  <h2>Un projet en tête ?</h2>
+  <p>Le premier échange permet de cadrer votre projet, sans engagement.</p>
+  <a href="atelier-vasseur-contact.html" class="btn btn-primary">Prendre rendez-vous</a>
+</section>
+
+<footer>
+  <p>Atelier Vasseur — Architecture d'intérieur, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

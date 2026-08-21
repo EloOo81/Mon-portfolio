@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — Atelier Vasseur</title>
+<meta name="description" content="Réalisations de l'Atelier Vasseur : appartements, maisons et espaces professionnels réaménagés.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2620; --ink-soft: #6e6656; --copper: #b5754a; --copper-dark: #96603a;
+    --paper: #f2ede4; --card: #fbf8f2; --line: #e2d9c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+  .demo-banner { background: var(--copper); color: #fff; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--paper); padding: 22px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 21px; }
+  .logo span { color: var(--copper); font-style: italic; }
+  nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
+  nav a { font-size: 13px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+  nav a:hover, nav a.active { color: var(--copper); }
+  .nav-cta { border: 1.5px solid var(--ink); padding: 8px 18px; border-radius: 30px; }
+  .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+  .page-hero { max-width: 700px; margin: 0 auto; padding: 70px 6% 20px; text-align: center; }
+  .section-tag { color: var(--copper-dark); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 12px; font-weight: 500; }
+  .page-hero p { color: var(--ink-soft); font-size: 15.5px; }
+
+  section { padding: 40px 6% 80px; max-width: 1180px; margin: 0 auto; }
+  .filter-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+  .filter-chip { border: 1.5px solid var(--line); background: var(--card); padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .filter-chip.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .work-card { border-radius: 4px; overflow: hidden; background: var(--card); border: 1px solid var(--line); }
+  .work-thumb { height: 210px; }
+  .work-body { padding: 20px 22px; }
+  .work-tag { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--copper-dark); font-weight: 700; }
+  .work-body h3 { font-size: 19px; margin: 6px 0 6px; font-weight: 500; }
+  .work-body p { color: var(--ink-soft); font-size: 13.5px; margin-bottom: 10px; }
+  .work-meta { display: flex; gap: 14px; font-size: 12px; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 10px; }
+
+  .cta-band { background: var(--ink); color: var(--paper); text-align: center; }
+  .cta-band h2 { font-size: 30px; margin-bottom: 14px; font-weight: 500; }
+  .cta-band p { color: #c9c0ac; margin-bottom: 26px; }
+  .btn-primary { display: inline-block; background: var(--copper); color: #fff; padding: 14px 30px; border-radius: 30px; font-weight: 600; font-size: 14px; }
+  .btn-primary:hover { background: var(--copper-dark); }
+
+  footer { background: var(--ink); color: #b8ae98; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--copper); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 30px; }
+    .work-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-architecte">commander ce style</a></div>
+
+<header>
+  <a href="atelier-vasseur.html" class="logo">Atelier<span> Vasseur</span></a>
+  <nav>
+    <ul>
+      <li><a href="atelier-vasseur.html">Accueil</a></li>
+      <li><a href="atelier-vasseur-realisations.html" class="active">Réalisations</a></li>
+      <li><a href="atelier-vasseur-prestations.html">Prestations</a></li>
+      <li><a href="atelier-vasseur-apropos.html">À propos</a></li>
+      <li><a href="atelier-vasseur-contact.html" class="nav-cta">Prendre rendez-vous</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Réalisations</div>
+  <h1>Nos projets, un lieu à la fois</h1>
+  <p>Une sélection de réalisations récentes, entre appartements, maisons et espaces professionnels.</p>
+</section>
+
+<section>
+  <div class="filter-row">
+    <span class="filter-chip active">Tous</span>
+    <span class="filter-chip">Appartements</span>
+    <span class="filter-chip">Maisons</span>
+    <span class="filter-chip">Bureaux &amp; commerces</span>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#d9cdb8,#a88a63);"></div>
+      <div class="work-body">
+        <span class="work-tag">Appartement</span>
+        <h3>Loft Saint-Cyprien</h3>
+        <p>Réhabilitation complète d'un atelier en loft familial lumineux, verrière et cuisine ouverte.</p>
+        <div class="work-meta"><span>75 m²</span><span>·</span><span>4 mois</span><span>·</span><span>Toulouse</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#c9b79a,#8a6a45);"></div>
+      <div class="work-body">
+        <span class="work-tag">Maison</span>
+        <h3>Maison de Lardenne</h3>
+        <p>Extension et réaménagement complet du rez-de-chaussée, ouverture sur le jardin.</p>
+        <div class="work-meta"><span>140 m²</span><span>·</span><span>7 mois</span><span>·</span><span>Toulouse</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#e3d5bc,#b5754a);"></div>
+      <div class="work-body">
+        <span class="work-tag">Bureaux</span>
+        <h3>Siège Cabinet Lefèvre</h3>
+        <p>Réaménagement d'espaces de travail chaleureux, salles de réunion et espace détente.</p>
+        <div class="work-meta"><span>220 m²</span><span>·</span><span>3 mois</span><span>·</span><span>Albi</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#b79c78,#6e4c2e);"></div>
+      <div class="work-body">
+        <span class="work-tag">Appartement</span>
+        <h3>Duplex Carmes</h3>
+        <p>Redistribution des volumes d'un duplex ancien, mezzanine et verrière intérieure.</p>
+        <div class="work-meta"><span>95 m²</span><span>·</span><span>5 mois</span><span>·</span><span>Toulouse</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#ddd0b6,#95744e);"></div>
+      <div class="work-body">
+        <span class="work-tag">Maison</span>
+        <h3>Villa Colomiers</h3>
+        <p>Rénovation d'une villa des années 80, du salon à la suite parentale.</p>
+        <div class="work-meta"><span>180 m²</span><span>·</span><span>8 mois</span><span>·</span><span>Colomiers</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb" style="background:linear-gradient(135deg,#cbb896,#7a5c3a);"></div>
+      <div class="work-body">
+        <span class="work-tag">Commerce</span>
+        <h3>Concept-store Rue Alsace</h3>
+        <p>Aménagement d'un commerce de centre-ville, agencement et éclairage sur mesure.</p>
+        <div class="work-meta"><span>60 m²</span><span>·</span><span>2 mois</span><span>·</span><span>Toulouse</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Votre projet pourrait être le prochain</h2>
+  <p>Discutons de vos envies lors d'un premier rendez-vous, sans engagement.</p>
+  <a href="atelier-vasseur-contact.html" class="btn-primary">Prendre rendez-vous</a>
+</section>
+
+<footer>
+  <p>Atelier Vasseur — Architecture d'intérieur, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

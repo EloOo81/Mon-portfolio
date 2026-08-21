@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Atelier Vasseur</title>
+<meta name="description" content="Camille Vasseur, architecte d'intérieur à Toulouse : parcours et philosophie.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2620; --ink-soft: #6e6656; --copper: #b5754a; --copper-dark: #96603a;
+    --paper: #f2ede4; --card: #fbf8f2; --line: #e2d9c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+  .demo-banner { background: var(--copper); color: #fff; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--paper); padding: 22px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 21px; }
+  .logo span { color: var(--copper); font-style: italic; }
+  nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
+  nav a { font-size: 13px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+  nav a:hover, nav a.active { color: var(--copper); }
+  .nav-cta { border: 1.5px solid var(--ink); padding: 8px 18px; border-radius: 30px; }
+  .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+  .intro { max-width: 1180px; margin: 0 auto; padding: 70px 6%; display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+  .avatar-block { aspect-ratio: 3/4; border-radius: 4px; position: relative; background: linear-gradient(160deg, #e3d5bc 0%, #c7a884 55%, #6e4c2e 130%); }
+  .avatar-block::after { content: "CV"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 90px; color: rgba(255,255,255,0.3); }
+  .section-tag { color: var(--copper-dark); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .intro-text h1 { font-size: 40px; margin-bottom: 18px; font-weight: 500; }
+  .intro-text p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 14px; }
+
+  section { padding: 60px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-head { max-width: 600px; margin: 0 auto 40px; text-align: center; }
+  .section-head h2 { font-size: 30px; margin-bottom: 12px; font-weight: 500; }
+  .section-head p { color: var(--ink-soft); font-size: 15px; }
+
+  .timeline { max-width: 700px; margin: 0 auto; padding-left: 30px; border-left: 2px solid var(--line); }
+  .tl-item { position: relative; padding-bottom: 32px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ""; position: absolute; left: -36px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--copper); border: 3px solid var(--paper); box-shadow: 0 0 0 1.5px var(--copper); }
+  .tl-year { font-family: 'Fraunces', serif; font-weight: 600; color: var(--copper-dark); font-size: 14px; }
+  .tl-item h3 { font-size: 18px; margin: 4px 0 6px; font-weight: 500; }
+  .tl-item p { color: var(--ink-soft); font-size: 14px; }
+
+  .press { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .press .section-head p { margin: 0; }
+  .press-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; font-family: 'Fraunces', serif; font-size: 19px; color: var(--ink-soft); opacity: 0.75; }
+
+  .cta-band { text-align: center; }
+  .cta-band h2 { font-size: 30px; margin-bottom: 14px; font-weight: 500; }
+  .cta-band p { color: var(--ink-soft); margin-bottom: 26px; }
+  .btn-primary { display: inline-block; background: var(--ink); color: var(--paper); padding: 14px 30px; border-radius: 30px; font-weight: 600; font-size: 14px; }
+  .btn-primary:hover { background: var(--copper-dark); }
+
+  footer { background: var(--ink); color: #b8ae98; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--copper); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .intro { grid-template-columns: 1fr; }
+    .avatar-block { max-width: 280px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-architecte">commander ce style</a></div>
+
+<header>
+  <a href="atelier-vasseur.html" class="logo">Atelier<span> Vasseur</span></a>
+  <nav>
+    <ul>
+      <li><a href="atelier-vasseur.html">Accueil</a></li>
+      <li><a href="atelier-vasseur-realisations.html">Réalisations</a></li>
+      <li><a href="atelier-vasseur-prestations.html">Prestations</a></li>
+      <li><a href="atelier-vasseur-apropos.html" class="active">À propos</a></li>
+      <li><a href="atelier-vasseur-contact.html" class="nav-cta">Prendre rendez-vous</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="avatar-block"></div>
+  <div class="intro-text">
+    <div class="section-tag">À propos</div>
+    <h1>Bonjour, je suis Camille</h1>
+    <p>Architecte d'intérieur diplômée, j'accompagne depuis 8 ans des particuliers et professionnels toulousains dans la transformation de leurs espaces.</p>
+    <p>Mon approche part toujours du même point : comprendre comment vous vivez réellement un lieu, avant de dessiner quoi que ce soit. Le style vient ensuite, au service de l'usage.</p>
+    <p>Je travaille avec un réseau d'artisans de confiance, sélectionnés au fil des années pour leur exigence et leur fiabilité.</p>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="section-head">
+    <div class="section-tag">Parcours</div>
+    <h2>Huit ans d'expérience</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">2016</div><h3>Diplôme d'architecture d'intérieur</h3><p>École Camondo, spécialisation aménagement résidentiel.</p></div>
+    <div class="tl-item"><div class="tl-year">2016 – 2020</div><h3>Architecte en agence</h3><p>Conception de projets résidentiels et tertiaires à Toulouse.</p></div>
+    <div class="tl-item"><div class="tl-year">2020</div><h3>Lancement de l'Atelier Vasseur</h3><p>Installation en indépendante pour un accompagnement plus personnel.</p></div>
+    <div class="tl-item"><div class="tl-year">Aujourd'hui</div><h3>Plus de 60 projets livrés</h3><p>Particuliers et professionnels, dans toute l'agglomération toulousaine.</p></div>
+  </div>
+</section>
+
+<section class="press">
+  <div class="section-head">
+    <div class="section-tag">Presse</div>
+    <h2>Ils en parlent</h2>
+  </div>
+  <div class="press-row">
+    <span>Maison &amp; Travaux</span>
+    <span>Côté Sud</span>
+    <span>La Dépêche</span>
+    <span>Elle Décoration</span>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Envie d'en discuter ?</h2>
+  <p>Le premier échange est l'occasion de poser les bases de votre projet.</p>
+  <a href="atelier-vasseur-contact.html" class="btn-primary">Prendre rendez-vous</a>
+</section>
+
+<footer>
+  <p>Atelier Vasseur — Architecture d'intérieur, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

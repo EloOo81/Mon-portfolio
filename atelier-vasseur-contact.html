@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Atelier Vasseur</title>
+<meta name="description" content="Prenez rendez-vous avec Camille Vasseur, architecte d'intérieur à Toulouse.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2620; --ink-soft: #6e6656; --copper: #b5754a; --copper-dark: #96603a;
+    --paper: #f2ede4; --card: #fbf8f2; --line: #e2d9c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+  .demo-banner { background: var(--copper); color: #fff; text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: var(--paper); padding: 22px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 21px; }
+  .logo span { color: var(--copper); font-style: italic; }
+  nav ul { display: flex; gap: 30px; list-style: none; align-items: center; }
+  nav a { font-size: 13px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+  nav a:hover, nav a.active { color: var(--copper); }
+  .nav-cta { border: 1.5px solid var(--ink); padding: 8px 18px; border-radius: 30px; }
+  .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+
+  .page-hero { max-width: 700px; margin: 0 auto; padding: 70px 6% 20px; text-align: center; }
+  .section-tag { color: var(--copper-dark); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 40px; margin-bottom: 12px; font-weight: 500; }
+  .page-hero p { color: var(--ink-soft); font-size: 15.5px; }
+
+  section { padding: 40px 6% 80px; max-width: 1080px; margin: 0 auto; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+  .info-card { background: var(--ink); color: var(--paper); border-radius: 8px; padding: 32px; }
+  .info-card h3 { font-size: 20px; margin-bottom: 20px; font-weight: 500; }
+  .info-row { display: flex; gap: 12px; margin-bottom: 16px; font-size: 14.5px; color: #d8cfba; }
+  .info-row .ic { color: var(--copper); flex-shrink: 0; }
+  .zone-box { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .zone-box h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; color: #b8ae98; margin-bottom: 10px; }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .zone-tag { background: rgba(181,117,74,0.2); color: #e0b48c; font-size: 12px; padding: 4px 10px; border-radius: 20px; }
+
+  .form-card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 32px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 6px;
+    font-size: 14.5px; font-family: inherit; color: var(--ink); background: var(--paper);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--copper); }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%; background: var(--ink); color: var(--paper); border: none; padding: 15px;
+    border-radius: 30px; font-weight: 600; font-size: 14.5px; cursor: pointer; transition: background .2s;
+  }
+  .submit-btn:hover { background: var(--copper-dark); }
+  .form-msg { text-align: center; font-size: 13px; color: var(--copper-dark); margin-top: 12px; font-weight: 600; }
+
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; padding: 4px 20px; }
+  .faq-item summary { padding: 16px 0; font-weight: 700; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--copper-dark); font-weight: 400; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { padding-bottom: 16px; color: var(--ink-soft); font-size: 14px; }
+  .section-head { max-width: 600px; margin: 0 auto 36px; text-align: center; }
+  .section-head h2 { font-size: 28px; margin-bottom: 10px; font-weight: 500; }
+
+  footer { background: var(--ink); color: #b8ae98; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--copper); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 30px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-architecte">commander ce style</a></div>
+
+<header>
+  <a href="atelier-vasseur.html" class="logo">Atelier<span> Vasseur</span></a>
+  <nav>
+    <ul>
+      <li><a href="atelier-vasseur.html">Accueil</a></li>
+      <li><a href="atelier-vasseur-realisations.html">Réalisations</a></li>
+      <li><a href="atelier-vasseur-prestations.html">Prestations</a></li>
+      <li><a href="atelier-vasseur-apropos.html">À propos</a></li>
+      <li><a href="atelier-vasseur-contact.html" class="nav-cta active">Prendre rendez-vous</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Contact</div>
+  <h1>Discutons de votre projet</h1>
+  <p>Un premier échange de 30 minutes pour comprendre votre projet, votre budget et vos délais.</p>
+</section>
+
+<section>
+  <div class="contact-grid">
+    <div class="info-card">
+      <h3>Coordonnées</h3>
+      <div class="info-row"><span class="ic">📍</span><span>12 rue des Arts, 31000 Toulouse</span></div>
+      <div class="info-row"><span class="ic">📞</span><span>05 61 00 00 00</span></div>
+      <div class="info-row"><span class="ic">✉️</span><span>contact@atelier-vasseur.fr</span></div>
+      <div class="info-row"><span class="ic">🕐</span><span>Lundi – Vendredi, 9h – 18h30</span></div>
+      <div class="zone-box">
+        <h4>Zone d'intervention</h4>
+        <div class="zone-tags">
+          <span class="zone-tag">Toulouse</span>
+          <span class="zone-tag">Blagnac</span>
+          <span class="zone-tag">Colomiers</span>
+          <span class="zone-tag">Albi</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-card">
+      <form onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Votre demande a bien été enregistrée, réponse sous 48h.';">
+        <div class="field-row">
+          <div class="field"><label for="nom">Nom</label><input type="text" id="nom" required></div>
+          <div class="field"><label for="tel">Téléphone</label><input type="tel" id="tel" required></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" required></div>
+        <div class="field">
+          <label for="type">Type de projet</label>
+          <select id="type" required>
+            <option value="">Choisissez un type</option>
+            <option>Appartement</option>
+            <option>Maison</option>
+            <option>Bureaux / commerce</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Votre projet en quelques mots</label><textarea id="message" placeholder="Surface, budget approximatif, échéance..."></textarea></div>
+        <button type="submit" class="submit-btn">Envoyer ma demande</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div class="section-tag">Questions fréquentes</div>
+    <h2>Avant de nous rencontrer</h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Le premier rendez-vous est-il payant ?</summary>
+      <p>Non, ce premier échange de 30 minutes est offert — il permet de vérifier que nous travaillons bien ensemble avant tout engagement.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Travaillez-vous avec mes propres artisans ?</summary>
+      <p>Bien sûr. Je peux aussi vous recommander des artisans de mon réseau si vous n'en avez pas encore.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Combien de temps dure un projet type ?</summary>
+      <p>Cela varie beaucoup selon l'ampleur : de 2 mois pour un conseil déco à 8 mois pour une rénovation complète.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p>Atelier Vasseur — Architecture d'intérieur, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>
