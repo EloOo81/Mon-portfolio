@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spécialités — Cabinet Delmas</title>
+<meta name="description" content="Spécialités du Cabinet Delmas : kinésithérapie du sport, ostéopathie, rééducation post-opératoire, kinésithérapie respiratoire.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2c5f7c; --blue-dark: #21495f; --amber: #d9a45b; --amber-dark: #bd8843;
+    --bg: #f5f7f8; --card: #ffffff; --ink: #1e2b32; --ink-soft: #647680; --line: #e1e7ea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Lexend', 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+
+  .demo-banner { background: var(--amber); color: var(--ink); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: #fff; padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 20px; color: var(--blue); }
+  .logo span { color: var(--amber-dark); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--ink); }
+  nav a:hover, nav a.active { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: #fff !important; padding: 10px 20px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  .page-hero { max-width: 700px; margin: 0 auto; padding: 70px 6% 20px; text-align: center; }
+  .section-tag { color: var(--amber-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 38px; margin-bottom: 12px; color: var(--blue); }
+  .page-hero p { color: var(--ink-soft); font-size: 15.5px; }
+
+  section { padding: 40px 6% 80px; max-width: 1080px; margin: 0 auto; }
+  .spec-list { display: flex; flex-direction: column; gap: 16px; }
+  .spec-row {
+    display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 26px 28px;
+  }
+  .spec-row .ic { font-size: 28px; }
+  .spec-row h3 { font-size: 19px; margin-bottom: 8px; color: var(--blue); }
+  .spec-row p { color: var(--ink-soft); font-size: 14px; }
+
+  .cta-band { background: var(--blue); color: #fff; text-align: center; }
+  .cta-band h2 { font-size: 28px; margin-bottom: 14px; }
+  .cta-band p { color: #cfe0e8; margin-bottom: 24px; }
+  .btn-amber { display: inline-block; background: var(--amber); color: var(--ink); padding: 14px 30px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+  .btn-amber:hover { background: var(--amber-dark); color: #fff; }
+
+  footer { background: var(--blue-dark); color: #a9c5d4; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--amber); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 28px; }
+    .spec-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-kine">commander ce style</a></div>
+
+<header>
+  <a href="cabinet-delmas.html" class="logo">Cabinet<span> Delmas</span></a>
+  <nav>
+    <ul>
+      <li><a href="cabinet-delmas.html">Accueil</a></li>
+      <li><a href="cabinet-delmas-specialites.html" class="active">Spécialités</a></li>
+      <li><a href="cabinet-delmas-equipe.html">L'équipe</a></li>
+      <li><a href="cabinet-delmas-infos-pratiques.html">Infos pratiques</a></li>
+      <li><a href="cabinet-delmas-rdv.html" class="nav-cta">Prendre RDV</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Spécialités</div>
+  <h1>Une prise en charge pour chaque situation</h1>
+  <p>Chaque praticien du cabinet est formé à une ou plusieurs spécialités, pour une prise en charge adaptée.</p>
+</section>
+
+<section>
+  <div class="spec-list">
+    <div class="spec-row">
+      <span class="ic">🏃</span>
+      <div><h3>Kinésithérapie du sport</h3><p>Prise en charge des blessures sportives (entorses, tendinites, déchirures) et prévention pour sportifs amateurs et confirmés.</p></div>
+    </div>
+    <div class="spec-row">
+      <span class="ic">🦴</span>
+      <div><h3>Ostéopathie générale</h3><p>Troubles fonctionnels, douleurs chroniques, maux de dos et de tête d'origine mécanique, pour adultes et enfants.</p></div>
+    </div>
+    <div class="spec-row">
+      <span class="ic">🏥</span>
+      <div><h3>Rééducation post-opératoire</h3><p>Suivi après chirurgie orthopédique (genou, hanche, épaule) en lien avec votre chirurgien.</p></div>
+    </div>
+    <div class="spec-row">
+      <span class="ic">🫁</span>
+      <div><h3>Kinésithérapie respiratoire</h3><p>Prise en charge des bronchiolites, bronchites et pathologies respiratoires chroniques, tous âges.</p></div>
+    </div>
+    <div class="spec-row">
+      <span class="ic">💆</span>
+      <div><h3>Lombalgie &amp; cervicalgie</h3><p>Traitement des douleurs lombaires et cervicales chroniques ou aiguës, avec conseils de prévention.</p></div>
+    </div>
+    <div class="spec-row">
+      <span class="ic">👶</span>
+      <div><h3>Kinésithérapie pédiatrique</h3><p>Prise en charge adaptée aux enfants, de la kinésithérapie respiratoire aux troubles posturaux.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Une question sur votre situation ?</h2>
+  <p>Un premier rendez-vous permet d'évaluer précisément vos besoins.</p>
+  <a href="cabinet-delmas-rdv.html" class="btn-amber">Prendre rendez-vous</a>
+</section>
+
+<footer>
+  <p>Cabinet Delmas — Kinésithérapie &amp; Ostéopathie, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

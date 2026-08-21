@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cabinet Delmas — Kinésithérapie &amp; Ostéopathie, Toulouse</title>
+<meta name="description" content="Démonstration d'un site multi-pages pour un cabinet de kinésithérapie et ostéopathie : spécialités, équipe, infos pratiques, rendez-vous.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2c5f7c; --blue-dark: #21495f; --amber: #d9a45b; --amber-dark: #bd8843;
+    --bg: #f5f7f8; --card: #ffffff; --ink: #1e2b32; --ink-soft: #647680; --line: #e1e7ea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Lexend', 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+
+  .demo-banner { background: var(--amber); color: var(--ink); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: #fff; padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 20px; color: var(--blue); }
+  .logo span { color: var(--amber-dark); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--ink); }
+  nav a:hover, nav a.active { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: #fff !important; padding: 10px 20px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  .hero { max-width: 1180px; margin: 0 auto; padding: 80px 6% 70px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: #e7eff2; color: var(--blue); padding: 7px 16px; border-radius: 30px; font-size: 13px; font-weight: 700; margin-bottom: 22px; }
+  .hero h1 { font-size: 44px; line-height: 1.15; margin-bottom: 18px; color: var(--blue); }
+  .hero h1 span { color: var(--amber-dark); }
+  .hero p { color: var(--ink-soft); font-size: 16px; max-width: 480px; margin-bottom: 30px; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-dark); }
+  .btn-outline { border: 1.5px solid var(--blue); color: var(--blue); margin-left: 10px; }
+  .btn-outline:hover { background: var(--blue); color: #fff; }
+  .hero-visual { aspect-ratio: 1; border-radius: 12px; background: linear-gradient(150deg, #e7eff2 0%, #a9c5d4 55%, #2c5f7c 130%); position: relative; }
+  .hero-visual::after { content: "CD"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Lexend', sans-serif; font-size: 80px; color: rgba(255,255,255,0.35); }
+
+  .stats { background: var(--blue); color: #fff; padding: 28px 6%; display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; }
+  .stat-num { font-family: 'Lexend', sans-serif; font-size: 28px; font-weight: 700; color: var(--amber); }
+  .stat-label { font-size: 12px; color: #cfe0e8; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .stat { text-align: center; }
+
+  section { padding: 76px 6%; max-width: 1180px; margin: 0 auto; }
+  .section-tag { color: var(--amber-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .section-head { max-width: 620px; margin: 0 auto 44px; text-align: center; }
+  .section-head h2 { font-size: 32px; margin-bottom: 12px; color: var(--blue); }
+  .section-head p { color: var(--ink-soft); font-size: 15.5px; }
+
+  .specialty-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .specialty-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 24px 20px; text-align: center; }
+  .specialty-icon { font-size: 26px; margin-bottom: 10px; }
+  .specialty-card h3 { font-size: 15.5px; margin-bottom: 6px; color: var(--blue); }
+  .specialty-card p { color: var(--ink-soft); font-size: 12.5px; }
+  .center-cta { text-align: center; margin-top: 36px; }
+
+  .team-preview { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .team-card { text-align: center; }
+  .team-avatar { width: 70px; height: 70px; border-radius: 50%; background: var(--blue); color: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 19px; margin: 0 auto 12px; }
+  .team-card h3 { font-size: 16px; margin-bottom: 4px; color: var(--blue); }
+  .team-card .role { font-size: 12.5px; color: var(--amber-dark); font-weight: 600; }
+
+  .testi { max-width: 680px; margin: 0 auto; text-align: center; }
+  .testi-stars { color: var(--amber-dark); letter-spacing: 3px; margin-bottom: 14px; }
+  .testi p { font-size: 18px; font-style: italic; color: var(--blue); margin-bottom: 14px; }
+  .testi .who { font-size: 13px; color: var(--ink-soft); }
+
+  .cta-band { background: var(--blue); color: #fff; text-align: center; }
+  .cta-band h2 { font-size: 30px; margin-bottom: 14px; }
+  .cta-band p { color: #cfe0e8; margin-bottom: 26px; }
+  .btn-amber { display: inline-block; background: var(--amber); color: var(--ink); padding: 14px 30px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+  .btn-amber:hover { background: var(--amber-dark); color: #fff; }
+
+  footer { background: var(--blue-dark); color: #a9c5d4; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--amber); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .hero { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+    .specialty-grid, .team-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-kine">commander ce style</a></div>
+
+<header>
+  <a href="cabinet-delmas.html" class="logo">Cabinet<span> Delmas</span></a>
+  <nav>
+    <ul>
+      <li><a href="cabinet-delmas.html" class="active">Accueil</a></li>
+      <li><a href="cabinet-delmas-specialites.html">Spécialités</a></li>
+      <li><a href="cabinet-delmas-equipe.html">L'équipe</a></li>
+      <li><a href="cabinet-delmas-infos-pratiques.html">Infos pratiques</a></li>
+      <li><a href="cabinet-delmas-rdv.html" class="nav-cta">Prendre RDV</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="hero-tag">🩺 Kinésithérapie &amp; Ostéopathie · Toulouse</span>
+    <h1>Retrouvez votre <span>mobilité</span>, en toute confiance</h1>
+    <p>Une équipe de kinésithérapeutes et ostéopathes diplômés, pour un accompagnement personnalisé à chaque étape de votre rééducation.</p>
+    <a href="cabinet-delmas-rdv.html" class="btn btn-primary">Prendre rendez-vous</a>
+    <a href="cabinet-delmas-specialites.html" class="btn btn-outline">Nos spécialités</a>
+  </div>
+  <div class="hero-visual"></div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">15 ans</div><div class="stat-label">D'existence</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Praticiens diplômés</div></div>
+  <div class="stat"><div class="stat-num">2 500+</div><div class="stat-label">Patients suivis</div></div>
+  <div class="stat"><div class="stat-num">Secteur 1</div><div class="stat-label">Conventionné</div></div>
+</div>
+
+<section id="specialites">
+  <div class="section-head">
+    <div class="section-tag">Spécialités</div>
+    <h2>Une prise en charge pour chaque besoin</h2>
+    <p>Du sport à la rééducation post-opératoire, une équipe formée à chaque spécialité.</p>
+  </div>
+  <div class="specialty-grid">
+    <div class="specialty-card"><div class="specialty-icon">🏃</div><h3>Kiné du sport</h3><p>Blessures sportives et prévention</p></div>
+    <div class="specialty-card"><div class="specialty-icon">🦴</div><h3>Ostéopathie</h3><p>Troubles fonctionnels et douleurs chroniques</p></div>
+    <div class="specialty-card"><div class="specialty-icon">🏥</div><h3>Post-opératoire</h3><p>Rééducation après chirurgie</p></div>
+    <div class="specialty-card"><div class="specialty-icon">🫁</div><h3>Respiratoire</h3><p>Kinésithérapie respiratoire, tous âges</p></div>
+  </div>
+  <div class="center-cta"><a href="cabinet-delmas-specialites.html" class="btn btn-outline">Voir toutes les spécialités</a></div>
+</section>
+
+<section class="team-preview">
+  <div class="section-head">
+    <div class="section-tag">L'équipe</div>
+    <h2>Quatre praticiens à votre écoute</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-avatar">S</div><h3>Sophie Delmas</h3><div class="role">Kinésithérapeute, fondatrice</div></div>
+    <div class="team-card"><div class="team-avatar">T</div><h3>Thomas Rey</h3><div class="role">Ostéopathe D.O.</div></div>
+    <div class="team-card"><div class="team-avatar">L</div><h3>Léa Fabre</h3><div class="role">Kinésithérapeute du sport</div></div>
+  </div>
+  <div class="center-cta"><a href="cabinet-delmas-equipe.html" class="btn btn-outline">Découvrir toute l'équipe</a></div>
+</section>
+
+<section class="testi">
+  <div class="testi-stars">★★★★★</div>
+  <p>"Après mon opération du genou, la rééducation a été suivie avec beaucoup d'attention. Je remarche normalement aujourd'hui."</p>
+  <div class="who">Patrick M. — Suivi post-opératoire</div>
+</section>
+
+<section class="cta-band">
+  <h2>Besoin d'un rendez-vous ?</h2>
+  <p>Consultations sur rendez-vous, urgences acceptées dans la mesure du possible.</p>
+  <a href="cabinet-delmas-rdv.html" class="btn-amber">Prendre rendez-vous</a>
+</section>
+
+<footer>
+  <p>Cabinet Delmas — Kinésithérapie &amp; Ostéopathie, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>

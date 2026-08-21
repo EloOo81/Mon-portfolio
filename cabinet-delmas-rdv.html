@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prendre rendez-vous — Cabinet Delmas</title>
+<meta name="description" content="Prenez rendez-vous au Cabinet Delmas, kinésithérapie et ostéopathie à Toulouse.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2c5f7c; --blue-dark: #21495f; --amber: #d9a45b; --amber-dark: #bd8843;
+    --bg: #f5f7f8; --card: #ffffff; --ink: #1e2b32; --ink-soft: #647680; --line: #e1e7ea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3, .logo { font-family: 'Lexend', 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+
+  .demo-banner { background: var(--amber); color: var(--ink); text-align: center; font-size: 13px; font-weight: 700; padding: 8px 16px; }
+  .demo-banner a { text-decoration: underline; }
+
+  header { background: #fff; padding: 18px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--line); }
+  .logo { font-size: 20px; color: var(--blue); }
+  .logo span { color: var(--amber-dark); }
+  nav ul { display: flex; gap: 26px; list-style: none; align-items: center; }
+  nav a { font-size: 14px; font-weight: 600; color: var(--ink); }
+  nav a:hover, nav a.active { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: #fff !important; padding: 10px 20px; border-radius: 6px; }
+  .nav-cta:hover { background: var(--blue-dark); }
+
+  .page-hero { max-width: 700px; margin: 0 auto; padding: 70px 6% 20px; text-align: center; }
+  .section-tag { color: var(--amber-dark); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .page-hero h1 { font-size: 38px; margin-bottom: 12px; color: var(--blue); }
+  .page-hero p { color: var(--ink-soft); font-size: 15.5px; }
+
+  section { padding: 40px 6% 80px; max-width: 1080px; margin: 0 auto; }
+  .rdv-banner { background: #e7eff2; border: 1px solid var(--line); border-radius: 10px; padding: 20px 26px; display: flex; align-items: center; gap: 16px; margin-bottom: 40px; max-width: 780px; margin-left: auto; margin-right: auto; }
+  .rdv-banner .ic { font-size: 26px; }
+  .rdv-banner p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+  .rdv-banner strong { color: var(--blue); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+  .info-card { background: var(--blue); color: #fff; border-radius: 10px; padding: 32px; }
+  .info-card h3 { font-size: 19px; margin-bottom: 18px; }
+  .info-row { display: flex; gap: 12px; margin-bottom: 14px; font-size: 14px; color: #d5e5ea; }
+  .info-row .ic { color: var(--amber); flex-shrink: 0; }
+
+  .form-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 32px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--blue); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 6px;
+    font-size: 14.5px; font-family: inherit; color: var(--ink); background: var(--bg);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .submit-btn {
+    width: 100%; background: var(--blue); color: #fff; border: none; padding: 15px;
+    border-radius: 6px; font-weight: 700; font-size: 14.5px; cursor: pointer; transition: background .2s;
+  }
+  .submit-btn:hover { background: var(--blue-dark); }
+  .form-msg { text-align: center; font-size: 13px; color: var(--amber-dark); margin-top: 12px; font-weight: 600; }
+
+  .faq-list { max-width: 720px; margin: 60px auto 0; }
+  .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; padding: 4px 20px; }
+  .faq-item summary { padding: 16px 0; font-weight: 700; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--amber-dark); font-weight: 400; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { padding-bottom: 16px; color: var(--ink-soft); font-size: 14px; }
+  .section-head { max-width: 620px; margin: 0 auto 30px; text-align: center; }
+  .section-head h2 { font-size: 26px; color: var(--blue); }
+
+  footer { background: var(--blue-dark); color: #a9c5d4; text-align: center; padding: 30px 6%; font-size: 13px; }
+  footer a { color: var(--amber); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    header { flex-wrap: wrap; row-gap: 10px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
+    .page-hero h1 { font-size: 28px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .rdv-banner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Ceci est une démonstration — style « Signature » à 750€ — <a href="commande.html?style=signature-kine">commander ce style</a></div>
+
+<header>
+  <a href="cabinet-delmas.html" class="logo">Cabinet<span> Delmas</span></a>
+  <nav>
+    <ul>
+      <li><a href="cabinet-delmas.html">Accueil</a></li>
+      <li><a href="cabinet-delmas-specialites.html">Spécialités</a></li>
+      <li><a href="cabinet-delmas-equipe.html">L'équipe</a></li>
+      <li><a href="cabinet-delmas-infos-pratiques.html">Infos pratiques</a></li>
+      <li><a href="cabinet-delmas-rdv.html" class="nav-cta active">Prendre RDV</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="section-tag">Prendre rendez-vous</div>
+  <h1>Réservez votre créneau</h1>
+  <p>Par téléphone, ou via le formulaire ci-dessous — nous confirmons votre créneau sous 24h.</p>
+</section>
+
+<section>
+  <div class="rdv-banner">
+    <span class="ic">📅</span>
+    <p><strong>Prise de rendez-vous en ligne disponible</strong> — le cabinet est aussi référencé sur Doctolib pour réserver un créneau directement, 7j/7.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="info-card">
+      <h3>Coordonnées</h3>
+      <div class="info-row"><span class="ic">📍</span><span>24 rue Compans, 31000 Toulouse</span></div>
+      <div class="info-row"><span class="ic">📞</span><span>05 61 33 44 55</span></div>
+      <div class="info-row"><span class="ic">✉️</span><span>contact@cabinet-delmas.fr</span></div>
+      <div class="info-row"><span class="ic">🕐</span><span>Lundi – Vendredi 8h-19h30, Samedi 9h-13h</span></div>
+    </div>
+    <div class="form-card">
+      <form onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Nous confirmons votre créneau par téléphone sous 24h.';">
+        <div class="field-row">
+          <div class="field"><label for="nom">Nom</label><input type="text" id="nom" required></div>
+          <div class="field"><label for="tel">Téléphone</label><input type="tel" id="tel" required></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email"></div>
+        <div class="field">
+          <label for="motif">Motif de consultation</label>
+          <select id="motif" required>
+            <option value="">Choisissez un motif</option>
+            <option>Kinésithérapie du sport</option>
+            <option>Ostéopathie</option>
+            <option>Rééducation post-opératoire</option>
+            <option>Kinésithérapie respiratoire</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Précisions utiles</label><textarea id="message" placeholder="Ordonnance en cours, urgence, praticien préféré..."></textarea></div>
+        <button type="submit" class="submit-btn">Demander un rendez-vous</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="faq-list">
+    <div class="section-head"><h2>Questions fréquentes</h2></div>
+    <details class="faq-item">
+      <summary>Faut-il une ordonnance pour venir ?</summary>
+      <p>Oui pour les séances de kinésithérapie, remboursées par l'Assurance Maladie. L'ostéopathie ne nécessite pas d'ordonnance.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Acceptez-vous les urgences sans rendez-vous ?</summary>
+      <p>Dans la mesure du possible, oui — appelez-nous directement, nous essayons toujours de trouver un créneau rapide.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Combien de séances sont généralement nécessaires ?</summary>
+      <p>Cela dépend entièrement de votre situation — le nombre de séances est réévalué à chaque consultation.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p>Cabinet Delmas — Kinésithérapie &amp; Ostéopathie, Toulouse — Site de démonstration · <a href="styles.html">← Tous les styles</a> · <a href="index.html">Studio Code</a></p>
+</footer>
+
+</body>
+</html>
