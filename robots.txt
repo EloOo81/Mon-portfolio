@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eloOo81.github.io/Mon-portfolio/sitemap.xml
+Sitemap: https://studio-code.fr/sitemap.xml
