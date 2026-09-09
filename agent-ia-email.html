@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent IA E-mail — Démo interactive | Studio Code</title>
+<style>
+  :root {
+    --bg: #0a0e16;
+    --bg-panel: #121824;
+    --bg-card: #161d2c;
+    --bg-card-active: #1b2436;
+    --border: #232c40;
+    --border-active: #3a4a6b;
+    --text: #eef1f8;
+    --text-dim: #8b93a7;
+    --text-faint: #5c6580;
+    --accent: #ffb020;
+    --accent-dark: #cc8c19;
+    --blue: #4ea8ff;
+    --violet: #b388ff;
+    --red: #ff5c6c;
+    --grey: #7c8798;
+    --teal: #3ddc97;
+    --amber: #ffb020;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    background: radial-gradient(ellipse 900px 400px at 50% -10%, #1c2540 0%, var(--bg) 65%);
+    border-bottom: 1px solid var(--border);
+    padding: 34px 20px 26px;
+  }
+
+  .hero-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(255, 176, 32, 0.1);
+    border: 1px solid rgba(255, 176, 32, 0.3);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 4.4vw, 46px);
+    line-height: 1.08;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    max-width: 16ch;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p.sub {
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: var(--text-dim);
+    max-width: 52ch;
+    margin: 0 0 22px;
+    font-weight: 500;
+  }
+
+  .lock-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(61, 220, 151, 0.08);
+    border: 1px solid rgba(61, 220, 151, 0.28);
+    color: #a9f2d4;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    max-width: fit-content;
+  }
+
+  .lock-banner .icon { font-size: 16px; }
+
+  .hero-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .run-btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: #17110a;
+    font-size: 15.5px;
+    font-weight: 800;
+    padding: 14px 26px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(255, 176, 32, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .run-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(255, 176, 32, 0.35);
+  }
+
+  .run-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .run-btn:disabled {
+    background: #3a4258;
+    color: var(--text-faint);
+    cursor: default;
+    box-shadow: none;
+  }
+
+  .run-btn.is-reset {
+    background: transparent;
+    color: var(--text);
+    border: 1.5px solid var(--border-active);
+    box-shadow: none;
+  }
+
+  .counter {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 12px;
+  }
+
+  .counter .label {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .counter .value {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .counter .value.bump {
+    animation: bump 0.4s ease;
+  }
+
+  @keyframes bump {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+  }
+
+  /* ---------- INBOX ---------- */
+
+  .inbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 34px 0 14px;
+    padding: 0 2px;
+  }
+
+  .inbox-header h2 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .inbox-count {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  .inbox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .email-card {
+    display: flex;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .email-card.is-active {
+    background: var(--bg-card-active);
+    border-color: var(--border-active);
+    box-shadow: 0 0 0 1px rgba(255, 176, 32, 0.15), 0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  .email-card.is-done {
+    opacity: 0.96;
+  }
+
+  .email-main {
+    flex: 1 1 50%;
+    min-width: 0;
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+  }
+
+  .email-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .email-from {
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .email-time {
+    font-size: 12px;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .email-subject {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .email-body {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .email-status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .email-status.show { display: flex; }
+
+  .spinner {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,176,32,0.25);
+    border-top-color: var(--accent);
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .badges {
+    display: none;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .badges.show {
+    display: flex;
+    animation: popIn 0.32s cubic-bezier(.2,1.4,.4,1);
+  }
+
+  @keyframes popIn {
+    0% { opacity: 0; transform: translateY(4px) scale(0.94); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.01em;
+  }
+
+  .chip-cat-devis { background: rgba(78,168,255,0.14); color: var(--blue); border: 1px solid rgba(78,168,255,0.35); }
+  .chip-cat-rendezvous { background: rgba(179,136,255,0.14); color: var(--violet); border: 1px solid rgba(179,136,255,0.35); }
+  .chip-cat-facture { background: rgba(255,176,32,0.14); color: var(--amber); border: 1px solid rgba(255,176,32,0.35); }
+  .chip-cat-reclamation { background: rgba(255,92,108,0.14); color: var(--red); border: 1px solid rgba(255,92,108,0.35); }
+  .chip-cat-indesirable { background: rgba(124,135,152,0.14); color: var(--grey); border: 1px solid rgba(124,135,152,0.35); }
+  .chip-cat-question { background: rgba(61,220,151,0.14); color: var(--teal); border: 1px solid rgba(61,220,151,0.35); }
+
+  .chip-urgency {
+    background: transparent;
+    border: 1px solid var(--border-active);
+    color: var(--text-dim);
+  }
+
+  .urgency-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .urgency-haute .urgency-dot { background: var(--red); }
+  .urgency-moyenne .urgency-dot { background: var(--amber); }
+  .urgency-basse .urgency-dot { background: var(--teal); }
+
+  /* ---------- DRAFT PANEL ---------- */
+
+  .draft-panel {
+    flex: 1 1 50%;
+    min-width: 0;
+    padding: 18px 20px;
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.015);
+  }
+
+  .draft-panel.show {
+    display: flex;
+    animation: slideFade 0.4s ease;
+  }
+
+  @keyframes slideFade {
+    0% { opacity: 0; transform: translateX(8px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .draft-label {
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .draft-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text);
+    white-space: pre-wrap;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .draft-textarea {
+    font-family: inherit;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text);
+    background: var(--bg-panel);
+    border: 1px solid var(--border-active);
+    border-radius: 10px;
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 120px;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+
+  .draft-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .draft-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-validate, .btn-edit {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 9px 15px;
+    border-radius: 9px;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+
+  .btn-validate {
+    background: var(--teal);
+    color: #06231a;
+  }
+
+  .btn-edit {
+    background: transparent;
+    border: 1.5px solid var(--border-active);
+    color: var(--text);
+  }
+
+  .btn-validate:hover, .btn-edit:hover { transform: translateY(-1px); }
+  .btn-validate:disabled, .btn-edit:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+  .sent-confirm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .sent-confirm .note {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
+
+  .no-reply-note {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 13px;
+    font-weight: 600;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .no-reply-note.show {
+    display: flex;
+    animation: slideFade 0.4s ease;
+  }
+
+  .no-reply-note .big { font-size: 22px; }
+
+  /* ---------- RESPONSIVE ---------- */
+
+  @media (max-width: 760px) {
+    .email-card { flex-direction: column; }
+    .email-main { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero { padding: 26px 16px 20px; }
+    .wrap { padding: 0 14px 50px; }
+  }
+
+  .footer-note {
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 12.5px;
+    margin-top: 40px;
+    line-height: 1.6;
+  }
+
+  .footer-note a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Studio Code · Démonstration</span>
+      <h1>L'agent qui lit vos e-mails <em>à votre place</em></h1>
+      <p class="sub">Il classe chaque message, évalue son urgence et rédige une réponse. Vous, vous gardez la main : rien ne part sans votre accord.</p>
+      <div class="lock-banner">
+        <span class="icon">🔒</span>
+        <span>Aucun envoi automatique — chaque brouillon attend votre validation.</span>
+      </div>
+      <div class="hero-controls">
+        <button class="run-btn" id="runBtn">▶ Lancer l'agent</button>
+        <div class="counter">
+          <span class="label">Temps gagné</span>
+          <span class="value" id="counterValue">0 min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="inbox-header">
+      <h2>Boîte de réception</h2>
+      <span class="inbox-count" id="inboxCount">6 messages</span>
+    </div>
+    <div class="inbox" id="inbox"></div>
+
+    <p class="footer-note">
+      Démo interactive — les e-mails et l'agent sont simulés à des fins de présentation.<br>
+      Prestation « Agent IA e-mail » à partir de 300 € — Studio Code.
+    </p>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Renseigne cette URL une fois le Worker déployé (voir demo-agent-email-worker/README.md).
+  // Tant qu'elle est vide, la démo utilise directement ses réponses pré-enregistrées.
+  const WORKER_URL = "";
+
+  const MINUTES_SAVED = {
+    "Devis": 6,
+    "Rendez-vous": 4,
+    "Facture": 5,
+    "Réclamation": 7,
+    "Question": 3,
+    "Indésirable": 1,
+  };
+
+  const CATEGORY_CLASS = {
+    "Devis": "chip-cat-devis",
+    "Rendez-vous": "chip-cat-rendezvous",
+    "Facture": "chip-cat-facture",
+    "Réclamation": "chip-cat-reclamation",
+    "Indésirable": "chip-cat-indesirable",
+    "Question": "chip-cat-question",
+  };
+
+  const CATEGORY_ICON = {
+    "Devis": "📋",
+    "Rendez-vous": "📅",
+    "Facture": "💶",
+    "Réclamation": "⚠️",
+    "Indésirable": "🚫",
+    "Question": "❓",
+  };
+
+  const URGENCY_CLASS = {
+    "Haute": "urgency-haute",
+    "Moyenne": "urgency-moyenne",
+    "Basse": "urgency-basse",
+  };
+
+  const EMAILS = [
+    {
+      id: 1,
+      from: "Sophie Bernard",
+      time: "07:52",
+      subject: "Devis pour remplacement de chaudière",
+      body: "Bonjour, notre chaudière fait un bruit inquiétant depuis hier soir et ne chauffe presque plus l'eau. Pourriez-vous nous faire un devis pour son remplacement ? On a un bébé de 3 mois à la maison, ce serait bien d'être dépannés rapidement. Merci d'avance, Sophie",
+      fallback: {
+        category: "Devis",
+        urgency: "Haute",
+        needsReply: true,
+        draft: "Bonjour Madame Bernard,\n\nMerci pour votre message, je comprends l'urgence avec un bébé à la maison. Je peux passer dès demain matin pour évaluer la chaudière et vous établir un devis de remplacement sur place. Un créneau entre 8h et 10h vous conviendrait-il ?\n\nEn attendant, je peux aussi vous proposer un dépannage temporaire pour l'eau chaude si besoin.\n\nCordialement,\nJulien",
+      },
+    },
+    {
+      id: 2,
+      from: "Marc Antoine",
+      time: "08:14",
+      subject: "Rendez-vous pour devis salle de bain",
+      body: "Bonjour, nous souhaitons refaire entièrement notre salle de bain (douche, lavabo, WC) et aimerions convenir d'un rendez-vous pour que vous puissiez voir les lieux et nous proposer un chiffrage. Disponibles la plupart des après-midis en semaine. Cordialement, Marc",
+      fallback: {
+        category: "Rendez-vous",
+        urgency: "Moyenne",
+        needsReply: true,
+        draft: "Bonjour Monsieur Antoine,\n\nAvec plaisir pour ce projet de rénovation de salle de bain. Je peux passer un mardi ou un jeudi après-midi la semaine prochaine pour prendre les mesures et discuter de vos envies. Quel jour vous conviendrait le mieux ?\n\nAu plaisir d'échanger avec vous.\n\nCordialement,\nJulien",
+      },
+    },
+    {
+      id: 3,
+      from: "Compta Sanivéo",
+      time: "08:45",
+      subject: "Rappel : facture n°F-2026-0312 en attente de règlement",
+      body: "Bonjour, nous n'avons pas encore reçu le règlement de la facture n°F-2026-0312 d'un montant de 842,50 € TTC, émise il y a 45 jours pour votre commande de matériel. Merci de procéder au paiement dans les meilleurs délais. Cordialement, Le service comptabilité",
+      fallback: {
+        category: "Facture",
+        urgency: "Haute",
+        needsReply: true,
+        draft: "Bonjour,\n\nMerci de votre message et toutes mes excuses pour ce retard. Je vais régulariser le paiement de la facture n°F-2026-0312 dans les tout prochains jours. N'hésitez pas à me recontacter si le virement n'était pas arrivé d'ici la fin de la semaine.\n\nMerci pour votre patience.\n\nCordialement,\nJulien Faure",
+      },
+    },
+    {
+      id: 4,
+      from: "Agence SEO Pro",
+      time: "09:03",
+      subject: "🎉 Boostez votre visibilité en 1ère page Google — Offre limitée",
+      body: "Cher partenaire, notre outil d'intelligence artificielle garantit votre référencement en première page de Google en 7 jours seulement. Profitez de -70% ce mois-ci uniquement. Cliquez ici pour découvrir notre offre exclusive !",
+      fallback: {
+        category: "Indésirable",
+        urgency: "Basse",
+        needsReply: false,
+        draft: null,
+      },
+    },
+    {
+      id: 5,
+      from: "Nathalie Petit",
+      time: "09:20",
+      subject: "La fuite est réapparue sous l'évier",
+      body: "Bonjour, vous étiez intervenu il y a trois semaines pour réparer une fuite sous l'évier de la cuisine, mais l'eau recommence à couler depuis ce matin. J'ai dû remettre une bassine en dessous. Pouvez-vous repasser rapidement s'il vous plaît ? Merci, Nathalie",
+      fallback: {
+        category: "Réclamation",
+        urgency: "Haute",
+        needsReply: true,
+        draft: "Bonjour Madame Petit,\n\nJe suis désolé d'apprendre que la fuite est réapparue, ce n'est vraiment pas normal après notre intervention. Je peux passer dès demain en fin de matinée pour identifier précisément le problème et le corriger sans frais supplémentaires. Ce créneau vous convient-il ?\n\nEncore désolé pour la gêne occasionnée.\n\nCordialement,\nJulien",
+      },
+    },
+    {
+      id: 6,
+      from: "Thomas Girard",
+      time: "09:41",
+      subject: "Quand pouvez-vous commencer les travaux ?",
+      body: "Bonjour, vous nous avez envoyé un devis la semaine dernière pour l'installation d'un adoucisseur d'eau, que nous avons signé et renvoyé hier. Savez-vous à peu près quand vous pourriez intervenir ? On aimerait organiser notre planning. Merci, Thomas",
+      fallback: {
+        category: "Question",
+        urgency: "Moyenne",
+        needsReply: true,
+        draft: "Bonjour Monsieur Girard,\n\nMerci pour le devis signé, bien reçu ! Je pense pouvoir intervenir pour l'installation de l'adoucisseur d'eau d'ici deux à trois semaines. Je vous confirme une date précise d'ici la fin de la semaine.\n\nMerci de votre confiance.\n\nCordialement,\nJulien",
+      },
+    },
+  ];
+
+  const inboxEl = document.getElementById("inbox");
+  const runBtn = document.getElementById("runBtn");
+  const counterValueEl = document.getElementById("counterValue");
+  const inboxCountEl = document.getElementById("inboxCount");
+
+  let minutesTotal = 0;
+  let running = false;
+  let hasRunOnce = false;
+
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderCard(email) {
+    return `
+      <div class="email-card" id="card-${email.id}">
+        <div class="email-main">
+          <div class="email-top">
+            <span class="email-from">${escapeHtml(email.from)}</span>
+            <span class="email-time">${email.time}</span>
+          </div>
+          <div class="email-subject">${escapeHtml(email.subject)}</div>
+          <div class="email-body">${escapeHtml(email.body)}</div>
+          <div class="email-status" id="status-${email.id}">
+            <span class="spinner"></span>
+            <span class="status-text"></span>
+          </div>
+          <div class="badges" id="badges-${email.id}"></div>
+        </div>
+        <div class="draft-panel" id="draft-${email.id}"></div>
+      </div>
+    `;
+  }
+
+  function renderInbox() {
+    inboxEl.innerHTML = EMAILS.map(renderCard).join("");
+  }
+
+  function setStatus(id, text) {
+    const el = document.getElementById(`status-${id}`);
+    if (!text) {
+      el.classList.remove("show");
+      return;
+    }
+    el.querySelector(".status-text").textContent = text;
+    el.classList.add("show");
+  }
+
+  function showBadges(id, category, urgency) {
+    setStatus(id, "");
+    const el = document.getElementById(`badges-${id}`);
+    const catClass = CATEGORY_CLASS[category] || "chip-cat-question";
+    const urgClass = URGENCY_CLASS[urgency] || "urgency-basse";
+    el.innerHTML = `
+      <span class="chip ${catClass}">${CATEGORY_ICON[category] || ""} ${escapeHtml(category)}</span>
+      <span class="chip chip-urgency ${urgClass}"><span class="urgency-dot"></span>Urgence ${escapeHtml(urgency).toLowerCase()}</span>
+    `;
+    el.classList.add("show");
+  }
+
+  function bumpCounter(minutes) {
+    minutesTotal += minutes;
+    counterValueEl.textContent = `${minutesTotal} min`;
+    counterValueEl.classList.remove("bump");
+    void counterValueEl.offsetWidth;
+    counterValueEl.classList.add("bump");
+  }
+
+  function showDraft(email, draft) {
+    const panel = document.getElementById(`draft-${email.id}`);
+    panel.innerHTML = `
+      <div class="draft-label">✍️ Brouillon de réponse</div>
+      <div class="draft-text" data-editing="false">${escapeHtml(draft)}</div>
+      <div class="draft-actions">
+        <button class="btn-validate" data-action="validate">✓ Valider et envoyer</button>
+        <button class="btn-edit" data-action="edit">✎ Modifier</button>
+      </div>
+    `;
+    panel.classList.add("show");
+
+    const editBtn = panel.querySelector('[data-action="edit"]');
+    const validateBtn = panel.querySelector('[data-action="validate"]');
+
+    editBtn.addEventListener("click", () => {
+      const current = panel.querySelector(".draft-text, .draft-textarea");
+      const isEditing = current.classList.contains("draft-textarea");
+      if (!isEditing) {
+        const textarea = document.createElement("textarea");
+        textarea.className = "draft-textarea";
+        textarea.value = current.textContent;
+        current.replaceWith(textarea);
+        textarea.focus();
+        editBtn.textContent = "💾 Enregistrer";
+      } else {
+        const div = document.createElement("div");
+        div.className = "draft-text";
+        div.textContent = current.value;
+        current.replaceWith(div);
+        editBtn.textContent = "✎ Modifier";
+      }
+    });
+
+    validateBtn.addEventListener("click", () => {
+      const current = panel.querySelector(".draft-text, .draft-textarea");
+      if (current.classList.contains("draft-textarea")) {
+        const div = document.createElement("div");
+        div.className = "draft-text";
+        div.textContent = current.value;
+        current.replaceWith(div);
+      }
+      editBtn.disabled = true;
+      validateBtn.disabled = true;
+      const actions = panel.querySelector(".draft-actions");
+      actions.insertAdjacentHTML(
+        "beforeend",
+        `<span class="sent-confirm">✅ Réponse validée<span class="note">(démo — aucun e-mail n'est réellement transmis)</span></span>`
+      );
+    });
+  }
+
+  function showNoReply(email) {
+    const panel = document.getElementById(`draft-${email.id}`);
+    panel.classList.add("show");
+    panel.innerHTML = `
+      <div class="no-reply-note show">
+        <span class="big">🚫</span>
+        <span>Classé automatiquement<br>Aucune réponse nécessaire</span>
+      </div>
+    `;
+  }
+
+  async function fetchClassification(email) {
+    if (!WORKER_URL) return null;
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 6000);
+      const res = await fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject: email.subject, from: email.from, body: email.body }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (!data || !data.category || !data.urgency) return null;
+      return data;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  async function processEmail(email) {
+    const card = document.getElementById(`card-${email.id}`);
+    card.classList.add("is-active");
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    setStatus(email.id, "🧠 L'agent lit l'e-mail…");
+    await delay(850);
+
+    let result = await fetchClassification(email);
+    if (!result) result = email.fallback;
+
+    setStatus(email.id, "🏷 Classification en cours…");
+    await delay(500);
+    showBadges(email.id, result.category, result.urgency);
+    bumpCounter(MINUTES_SAVED[result.category] || 2);
+    await delay(400);
+
+    if (result.needsReply && result.draft) {
+      setStatus(email.id, "✍️ Rédaction du brouillon…");
+      await delay(900);
+      setStatus(email.id, "");
+      showDraft(email, result.draft);
+    } else {
+      showNoReply(email);
+    }
+
+    card.classList.remove("is-active");
+    card.classList.add("is-done");
+    await delay(350);
+  }
+
+  function resetDemo() {
+    minutesTotal = 0;
+    counterValueEl.textContent = "0 min";
+    renderInbox();
+    runBtn.textContent = "▶ Lancer l'agent";
+    runBtn.classList.remove("is-reset");
+    runBtn.disabled = false;
+  }
+
+  async function runDemo() {
+    if (running) return;
+    running = true;
+    runBtn.disabled = true;
+    runBtn.textContent = "⏳ Traitement en cours…";
+
+    for (const email of EMAILS) {
+      await processEmail(email);
+    }
+
+    running = false;
+    hasRunOnce = true;
+    runBtn.disabled = false;
+    runBtn.textContent = "🔄 Rejouer la démo";
+    runBtn.classList.add("is-reset");
+  }
+
+  runBtn.addEventListener("click", () => {
+    if (hasRunOnce && !running) {
+      resetDemo();
+      return;
+    }
+    runDemo();
+  });
+
+  inboxCountEl.textContent = `${EMAILS.length} messages`;
+  renderInbox();
+})();
+</script>
+</body>
+</html>

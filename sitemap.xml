@@ -16,4 +16,8 @@
     <loc>https://studio-code.fr/mentions-legales.html</loc>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://studio-code.fr/agent-ia-email.html</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
