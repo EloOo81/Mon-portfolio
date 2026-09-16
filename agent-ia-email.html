@@ -954,6 +954,8 @@
   async function processEmail(email) {
     const card = document.getElementById(`card-${email.id}`);
     card.classList.add("is-active");
+    // Keep the active message and its live status in view throughout the demo.
+    card.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
 
     setStatus(email.id, "🧠 L'agent lit l'e-mail…");
     await delay(600);
