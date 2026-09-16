@@ -84,6 +84,12 @@
   .page-hero p { color: #c3ccd4; max-width: 560px; margin: 0 auto; font-size: 16px; }
 
   section { padding: 70px 24px; }
+  .email-showcase { padding: 36px 24px; border-bottom: 1px solid var(--line); }
+  .email-showcase .container { display: flex; align-items: center; gap: 28px; }
+  .email-showcase img { display: block; width: 280px; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+  .email-showcase h2 { font-size: 23px; margin-bottom: 10px; }
+  .email-showcase p { font-size: 14px; color: var(--grey); margin-bottom: 16px; }
+  .email-showcase .s-demo { display: inline-block; padding: 10px 16px; border-radius: 6px; font-size: 14px; font-weight: 700; }
   .section-head { text-align: center; max-width: 620px; margin: 0 auto 40px; }
   .eyebrow { color: var(--coral); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
   .eyebrow.ia { color: var(--gold); }
@@ -243,6 +249,7 @@
   footer a:hover { text-decoration: underline; }
 
   @media (max-width: 800px) {
+    .email-showcase .container { flex-direction: column; align-items: flex-start; gap: 20px; }
     .navbar { flex-wrap: wrap; row-gap: 10px; }
     nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 16px; width: 100%; }
     nav a { font-size: 13px; }
@@ -275,6 +282,18 @@
 <section class="page-hero">
   <h1>Choisissez le <span>style</span> de votre futur site</h1>
   <p>Chaque style est une base de départ, entièrement personnalisable à vos couleurs, vos textes et vos photos. Cliquez sur « Commander » pour passer commande et payer en ligne en toute sécurité.</p>
+</section>
+
+<section class="email-showcase" aria-labelledby="emailDemoTitle">
+  <div class="container">
+    <img src="assets/agent-email-apercu.png" alt="Aperçu de l’assistant e-mail Studio Code" width="1200" height="750" decoding="async">
+    <div>
+      <span class="eyebrow">Démonstration interactive</span>
+      <h2 id="emailDemoTitle">Un assistant pour vos e-mails</h2>
+      <p>Découvrez le tri de 6 messages fictifs, les priorités et 5 brouillons à modifier et valider. Une démo simulée, sans connexion à votre messagerie ni envoi réel.</p>
+      <a class="s-demo" href="agent-ia-email.html" target="_blank" rel="noopener">Essayer la démo e-mail ↗</a>
+    </div>
+  </div>
 </section>
 
 <section id="classique">

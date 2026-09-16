@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agent IA E-mail — Démo interactive | Studio Code</title>
+<meta name="description" content="Découvrez un assistant e-mail pour artisans : classement des messages, priorités et brouillons à valider. Une démonstration interactive par Studio Code.">
+<meta name="theme-color" content="#0a0e16">
+<meta property="og:title" content="Vos e-mails triés. Vos réponses préparées. | Studio Code">
+<meta property="og:description" content="Testez le parcours d’un assistant e-mail pour artisans : 6 messages fictifs, des priorités et des brouillons que vous gardez en main.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://studio-code.fr/agent-ia-email.html">
+<meta property="og:image" content="https://studio-code.fr/assets/agent-email-apercu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="750">
+<meta property="og:image:alt" content="La démonstration Studio Code : classement des e-mails et brouillons à valider.">
+<link rel="canonical" href="https://studio-code.fr/agent-ia-email.html">
 <style>
   :root {
     --bg: #0a0e16;
@@ -14,7 +26,7 @@
     --border-active: #3a4a6b;
     --text: #eef1f8;
     --text-dim: #8b93a7;
-    --text-faint: #5c6580;
+    --text-faint: #939db4;
     --accent: #ffb020;
     --accent-dark: #cc8c19;
     --blue: #4ea8ff;
@@ -26,6 +38,8 @@
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
   html, body {
     margin: 0;
@@ -57,7 +71,14 @@
   .hero-inner {
     max-width: 1080px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 48px;
   }
+  .demo-nav { max-width: 1080px; margin: 0 auto 22px; }
+  .demo-nav a { color: var(--text-dim); font-size: 13px; text-decoration: none; display: inline-block; padding: 8px 0; }
+  .demo-nav a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
 
   .eyebrow {
     display: inline-flex;
@@ -81,7 +102,7 @@
     font-weight: 900;
     letter-spacing: -0.02em;
     margin: 0 0 12px;
-    max-width: 16ch;
+    max-width: 19ch;
   }
 
   .hero h1 em {
@@ -284,10 +305,7 @@
     font-size: 13.5px;
     color: var(--text-dim);
     line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow-wrap: anywhere;
   }
 
   .email-status {
@@ -406,6 +424,7 @@
     white-space: pre-wrap;
     flex: 1;
     margin-bottom: 14px;
+    overflow-wrap: anywhere;
   }
 
   .draft-textarea {
@@ -514,14 +533,69 @@
   }
 
   .footer-note a { color: var(--text-dim); }
+
+  .demo-note { color: var(--text-dim); font-size: 12px; line-height: 1.6; margin: 16px 0 0; }
+  .preview { padding: 24px; border: 1px solid var(--border-active); border-radius: 20px; background: linear-gradient(145deg, #1b2436, #111722); box-shadow: 0 24px 60px #0003; }
+  .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 22px; font-size: 13px; font-weight: 700; }
+  .preview-heading span:last-child { font-size: 11px; color: var(--text-dim); font-weight: 500; }
+  .preview-step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-number { display: grid; place-items: center; flex: 0 0 28px; height: 28px; background: #ffb02015; border: 1px solid #ffb02044; border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 800; }
+  .preview-step strong { display: block; font-size: 14px; margin: 4px 0 8px; }
+  .preview-step p { color: var(--text-dim); font-size: 13px; line-height: 1.6; margin: 0; }
+  .preview-connector { height: 20px; border-left: 1px dashed var(--border-active); margin: 7px 0 7px 14px; }
+  .preview-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .preview-draft { margin-top: 10px !important; border-left: 2px solid var(--teal); padding-left: 10px; }
+  .preview-caption { margin: 20px 0 0; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--teal); }
+  .progress-panel { position: sticky; top: 0; z-index: 2; padding: 16px 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .progress-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 13px; }
+  .progress-top span { color: var(--text-dim); }
+  progress { display: block; width: 100%; height: 6px; margin-top: 12px; border: 0; border-radius: 10px; overflow: hidden; background: var(--border); accent-color: var(--teal); }
+  progress::-webkit-progress-bar { background: var(--border); }
+  progress::-webkit-progress-value { background: var(--teal); transition: width .3s; }
+  progress::-moz-progress-bar { background: var(--teal); }
+  .summary { margin-top: 24px; padding: 22px; border: 1px solid #3ddc9744; border-radius: 14px; background: #3ddc9708; }
+  .summary h2 { margin: 0 0 8px; font-size: 21px; }
+  .summary p { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+  .summary-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+  .summary-stats strong { display: block; font-size: 26px; color: var(--teal); }
+  .summary-stats span { font-size: 12px; color: var(--text-dim); }
+  .summary a { color: var(--text); text-underline-offset: 4px; }
+  .estimate-note { font-size: 12px !important; }
+  .contact { margin-top: 32px; padding: 28px; background: var(--bg-panel); border: 1px solid var(--border-active); border-radius: 16px; display: flex; gap: 24px; align-items: center; justify-content: space-between; }
+  .contact h2 { font-size: 22px; margin: 0 0 10px; }
+  .contact p { color: var(--text-dim); font-size: 14px; line-height: 1.6; max-width: 55ch; margin: 0; }
+  .contact-link { display: inline-block; text-align: center; text-decoration: none; white-space: nowrap; }
+  .draft-error { margin: 0 0 12px; color: var(--red); font-size: 13px; }
+  .skip-link { position: absolute; left: 20px; top: -60px; z-index: 5; padding: 12px; background: var(--accent); color: var(--bg); }
+  .skip-link:focus { top: 10px; }
+  @media (max-width: 900px) {
+    .hero-inner { gap: 24px; }
+    .hero-controls { gap: 12px; }
+    .counter { padding: 10px 12px; }
+  }
+  @media (max-width: 760px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero h1 { max-width: 22ch; }
+    .preview { padding: 20px; }
+    .contact { align-items: stretch; flex-direction: column; padding: 22px; }
+    .progress-top { flex-wrap: wrap; gap: 6px; }
+    .summary-stats { gap: 10px; }
+    .summary-stats strong { font-size: 23px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
 </style>
 </head>
 <body>
+  <a class="skip-link" href="#demo">Aller à la démonstration</a>
 
-  <div class="hero">
+  <header class="hero">
+    <nav class="demo-nav" aria-label="Retour au site"><a href="index.html#portfolio">← Retour au portfolio Studio Code</a></nav>
     <div class="hero-inner">
+      <div>
       <span class="eyebrow">Studio Code · Démonstration</span>
-      <h1>L'agent qui lit vos e-mails <em>à votre place</em></h1>
+      <h1>Vos e-mails triés.<br><em>Vos réponses préparées.</em></h1>
       <p class="sub">Il classe chaque message, évalue son urgence et rédige une réponse. Vous, vous gardez la main : rien ne part sans votre accord.</p>
       <div class="lock-banner">
         <span class="icon">🔒</span>
@@ -530,33 +604,63 @@
       <div class="hero-controls">
         <button class="run-btn" id="runBtn">▶ Lancer l'agent</button>
         <div class="counter">
-          <span class="label">Temps gagné</span>
+          <span class="label">Gain estimé</span>
           <span class="value" id="counterValue">0 min</span>
         </div>
       </div>
+      <p class="demo-note">6 e-mails fictifs d’un artisan · Environ 15 secondes<br>Scénario simulé, aucune connexion à votre messagerie.</p>
+      </div>
+      <aside class="preview" aria-label="Aperçu du fonctionnement">
+        <div class="preview-heading"><span>Du message à la réponse</span><span>Exemple de la démo</span></div>
+        <div class="preview-step"><span class="step-number">01</span><div><strong>Un client vous écrit</strong><p>« Notre chaudière ne chauffe presque plus. Pourriez-vous nous faire un devis ? »</p></div></div>
+        <div class="preview-connector" aria-hidden="true"></div>
+        <div class="preview-step"><span class="step-number">02</span><div><strong>L’agent repère la priorité</strong><div class="preview-tags"><span class="chip chip-cat-devis">Devis</span><span class="chip chip-cat-reclamation">Urgence haute</span></div></div></div>
+        <div class="preview-connector" aria-hidden="true"></div>
+        <div class="preview-step"><span class="step-number">03</span><div><strong>Vous gardez le dernier mot</strong><p>Un brouillon prêt à relire et à modifier.</p><p class="preview-draft">« Je comprends l’urgence de votre demande. Pouvez-vous me préciser vos disponibilités ? »</p></div></div>
+        <p class="preview-caption">✓ Chaque réponse passe par votre validation.</p>
+      </aside>
     </div>
-  </div>
+  </header>
 
-  <div class="wrap">
+  <main class="wrap" id="demo">
+    <section class="progress-panel" aria-label="Progression de la démonstration">
+      <div class="progress-top"><strong id="progressText" role="status" aria-live="polite">Prêt à trier vos 6 messages</strong><span id="progressHint">Lancez l’agent, puis essayez de modifier un brouillon.</span></div>
+      <progress id="demoProgress" max="6" value="0" aria-label="Messages traités"></progress>
+    </section>
+    <section class="summary" id="summary" aria-labelledby="summaryTitle" hidden>
+      <h2 id="summaryTitle">Votre boîte mail y voit plus clair.</h2>
+      <div class="summary-stats">
+        <div><strong id="processedTotal">6</strong><span>messages classés</span></div>
+        <div><strong id="draftTotal">5</strong><span>brouillons préparés</span></div>
+        <div><strong id="savedTotal">26 min</strong><span>de gain estimé</span></div>
+      </div>
+      <p id="validationSummary" role="status" aria-live="polite">0 brouillon validé sur 5. À vous de relire et de décider.</p>
+      <p class="estimate-note">Estimation illustrative : 1 à 7 minutes par message selon sa catégorie. Ce gain n’est pas une mesure réelle.</p>
+      <a href="#contact">Un assistant comme celui-ci pour votre activité →</a>
+    </section>
     <div class="inbox-header">
       <h2>Boîte de réception</h2>
       <span class="inbox-count" id="inboxCount">6 messages</span>
     </div>
     <div class="inbox" id="inbox"></div>
+    <noscript><p>Activez JavaScript pour lancer cette démonstration interactive.</p></noscript>
+
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+      <div><h2>Et si votre boîte mail vous prenait moins de temps ?</h2><p>Artisan, indépendant ou petite entreprise : discutons de vos messages, de vos priorités et des réponses que vous aimeriez déléguer.</p></div>
+      <a class="run-btn contact-link" id="contactLink" href="https://www.malt.fr/profile/elodiem5" target="_blank" rel="noopener noreferrer" aria-label="Discuter de mon projet sur Malt (nouvel onglet)">Discuter sur Malt ↗</a>
+    </section>
 
     <p class="footer-note">
-      Démo interactive — les e-mails et l'agent sont simulés à des fins de présentation.<br>
-      Prestation « Agent IA e-mail » à partir de 300 € — Studio Code.
+      Démonstration interactive · Données fictives et réponses préécrites · Aucun e-mail envoyé.<br>
+      Studio Code · Elodie Monchet · Prestation « Agent IA e-mail » à partir de 300 €.
     </p>
-  </div>
+  </main>
 
 <script>
 (function () {
   "use strict";
 
-  // Renseigne cette URL une fois le Worker déployé (voir demo-agent-email-worker/README.md).
-  // Tant qu'elle est vide, la démo utilise directement ses réponses pré-enregistrées.
-  const WORKER_URL = "";
+  // Cette démonstration est volontairement autonome : aucun appel API.
 
   const MINUTES_SAVED = {
     "Devis": 6,
@@ -676,6 +780,12 @@
   const runBtn = document.getElementById("runBtn");
   const counterValueEl = document.getElementById("counterValue");
   const inboxCountEl = document.getElementById("inboxCount");
+  const progressText = document.getElementById("progressText");
+  const progressHint = document.getElementById("progressHint");
+  const demoProgress = document.getElementById("demoProgress");
+  const summary = document.getElementById("summary");
+  const validatedIds = new Set();
+  const draftCount = EMAILS.filter(email => email.fallback.needsReply).length;
 
   let minutesTotal = 0;
   let running = false;
@@ -752,7 +862,7 @@
       <div class="draft-label">✍️ Brouillon de réponse</div>
       <div class="draft-text" data-editing="false">${escapeHtml(draft)}</div>
       <div class="draft-actions">
-        <button class="btn-validate" data-action="validate">✓ Valider et envoyer</button>
+        <button class="btn-validate" data-action="validate">✓ Valider le brouillon</button>
         <button class="btn-edit" data-action="edit">✎ Modifier</button>
       </div>
     `;
@@ -760,6 +870,25 @@
 
     const editBtn = panel.querySelector('[data-action="edit"]');
     const validateBtn = panel.querySelector('[data-action="validate"]');
+    const error = document.createElement("p");
+    error.className = "draft-error";
+    error.id = `error-${email.id}`;
+    error.setAttribute("role", "alert");
+    error.hidden = true;
+    panel.querySelector(".draft-actions").before(error);
+
+    function acceptText(current) {
+      const value = current.classList.contains("draft-textarea") ? current.value : current.textContent;
+      if (!value.trim()) {
+        error.textContent = "Ajoutez une réponse avant de continuer.";
+        error.hidden = false;
+        current.setAttribute("aria-invalid", "true");
+        current.focus();
+        return false;
+      }
+      error.hidden = true;
+      return true;
+    }
 
     editBtn.addEventListener("click", () => {
       const current = panel.querySelector(".draft-text, .draft-textarea");
@@ -767,11 +896,14 @@
       if (!isEditing) {
         const textarea = document.createElement("textarea");
         textarea.className = "draft-textarea";
+        textarea.setAttribute("aria-label", `Brouillon de réponse à ${email.from}`);
+        textarea.setAttribute("aria-describedby", error.id);
         textarea.value = current.textContent;
         current.replaceWith(textarea);
         textarea.focus();
         editBtn.textContent = "💾 Enregistrer";
       } else {
+        if (!acceptText(current)) return;
         const div = document.createElement("div");
         div.className = "draft-text";
         div.textContent = current.value;
@@ -782,6 +914,7 @@
 
     validateBtn.addEventListener("click", () => {
       const current = panel.querySelector(".draft-text, .draft-textarea");
+      if (!acceptText(current) || validatedIds.has(email.id)) return;
       if (current.classList.contains("draft-textarea")) {
         const div = document.createElement("div");
         div.className = "draft-text";
@@ -790,10 +923,12 @@
       }
       editBtn.disabled = true;
       validateBtn.disabled = true;
+      validatedIds.add(email.id);
+      updateValidationSummary();
       const actions = panel.querySelector(".draft-actions");
       actions.insertAdjacentHTML(
         "beforeend",
-        `<span class="sent-confirm">✅ Réponse validée<span class="note">(démo — aucun e-mail n'est réellement transmis)</span></span>`
+        `<span class="sent-confirm" role="status">✅ Réponse validée<span class="note">Démo : aucun e-mail envoyé.</span></span>`
       );
     });
   }
@@ -809,47 +944,31 @@
     `;
   }
 
-  async function fetchClassification(email) {
-    if (!WORKER_URL) return null;
-    try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 6000);
-      const res = await fetch(WORKER_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject: email.subject, from: email.from, body: email.body }),
-        signal: controller.signal,
-      });
-      clearTimeout(timeout);
-      if (!res.ok) return null;
-      const data = await res.json();
-      if (!data || !data.category || !data.urgency) return null;
-      return data;
-    } catch (err) {
-      return null;
-    }
+  function updateValidationSummary() {
+    const count = validatedIds.size;
+    document.getElementById("validationSummary").textContent =
+      `${count} brouillon${count > 1 ? "s" : ""} validé${count > 1 ? "s" : ""} sur ${draftCount}. ` +
+      (count === draftCount ? "Tout est relu. Aucun e-mail n’a été envoyé." : "À vous de relire et de décider.");
   }
 
   async function processEmail(email) {
     const card = document.getElementById(`card-${email.id}`);
     card.classList.add("is-active");
-    card.scrollIntoView({ behavior: "smooth", block: "center" });
 
     setStatus(email.id, "🧠 L'agent lit l'e-mail…");
-    await delay(850);
+    await delay(600);
 
-    let result = await fetchClassification(email);
-    if (!result) result = email.fallback;
+    const result = email.fallback;
 
     setStatus(email.id, "🏷 Classification en cours…");
-    await delay(500);
+    await delay(400);
     showBadges(email.id, result.category, result.urgency);
     bumpCounter(MINUTES_SAVED[result.category] || 2);
-    await delay(400);
+    await delay(250);
 
     if (result.needsReply && result.draft) {
       setStatus(email.id, "✍️ Rédaction du brouillon…");
-      await delay(900);
+      await delay(650);
       setStatus(email.id, "");
       showDraft(email, result.draft);
     } else {
@@ -858,11 +977,15 @@
 
     card.classList.remove("is-active");
     card.classList.add("is-done");
-    await delay(350);
+    await delay(250);
   }
 
   function resetDemo() {
+    hasRunOnce = false;
     minutesTotal = 0;
+    validatedIds.clear();
+    summary.hidden = true;
+    demoProgress.value = 0;
     counterValueEl.textContent = "0 min";
     renderInbox();
     runBtn.textContent = "▶ Lancer l'agent";
@@ -872,30 +995,41 @@
 
   async function runDemo() {
     if (running) return;
+    if (hasRunOnce) resetDemo();
     running = true;
     runBtn.disabled = true;
     runBtn.textContent = "⏳ Traitement en cours…";
 
-    for (const email of EMAILS) {
-      await processEmail(email);
+    progressHint.textContent = "Vous pouvez lire et modifier les brouillons pendant le tri.";
+    try {
+      for (const [index, email] of EMAILS.entries()) {
+        progressText.textContent = `${index} / ${EMAILS.length} messages traités · Analyse de ${email.from}`;
+        await processEmail(email);
+        demoProgress.value = index + 1;
+      }
+      progressText.textContent = `${EMAILS.length} / ${EMAILS.length} messages traités`;
+      progressHint.textContent = `${draftCount} brouillons à découvrir · Aucun envoi réel`;
+      document.getElementById("processedTotal").textContent = EMAILS.length;
+      document.getElementById("draftTotal").textContent = draftCount;
+      document.getElementById("savedTotal").textContent = `${minutesTotal} min`;
+      updateValidationSummary();
+      summary.hidden = false;
+    } catch (error) {
+      progressText.textContent = "La démonstration a été interrompue.";
+      progressHint.textContent = "Cliquez sur Rejouer pour recommencer.";
+    } finally {
+      running = false;
+      hasRunOnce = true;
+      runBtn.disabled = false;
+      runBtn.textContent = "↻ Rejouer la démo";
+      runBtn.classList.add("is-reset");
     }
-
-    running = false;
-    hasRunOnce = true;
-    runBtn.disabled = false;
-    runBtn.textContent = "🔄 Rejouer la démo";
-    runBtn.classList.add("is-reset");
   }
 
-  runBtn.addEventListener("click", () => {
-    if (hasRunOnce && !running) {
-      resetDemo();
-      return;
-    }
-    runDemo();
-  });
+  runBtn.addEventListener("click", runDemo);
 
   inboxCountEl.textContent = `${EMAILS.length} messages`;
+  demoProgress.max = EMAILS.length;
   renderInbox();
 })();
 </script>
