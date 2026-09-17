@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Prestige — Démo site immobilier haut de gamme | Studio Code</title>
+    <meta name="description" content="Découvrez AURA Prestige, une démo de site immobilier haut de gamme avec recherche intelligente, visite virtuelle, favoris, simulateur financier et assistant privé.">
+    <link rel="canonical" href="https://studio-code.fr/conciergerie-immobilier-luxe.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AURA Prestige — Conciergerie immobilière augmentée par l'IA">
+    <meta property="og:description" content="Une expérience immobilière premium avec recherche, visite virtuelle, financement, favoris et assistant privé.">
+    <meta property="og:url" content="https://studio-code.fr/conciergerie-immobilier-luxe.html">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --text-light: #f5f5f5;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --dark-gray: #141414;
+            --border-gold: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .modal-title, .admin-content h2, .fav-content h2, .rdv-content h2, .finance-content h2, .splash-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            font-weight: 500;
+        }
+
+        /* --- ÉCRAN D'INTRODUCTION DE LUXE (SPLASH SCREEN) --- */
+        .splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #050505;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOutSplash 1s ease 1.5s forwards;
+            pointer-events: none;
+        }
+
+        .splash-title {
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 12px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInLogo 1s ease 0.2s forwards;
+            background: linear-gradient(135deg, #fff 20%, var(--gold) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .splash-subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInLogo 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInLogo {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(10px); }
+        }
+
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* --- BARRE SUPÉRIEURE --- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            background: rgba(11, 11, 11, 0.95);
+            border-bottom: 1px solid var(--border-gold);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-left, .top-bar-right {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .top-bar select {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .top-bar select option {
+            background: var(--bg-color);
+            color: var(--text-light);
+        }
+
+        .top-bar button, .top-bar a {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .top-bar button:hover, .top-bar a:hover {
+            background: var(--gold);
+            color: var(--bg-color);
+        }
+
+        .demo-badge {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.02));
+            border-bottom: 1px solid var(--border-gold);
+            color: var(--gold-light);
+            text-align: center;
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- EN-TÊTE HAUTE COUTURE --- */
+        .hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(11,11,11,0.7), rgba(11,11,11,0.98)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80') center/cover;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+            background: linear-gradient(to right, #fff, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .ai-concierge {
+            display: flex;
+            width: 100%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-gold);
+            border-radius: 50px;
+            padding: 8px 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+        }
+
+        .ai-concierge input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            padding-left: 12px;
+            letter-spacing: 1px;
+        }
+
+        .ai-concierge input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .ai-concierge button {
+            background: linear-gradient(135deg, var(--gold), #b89728);
+            color: var(--bg-color);
+            border: none;
+            padding: 9px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            font-family: 'Cinzel', serif;
+        }
+        .ai-concierge button:hover { opacity: 0.9; }
+
+        /* --- GRILLES DE CARTES --- */
+        .properties-section {
+            padding: 40px 5% 70px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 5px;
+            color: var(--gold);
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            background: var(--dark-gray);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            border: 1px solid var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(212,175,55,0.2);
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(11, 11, 11, 0.75);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 10;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .fav-btn.active {
+            background: var(--gold);
+            color: var(--bg-color);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 330px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .card-img-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, rgba(11,11,11,0.95), transparent);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 20px; left: 20px; right: 20px;
+        }
+
+        .price {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .details {
+            font-size: 0.8rem;
+            color: #aaa;
+            letter-spacing: 0.8px;
+        }
+
+        /* --- MODALES --- */
+        .modal, .tour-modal, .admin-modal, .fav-modal, .rdv-modal, .finance-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-content, .admin-content, .fav-content, .rdv-content, .finance-content {
+            background: var(--dark-gray);
+            border: 1px solid var(--gold);
+            width: 100%; max-width: 850px;
+            max-height: 90vh;
+            border-radius: 8px;
+            overflow-y: auto;
+            position: relative;
+            padding: 35px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+        }
+
+        .close-modal, .close-admin, .close-fav, .close-rdv, .close-finance {
+            position: absolute;
+            top: 18px; right: 22px;
+            background: none; border: none;
+            color: var(--gold); font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+        }
+
+        .modal-surface {
+            color: #aaa; font-size: 0.95rem; margin-bottom: 12px; letter-spacing: 1px;
+        }
+
+        .modal-price {
+            font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 1.5px;
+        }
+
+        .modal-actions {
+            display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0;
+        }
+
+        .btn-gold-action {
+            background: linear-gradient(135deg, var(--gold), #b89728);
+            color: var(--bg-color);
+            padding: 11px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            border: none;
+            transition: opacity 0.3s;
+            font-family: 'Cinzel', serif;
+        }
+        .btn-gold-action:hover { opacity: 0.9; }
+
+        /* --- VISITE VIRTUELLE 3D / PANORAMIQUE INTERACTIVE --- */
+        .tour-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.96);
+            z-index: 3000;
+            justify-content: center; align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .tour-container {
+            width: 100%; max-width: 1050px;
+            height: 72vh;
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 40px rgba(212,175,55,0.3);
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .tour-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .tour-overlay-info {
+            position: relative;
+            z-index: 5;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tour-room-title {
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .tour-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tour-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .tour-btn:hover, .tour-btn.active {
+            background: var(--gold);
+            color: var(--bg-color);
+            font-weight: 600;
+        }
+
+        .modal-gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0;
+        }
+        .modal-gallery img {
+            width: 100%; height: 130px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-gold); cursor: pointer; transition: transform 0.3s;
+        }
+        .modal-gallery img:hover { transform: scale(1.03); }
+
+        .modal-description {
+            color: #ccc; line-height: 1.7; margin-bottom: 20px; font-size: 0.95rem; letter-spacing: 0.5px;
+        }
+
+        /* --- CHATBOT LOCAL --- */
+        .property-chat {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px; padding: 18px; margin-top: 25px;
+        }
+        .chat-header {
+            font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.05rem; margin-bottom: 10px; letter-spacing: 2px;
+        }
+        .chat-messages {
+            max-height: 140px; overflow-y: auto; margin-bottom: 12px; font-size: 0.85rem; line-height: 1.6; color: #ddd; display: flex; flex-direction: column; gap: 8px;
+        }
+        .chat-message.bot {
+            color: var(--gold-light); background: rgba(212, 175, 55, 0.05); padding: 8px 12px; border-radius: 4px; border-left: 2px solid var(--gold);
+        }
+        .chat-message.user {
+            color: #fff; background: rgba(255, 255, 255, 0.05); padding: 8px 12px; border-radius: 4px; text-align: right;
+        }
+        .chat-input-area {
+            display: flex; gap: 10px;
+        }
+        .chat-input-area input {
+            flex: 1; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 9px 15px; color: white; outline: none; font-size: 0.85rem; font-family: 'Montserrat', sans-serif;
+        }
+        .chat-input-area input:focus { border-color: var(--gold); }
+        .chat-input-area button {
+            background: var(--gold); color: var(--bg-color); border: none; padding: 9px 20px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; cursor: pointer; letter-spacing: 1.5px; font-family: 'Cinzel', serif;
+        }
+
+        /* Formulaires */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 6px; letter-spacing: 1px; font-family: 'Cinzel', serif;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 4px; font-family: 'Montserrat', sans-serif; outline: none; font-size: 0.9rem;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--gold), #b89728); color: var(--bg-color); border: none; padding: 12px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 12px; font-family: 'Cinzel', serif; letter-spacing: 2px;
+        }
+
+        footer {
+            text-align: center; padding: 40px; color: #666; font-size: 0.8rem; border-top: 1px solid var(--border-gold); letter-spacing: 2px; font-family: 'Cinzel', serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Écran d'introduction Haute Couture (Splash Screen Doré) -->
+    <div class="splash-screen">
+        <div class="splash-title">AURA PRESTIGE</div>
+        <div class="splash-subtitle">Haute Horlogerie Immobilière</div>
+    </div>
+
+    <!-- Barre supérieure -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <select id="langSelect">
+                <option value="fr" selected>🇫🇷 Français</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="ru">🇷🇺 Русский (Russian)</option>
+                <option value="ar">🇦🇪 العربية (Arabic)</option>
+                <option value="zh">🇨🇳 中文 (Chinese)</option>
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="th">🇹🇭 ไทย (Thai)</option>
+            </select>
+            <button id="favsBtn">❤️ <span id="favTextLabel">Favoris</span> (<span id="favCount">0</span>)</button>
+        </div>
+        <div class="top-bar-right">
+            <a href="index.html#sites-haut-de-gamme">← Studio Code</a>
+            <button id="adminBtn">⚙️ Espace Admin</button>
+        </div>
+    </div>
+
+    <div class="demo-badge">
+        ✨ PROTOTYPE D'ÉLITE — Visite Virtuelle 3D Interactive, 8 Langues & Galeries Uniques
+    </div>
+
+    <!-- En-tête -->
+    <header class="hero">
+        <h1 id="heroTitle">AURA PRESTIGE</h1>
+        <p id="heroSubtitle">L'Art de l'Immobilier d'Exception redéfini par l'Intelligence Artificielle</p>
+        
+        <div class="ai-concierge">
+            <input type="text" id="globalSearchInput" placeholder="Ex: Chalet montagne, cuisine, jardin, DPE...">
+            <button id="globalSearchBtn">Rechercher</button>
+        </div>
+    </header>
+
+    <div style="padding: 30px 5% 0 5%; max-width: 1400px; margin: 0 auto;">
+        <h2 class="section-title" id="sectionTitle">Sélections Exclusives</h2>
+    </div>
+
+    <!-- Grille des 6 maisons -->
+    <section class="properties-section">
+        <div class="grid" id="properties-grid"></div>
+    </section>
+
+    <footer>
+        <p>© 2026 AURA PRESTIGE — Conçu sur mesure pour l'immobilier de très grand luxe.</p>
+    </footer>
+
+    <!-- Modale de détail du bien -->
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Titre</h2>
+            <div class="modal-surface" id="modalSurface">Surface</div>
+            <div class="modal-price" id="modalPrice">0 €</div>
+            <p class="modal-description" id="modalDesc">Description</p>
+            
+            <div class="modal-actions">
+                <button id="openTourBtn" class="btn-gold-action">🌐 Visite Virtuelle 3D 360°</button>
+                <button id="openFinanceBtn" class="btn-gold-action">💰 Simulateur Financier</button>
+                <button id="openRdvBtn" class="btn-gold-action">📅 Prendre un RDV Privé</button>
+            </div>
+            
+            <h3 style="color:var(--gold); margin: 20px 0 10px 0; font-size: 1.05rem;" id="galleryHeader">Galerie Photos (6 espaces exclusifs)</h3>
+            <div class="modal-gallery" id="modalGallery"></div>
+
+            <!-- Chatbot local -->
+            <div class="property-chat">
+                <div class="chat-header" id="chatHeaderTitle">✨ Assistant Virtuel Privé de la Propriété</div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot" id="chatWelcome">Bonjour. Posez-moi vos questions précises sur le jardin, les commodités, le DPE, le chauffage ou la cuisine.</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ex: Proche commodités ? DPE ? Jardin ?...">
+                    <button id="chatSend">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visionneuse Visite Virtuelle 3D -->
+    <div class="tour-modal" id="tourModal">
+        <button class="close-modal" id="closeTour">&times;</button>
+        <div style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 12px; text-align: center; letter-spacing: 2px;" id="tourModalTitle">🌐 Visite Virtuelle Interactive 3D 360°</div>
+        <div class="tour-container">
+            <img id="tourScreen" class="tour-screen" src="" alt="Visite Virtuelle">
+            <div class="tour-overlay-info">
+                <div id="tourRoomName" class="tour-room-title">Salon Principal</div>
+                <div class="tour-controls" id="tourControls"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Simulateur Financier -->
+    <div class="finance-modal" id="financeModal">
+        <div class="finance-content">
+            <button class="close-modal" id="closeFinance">&times;</button>
+            <h2 id="finModalTitle">💰 Simulateur de Financement</h2>
+            <div class="form-group">
+                <label id="finPriceLabel">Prix du bien :</label>
+                <input type="text" id="finPrice" readonly style="color: var(--gold); font-weight: bold;">
+            </div>
+            <div class="form-group">
+                <label id="finContribLabel">Apport personnel (€) :</label>
+                <input type="number" id="finContribution" value="3000000" step="100000">
+            </div>
+            <div class="form-group">
+                <label id="finYearsLabel">Durée du prêt (années) :</label>
+                <select id="finYears">
+                    <option value="15">15 ans</option>
+                    <option value="20" selected>20 ans</option>
+                    <option value="25">25 ans</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="finRateLabel">Taux d'intérêt estimé (%) :</label>
+                <input type="number" id="finRate" value="3.5" step="0.1">
+            </div>
+            <div style="background: rgba(212,175,55,0.05); border: 1px solid var(--border-gold); padding: 15px; border-radius: 6px; margin-top: 15px; text-align: center;">
+                <div style="font-size: 0.85rem; color: #aaa;" id="finResultLabel">Mensualité estimée du crédit :</div>
+                <div id="finResult" style="font-size: 1.8rem; color: var(--gold); font-weight: bold; margin-top: 5px; font-family: 'Cinzel', serif;">0 € / mois</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Prise de Rendez-vous -->
+    <div class="rdv-modal" id="rdvModal">
+        <div class="rdv-content">
+            <button class="close-modal" id="closeRdv">&times;</button>
+            <h2 id="rdvModalTitle">📅 Planifier une Visite Privée</h2>
+            <form id="rdvForm">
+                <div class="form-group">
+                    <label id="rdvNameLabel">Votre Nom complet :</label>
+                    <input type="text" id="rdvName" required placeholder="Lord / Mme Dupont">
+                </div>
+                <div class="form-group">
+                    <label id="rdvContactLabel">Téléphone ou Email :</label>
+                    <input type="text" id="rdvContact" required placeholder="+33 6 00 00 00 00">
+                </div>
+                <div class="form-group">
+                    <label id="rdvDateLabel">Date souhaitée :</label>
+                    <input type="date" id="rdvDate" required>
+                </div>
+                <div class="form-group">
+                    <label id="rdvTypeLabel">Type de rendez-vous :</label>
+                    <select id="rdvType">
+                        <option value="Physique">Visite physique sur site avec agent senior</option>
+                        <option value="Visio">Visioconférence sécurisée & présentation vidéo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit" id="rdvSubmitBtn">Confirmer la demande de rendez-vous</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modale Favoris -->
+    <div class="fav-modal" id="favModal">
+        <div class="fav-content">
+            <button class="close-modal" id="closeFav">&times;</button>
+            <h2 id="favModalTitle">❤️ Mes Propriétés Favorites</h2>
+            <div id="favListContainer" style="margin: 15px 0; max-height: 40vh; overflow-y: auto;">
+                <p style="color: #888;">Aucun favori sélectionné.</p>
+            </div>
+            <button id="exportPdfBtn" class="btn-submit" style="display: none;">📥 Télécharger ma Sélection en PDF (Brochure)</button>
+        </div>
+    </div>
+
+    <!-- Modale Espace Admin -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content">
+            <button class="close-modal" id="closeAdmin">&times;</button>
+            <h2>⚙️ Back-Office : Ajouter un bien</h2>
+            <form id="addPropertyForm">
+                <div class="form-group">
+                    <label>Titre de la propriété :</label>
+                    <input type="text" id="newTitle" required placeholder="Ex: Villa Saphir, Nice">
+                </div>
+                <div class="form-group">
+                    <label>Prix :</label>
+                    <input type="text" id="newPrice" required placeholder="Ex: 5 400 000 €">
+                </div>
+                <div class="form-group">
+                    <label>Surface et terrain :</label>
+                    <input type="text" id="newSurface" required placeholder="Ex: 350 m² • Terrain 1 200 m²">
+                </div>
+                <div class="form-group">
+                    <label>URL de l'image principale :</label>
+                    <input type="text" id="newImg" required placeholder="https://images.unsplash.com/...">
+                </div>
+                <div class="form-group">
+                    <label>Description complète :</label>
+                    <textarea id="newDesc" rows="3" required placeholder="Description détaillée..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Ajouter au catalogue en direct</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script complet -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentLang = 'fr';
+            let favorites = [];
+
+            const langData = {
+                fr: {
+                    favText: "Favoris",
+                    adminBtn: "⚙️ Espace Admin",
+                    heroTitle: "AURA PRESTIGE",
+                    heroSubtitle: "L'Art de l'Immobilier d'Exception redéfini par l'Intelligence Artificielle",
+                    searchPlaceholder: "Ex: Chalet montagne, cuisine, jardin, DPE...",
+                    searchBtn: "Rechercher",
+                    sectionTitle: "Sélections Exclusives",
+                    galleryHeader: "Galerie Photos (6 espaces exclusifs)",
+                    tourBtn: "🌐 Visite Virtuelle 3D 360°",
+                    financeBtn: "💰 Simulateur Financier",
+                    rdvBtn: "📅 Prendre un RDV Privé",
+                    chatTitle: "✨ Assistant Virtuel Privé de la Propriété",
+                    chatWelcome: "Bonjour. Posez-moi vos questions précises sur le jardin, les commodités, le DPE, le chauffage ou la cuisine.",
+                    chatPlaceholder: "Ex: Proche commodités ? DPE ? Jardin ?...",
+                    chatSend: "Envoyer",
+                    finTitle: "💰 Simulateur de Financement",
+                    finPriceLbl: "Prix du bien :",
+                    finContribLbl: "Apport personnel (€) :",
+                    finYearsLbl: "Durée du prêt (années) :",
+                    finRateLbl: "Taux d'intérêt estimé (%) :",
+                    finResLbl: "Mensualité estimée du crédit :",
+                    rdvTitle: "📅 Planifier une Visite Privée",
+                    rdvNameLbl: "Votre Nom complet :",
+                    rdvContactLbl: "Téléphone ou Email :",
+                    rdvDateLbl: "Date souhaitée :",
+                    rdvTypeLbl: "Type de rendez-vous :",
+                    rdvBtnText: "Confirmer la demande de rendez-vous",
+                    favTitle: "❤️ Mes Propriétés Favorites"
+                },
+                en: {
+                    favText: "Favorites",
+                    adminBtn: "⚙️ Admin Area",
+                    heroTitle: "AURA PRESTIGE",
+                    heroSubtitle: "The Art of Exceptional Real Estate Redefined by AI",
+                    searchPlaceholder: "Ex: Mountain chalet, kitchen, garden, energy rating...",
+                    searchBtn: "Search",
+                    sectionTitle: "Exclusive Selections",
+                    galleryHeader: "Photo Gallery (6 exclusive areas)",
+                    tourBtn: "🌐 3D 360° Virtual Tour",
+                    financeBtn: "💰 Financial Simulator",
+                    rdvBtn: "📅 Book Private Tour",
+                    chatTitle: "✨ Private Property Virtual Assistant",
+                    chatWelcome: "Hello. Ask me specific questions about the garden, amenities, energy rating, heating, or kitchen.",
+                    chatPlaceholder: "Ex: Near amenities? Energy rating? Garden?...",
+                    chatSend: "Send",
+                    finTitle: "💰 Financial Simulator",
+                    finPriceLbl: "Property Price:",
+                    finContribLbl: "Down Payment (€):",
+                    finYearsLbl: "Loan Term (years):",
+                    finRateLbl: "Estimated Interest Rate (%):",
+                    finResLbl: "Estimated Monthly Payment:",
+                    rdvTitle: "📅 Book a Private Tour",
+                    rdvNameLbl: "Full Name:",
+                    rdvContactLbl: "Phone or Email:",
+                    rdvDateLbl: "Preferred Date:",
+                    rdvTypeLbl: "Appointment Type:",
+                    rdvBtnText: "Confirm Appointment Request",
+                    favTitle: "❤️ My Favorite Properties"
+                },
+                ru: {
+                    favText: "Избранное",
+                    adminBtn: "⚙️ Кабинет администратора",
+                    heroTitle: "AURA PRESTIGE",
+                    heroSubtitle: "Искусство элитной недвижимости, переосмысленное с помощью ИИ",
+                    searchPlaceholder: "Например: шале, кухня, сад...",
+                    searchBtn: "Поиск",
+                    sectionTitle: "Эксклюзивные предложения",
+                    galleryHeader: "Фотогалерея (6 эксклюзивных зон)",
+                    tourBtn: "🌐 3D Виртуальный тур 360°",
+                    financeBtn: "💰 Ипотечный калькулятор",
+                    rdvBtn: "📅 Записаться на просмотр",
+                    chatTitle: "✨ Виртуальный помощник по объекту",
+                    chatWelcome: "Здравствуйте. Задайте мне вопрос о саде, удобствах или кухне.",
+                    chatPlaceholder: "Ваш вопрос...",
+                    chatSend: "Отправить",
+                    finTitle: "💰 Финансовый калькулятор",
+                    finPriceLbl: "Стоимость объекта:",
+                    finContribLbl: "Первоначальный взнос (€):",
+                    finYearsLbl: "Срок кредита (лет):",
+                    finRateLbl: "Ставка (%):",
+                    finResLbl: "Ежемесячный платеж:",
+                    rdvTitle: "📅 Забронировать частный тур",
+                    rdvNameLbl: "Ваше Имя:",
+                    rdvContactLbl: "Телефон или Email:",
+                    rdvDateLbl: "Желаемая дата:",
+                    rdvTypeLbl: "Тип встречи:",
+                    rdvBtnText: "Подтвердить заявку",
+                    favTitle: "❤️ Избранная недвижимость"
+                },
+                ar: {
+                    favText: "المفضلة",
+                    adminBtn: "⚙️ لوحة التحكم",
+                    heroTitle: "أورا للتسويق الفاخر",
+                    heroSubtitle: "إعادة تعريف العقارات الاستثنائية بواسطة الذكاء الاصطناعي",
+                    searchPlaceholder: "مثال: شاليه جبلي، مطبخ، حديقة...",
+                    searchBtn: "بحث",
+                    sectionTitle: "اختيارات حصرية",
+                    galleryHeader: "معرض الصور (6 مناطق حصرية)",
+                    tourBtn: "🌐 جولة افتراضية 3D",
+                    financeBtn: "💰 حاسبة التمويل",
+                    rdvBtn: "📅 حجز موعد خاص",
+                    chatTitle: "✨ المساعد الذكي الخاص بالعقار",
+                    chatWelcome: "مرحباً. اسألني عن الحديقة، المرافق أو المطبخ.",
+                    chatPlaceholder: "اكتب سؤالك...",
+                    chatSend: "إرسال",
+                    finTitle: "💰 حاسبة القرض العقاري",
+                    finPriceLbl: "سعر العقار:",
+                    finContribLbl: "الدفعة المقدمة (€):",
+                    finYearsLbl: "مدة القرض (سنوات):",
+                    finRateLbl: "نسبة الفائدة (%):",
+                    finResLbl: "القسط الشهري المقدر:",
+                    rdvTitle: "📅 حجز زيارة خاصة",
+                    rdvNameLbl: "الاسم الكامل:",
+                    rdvContactLbl: "الهاتف أو البريد:",
+                    rdvDateLbl: "التاريخ المفضل:",
+                    rdvTypeLbl: "نوع الموعد:",
+                    rdvBtnText: "تأكيد طلب الموعد",
+                    favTitle: "❤️ العقارات المفضلة لديك"
+                },
+                zh: {
+                    favText: "收藏夹",
+                    adminBtn: "⚙️ 管理后台",
+                    heroTitle: "AURA 奢华地产",
+                    heroSubtitle: "由人工智能重新定义的卓越高端地产",
+                    searchPlaceholder: "例如：高山木屋、厨房、花园...",
+                    searchBtn: "搜索",
+                    sectionTitle: "独家精选",
+                    galleryHeader: "高清图库（6大专属区域）",
+                    tourBtn: "🌐 3D 360°VR全景看房",
+                    financeBtn: "💰 购房贷款计算器",
+                    rdvBtn: "📅 预约私人看房",
+                    chatTitle: "✨ 专属私人置业顾问",
+                    chatWelcome: "您好，您可以向我咨询关于花园、配套设施或厨房的具体信息。",
+                    chatPlaceholder: "输入您的提问...",
+                    chatSend: "发送",
+                    finTitle: "💰 金融贷款模拟器",
+                    finPriceLbl: "房产价格：",
+                    finContribLbl: "首付款 (€)：",
+                    finYearsLbl: "贷款年限（年）：",
+                    finRateLbl: "预计利率 (%)：",
+                    finResLbl: "每月预估还款额：",
+                    rdvTitle: "📅 预约私人参观",
+                    rdvNameLbl: "您的姓名：",
+                    rdvContactLbl: "电话或邮箱：",
+                    rdvDateLbl: "预约日期：",
+                    rdvTypeLbl: "预约类型：",
+                    rdvBtnText: "确认预约申请",
+                    favTitle: "❤️ 我的心仪房产"
+                },
+                it: {
+                    favText: "Preferiti",
+                    adminBtn: "⚙️ Area Admin",
+                    heroTitle: "AURA PRESTIGE",
+                    heroSubtitle: "L'Immobiliare di Lusso ridefinito dall'Intelligenza Artificiale",
+                    searchPlaceholder: "Es: Chalet di montagna, cucina, giardino...",
+                    searchBtn: "Cerca",
+                    sectionTitle: "Selezioni Esclusive",
+                    galleryHeader: "Galleria Fotografica (6 aree esclusive)",
+                    tourBtn: "🌐 Tour Virtuale 3D 360°",
+                    financeBtn: "💰 Simulatore Finanziario",
+                    rdvBtn: "📅 Prenota Visita Privata",
+                    chatTitle: "✨ Assistente Virtuale Privato",
+                    chatWelcome: "Salve. Chiedimi informazioni sul giardino, le comodità o la cucina.",
+                    chatPlaceholder: "Scrivi la tua domanda...",
+                    chatSend: "Invia",
+                    finTitle: "💰 Simulatore di Finanziamento",
+                    finPriceLbl: "Prezzo dell'immobile:",
+                    finContribLbl: "Anticipo (€):",
+                    finYearsLbl: "Durata del prestito (anni):",
+                    finRateLbl: "Tasso d'interesse (%):",
+                    finResLbl: "Rata mensile stimata:",
+                    rdvTitle: "📅 Pianifica una Visita Privata",
+                    rdvNameLbl: "Nome e Cognome:",
+                    rdvContactLbl: "Telefono o Email:",
+                    rdvDateLbl: "Data desiderata:",
+                    rdvTypeLbl: "Tipo di appuntamento:",
+                    rdvBtnText: "Conferma appuntamento",
+                    favTitle: "❤️ Le tue Proprietà Preferite"
+                },
+                es: {
+                    favText: "Favoritos",
+                    adminBtn: "⚙️ Área Admin",
+                    heroTitle: "AURA PRESTIGE",
+                    heroSubtitle: "El Arte del Inmueble de Excepción Redefinido por la Inteligencia Artificial",
+                    searchPlaceholder: "Ej: Chalet de montaña, cocina, jardín...",
+                    searchBtn: "Buscar",
+                    sectionTitle: "Selecciones Exclusivas",
+                    galleryHeader: "Galería de Fotos (6 espacios exclusivos)",
+                    tourBtn: "🌐 Tour Virtual 3D 360°",
+                    financeBtn: "💰 Simulador Financiero",
+                    rdvBtn: "📅 Reservar Cita Privada",
+                    chatTitle: "✨ Asistente Virtual Privado de la Propiedad",
+                    chatWelcome: "Hola. Pregúntame sobre el jardín, las comodidades o la cocina.",
+                    chatPlaceholder: "Escribe tu pregunta...",
+                    chatSend: "Enviar",
+                    finTitle: "💰 Simulador de Financiamiento",
+                    finPriceLbl: "Precio de la propiedad:",
+                    finContribLbl: "Pago inicial (€):",
+                    finYearsLbl: "Plazo del préstamo (años):",
+                    finRateLbl: "Tasa de interés (%):",
+                    finResLbl: "Cuota mensual estimada:",
+                    rdvTitle: "📅 Reservar una Visita Privada",
+                    rdvNameLbl: "Nombre completo:",
+                    rdvContactLbl: "Teléfono o Correo:",
+                    rdvDateLbl: "Fecha deseada:",
+                    rdvTypeLbl: "Tipo de cita:",
+                    rdvBtnText: "Confirmar solicitud",
+                    favTitle: "❤️ Mis Propiedades Favoritas"
+                },
+                th: {
+                    favText: "รายการโปรด",
+                    adminBtn: "⚙️ ผู้ดูแลระบบ",
+                    heroTitle: "ออร่า เพรสทีจ",
+                    heroSubtitle: "นิยามใหม่แห่งอสังหาริมทรัพย์ระดับลักชูรีด้วย AI",
+                    searchPlaceholder: "เช่น ชาเล่ต์ภูเขา, ห้องครัว, สวน...",
+                    searchBtn: "ค้นหา",
+                    sectionTitle: "ข้อเสนอสุดพิเศษ",
+                    galleryHeader: "แกลเลอรีรูปภาพ (6 โซนพิเศษ)",
+                    tourBtn: "🌐 ทัวร์เสมือนจริง 3D 360°",
+                    financeBtn: "💰 คำนวณสินเชื่อ",
+                    rdvBtn: "📅 นัดหมายชมโครงการ",
+                    chatTitle: "✨ ผู้ช่วยอัจฉริยะส่วนตัว",
+                    chatWelcome: "สวัสดีครับ สอบถามข้อมูลเกี่ยวกับสวน สิ่งอำนวยความสะดวก หรือห้องครัวได้เลย",
+                    chatPlaceholder: "พิมพ์คำถามของคุณ...",
+                    chatSend: "ส่ง",
+                    finTitle: "💰 เครื่องมือคำนวณสินเชื่อ",
+                    finPriceLbl: "ราคาทรัพย์สิน:",
+                    finContribLbl: "เงินดาวน์ (€):",
+                    finYearsLbl: "ระยะเวลากู้ (ปี):",
+                    finRateLbl: "อัตราดอกเบี้ย (%):",
+                    finResLbl: "ยอดผ่อนชำระต่อเดือน:",
+                    rdvTitle: "📅 จองเวลานัดหมายเข้าชม",
+                    rdvNameLbl: "ชื่อ - นามสกุล:",
+                    rdvContactLbl: "เบอร์โทรศัพท์ หรือ อีเมล:",
+                    rdvDateLbl: "วันที่ต้องการ:",
+                    rdvTypeLbl: "ประเภทการนัดหมาย:",
+                    rdvBtnText: "ยืนยันการนัดหมาย",
+                    favTitle: "❤️ อสังหาริมทรัพย์ที่ชื่นชอบ"
+                }
+            };
+
+            let database = [
+                {
+                    id: 1,
+                    title: "Chalet Olympe & Piscine Infinie",
+                    surface: "480 m² habitables • Terrain 2 500 m²",
+                    price: "12 800 000 €",
+                    rawPrice: 12800000,
+                    details: "6 Chambres • Piscine à débordement • Vue sommets",
+                    chambres: "6 chambres en suite avec terrasses privatives",
+                    cuisine: "Cuisine ultra-équipée haut de gamme avec îlot en chêne massif et électroménager encastré Miele",
+                    sdb: "Salles de bains en pierre naturelle avec baignoire îlot face aux sommets",
+                    chauffage: "Chauffage au sol par géothermie haute performance et cheminée centrale",
+                    jardin: "Vaste terrain paysager de 2 500 m² en pleine nature alpine",
+                    commodites: "À 5 minutes en navette privée du village et des pistes de ski",
+                    dpe: "Classe Énergétique : B (très économe) • GES (CO2) : A",
+                    desc: "Niché au cœur des sommets alpins, ce chalet d'architecte marie le bois brut et d'immenses baies vitrées panoramiques.",
+                    tags: ["montagne", "piscine", "baies", "chalet", "infinie", "vue", "spa", "surface", "m2", "cuisine", "chambre", "chauffage", "jardin", "commodites", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1600&q=80"
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Le Manoir de Campagne Chic",
+                    surface: "620 m² habitables • Parc clos 5 hectares",
+                    price: "7 900 000 €",
+                    rawPrice: 7900000,
+                    details: "8 Chambres • Parc arboré • Piscine pierre",
+                    chambres: "8 chambres spacieuses avec parquets anciens",
+                    cuisine: "Immense cuisine familiale de style provençal chic avec piano de cuisson Lacanche en laiton",
+                    sdb: "Salles de bains en marbre poli dotées de superbes baignoires anciennes sur pieds",
+                    chauffage: "Chauffage central par pompe à chaleur et radiateurs en fonte d'art",
+                    jardin: "Parc arboré et clos de 5 hectares avec verger et roseraie",
+                    commodites: "À 10 minutes du centre-ville historique, supermarchés et bus à l'entrée",
+                    dpe: "Classe Énergétique : C • GES (CO2) : B",
+                    desc: "Ancienne bâtisse historique entièrement rénovée avec des matériaux nobles.",
+                    tags: ["campagne", "pierre", "piscine", "manoir", "jardin", "surface", "m2", "cuisine", "chambre", "chauffage", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80"
+                    }
+                },
+                {
+                    id: 3,
+                    title: "Villa Minimaliste d'Architecte",
+                    surface: "510 m² habitables • Domotique intégrée",
+                    price: "14 200 000 €",
+                    rawPrice: 14200000,
+                    details: "5 Chambres • Lignes pures • Baies vitrées géantes",
+                    chambres: "5 chambres avec salles de bains en verre dépoli",
+                    cuisine: "Cuisine minimaliste en îlot central avec plan de travail en corian",
+                    sdb: "Salles de bains design avec douches à l'italienne encastrées",
+                    chauffage: "Climatisation réversible intégrée et plancher chauffant",
+                    jardin: "Jardin paysager contemporain épuré avec essences méditerranéennes",
+                    commodites: "Proche immédiat des commodités urbaines et épiceries fines",
+                    dpe: "Classe Énergétique : A • GES (CO2) : A",
+                    desc: "Une œuvre d'art contemporaine signée par un grand architecte. Volumes épurés et béton ciré.",
+                    tags: ["architecte", "baies", "verre", "minimaliste", "surface", "m2", "piscine", "cuisine", "chambre", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1600&q=80"
+                    }
+                },
+                {
+                    id: 4,
+                    title: "Villa les Pieds dans l'Eau, Cannes",
+                    surface: "450 m² habitables • Accès direct plage",
+                    price: "22 000 000 €",
+                    rawPrice: 22000000,
+                    details: "6 Chambres • Piscine face à la mer • Dock privé",
+                    chambres: "6 chambres vue mer imprenable",
+                    cuisine: "Immense cuisine d'été extérieure et cuisine intérieure high-tech Bulthaup",
+                    sdb: "Salles de bains lumineuses ouvrant sur la mer",
+                    chauffage: "Climatisation réversible et plancher chauffant moderne",
+                    jardin: "Jardin tropical luxuriant clos menant à la plage",
+                    commodites: "Proche de la Croisette, boutiques de luxe et transports",
+                    dpe: "Classe Énergétique : B • GES (CO2) : A",
+                    desc: "Exceptionnelle propriété située sur la Côte d'Azur avec accès direct à la Méditerranée.",
+                    tags: ["mer", "plage", "cannes", "piscine", "vue", "surface", "m2", "cuisine", "chambre", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1556909114-f6e7ad753136?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1600&q=80"
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Penthouse Céleste, Dubaï Marina",
+                    surface: "380 m² sur le toit • Vue panoramique 360°",
+                    price: "16 500 000 €",
+                    rawPrice: 16500000,
+                    details: "4 Chambres • Jacuzzi suspendu • Ascenseur privé",
+                    chambres: "4 suites somptueuses au dernier étage",
+                    cuisine: "Cuisine professionnelle en inox brossé avec équipements de chef",
+                    sdb: "Salles de bains somptueuses en marbre noir avec baignoires balnéo",
+                    chauffage: "Climatisation centralisée intelligente par zone",
+                    jardin: "Jardin suspendu privatif aménagé sur le rooftop",
+                    commodites: "Au pied des centres commerciaux de luxe et du métro",
+                    dpe: "Classe Énergétique : A • GES (CO2) : A",
+                    desc: "Sommet absolu du luxe urbain avec une vue spectaculaire sur l'horizon.",
+                    tags: ["dubai", "penthouse", "vue", "ville", "luxe", "surface", "m2", "cuisine", "chambre", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
+                    }
+                },
+                {
+                    id: 6,
+                    title: "Le Château Historique, Loire",
+                    surface: "1 200 m² habitables • 15 hectares",
+                    price: "13 900 000 €",
+                    rawPrice: 13900000,
+                    details: "12 Chambres • Douves • Rénovation muséale",
+                    chambres: "12 chambres historiques de grand standing",
+                    cuisine: "Cuisine professionnelle et cuisine d'époque restaurée avec âtre",
+                    sdb: "Salles de bains majestueuses avec baignoires en fonte émaillée",
+                    chauffage: "Climatisation centralisée et haute performance",
+                    jardin: "Parc classé de 15 hectares avec douves et jardins à la française",
+                    commodites: "À proximité immédiate du bourg commerçant et des services",
+                    dpe: "Classe Énergétique : C • GES (CO2) : B",
+                    desc: "Demeure royale entièrement restaurée aux normes contemporaines les plus strictes.",
+                    tags: ["château", "historique", "campagne", "luxe", "surface", "m2", "cuisine", "chambre", "dpe"],
+                    mainImg: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+                    rooms: {
+                        salon: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+                        cuisine: "https://images.unsplash.com/photo-1556909114-f6e7ad753136?auto=format&fit=crop&w=1600&q=80",
+                        suite: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1600&q=80",
+                        sdb: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80",
+                        terrasse: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+                        piscine: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80"
+                    }
+                }
+            ];
+
+            const gridContainer = document.getElementById("properties-grid");
+            const modal = document.getElementById("propertyModal");
+            const closeModal = document.querySelector(".close-modal");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalSurface = document.getElementById("modalSurface");
+            const modalPrice = document.getElementById("modalPrice");
+            const modalDesc = document.getElementById("modalDesc");
+            const modalGallery = document.getElementById("modalGallery");
+
+            let currentProperty = null;
+
+            function renderGrid(properties) {
+                gridContainer.innerHTML = "";
+                properties.forEach(prop => {
+                    const isFav = favorites.some(f => f.id === prop.id);
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                        <button class="fav-btn ${isFav ? 'active' : ''}" data-id="${prop.id}" title="Favoris">❤️</button>
+                        <div class="card-img-wrapper">
+                            <img src="${prop.mainImg}" alt="${prop.title}">
+                            <div class="card-img-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="price">${prop.price}</div>
+                            <div class="title">${prop.title}</div>
+                            <div class="details"><span>${prop.details}</span></div>
+                        </div>
+                    `;
+
+                    card.querySelector(".fav-btn").addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        toggleFavorite(prop);
+                    });
+
+                    card.addEventListener("click", () => {
+                        currentProperty = prop;
+                        modalTitle.textContent = prop.title;
+                        modalSurface.textContent = prop.surface;
+                        modalPrice.textContent = prop.price;
+                        modalDesc.textContent = prop.desc;
+                        
+                        modalGallery.innerHTML = "";
+                        if(prop.rooms) {
+                            Object.values(prop.rooms).forEach(imgUrl => {
+                                const img = document.createElement("img");
+                                img.src = imgUrl;
+                                img.addEventListener("click", () => {
+                                    openVirtualTour(prop);
+                                });
+                                modalGallery.appendChild(img);
+                            });
+                        }
+                        modal.style.display = "flex";
+                    });
+                    gridContainer.appendChild(card);
+                });
+            }
+
+            renderGrid(database);
+
+            closeModal.addEventListener("click", () => modal.style.display = "none");
+            window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+
+            function toggleFavorite(prop) {
+                const index = favorites.findIndex(f => f.id === prop.id);
+                if (index > -1) { favorites.splice(index, 1); } else { favorites.push(prop); }
+                document.getElementById("favCount").textContent = favorites.length;
+                renderGrid(database);
+            }
+
+            // Favoris Modal
+            const favModal = document.getElementById("favModal");
+            document.getElementById("favsBtn").addEventListener("click", () => {
+                const container = document.getElementById("favListContainer");
+                const exportBtn = document.getElementById("exportPdfBtn");
+                container.innerHTML = "";
+                if (favorites.length === 0) {
+                    container.innerHTML = `<p style="color: #888;">Aucun favori sélectionné.</p>`;
+                    exportBtn.style.display = "none";
+                } else {
+                    favorites.forEach(fav => {
+                        container.innerHTML += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <div><strong>${fav.title}</strong><br><span style="color: var(--gold); font-size: 0.85rem;">${fav.price}</span></div>
+                        </div>`;
+                    });
+                    exportBtn.style.display = "block";
+                }
+                favModal.style.display = "flex";
+            });
+            document.getElementById("closeFav").addEventListener("click", () => favModal.style.display = "none");
+            document.getElementById("exportPdfBtn").addEventListener("click", () => {
+                alert("📥 Génération de votre brochure PDF personnalisée en cours...");
+                favModal.style.display = "none";
+            });
+
+            // Visite Virtuelle 3D Interactive
+            const tourModal = document.getElementById("tourModal");
+            const tourScreen = document.getElementById("tourScreen");
+            const tourRoomName = document.getElementById("tourRoomName");
+            const tourControls = document.getElementById("tourControls");
+
+            function openVirtualTour(prop) {
+                if(!prop || !prop.rooms) return;
+                const roomKeys = Object.keys(prop.rooms);
+                const roomNames = {
+                    salon: "Salon & Séjour",
+                    cuisine: "Cuisine Sur-Mesure",
+                    suite: "Suite Parentale",
+                    sdb: "Salle de Bains Spa",
+                    terrasse: "Terrasse & Vues",
+                    piscine: "Espace Piscine / Extérieur"
+                };
+
+                let activeKey = roomKeys[0];
+                tourScreen.src = prop.rooms[activeKey];
+                tourRoomName.textContent = roomNames[activeKey] || activeKey;
+
+                tourControls.innerHTML = "";
+                roomKeys.forEach(key => {
+                    const btn = document.createElement("button");
+                    btn.className = `tour-btn ${key === activeKey ? 'active' : ''}`;
+                    btn.textContent = roomNames[key] || key;
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".tour-btn").forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        tourScreen.style.opacity = "0";
+                        setTimeout(() => {
+                            tourScreen.src = prop.rooms[key];
+                            tourRoomName.textContent = roomNames[key] || key;
+                            tourScreen.style.opacity = "1";
+                        }, 200);
+                    });
+                    tourControls.appendChild(btn);
+                });
+
+                tourModal.style.display = "flex";
+            }
+
+            document.getElementById("openTourBtn").addEventListener("click", () => {
+                if(currentProperty) openVirtualTour(currentProperty);
+            });
+            document.getElementById("closeTour").addEventListener("click", () => {
+                tourModal.style.display = "none";
+            });
+
+            // Simulateur Financier
+            const financeModal = document.getElementById("financeModal");
+            document.getElementById("openFinanceBtn").addEventListener("click", () => {
+                if(!currentProperty) return;
+                document.getElementById("finPrice").value = currentProperty.price;
+                calculerMensualite();
+                financeModal.style.display = "flex";
+            });
+            document.getElementById("closeFinance").addEventListener("click", () => financeModal.style.display = "none");
+
+            function calculerMensualite() {
+                if(!currentProperty) return;
+                const prix = currentProperty.rawPrice || 10000000;
+                const apport = parseFloat(document.getElementById("finContribution").value) || 0;
+                const annees = parseInt(document.getElementById("finYears").value) || 20;
+                const tauxAn = parseFloat(document.getElementById("finRate").value) || 3.5;
+
+                const capital = Math.max(0, prix - apport);
+                const tauxMois = (tauxAn / 100) / 12;
+                const nbMois = annees * 12;
+
+                let mensualite = tauxMois > 0 ? (capital * tauxMois) / (1 - Math.pow(1 + tauxMois, -nbMois)) : capital / nbMois;
+                document.getElementById("finResult").textContent = Math.round(mensualite).toLocaleString('fr-FR') + " € / mois";
+            }
+            document.getElementById("finContribution").addEventListener("input", calculerMensualite);
+            document.getElementById("finYears").addEventListener("change", calculerMensualite);
+            document.getElementById("finRate").addEventListener("input", calculerMensualite);
+
+            // RDV
+            const rdvModal = document.getElementById("rdvModal");
+            document.getElementById("openRdvBtn").addEventListener("click", () => rdvModal.style.display = "flex");
+            document.getElementById("closeRdv").addEventListener("click", () => rdvModal.style.display = "none");
+            document.getElementById("rdvForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                alert("✨ Demande de visite transmise avec succès ! Un conseiller vous contactera.");
+                rdvModal.style.display = "none";
+                e.target.reset();
+            });
+
+            // Admin
+            const adminModal = document.getElementById("adminModal");
+            document.getElementById("adminBtn").addEventListener("click", () => adminModal.style.display = "flex");
+            document.getElementById("closeAdmin").addEventListener("click", () => adminModal.style.display = "none");
+            document.getElementById("addPropertyForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const imgUrl = document.getElementById("newImg").value;
+                const newProp = {
+                    id: database.length + 1,
+                    title: document.getElementById("newTitle").value,
+                    price: document.getElementById("newPrice").value,
+                    rawPrice: 5500000,
+                    surface: document.getElementById("newSurface").value,
+                    mainImg: imgUrl,
+                    desc: document.getElementById("newDesc").value,
+                    details: "Nouvelle exclusivité",
+                    chambres: "4 suites",
+                    sdb: "Salles de bains design",
+                    chauffage: "Chauffage haute performance",
+                    jardin: "Jardin paysager",
+                    commodites: "Proche commodités",
+                    dpe: "Classe Énergétique : A",
+                    rooms: { salon: imgUrl, cuisine: imgUrl, suite: imgUrl, sdb: imgUrl, terrasse: imgUrl, piscine: imgUrl }
+                };
+                database.unshift(newProp);
+                renderGrid(database);
+                adminModal.style.display = "none";
+                e.target.reset();
+                alert("✨ Bien ajouté avec succès !");
+            });
+
+            // Chatbot
+            const chatMessages = document.getElementById("chatMessages");
+            const chatInput = document.getElementById("chatInput");
+            const chatSend = document.getElementById("chatSend");
+
+            function envoyerMessageChat() {
+                const text = chatInput.value.trim();
+                if (text === "" || !currentProperty) return;
+
+                const userMsg = document.createElement("div");
+                userMsg.className = "chat-message user";
+                userMsg.textContent = text;
+                chatMessages.appendChild(userMsg);
+                chatInput.value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                setTimeout(() => {
+                    const botMsg = document.createElement("div");
+                    botMsg.className = "chat-message bot";
+                    const query = text.toLowerCase();
+                    let reply = `[Expert AURA] Prestations de très haut standing pour le ${currentProperty.title}.`;
+
+                    if (query.includes("cuisine")) { reply = currentProperty.cuisine; }
+                    else if (query.includes("bain") || query.includes("eau") || query.includes("douche")) { reply = currentProperty.sdb; }
+                    else if (query.includes("chauffage") || query.includes("dpe") || query.includes("clim")) { reply = `${currentProperty.chauffage} — ${currentProperty.dpe}`; }
+                    else if (query.includes("jardin") || query.includes("terrain")) { reply = currentProperty.jardin; }
+                    else if (query.includes("commodite") || query.includes("commerce")) { reply = currentProperty.commodites; }
+
+                    botMsg.textContent = reply;
+                    chatMessages.appendChild(botMsg);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 600);
+            }
+
+            chatSend.addEventListener("click", envoyerMessageChat);
+            chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); envoyerMessageChat(); } });
+
+            // Recherche
+            const globalSearchInput = document.getElementById("globalSearchInput");
+            const globalSearchBtn = document.getElementById("globalSearchBtn");
+
+            function lancerRecherche() {
+                const query = globalSearchInput.value.trim().toLowerCase();
+                if (query === "") { renderGrid(database); return; }
+                const results = database.filter(prop => 
+                    prop.title.toLowerCase().includes(query) || prop.desc.toLowerCase().includes(query) || prop.tags.some(t => query.includes(t))
+                );
+                renderGrid(results.length > 0 ? results : database);
+            }
+
+            globalSearchBtn.addEventListener("click", lancerRecherche);
+            globalSearchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); lancerRecherche(); } });
+
+            // Sélecteur Multilingue
+            const langSelect = document.getElementById("langSelect");
+            langSelect.addEventListener("change", (e) => {
+                currentLang = e.target.value;
+                const l = langData[currentLang];
+
+                document.getElementById("favTextLabel").textContent = l.favText;
+                document.getElementById("adminBtn").textContent = l.adminBtn;
+                document.getElementById("heroTitle").textContent = l.heroTitle;
+                document.getElementById("heroSubtitle").textContent = l.heroSubtitle;
+                document.getElementById("globalSearchInput").placeholder = l.searchPlaceholder;
+                document.getElementById("globalSearchBtn").textContent = l.searchBtn;
+                document.getElementById("sectionTitle").textContent = l.sectionTitle;
+                document.getElementById("galleryHeader").textContent = l.galleryHeader;
+                document.getElementById("openTourBtn").textContent = l.tourBtn;
+                document.getElementById("openFinanceBtn").textContent = l.financeBtn;
+                document.getElementById("openRdvBtn").textContent = l.rdvBtn;
+                document.getElementById("chatHeaderTitle").textContent = l.chatTitle;
+                document.getElementById("chatWelcome").textContent = l.chatWelcome;
+                document.getElementById("chatInput").placeholder = l.chatPlaceholder;
+                document.getElementById("chatSend").textContent = l.chatSend;
+                
+                document.getElementById("finModalTitle").textContent = l.finTitle;
+                document.getElementById("finPriceLabel").textContent = l.finPriceLbl;
+                document.getElementById("finContribLabel").textContent = l.finContribLbl;
+                document.getElementById("finYearsLabel").textContent = l.finYearsLbl;
+                document.getElementById("finRateLabel").textContent = l.finRateLbl;
+                document.getElementById("finResultLabel").textContent = l.finResLbl;
+
+                document.getElementById("rdvModalTitle").textContent = l.rdvTitle;
+                document.getElementById("rdvNameLabel").textContent = l.rdvNameLbl;
+                document.getElementById("rdvContactLabel").textContent = l.rdvContactLbl;
+                document.getElementById("rdvDateLabel").textContent = l.rdvDateLbl;
+                document.getElementById("rdvTypeLabel").textContent = l.rdvTypeLbl;
+                document.getElementById("rdvSubmitBtn").textContent = l.rdvBtnText;
+                document.getElementById("favModalTitle").textContent = l.favTitle;
+            });
+        });
+    </script>
+</body>
+</html>
