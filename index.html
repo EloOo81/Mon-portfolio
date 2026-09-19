@@ -41,7 +41,7 @@
     "addressLocality": "Mazamet",
     "addressCountry": "FR"
   },
-  "priceRange": "250€–750€"
+  "priceRange": "250€–1200€"
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,7 +290,7 @@
   .pricing-card li { padding: 9px 0; font-size: 14.5px; display: flex; gap: 10px; align-items: flex-start; }
   .pricing-card li::before { content: "✓"; color: var(--mint); font-weight: 700; }
   .pricing-card .btn-primary { width: 100%; }
-  .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; }
+  .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; } .price-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 34px auto 0; } .price-mini-card { background: var(--navy-light); border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px; text-align: center; } .price-mini-card .tier { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--coral); font-weight: 700; margin-bottom: 8px; } .price-mini-card .amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); margin-bottom: 8px; } .price-mini-card .amount span { font-size: 13px; font-weight: 500; color: var(--grey); } .price-mini-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px; } .price-mini-card a { font-size: 13.5px; font-weight: 700; color: var(--coral); } .price-mini-card a:hover { color: var(--coral-dark); } @media (max-width: 720px) { .price-mini-grid { grid-template-columns: 1fr; } }
   .payment-note { font-size: 12px; color: #9aa5ad; text-align: center; margin: 4px 0 0; }
   .security-badge {
     margin-top: 16px;
@@ -578,7 +578,7 @@
     <div class="hero-pricing">
       <a href="styles.html#classique" class="hero-price-chip"><span class="tier">Classique</span><span class="amount">250 €</span></a>
       <a href="styles.html#premium" class="hero-price-chip"><span class="tier">Premium</span><span class="amount">450 €</span></a>
-      <a href="styles.html#signature" class="hero-price-chip"><span class="tier">Signature</span><span class="amount">750 €</span></a>
+      <a href="styles.html#signature" class="hero-price-chip"><span class="tier">Signature</span><span class="amount">750 €</span></a><a href="styles.html#prestige" class="hero-price-chip"><span class="tier">Prestige</span><span class="amount">1200 €</span></a>
     </div>
   </div>
 </section>
@@ -594,7 +594,7 @@
       <div class="step-card">
         <div class="step-num">1</div>
         <h3>Choisissez un style</h3>
-        <p>Classique (250 €), Premium avec agent IA (450 €) ou Signature multi-pages (750 €) — ou un projet sur mesure.</p>
+        <p>Classique (250 €), Premium avec agent IA (450 €), Signature multi-pages (750 €) ou Prestige immobilier haut de gamme (1200 €) — ou un projet sur mesure.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -672,8 +672,8 @@
       <a href="styles.html#classique" class="btn-primary">Commander mon site</a>
       <p class="security-badge">🔒 Paiement 100% sécurisé via Stripe, après un court formulaire — aucune donnée bancaire ne transite par ce site</p>
     </div>
-    <p class="portfolio-note">Envie d'un site plus poussé, avec agent IA intégré ? <a href="styles.html#premium" style="color:var(--coral); font-weight:700;">Découvrez nos styles premium</a> — à partir de 450 €. <span class="payment-note" style="display:inline;">Paiement en 3 fois possible (Klarna, via Stripe).</span></p>
-    <p class="portfolio-note">Une activité qui a besoin de plusieurs pages (réalisations, équipe, formations...) ? <a href="styles.html#signature" style="color:var(--coral); font-weight:700;">Découvrez le style Signature</a>, multi-pages — à partir de 750 €.</p>
+    <div class="price-mini-grid"><div class="price-mini-card"><span class="tier">Premium</span><div class="amount">450 € <span>à partir de</span></div><p>Avec un assistant IA intégré qui accueille vos visiteurs.</p><a href="styles.html#premium">Découvrir →</a></div><div class="price-mini-card"><span class="tier">Signature</span><div class="amount">750 € <span>à partir de</span></div><p>Site multi-pages pour une activité qui a besoin de plusieurs sections détaillées.</p><a href="styles.html#signature">Découvrir →</a></div></p>
+    <div class="price-mini-card"><span class="tier">Prestige</span><div class="amount">1200 € <span>à partir de</span></div><p>Site haut de gamme sur mesure — immobilier de luxe, hôtellerie, services d'exception.</p><a href="styles.html#prestige">Découvrir →</a></div></div>
   </div>
 </section>
 
@@ -758,9 +758,9 @@
       <a class="pp-card luxe-featured" href="conciergerie-immobilier-luxe.html" target="_blank" rel="noopener">
         <div class="pp-thumb">AURA PRESTIGE</div>
         <div class="pp-body">
-          <span class="pp-tag">Nouvelle démo · Immobilier de luxe</span>
+          <span class="pp-tag">Prestige · Immobilier de luxe · à partir de 1200 €</span>
           <h3>Conciergerie immobilière augmentée par l'IA</h3>
-          <p>Découvrez un catalogue international avec recherche intelligente, fiches détaillées, visite virtuelle 360°, simulateur financier, assistant privé, favoris, prise de rendez-vous, huit langues et espace administrateur.</p>
+          <p>Découvrez un catalogue international avec recherche intelligente, fiches détaillées, simulateur financier, assistant privé, favoris, prise de rendez-vous et espace administrateur.</p>
         </div>
       </a>
       <a class="pp-card" href="agent-immobilier.html" target="_blank" rel="noopener">
@@ -819,7 +819,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>Dois-je payer immédiatement pour commander ?</summary>
-        <p>Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : après un court formulaire pour préciser votre projet, vous payez en ligne en toute sécurité via Stripe et je démarre votre site. Pour un projet sur mesure, non : vous recevez d'abord un devis par email sous 48h, sans paiement à ce stade.</p>
+        <p>Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : après un court formulaire pour préciser votre projet, vous payez en ligne en toute sécurité via Stripe et je démarre votre site. Pour un style Prestige ou un projet sur mesure, non : vous recevez d'abord un devis par email sous 48h, sans paiement à ce stade.</p>
       </details>
       <details class="faq-item">
         <summary>Je n'ai pas de nom de domaine ni d'hébergement, que faire ?</summary>
@@ -906,7 +906,7 @@
   chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
 
   const chatResponses = {
-    tarifs: "Un site classique coûte 250€, un style premium avec agent IA intégré coûte 450€, et un site Signature multi-pages coûte 750€ — paiement sécurisé en ligne via Stripe. Le détail est dans la section \"Tarifs\" plus haut.",
+    tarifs: "Un site classique coûte 250€, un style premium avec agent IA intégré coûte 450€, un site Signature multi-pages coûte 750€, et un site Prestige haut de gamme (immobilier de luxe, hôtellerie...) démarre à 1200€ — paiement sécurisé en ligne via Stripe. Le détail est dans la section \"Tarifs\" plus haut.",
     delais: "Comptez environ 3 jours ouvrés après votre paiement pour un style classique, un peu plus pour un style premium personnalisé.",
     commander: "Direction la page \"Portfolio\" pour choisir votre style, puis \"Commander\" — un court formulaire, puis un paiement sécurisé en ligne.",
     default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous, ou écrivez-moi directement à elomonchet@gmail.com."
