@@ -291,7 +291,7 @@
   .pricing-card li::before { content: "✓"; color: var(--mint); font-weight: 700; }
   .pricing-card .btn-primary { width: 100%; }
   .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; } .price-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 34px auto 0; } .price-mini-card { background: var(--navy-light); border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px; text-align: center; } .price-mini-card .tier { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--coral); font-weight: 700; margin-bottom: 8px; } .price-mini-card .amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); margin-bottom: 8px; } .price-mini-card .amount span { font-size: 13px; font-weight: 500; color: var(--grey); } .price-mini-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px; } .price-mini-card a { font-size: 13.5px; font-weight: 700; color: var(--coral); } .price-mini-card a:hover { color: var(--coral-dark); } @media (max-width: 720px) { .price-mini-grid { grid-template-columns: 1fr; } }
-  .payment-note { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--coral); background: rgba(201,162,39,0.14); border: 1px solid rgba(201,162,39,0.45); border-radius: 20px; padding: 7px 16px; margin: 12px 0 0; }
+  .payment-note { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--coral); background: rgba(201,162,39,0.14); border: 1px solid rgba(201,162,39,0.45); border-radius: 20px; padding: 7px 16px; margin: 12px 0 0; } .klarna-badge { background: #FFA8CD; color: #0a0a0a; font-weight: 800; font-size: 11px; text-transform: lowercase; letter-spacing: 0.02em; padding: 2px 8px 3px; border-radius: 4px; font-family: 'Manrope', sans-serif; }
   .security-badge {
     margin-top: 16px;
     font-size: 12px;
@@ -660,7 +660,7 @@
     <div class="pricing-card">
       <div>Site vitrine clé en main</div>
       <div class="price">250 € <span>à partir de</span></div>
-      <p class="payment-note">💳 Paiement en 3 fois avec Klarna</p>
+      <p class="payment-note">💳 <span class="klarna-badge">Klarna</span> Paiement en 3 fois</p>
       <ul>
         <li>Design responsive (ordinateur, tablette, mobile)</li>
         <li>Jusqu'à 5 sections (accueil, services, à propos, galerie, contact)</li>
