@@ -41,9 +41,9 @@
     "addressLocality": "Mazamet",
     "addressCountry": "FR"
   },
-  "priceRange": "250€–750€"
+  "priceRange": "250€–1200€"
 }
-</script>
+</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Dois-je payer immédiatement pour commander ?","acceptedAnswer":{"@type":"Answer","text":"Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : après un court formulaire pour préciser votre projet, vous payez en ligne en toute sécurité via Stripe et je démarre votre site. Pour un style Prestige ou un projet sur mesure, non : vous recevez d'abord un devis par email sous 48h, sans paiement à ce stade."}},{"@type":"Question","name":"Je n'ai pas de nom de domaine ni d'hébergement, que faire ?","acceptedAnswer":{"@type":"Answer","text":"Ce sont des services séparés que vous devez souscrire de votre côté, par exemple chez OVH, Netlify ou un autre hébergeur, je ne les fournis pas moi-même. Indiquez-le dans le formulaire de commande, je peux vous orienter."}},{"@type":"Question","name":"Combien de temps pour recevoir mon site ?","acceptedAnswer":{"@type":"Answer","text":"Comptez environ 3 jours ouvrés pour un style classique après votre paiement. Les styles premium avec agent IA demandent un peu plus de temps selon la personnalisation souhaitée."}},{"@type":"Question","name":"Combien de modifications sont incluses ?","acceptedAnswer":{"@type":"Answer","text":"Un tour de modifications est inclus après la livraison, pour ajuster textes, couleurs ou petits détails."}},{"@type":"Question","name":"Et si je veux modifier mon site plus tard ?","acceptedAnswer":{"@type":"Answer","text":"Le tour de modifications inclus couvre la mise au point juste après la livraison. Passé ce délai, chaque nouvelle demande est facturée 50 € par intervention, un tarif simple et transparent annoncé à l'avance."}},{"@type":"Question","name":"Le chatbot des styles premium est-il une vraie intelligence artificielle ?","acceptedAnswer":{"@type":"Answer","text":"Non, c'est une démonstration : les réponses sont pré-écrites et s'affichent selon des mots-clés, sans connexion à un service externe. Aucune clé API, aucun coût, aucun risque de facture."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -290,8 +290,8 @@
   .pricing-card li { padding: 9px 0; font-size: 14.5px; display: flex; gap: 10px; align-items: flex-start; }
   .pricing-card li::before { content: "✓"; color: var(--mint); font-weight: 700; }
   .pricing-card .btn-primary { width: 100%; }
-  .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; }
-  .payment-note { font-size: 12px; color: #9aa5ad; text-align: center; margin: 4px 0 0; }
+  .pricing-fineprint { font-size: 12px; color: #9aa5ad; text-align: center; margin-bottom: 16px; } .price-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; margin: 34px auto 0; } .price-mini-card { background: var(--navy-light); border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px; text-align: center; } .price-mini-card .tier { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--coral); font-weight: 700; margin-bottom: 8px; } .price-mini-card .amount { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); margin-bottom: 8px; } .price-mini-card .amount span { font-size: 13px; font-weight: 500; color: var(--grey); } .price-mini-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px; } .price-mini-card a { font-size: 13.5px; font-weight: 700; color: var(--coral); } .price-mini-card a:hover { color: var(--coral-dark); } @media (max-width: 720px) { .price-mini-grid { grid-template-columns: 1fr; } }
+  .payment-note { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--coral); background: rgba(201,162,39,0.14); border: 1px solid rgba(201,162,39,0.45); border-radius: 20px; padding: 7px 16px; margin: 12px 0 0; } .klarna-badge { background: #FFA8CD; color: #0a0a0a; font-weight: 800; font-size: 11px; text-transform: lowercase; letter-spacing: 0.02em; padding: 2px 8px 3px; border-radius: 4px; font-family: 'Manrope', sans-serif; }
   .security-badge {
     margin-top: 16px;
     font-size: 12px;
@@ -417,7 +417,7 @@
     margin-bottom: 8px;
   }
   .pp-body h3 { font-size: 15px; margin-bottom: 4px; }
-  .pp-body p { font-size: 12.5px; color: #c3ccd4; }
+  .pp-body p { font-size: 12.5px; color: #c3ccd4; } .agents-ia-grid { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin: 0 auto; } .pp-thumb-video { display: block; width: 100%; height: 160px; object-fit: cover; background: #0a0e16; } @media (max-width: 720px) { .agents-ia-grid { grid-template-columns: 1fr; } }
 
   /* COMMENT CA MARCHE */
   .steps { background: var(--navy); }
@@ -559,9 +559,9 @@
     <nav id="nav-menu">
       <ul>
         <li><a href="#apropos">À propos</a></li>
-        <li><a href="#services">Tarifs</a></li>
+        <li><a href="#services">Tarifs</a></li><li><a href="#agents-ia">Agents IA</a></li>
         <li><a href="styles.html">Portfolio</a></li>
-        <li><a href="styles.html" class="nav-cta">Commander mon site</a></li>
+        
       </ul>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -572,13 +572,13 @@
   <div class="hero-inner">
     <span class="hero-tag">● Disponible pour de nouveaux projets</span>
     <h1>Votre site vitrine, clé en main et <span>livré en 3 jours</span></h1>
-    <p>Je conçois des sites simples, rapides et efficaces pour les artisans, commerçants et indépendants — sans mauvaise surprise, sans jargon.</p>
-    <a href="styles.html" class="btn-primary">Commander mon site</a>
+    <p>Je conçois des sites simples, rapides et efficaces pour les artisans, commerçants et indépendants.</p>
+    
     <a href="#portfolio" class="btn-secondary">Voir mes réalisations</a>
     <div class="hero-pricing">
       <a href="styles.html#classique" class="hero-price-chip"><span class="tier">Classique</span><span class="amount">250 €</span></a>
       <a href="styles.html#premium" class="hero-price-chip"><span class="tier">Premium</span><span class="amount">450 €</span></a>
-      <a href="styles.html#signature" class="hero-price-chip"><span class="tier">Signature</span><span class="amount">750 €</span></a>
+      <a href="styles.html#signature" class="hero-price-chip"><span class="tier">Signature</span><span class="amount">750 €</span></a><a href="styles.html#prestige" class="hero-price-chip"><span class="tier">Prestige</span><span class="amount">1200 €</span></a>
     </div>
   </div>
 </section>
@@ -588,13 +588,13 @@
     <div class="section-head">
       <span class="eyebrow">Le processus</span>
       <h2>Comment ça marche</h2>
-      <p>Quatre étapes simples, sans surprise.</p>
+      <p>Quatre étapes simples.</p>
     </div>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">1</div>
         <h3>Choisissez un style</h3>
-        <p>Classique (250 €), Premium avec agent IA (450 €) ou Signature multi-pages (750 €) — ou un projet sur mesure.</p>
+        <p>Classique (250 €), Premium avec agent IA (450 €), Signature multi-pages (750 €) ou Prestige immobilier haut de gamme (1200 €) — ou un projet sur mesure.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -627,7 +627,7 @@
         <div class="about-photo">
           <div class="monogram" aria-hidden="true">SC</div>
           <div>
-            <div class="photo-name">Elodie</div>
+            <div class="photo-name">Studio Code</div>
             <div class="photo-role">Créatrice de sites internet</div>
           </div>
         </div>
@@ -660,7 +660,7 @@
     <div class="pricing-card">
       <div>Site vitrine clé en main</div>
       <div class="price">250 € <span>à partir de</span></div>
-      <p class="payment-note">Paiement en 3 fois possible (Klarna, via Stripe)</p>
+      <p class="payment-note">💳 <span class="klarna-badge">Klarna</span> Paiement en 3 fois</p>
       <ul>
         <li>Design responsive (ordinateur, tablette, mobile)</li>
         <li>Jusqu'à 5 sections (accueil, services, à propos, galerie, contact)</li>
@@ -669,11 +669,64 @@
         <li>Un tour de modifications inclus après livraison</li>
       </ul>
       <p class="pricing-fineprint">Au-delà du tour inclus, toute retouche ultérieure (texte, photo, information) est facturée 50 € par intervention.</p>
-      <a href="styles.html#classique" class="btn-primary">Commander mon site</a>
+      
       <p class="security-badge">🔒 Paiement 100% sécurisé via Stripe, après un court formulaire — aucune donnée bancaire ne transite par ce site</p>
     </div>
-    <p class="portfolio-note">Envie d'un site plus poussé, avec agent IA intégré ? <a href="styles.html#premium" style="color:var(--coral); font-weight:700;">Découvrez nos styles premium</a> — à partir de 450 €. <span class="payment-note" style="display:inline;">Paiement en 3 fois possible (Klarna, via Stripe).</span></p>
-    <p class="portfolio-note">Une activité qui a besoin de plusieurs pages (réalisations, équipe, formations...) ? <a href="styles.html#signature" style="color:var(--coral); font-weight:700;">Découvrez le style Signature</a>, multi-pages — à partir de 750 €.</p>
+    <div class="price-mini-grid"><div class="price-mini-card"><span class="tier">Premium</span><div class="amount">450 € <span>à partir de</span></div><p>Avec un assistant IA intégré qui accueille vos visiteurs.</p><a href="styles.html#premium">Découvrir →</a></div><div class="price-mini-card"><span class="tier">Signature</span><div class="amount">750 € <span>à partir de</span></div><p>Site multi-pages pour une activité qui a besoin de plusieurs sections détaillées.</p><a href="styles.html#signature">Découvrir →</a></div></p>
+    <div class="price-mini-card"><span class="tier">Prestige</span><div class="amount">1200 € <span>à partir de</span></div><p>Site haut de gamme sur mesure — immobilier de luxe, hôtellerie, services d'exception.</p><a href="styles.html#prestige">Découvrir →</a></div></div>
+  </div>
+</section>
+
+<section class="premium-showcase" id="sites-haut-de-gamme">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Sites haut de gamme</span>
+      <h2>Des expériences digitales conçues pour marquer les esprits</h2>
+      <p>Design premium, parcours immersifs et fonctions intelligentes pour l'immobilier, l'hôtellerie et les services d'exception.</p>
+    </div>
+    <div class="premium-grid">
+      <a class="pp-card luxe-featured" href="conciergerie-immobilier-luxe.html" target="_blank" rel="noopener">
+        <div class="pp-thumb">AURA PRESTIGE</div>
+        <div class="pp-body">
+          <span class="pp-tag">Prestige · Immobilier de luxe · à partir de 1200 €</span>
+          <h3>Conciergerie immobilière augmentée par l'IA</h3>
+          <p>Découvrez un catalogue international avec recherche intelligente, fiches détaillées, simulateur financier, assistant privé, favoris, prise de rendez-vous et espace administrateur.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="agent-immobilier.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#2c4258,#0d1620);">ImmoSmart AI</div>
+        <div class="pp-body">
+          <span class="pp-tag">Agence immobilière</span>
+          <h3>Agent Immobilier IA</h3>
+          <p>Assistant qui qualifie chaque recherche de bien.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="hotel-conciergerie.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#4fb0a5,#1c6b62);">Villa Sérénité</div>
+        <div class="pp-body">
+          <span class="pp-tag">Hôtel / location</span>
+          <h3>Concierge IA</h3>
+          <p>Assistant disponible 24/7 pour les réservations.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="cabinet-juridique.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#c9a227,#5a4610);">Cabinet Lefèvre</div>
+        <div class="pp-body">
+          <span class="pp-tag">Avocat / notaire</span>
+          <h3>Assistant Juridique IA</h3>
+          <p>Pré-qualifie chaque demande avant rendez-vous.</p>
+        </div>
+      </a>
+      <a class="pp-card" href="spa-premium.html" target="_blank" rel="noopener">
+        <div class="pp-thumb" style="background: linear-gradient(135deg,#9b7bd8,#4a3a70);">Spa Émeraude</div>
+        <div class="pp-body">
+          <span class="pp-tag">Institut / spa</span>
+          <h3>Assistante Beauté IA</h3>
+          <p>Recommande un soin selon les besoins exprimés.</p>
+        </div>
+      </a>
+    </div>
+    <p class="section-cta"><a href="styles.html#premium" class="btn-primary">Découvrir les styles premium</a></p>
   </div>
 </section>
 
@@ -726,7 +779,7 @@
         </div>
       </a>
       <a class="p-card" href="agent-ia-email.html" target="_blank" rel="noopener">
-        <div class="p-thumb pt6"><img src="assets/agent-email-apercu.png" alt="" width="1200" height="750" loading="lazy" decoding="async"></div>
+        <div class="p-thumb pt6"><img src="assets/agent-email-apercu.png" alt="Aperçu de l'agent IA e-mail Studio Code" width="1200" height="750" loading="lazy" decoding="async"></div>
         <div class="p-body">
           <span class="p-tag">Essayer la démo ↗</span>
           <h3>Agent IA e-mail</h3>
@@ -734,11 +787,11 @@
         </div>
       </a>
       <a class="p-card" href="agent-factures-devis.html" target="_blank" rel="noopener">
-        <div class="p-thumb pt7">Devis · Factures · Relances</div>
+                <div class="p-thumb pt7">Devis · Relances clients</div>
         <div class="p-body">
           <span class="p-tag">Essayer la démo ↗</span>
-          <h3>Agent IA devis & factures</h3>
-          <p>Une démo métier qui prépare devis, factures d'acompte et relances clients pour montrer le temps gagné au quotidien.</p>
+                    <h3>Agent IA devis</h3>
+                    <p>Une démo métier qui prépare des devis et des relances clients pour montrer le temps gagné au quotidien.</p>
         </div>
       </a>
     </div>
@@ -747,69 +800,10 @@
   </div>
 </section>
 
-<section class="premium-showcase" id="sites-haut-de-gamme">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Sites haut de gamme</span>
-      <h2>Des expériences digitales conçues pour marquer les esprits</h2>
-      <p>Design premium, parcours immersifs et fonctions intelligentes pour l'immobilier, l'hôtellerie et les services d'exception.</p>
-    </div>
-    <div class="premium-grid">
-      <a class="pp-card luxe-featured" href="conciergerie-immobilier-luxe.html" target="_blank" rel="noopener">
-        <div class="pp-thumb">AURA PRESTIGE</div>
-        <div class="pp-body">
-          <span class="pp-tag">Nouvelle démo · Immobilier de luxe</span>
-          <h3>Conciergerie immobilière augmentée par l'IA</h3>
-          <p>Découvrez un catalogue international avec recherche intelligente, fiches détaillées, visite virtuelle 360°, simulateur financier, assistant privé, favoris, prise de rendez-vous, huit langues et espace administrateur.</p>
-        </div>
-      </a>
-      <a class="pp-card" href="agent-immobilier.html" target="_blank" rel="noopener">
-        <div class="pp-thumb" style="background: linear-gradient(135deg,#2c4258,#0d1620);">ImmoSmart AI</div>
-        <div class="pp-body">
-          <span class="pp-tag">Agence immobilière</span>
-          <h3>Agent Immobilier IA</h3>
-          <p>Assistant qui qualifie chaque recherche de bien.</p>
-        </div>
-      </a>
-      <a class="pp-card" href="hotel-conciergerie.html" target="_blank" rel="noopener">
-        <div class="pp-thumb" style="background: linear-gradient(135deg,#4fb0a5,#1c6b62);">Villa Sérénité</div>
-        <div class="pp-body">
-          <span class="pp-tag">Hôtel / location</span>
-          <h3>Concierge IA</h3>
-          <p>Assistant disponible 24/7 pour les réservations.</p>
-        </div>
-      </a>
-      <a class="pp-card" href="cabinet-juridique.html" target="_blank" rel="noopener">
-        <div class="pp-thumb" style="background: linear-gradient(135deg,#c9a227,#5a4610);">Cabinet Lefèvre</div>
-        <div class="pp-body">
-          <span class="pp-tag">Avocat / notaire</span>
-          <h3>Assistant Juridique IA</h3>
-          <p>Pré-qualifie chaque demande avant rendez-vous.</p>
-        </div>
-      </a>
-      <a class="pp-card" href="spa-premium.html" target="_blank" rel="noopener">
-        <div class="pp-thumb" style="background: linear-gradient(135deg,#9b7bd8,#4a3a70);">Spa Émeraude</div>
-        <div class="pp-body">
-          <span class="pp-tag">Institut / spa</span>
-          <h3>Assistante Beauté IA</h3>
-          <p>Recommande un soin selon les besoins exprimés.</p>
-        </div>
-      </a>
-    </div>
-    <p class="section-cta"><a href="styles.html#premium" class="btn-primary">Découvrir les styles premium</a></p>
-  </div>
-</section>
 
-<section id="temoignages">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Témoignages</span>
-      <h2>Ce qu'en disent mes clients</h2>
-    </div>
-    <p class="testi-note">Activité récemment lancée — premiers avis clients à venir.</p>
-    <p class="section-cta"><a href="styles.html" class="btn-primary">Commander mon site</a></p>
-  </div>
-</section>
+
+<section class="premium-showcase" id="agents-ia"><div class="container"><div class="section-head"><span class="eyebrow">Agents IA</span><h2>Des assistants qui travaillent pour vous</h2><p>Deux démos à tester en direct : tri d'e-mails automatique et génération de devis.</p></div><div class="premium-grid agents-ia-grid"><a class="pp-card" href="agent-ia-email.html" target="_blank" rel="noopener"><video class="pp-thumb-video" poster="assets/agent-email-apercu.png" controls muted playsinline preload="none"><source src="assets/agent-email-demo-malt.mp4" type="video/mp4"></video><div class="pp-body"><span class="pp-tag">Agent IA · à partir de 300 €</span><h3>Agent IA e-mail</h3><p>Trie vos e-mails, filtre les spams et prépare des brouillons de réponse à valider. Regardez la démo ou testez-la vous-même.</p></div></a><a class="pp-card" href="agent-factures-devis.html" target="_blank" rel="noopener"><div class="pp-thumb" style="background: linear-gradient(135deg,#355c7d,#0f1724);">Devis · Relances clients</div><div class="pp-body"><span class="pp-tag">Agent IA · à partir de 300 €</span><h3>Agent IA devis</h3><p>Prépare des devis et des relances clients pour vous faire gagner du temps chaque semaine.</p></div></a></div><p class="section-cta"><a href="agent-ia-email.html" class="btn-primary" target="_blank" rel="noopener">Essayer la démo</a></p></div></section>
+  
 <section id="faq">
   <div class="container">
     <div class="section-head">
@@ -819,7 +813,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>Dois-je payer immédiatement pour commander ?</summary>
-        <p>Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : après un court formulaire pour préciser votre projet, vous payez en ligne en toute sécurité via Stripe et je démarre votre site. Pour un projet sur mesure, non : vous recevez d'abord un devis par email sous 48h, sans paiement à ce stade.</p>
+        <p>Pour un style Classique (250 €), Premium (450 €) ou Signature (750 €), oui : après un court formulaire pour préciser votre projet, vous payez en ligne en toute sécurité via Stripe et je démarre votre site. Pour un style Prestige ou un projet sur mesure, non : vous recevez d'abord un devis par email sous 48h, sans paiement à ce stade.</p>
       </details>
       <details class="faq-item">
         <summary>Je n'ai pas de nom de domaine ni d'hébergement, que faire ?</summary>
@@ -853,7 +847,7 @@
       <p>Écrivez-moi un mail avec une courte description de votre activité et de vos besoins — je reviens vers vous sous 48h.</p>
     </div>
     <div class="email-box"><a href="mailto:elomonchet@gmail.com">elomonchet@gmail.com</a></div>
-    <p class="contact-note">Réponse par email uniquement — pas d'appel ni de rendez-vous en personne.</p>
+    <p class="contact-note">Réponse par e-mail sous 48h.</p>
   </div>
 </section>
 
@@ -906,7 +900,7 @@
   chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
 
   const chatResponses = {
-    tarifs: "Un site classique coûte 250€, un style premium avec agent IA intégré coûte 450€, et un site Signature multi-pages coûte 750€ — paiement sécurisé en ligne via Stripe. Le détail est dans la section \"Tarifs\" plus haut.",
+    tarifs: "Un site classique coûte 250€, un style premium avec agent IA intégré coûte 450€, un site Signature multi-pages coûte 750€, et un site Prestige haut de gamme (immobilier de luxe, hôtellerie...) démarre à 1200€ — paiement sécurisé en ligne via Stripe. Le détail est dans la section \"Tarifs\" plus haut.",
     delais: "Comptez environ 3 jours ouvrés après votre paiement pour un style classique, un peu plus pour un style premium personnalisé.",
     commander: "Direction la page \"Portfolio\" pour choisir votre style, puis \"Commander\" — un court formulaire, puis un paiement sécurisé en ligne.",
     default: "Bonne question ! Sur la version connectée à une vraie IA, je pourrais répondre à n'importe quelle formulation. En démo, essayez un des boutons ci-dessous, ou écrivez-moi directement à elomonchet@gmail.com."
