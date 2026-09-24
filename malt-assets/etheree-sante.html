@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉTHÉRÉE — Haute Médecine Préventive, Longévité & Conciergerie IA</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES & STYLES DE BASE
+           ========================================================================== */
+        :root {
+            --bg-dark: #141A17;          /* Vert bronze très sombre */
+            --bg-card: #1C241F;          /* Vert bronze profond */
+            --bg-light: #F7F5F0;         /* Sable / Crème noble */
+            --text-dark: #121513;        /* Noir d'encre */
+            --text-muted: #7A857F;       /* Gris végétal */
+            --accent-champagne: #D4C39E; /* Or champagne mat */
+            --accent-champagne-hover: #E3D5B7;
+            
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, .brand-logo {
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           HEADER & NAVIGATION
+           ========================================================================== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.2rem 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(20, 26, 23, 0.95);
+            padding: 1.2rem 8%;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 195, 158, 0.15);
+        }
+
+        .brand-logo {
+            font-size: 1.6rem;
+            color: var(--accent-champagne);
+            letter-spacing: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-champagne);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFF;
+            padding: 0 2rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20, 26, 23, 0.6) 0%, rgba(20, 26, 23, 0.85) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 850px;
+            z-index: 2;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-champagne);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.15;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #D3D8D5;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ==========================================================================
+           BOUTONS & COMPOSANTS GLOBAUX
+           ========================================================================== */
+        .btn-champagne {
+            display: inline-block;
+            padding: 1.1rem 2.5rem;
+            background-color: var(--accent-champagne);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-champagne:hover {
+            background-color: var(--accent-champagne-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--accent-champagne);
+            padding: 0.6rem 1.4rem !important;
+            color: var(--accent-champagne) !important;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-champagne);
+            color: var(--bg-dark) !important;
+        }
+
+        .section {
+            padding: 8rem 8%;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-champagne);
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ==========================================================================
+           PHILOSOPHIE
+           ========================================================================== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .text-content h2 {
+            font-size: 2.8rem;
+            color: var(--bg-dark);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+        }
+
+        .gold-line {
+            width: 50px;
+            height: 1px;
+            background-color: var(--accent-champagne);
+            margin-bottom: 2rem;
+        }
+
+        .quote {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--bg-card);
+            margin-top: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--accent-champagne);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            box-shadow: 20px 20px 0px rgba(212, 195, 158, 0.2);
+        }
+
+        /* ==========================================================================
+           PÔLES D'EXCELLENCE
+           ========================================================================== */
+        .poles {
+            background-color: var(--bg-dark);
+            color: #FFF;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+        }
+
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .luxury-card {
+            background-color: var(--bg-card);
+            padding: 3.5rem 2.5rem;
+            border: 1px solid rgba(212, 195, 158, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .luxury-card:hover {
+            border-color: var(--accent-champagne);
+            transform: translateY(-8px);
+        }
+
+        .card-num {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--accent-champagne);
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .luxury-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1.2rem;
+            color: #FFF;
+        }
+
+        .luxury-card p {
+            font-size: 0.92rem;
+            color: #A3B0A9;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           SECTION CONCIERGERIE ENRICHIE & DASHBOARD IA
+           ========================================================================== */
+        .conciergerie-suite {
+            background-color: #0F1311;
+            color: #FFF;
+        }
+
+        .conciergerie-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .conciergerie-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .conciergerie-header p {
+            color: #8C9992;
+            font-weight: 300;
+        }
+
+        /* Module 1: Dashboard des piliers Conciergerie */
+        .concierge-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .pillar-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 195, 158, 0.15);
+            padding: 2.5rem 2rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-box:hover {
+            background: rgba(212, 195, 158, 0.04);
+            border-color: var(--accent-champagne);
+        }
+
+        .pillar-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-champagne);
+            background: rgba(212, 195, 158, 0.1);
+            padding: 0.3rem 0.8rem;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .pillar-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            color: #FFF;
+        }
+
+        .pillar-box p {
+            font-size: 0.9rem;
+            color: #A3B0A9;
+            font-weight: 300;
+        }
+
+        /* Module 2: Interactive Simulator */
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 195, 158, 0.2);
+            padding: 3.5rem;
+            border-radius: 4px;
+        }
+
+        .simulator-controls h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-champagne);
+        }
+
+        .simulator-controls p {
+            font-size: 0.9rem;
+            color: #A3B0A9;
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1.1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 195, 158, 0.2);
+            color: #FFF;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-champagne);
+        }
+
+        select option {
+            background-color: var(--bg-dark);
+            color: #FFF;
+        }
+
+        .simulator-results {
+            background: rgba(20, 26, 23, 0.8);
+            border: 1px solid rgba(212, 195, 158, 0.2);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .results-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-champagne);
+            margin-bottom: 1rem;
+        }
+
+        .biomarker-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed rgba(212, 195, 158, 0.2);
+            padding-bottom: 0.6rem;
+        }
+
+        .metric-label {
+            font-size: 0.88rem;
+            color: #D3D8D5;
+        }
+
+        .metric-value {
+            font-family: var(--font-heading);
+            color: var(--accent-champagne);
+            font-size: 1.1rem;
+        }
+
+        .concierge-note {
+            font-size: 0.8rem;
+            color: #7A857F;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           WIDGET CHATBOT IA FLOTTANT
+           ========================================================================== */
+        .ai-chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-champagne);
+            color: var(--bg-dark);
+            padding: 1rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .ai-chat-toggle:hover {
+            background-color: var(--accent-champagne-hover);
+            transform: scale(1.05);
+        }
+
+        .ai-chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 400px;
+            height: 550px;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--accent-champagne);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ai-chat-header {
+            background-color: var(--bg-card);
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(212, 195, 158, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-header h4 {
+            color: var(--accent-champagne);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .ai-chat-close {
+            color: #FFF;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .ai-chat-quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(0, 0, 0, 0.2);
+            overflow-x: auto;
+            border-bottom: 1px solid rgba(212, 195, 158, 0.1);
+        }
+
+        .quick-btn {
+            background: rgba(212, 195, 158, 0.1);
+            color: #D3D8D5;
+            border: 1px solid rgba(212, 195, 158, 0.2);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.72rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-btn:hover {
+            border-color: var(--accent-champagne);
+            color: var(--accent-champagne);
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            line-height: 1.5;
+        }
+
+        .message.system {
+            background: rgba(212, 195, 158, 0.1);
+            color: #E3D5B7;
+            align-self: flex-start;
+            border-left: 2px solid var(--accent-champagne);
+        }
+
+        .message.user {
+            background: var(--accent-champagne);
+            color: var(--bg-dark);
+            align-self: flex-end;
+        }
+
+        .ai-chat-input {
+            display: flex;
+            border-top: 1px solid rgba(212, 195, 158, 0.2);
+        }
+
+        .ai-chat-input input {
+            border: none;
+            background: transparent;
+            padding: 1rem;
+            border-radius: 0;
+        }
+
+        .ai-chat-input button {
+            background: var(--accent-champagne);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0 1.2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: #090B0A;
+            color: #616E67;
+            padding: 4rem 8% 2rem 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2, .simulator-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .ai-chat-window { width: 90%; right: 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="brand-logo">ÉTHÉRÉE</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#philosophie">Philosophie</a></li>
+                <li><a href="#poles">Pôles d'Excellence</a></li>
+                <li><a href="#conciergerie" class="btn-outline">Conciergerie IA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tagline">Maison de Haute Santé & IA Prédictive</span>
+            <h1>L'Avenir de Votre Capital Vital</h1>
+            <p>Une synergie d'exception entre intelligence artificielle prédictive, médecine préventive et rituels de régénération sur-mesure.</p>
+            <div class="hero-actions">
+                <a href="#conciergerie" class="btn-champagne">Découvrir la Conciergerie IA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHIE -->
+    <section id="philosophie" class="section philosophy">
+        <div class="container grid-2">
+            <div class="text-content">
+                <span class="section-tag">Biotechnologie & Sagesse</span>
+                <h2>Anticiper plutôt que guérir grâce aux algorithmes de précision.</h2>
+                <div class="gold-line"></div>
+                <p>Née de l'union entre la médecine de longévité et les neuro-réseaux avancés, ÉTHÉRÉE traite des millions de données biométriques pour modéliser l'évolution biologique de votre organisme.</p>
+                <p class="quote">« L'IA ne remplace pas l'art médical de nos experts, elle lui confère une précision absolue. »</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80" alt="Clinique Éthérée Intérieur">
+            </div>
+        </div>
+    </section>
+
+    <!-- PÔLES D'EXCELLENCE -->
+    <section id="poles" class="section poles">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-tag">Haute Technologie & Soins</span>
+                <h2>Pôles Médicaux Augmentés</h2>
+            </div>
+
+            <div class="cards-wrapper">
+                <article class="luxury-card">
+                    <span class="card-num">01</span>
+                    <h3>Cartographie Nutrigénomique par IA</h3>
+                    <p>Séquençage ADN et algorithmes prédictifs pour identifier vos vulnérabilités cellulaires avant l'apparition des premiers symptômes.</p>
+                </article>
+
+                <article class="luxury-card">
+                    <span class="card-num">02</span>
+                    <h3>Neuro-Régulation & Cloître Immersif</h3>
+                    <p>Protocoles de biofeedback assistés par IA pour réinitialiser le système nerveux central et optimiser la régénération lors du sommeil.</p>
+                </article>
+
+                <article class="luxury-card">
+                    <span class="card-num">03</span>
+                    <h3>Thérapie Microbiote de Précision</h3>
+                    <p>Modélisation informatique de votre flore intestinale pour concevoir des nutraceutiques uniques, imprimés sur-mesure.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCIERGERIE IA ENRICHIE -->
+    <section id="conciergerie" class="section conciergerie-suite">
+        <div class="container">
+            <div class="conciergerie-header">
+                <span class="section-tag">Accompagnement Continu</span>
+                <h2>Conciergerie IA & Suivi Augmenté</h2>
+                <p>Un parcours médical et préventif réinventé : réactivité 24/7, modélisation d'âge biologique et calendrier de réservation hautement confidentiel.</p>
+            </div>
+
+            <!-- 3 Piliers de la Conciergerie -->
+            <div class="concierge-pillars">
+                <div class="pillar-box">
+                    <span class="pillar-badge">01. Accueil 24/7</span>
+                    <h3>Concierge Virtuel dédié</h3>
+                    <p>Questions sur vos rendez-vous, recommandations nutritionnelles ou protocoles : votre assistant IA vous accompagne en continu avec la plus stricte confidentialité.</p>
+                </div>
+                <div class="pillar-box">
+                    <span class="pillar-badge">02. Analyse algorithmique</span>
+                    <h3>Simulateur de Longévité</h3>
+                    <p>Évaluation dynamique de vos biomarqueurs prédictifs pour ajuster en temps réel votre cure et la posologie de vos suppléments intelligents.</p>
+                </div>
+                <div class="pillar-box">
+                    <span class="pillar-badge">03. Réservation d'élite</span>
+                    <h3>Prise de RDV par Créneaux</h3>
+                    <p>Planification instantanée avec assignation d'un Médecin Référent et préparation personnalisée de votre espace privé à Paris.</p>
+                </div>
+            </div>
+
+            <!-- Simulateur & Réservation Interactifs -->
+            <div class="simulator-grid">
+                <div class="simulator-controls">
+                    <h3>Simulateur & Réservation VIP</h3>
+                    <p>Renseignez vos coordonnées et vos priorités de santé pour calculer une estimation algorithmique de votre profil de régénération.</p>
+
+                    <form id="interactiveForm">
+                        <div class="form-row">
+                            <input type="text" id="simName" placeholder="Nom & Prénom" required>
+                            <input type="tel" placeholder="Téléphone" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="email" placeholder="E-mail confidentiel" required>
+                            <select id="simFocus" required>
+                                <option value="" disabled selected>Priorité de santé</option>
+                                <option value="longevite">Longévité & Ralentissement Biologique</option>
+                                <option value="sommeil">Neuro-Reset & Qualité du Sommeil</option>
+                                <option value="microbiote">Régénération Métabolique & Microbiote</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="date" id="simDate" required>
+                            <select id="simTime" required>
+                                <option value="" disabled selected>Créneau souhaité</option>
+                                <option value="09:00">09h00 (Entretien Privé)</option>
+                                <option value="14:00">14h00 (Bilan Complet)</option>
+                                <option value="17:00">17h00 (Consultation VIP)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-champagne" style="width: 100%;">Lancer la Pré-Analyse IA</button>
+                    </form>
+                </div>
+
+                <div class="simulator-results" id="simResultBox">
+                    <span class="results-header">Aperçu du Profil Biologique</span>
+                    <h4 style="color: #FFF; font-size: 1.2rem;" id="resTitle">En attente de vos paramètres...</h4>
+
+                    <div class="biomarker-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Protocole Préconisé</span>
+                            <span class="metric-value" id="resProtocol">—</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Indice de Régénération Estimé</span>
+                            <span class="metric-value" id="resIndex">—</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Médecin Référent</span>
+                            <span class="metric-value" id="resDoctor">—</span>
+                        </div>
+                    </div>
+
+                    <p class="concierge-note" id="resNote">
+                        Veuillez remplir le formulaire pour générer votre estimation. Notre conciergerie validera ensuite votre réservation sous 2 heures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="brand-logo">ÉTHÉRÉE</div>
+                <p>Maison de Haute Santé, Longévité & IA</p>
+            </div>
+            <div class="footer-address">
+                <p>Place Vendôme, 75001 Paris</p>
+                <p>+33 (0)1 80 00 00 00 | conciergerie@etheree-sante.fr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ÉTHÉRÉE Suite Médicale. Modélisation Prédictive Sécurisée.</p>
+        </div>
+    </footer>
+
+    <!-- WIDGET CHATBOT IA FLOTTANT -->
+    <div class="ai-chat-toggle" id="chatToggle">
+        <span>✦ Concierge IA ÉTHÉRÉE</span>
+    </div>
+
+    <div class="ai-chat-window" id="chatWindow">
+        <div class="ai-chat-header">
+            <h4>ÉTHÉRÉE — Conciergerie Médicale</h4>
+            <span class="ai-chat-close" id="chatClose">&times;</span>
+        </div>
+        
+        <!-- Actions Rapides -->
+        <div class="ai-chat-quick-actions">
+            <button class="quick-btn" data-query="Quels sont les tarifs des bilans ?">Tarifs & Bilans</button>
+            <button class="quick-btn" data-query="Comment garantissez-vous la confidentialité ?">Confidentialité</button>
+            <button class="quick-btn" data-query="Où se situe la suite médicale ?">Accès & Adresse</button>
+        </div>
+
+        <div class="ai-chat-messages" id="chatMessages">
+            <div class="message system">
+                Bonjour. Je suis le Concierge IA d'ÉTHÉRÉE. Comment puis-je vous accompagner dans la préparation de votre séjour ou la sélection de vos examens prédictifs ?
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="chatInput" placeholder="Posez une question à la conciergerie...">
+            <button id="chatSend">Envoyer</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Navbar effet scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Logique du Simulateur / Formulaire de Conciergerie
+        document.getElementById('interactiveForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('simName').value;
+            const focus = document.getElementById('simFocus').value;
+            const date = document.getElementById('simDate').value;
+            const time = document.getElementById('simTime').value;
+
+            const resTitle = document.getElementById('resTitle');
+            const resProtocol = document.getElementById('resProtocol');
+            const resIndex = document.getElementById('resIndex');
+            const resDoctor = document.getElementById('resDoctor');
+            const resNote = document.getElementById('resNote');
+
+            resTitle.textContent = "Calcul de l'empreinte biométrique...";
+            resTitle.style.color = "var(--accent-champagne)";
+
+            setTimeout(() => {
+                resTitle.textContent = "Pré-Bilan : " + name;
+                
+                if (focus === 'longevite') {
+                    resProtocol.textContent = "Séquençage ADN & Méthylation";
+                    resIndex.textContent = "+14.2% Vitalité Cellulaire";
+                    resDoctor.textContent = "Dr. V. de Saint-Germain";
+                } else if (focus === 'sommeil') {
+                    resProtocol.textContent = "Neuro-Reset & Biofeedback EEG";
+                    resIndex.textContent = "Optimisation Phase N3";
+                    resDoctor.textContent = "Dr. M. Moreau";
+                } else {
+                    resProtocol.textContent = "Métabolomique & Microflore";
+                    resIndex.textContent = "Restauration Microbiote";
+                    resDoctor.textContent = "Dr. S. Chen";
+                }
+
+                const dateFr = new Date(date + 'T00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+                const timeFr = time.replace(':', 'h');
+                resNote.textContent = `Créneau pré-réservé pour le ${dateFr} à ${timeFr}. La Conciergerie Privée vous contactera pour confirmer l'accès sécurisé à notre suite de la Place Vendôme.`;
+            }, 1000);
+        });
+
+        // Logique du Chatbot IA
+        const chatToggle = document.getElementById('chatToggle');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatClose = document.getElementById('chatClose');
+        const chatSend = document.getElementById('chatSend');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatToggle.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatWindow.style.display = 'none';
+        });
+
+        function appendMessage(text, type) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', type);
+            msgDiv.textContent = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleChat(overrideQuery = null) {
+            const query = overrideQuery || chatInput.value.trim();
+            if(!query) return;
+
+            appendMessage(query, 'user');
+            if(!overrideQuery) chatInput.value = '';
+
+            setTimeout(() => {
+                let response = "Notre conciergerie médicale traite chaque demande avec la plus haute exigence. Désirez-vous qu'un conseiller vous recontacte ?";
+                const q = query.toLowerCase();
+
+                if(q.includes('tarif') || q.includes('prix') || q.includes('coût')) {
+                    response = "Nos bilans complets de médecine prédictive et longévité débutent à partir de 3 500 €, incluant l'analyse génomique et le suivi conciergerie 1 an.";
+                } else if(q.includes('confidentialité') || q.includes('secret') || q.includes('données')) {
+                    response = "Toutes vos données biométriques sont chiffrées selon les normes médicales les plus strictes. L'accès à la suite médicale se fait sur rendez-vous individuel et discret.";
+                } else if(q.includes('adresse') || q.includes('lieu') || q.includes('accès') || q.includes('paris')) {
+                    response = "La Maison ÉTHÉRÉE est située Place Vendôme à Paris (75001). Un parking privé et sécurisé est mis à votre disposition.";
+                }
+
+                appendMessage(response, 'system');
+            }, 700);
+        }
+
+        chatSend.addEventListener('click', () => handleChat());
+        chatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') handleChat();
+        });
+
+        // Boutons d'actions rapides du chatbot
+        document.querySelectorAll('.quick-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const queryText = e.target.getAttribute('data-query');
+                handleChat(queryText);
+            });
+        });
+    </script>
+</body>
+</html>
