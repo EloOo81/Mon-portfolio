@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Le Comptoir - Restaurant</title>
+        <link rel="stylesheet" href="styles-restaurant.css">
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <div class="logo">Le Comptoir</div>
+                <ul class="nav-links">
+                 <li><a href="#accueil">Accueil</a></li>
+                 <li><a href="#menu">Menu</a></li>
+                 <li><a href="#apropos">&Agrave; propos</a></li>
+                 <li><a href="#reservation">Réservation</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="accueil" class="hero">
+            <h1>Le Comptoir</h1>
+            <p>Une cuisine généreuse, une ambiance décontractée</p>
+        </section>
+        <section id="apropos" class="apropos">
+            <h2>&Agrave; propos</h2>
+            <p>Depuis toujours, Le Comptoir est une histoire de convialité partage culinaire. Ici on cuisine des produits frais et de saison, avec l'envie simple de faire passer un moment agréable avec nos clients. La salle est chalheureuse, l ambiance décontractée : on vient comme on est, et on repart le ventre plein et le sourire aux lèvres. </p>
+        </section>
+        <section id="menu" class="menu">
+            <h2>Notre Menu</h2>
+
+            <div class="plat">
+             <h3>Entrée</h3>
+             <p>Velouté de saison, cro&ucirc;tons maison</p>
+            <span>8€</span>
+            </div>
+
+            <div class="plat">
+                <h3>Plat</h3>
+                <p>Poulet fermier r&ocirc;ti, purée maison</p>
+                <span>16€</span>
+            </div>
+
+            <div class="plat">
+                <h3>Dessert</h3>
+                <p>Tarte du jour</p>
+                <span>7€</span>
+            </div>
+        </section>
+
+        <section id="reservation" class="reservation">
+            <h2>Réserver une table</h2>
+            <form>
+                <input type="text" placeholder="Votre nom" required>
+                <input type="email" placeholder="Votre adresse email" required>
+                <input type="date" required>
+
+                <!-- Menu déroulant pour imposer les horaires -->
+                <select required>
+                    <option value="">Choisissez une heure</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                </select>
+
+                <button type="submit">Confirmer la réservation</button>
+            </form>
+        </section>
+        <footer>
+            <div class="footer-info">
+                <p><strong>Le Comptoir</strong></p>
+                <p>12 avenue des D&eacute;lices, 75000 Paris</p>
+                <p>Ouvert du mardi au dimanche, service du soir uniquement</p>
+            </div>
+            <p class="copyright">&copy; 2026 Le Comptoir - Tous droits r&eacute;serv&eacute;s</p>
+        </footer>
+
+    </body>
+</html>

@@ -5,58 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Merci — Studio Code</title>
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0a08">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d0e10;
-    --coral: #c9a227;
-    --mint: #4a9b7f;
-    --cream: #17181b;
-    --grey: #9a9ea3;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--navy);
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-  }
-  .box { max-width: 480px; }
-  h1 { font-family: 'Manrope', 'Segoe UI', Arial, sans-serif; font-size: 30px; margin-bottom: 16px; }
-  h1 span { color: var(--coral); }
-  p { color: #c3ccd4; font-size: 15.5px; margin-bottom: 30px; }
-  a.btn {
-    display: inline-block;
-    background: var(--coral);
-    color: var(--navy);
-    text-decoration: none;
-    padding: 13px 28px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 14.5px;
-  }
-  .security-badge {
-    display: inline-block;
-    margin-top: 22px;
-    font-size: 12px;
-    color: #8b95a0;
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
-<body>
-  <div class="box">
-    <h1>Merci <span>!</span></h1>
-    <p>Votre demande de projet sur mesure a bien été envoyée. Je reviens vers vous par email sous 48h avec un devis précis. Une fois le devis validé ensemble, vous recevrez un lien de paiement sécurisé — rien n'est débité avant cette étape.</p>
-    <a class="btn" href="index.html">Retour à l'accueil</a>
-    <p class="security-badge">🔒 Le futur lien de paiement sera un lien Stripe sécurisé — aucune donnée bancaire ne transite par email ou par ce site</p>
-    <p style="margin-top:14px; font-size:12.5px;"><a href="mentions-legales.html" style="color:var(--mint); font-weight:600;">Mentions légales</a></p>
+<body class="page-bg">
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="brand"><span class="brand-mark">SC</span>Studio Code</a>
+    <a href="index.html" class="back-link">← Accueil</a>
   </div>
+</header>
+<main>
+  <div class="center-box">
+    <div class="code">demande reçue</div>
+    <h1>Merci, <span class="grad">c'est bien reçu.</span></h1>
+    <p>Je reviens vers vous par e-mail sous 48 h avec une proposition et un devis précis. Rien n'est à payer avant que vous l'ayez validé.</p>
+    <div class="actions"><a class="btn btn-primary" href="index.html">Retour à l'accueil</a></div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container footer-row"><span>© 2026 Studio Code · Elodie Monchet, EI</span><nav><a href="mentions-legales.html">Mentions légales</a></nav></div>
+</footer>
 </body>
 </html>

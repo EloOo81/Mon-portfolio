@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /archive/
 Allow: /
 
 Sitemap: https://studio-code.fr/sitemap.xml
