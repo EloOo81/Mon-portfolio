@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Villa Sérénité — Location avec concierge virtuel | Studio Code</title>
-<meta name="description" content="Démonstration d'un site d'hôtellerie et de location saisonnière avec concierge virtuel intégré, réalisée par Studio Code, développeuse web freelance spécialiste de l'intégration IA.">
+<meta name="description" content="Villa Sérénité : démo de site de location saisonnière avec concierge virtuel IA, réalisée par Studio Code, développeuse web freelance dans le Tarn.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://studio-code.fr/hotel-conciergerie.html">
 <style>
@@ -110,6 +110,12 @@
     .contact-wrap { padding: 36px 6%; }
   }
 </style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Villa Sérénité — Location avec concierge virtuel | Studio Code">
+<meta property="og:description" content="Villa Sérénité : démo de site de location saisonnière avec concierge virtuel IA, réalisée par Studio Code, développeuse web freelance dans le Tarn.">
+<meta property="og:url" content="https://studio-code.fr/hotel-conciergerie.html">
+<meta property="og:locale" content="fr_FR">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Villa Sérénité — Location avec concierge virtuel | Studio Code","description":"Villa Sérénité : démo de site de location saisonnière avec concierge virtuel IA, réalisée par Studio Code, développeuse web freelance dans le Tarn.","url":"https://studio-code.fr/hotel-conciergerie.html","inLanguage":"fr","isPartOf":{"@type":"WebSite","name":"Studio Code","url":"https://studio-code.fr/"},"author":{"@type":"Organization","name":"Studio Code","url":"https://studio-code.fr/"}}</script>
 </head>
 <body>
 
@@ -220,15 +226,15 @@
       <p style="margin-top:20px; color:#f5d0bd;">Réponse sous quelques minutes en journée.</p>
     </div>
     <form class="contact-form" onsubmit="event.preventDefault(); document.getElementById('formMsg').textContent='Merci ! Nous revenons vers vous très vite.';">
-      <input type="text" placeholder="Votre nom" required>
-      <input type="tel" placeholder="Votre téléphone" required>
-      <select required>
+      <input aria-label="Votre nom" type="text" placeholder="Votre nom" required>
+      <input aria-label="Votre téléphone" type="tel" placeholder="Votre téléphone" required>
+      <select aria-label="Votre choix" required>
         <option value="">Type de séjour</option>
         <option>Villa vue mer</option>
         <option>Bungalow jardin</option>
         <option>Loft centre-ville</option>
       </select>
-      <textarea placeholder="Dates souhaitées, nombre de personnes..."></textarea>
+      <textarea aria-label="Dates souhaitées, nombre de personnes..." placeholder="Dates souhaitées, nombre de personnes..."></textarea>
       <button type="submit">Envoyer ma demande</button>
       <p id="formMsg" style="color:#f5d0bd; font-size:13px;"></p>
     </form>
@@ -252,7 +258,7 @@
     <div class="sugg-btn" data-q="reservation">Réserver</div>
   </div>
   <div class="chat-input-row">
-    <input type="text" id="chatInput" placeholder="Écrivez votre question...">
+    <input aria-label="Écrivez votre question..." type="text" id="chatInput" placeholder="Écrivez votre question...">
     <button id="chatSend">Envoyer</button>
   </div>
 </div>
