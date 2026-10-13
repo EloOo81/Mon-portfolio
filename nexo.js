@@ -43,7 +43,7 @@
     if(!SR)mic.style.display="none";if(!TTS)vbtn.style.display="none";
     function syncVoice(){vbtn.classList.toggle("on",voiceOn);vbtn.setAttribute("aria-pressed",voiceOn?"true":"false")}
     function stopVoice(){if(TTS)TTS.cancel()}
-    function speak(t){if(!voiceOn||!TTS)return;stopVoice();var u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";var vs=TTS.getVoices().filter(function(x){return /^fr/i.test(x.lang)});if(vs[0])u.voice=vs[0];u.rate=1.02;TTS.speak(u)}
+    function speak(t){if(!voiceOn||!TTS)return;stopVoice();var u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";var vs=TTS.getVoices().filter(function(x){return /^fr/i.test(x.lang)});var ml=vs.filter(function(x){return /thomas|paul|henri|claude|daniel|nicolas|antoine|mathieu|male|homme/i.test(x.name)});var vo=ml[0]||vs[0];if(vo)u.voice=vo;u.rate=1.18;u.pitch=ml[0]?1.05:0.8;TTS.speak(u)}
     vbtn.addEventListener("click",function(){voiceOn=!voiceOn;if(!voiceOn)stopVoice();syncVoice()});
     mic.addEventListener("click",function(){
       if(rec){rec.stop();return}
