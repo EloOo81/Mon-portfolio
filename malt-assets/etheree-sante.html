@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÉTHÉRÉE — Haute Médecine Préventive, Longévité & Conciergerie IA | Studio Code</title>
-    <meta name="description" content="Démonstration d'un site de médecine préventive haut de gamme avec conciergerie IA, réalisée par Studio Code, développeuse web freelance spécialiste de l'intégration d'intelligence artificielle.">
+    <title>ÉTHÉRÉE — Démo site médecine préventive | Studio Code</title>
+    <meta name="description" content="ÉTHÉRÉE : démo de site de médecine préventive haut de gamme avec conciergerie IA, réalisée par Studio Code, développeuse web freelance.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://studio-code.fr/malt-assets/etheree-sante.html">
 
@@ -643,8 +643,15 @@
             .ai-chat-window { width: 90%; right: 5%; }
         }
     </style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="ÉTHÉRÉE — Démo site médecine préventive | Studio Code">
+<meta property="og:description" content="ÉTHÉRÉE : démo de site de médecine préventive haut de gamme avec conciergerie IA, réalisée par Studio Code, développeuse web freelance.">
+<meta property="og:url" content="https://studio-code.fr/malt-assets/etheree-sante.html">
+<meta property="og:locale" content="fr_FR">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ÉTHÉRÉE — Démo site médecine préventive | Studio Code","description":"ÉTHÉRÉE : démo de site de médecine préventive haut de gamme avec conciergerie IA, réalisée par Studio Code, développeuse web freelance.","url":"https://studio-code.fr/malt-assets/etheree-sante.html","inLanguage":"fr","isPartOf":{"@type":"WebSite","name":"Studio Code","url":"https://studio-code.fr/"},"author":{"@type":"Organization","name":"Studio Code","url":"https://studio-code.fr/"}}</script>
 </head>
 <body>
+<div style="background:#111;color:#e8e2d0;font:13px/1.4 system-ui,sans-serif;text-align:center;padding:8px 12px">Démonstration réalisée par <a href="https://studio-code.fr/" style="color:#e8c76a">Studio Code, création de site internet</a></div>
 
     <!-- NAVIGATION -->
     <header class="navbar">
@@ -753,12 +760,12 @@
 
                     <form id="interactiveForm">
                         <div class="form-row">
-                            <input type="text" id="simName" placeholder="Nom & Prénom" required>
-                            <input type="tel" placeholder="Téléphone" required>
+                            <input aria-label="Nom & Prénom" type="text" id="simName" placeholder="Nom & Prénom" required>
+                            <input aria-label="Téléphone" type="tel" placeholder="Téléphone" required>
                         </div>
                         <div class="form-row">
-                            <input type="email" placeholder="E-mail confidentiel" required>
-                            <select id="simFocus" required>
+                            <input aria-label="E-mail confidentiel" type="email" placeholder="E-mail confidentiel" required>
+                            <select aria-label="Objectif" id="simFocus" required>
                                 <option value="" disabled selected>Priorité de santé</option>
                                 <option value="longevite">Longévité & Ralentissement Biologique</option>
                                 <option value="sommeil">Neuro-Reset & Qualité du Sommeil</option>
@@ -766,8 +773,8 @@
                             </select>
                         </div>
                         <div class="form-row">
-                            <input type="date" id="simDate" required>
-                            <select id="simTime" required>
+                            <input aria-label="Date souhaitée" type="date" id="simDate" required>
+                            <select aria-label="Heure souhaitée" id="simTime" required>
                                 <option value="" disabled selected>Créneau souhaité</option>
                                 <option value="09:00">09h00 (Entretien Privé)</option>
                                 <option value="14:00">14h00 (Bilan Complet)</option>
@@ -846,7 +853,7 @@
             </div>
         </div>
         <div class="ai-chat-input">
-            <input type="text" id="chatInput" placeholder="Posez une question à la conciergerie...">
+            <input aria-label="Posez une question à la conciergerie..." type="text" id="chatInput" placeholder="Posez une question à la conciergerie...">
             <button id="chatSend">Envoyer</button>
         </div>
     </div>
