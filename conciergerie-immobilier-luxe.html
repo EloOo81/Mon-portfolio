@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA Prestige — Démo site immobilier haut de gamme | Studio Code</title>
-    <meta name="description" content="Découvrez AURA Prestige, une démo de site immobilier haut de gamme avec recherche intelligente, visite virtuelle, favoris, simulateur financier et assistant privé.">
+    <meta name="description" content="AURA Prestige : démo de site immobilier haut de gamme avec recherche intelligente, visite virtuelle, simulateur et assistant IA. Par Studio Code.">
     <link rel="canonical" href="https://studio-code.fr/conciergerie-immobilier-luxe.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="AURA Prestige — Conciergerie immobilière augmentée par l'IA">
@@ -539,6 +539,7 @@
             text-align: center; padding: 40px; color: #666; font-size: 0.8rem; border-top: 1px solid var(--border-gold); letter-spacing: 2px; font-family: 'Cinzel', serif;
         }
     </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"AURA Prestige — Démo site immobilier haut de gamme | Studio Code","description":"AURA Prestige : démo de site immobilier haut de gamme avec recherche intelligente, visite virtuelle, simulateur et assistant IA. Par Studio Code.","url":"https://studio-code.fr/conciergerie-immobilier-luxe.html","inLanguage":"fr","isPartOf":{"@type":"WebSite","name":"Studio Code","url":"https://studio-code.fr/"},"author":{"@type":"Organization","name":"Studio Code","url":"https://studio-code.fr/"}}</script>
 </head>
 <body>
 
@@ -551,7 +552,7 @@
     <!-- Barre supérieure -->
     <div class="top-bar">
         <div class="top-bar-left">
-            <select id="langSelect">
+            <select aria-label="Langue" id="langSelect">
                 <option value="fr" selected>🇫🇷 Français</option>
                 <option value="en">🇬🇧 English</option>
                 <option value="ru">🇷🇺 Русский (Russian)</option>
@@ -564,7 +565,7 @@
             <button id="favsBtn">❤️ <span id="favTextLabel">Favoris</span> (<span id="favCount">0</span>)</button>
         </div>
         <div class="top-bar-right">
-            <a href="index.html#sites-haut-de-gamme">← Studio Code</a>
+            <a href="index.html#realisations">← Studio Code</a>
             <button id="adminBtn">⚙️ Espace Admin</button>
         </div>
     </div>
@@ -579,7 +580,7 @@
         <p id="heroSubtitle">L'Art de l'Immobilier d'Exception redéfini par l'Intelligence Artificielle</p>
         
         <div class="ai-concierge">
-            <input type="text" id="globalSearchInput" placeholder="Ex: Chalet montagne, cuisine, jardin, DPE...">
+            <input aria-label="Ex: Chalet montagne, cuisine, jardin, DPE..." type="text" id="globalSearchInput" placeholder="Ex: Chalet montagne, cuisine, jardin, DPE...">
             <button id="globalSearchBtn">Rechercher</button>
         </div>
     </header>
@@ -622,7 +623,7 @@
                     <div class="chat-message bot" id="chatWelcome">Bonjour. Posez-moi vos questions précises sur le jardin, les commodités, le DPE, le chauffage ou la cuisine.</div>
                 </div>
                 <div class="chat-input-area">
-                    <input type="text" id="chatInput" placeholder="Ex: Proche commodités ? DPE ? Jardin ?...">
+                    <input aria-label="Ex: Proche commodités ? DPE ? Jardin ?..." type="text" id="chatInput" placeholder="Ex: Proche commodités ? DPE ? Jardin ?...">
                     <button id="chatSend">Envoyer</button>
                 </div>
             </div>
@@ -649,15 +650,15 @@
             <h2 id="finModalTitle">💰 Simulateur de Financement</h2>
             <div class="form-group">
                 <label id="finPriceLabel">Prix du bien :</label>
-                <input type="text" id="finPrice" readonly style="color: var(--gold); font-weight: bold;">
+                <input aria-label="Votre choix" type="text" id="finPrice" readonly style="color: var(--gold); font-weight: bold;">
             </div>
             <div class="form-group">
                 <label id="finContribLabel">Apport personnel (€) :</label>
-                <input type="number" id="finContribution" value="3000000" step="100000">
+                <input aria-label="Apport personnel" type="number" id="finContribution" value="3000000" step="100000">
             </div>
             <div class="form-group">
                 <label id="finYearsLabel">Durée du prêt (années) :</label>
-                <select id="finYears">
+                <select aria-label="Durée en années" id="finYears">
                     <option value="15">15 ans</option>
                     <option value="20" selected>20 ans</option>
                     <option value="25">25 ans</option>
@@ -665,7 +666,7 @@
             </div>
             <div class="form-group">
                 <label id="finRateLabel">Taux d'intérêt estimé (%) :</label>
-                <input type="number" id="finRate" value="3.5" step="0.1">
+                <input aria-label="Taux en pourcentage" type="number" id="finRate" value="3.5" step="0.1">
             </div>
             <div style="background: rgba(212,175,55,0.05); border: 1px solid var(--border-gold); padding: 15px; border-radius: 6px; margin-top: 15px; text-align: center;">
                 <div style="font-size: 0.85rem; color: #aaa;" id="finResultLabel">Mensualité estimée du crédit :</div>
@@ -682,19 +683,19 @@
             <form id="rdvForm">
                 <div class="form-group">
                     <label id="rdvNameLabel">Votre Nom complet :</label>
-                    <input type="text" id="rdvName" required placeholder="Lord / Mme Dupont">
+                    <input aria-label="Lord / Mme Dupont" type="text" id="rdvName" required placeholder="Lord / Mme Dupont">
                 </div>
                 <div class="form-group">
                     <label id="rdvContactLabel">Téléphone ou Email :</label>
-                    <input type="text" id="rdvContact" required placeholder="+33 6 00 00 00 00">
+                    <input aria-label="+33 6 00 00 00 00" type="text" id="rdvContact" required placeholder="+33 6 00 00 00 00">
                 </div>
                 <div class="form-group">
                     <label id="rdvDateLabel">Date souhaitée :</label>
-                    <input type="date" id="rdvDate" required>
+                    <input aria-label="Date du rendez-vous" type="date" id="rdvDate" required>
                 </div>
                 <div class="form-group">
                     <label id="rdvTypeLabel">Type de rendez-vous :</label>
-                    <select id="rdvType">
+                    <select aria-label="Type de rendez-vous" id="rdvType">
                         <option value="Physique">Visite physique sur site avec agent senior</option>
                         <option value="Visio">Visioconférence sécurisée & présentation vidéo</option>
                     </select>
@@ -724,23 +725,23 @@
             <form id="addPropertyForm">
                 <div class="form-group">
                     <label>Titre de la propriété :</label>
-                    <input type="text" id="newTitle" required placeholder="Ex: Villa Saphir, Nice">
+                    <input aria-label="Ex: Villa Saphir, Nice" type="text" id="newTitle" required placeholder="Ex: Villa Saphir, Nice">
                 </div>
                 <div class="form-group">
                     <label>Prix :</label>
-                    <input type="text" id="newPrice" required placeholder="Ex: 5 400 000 €">
+                    <input aria-label="Ex: 5 400 000 €" type="text" id="newPrice" required placeholder="Ex: 5 400 000 €">
                 </div>
                 <div class="form-group">
                     <label>Surface et terrain :</label>
-                    <input type="text" id="newSurface" required placeholder="Ex: 350 m² • Terrain 1 200 m²">
+                    <input aria-label="Ex: 350 m² • Terrain 1 200 m²" type="text" id="newSurface" required placeholder="Ex: 350 m² • Terrain 1 200 m²">
                 </div>
                 <div class="form-group">
                     <label>URL de l'image principale :</label>
-                    <input type="text" id="newImg" required placeholder="https://images.unsplash.com/...">
+                    <input aria-label="https://images.unsplash.com/..." type="text" id="newImg" required placeholder="https://images.unsplash.com/...">
                 </div>
                 <div class="form-group">
                     <label>Description complète :</label>
-                    <textarea id="newDesc" rows="3" required placeholder="Description détaillée..."></textarea>
+                    <textarea aria-label="Description détaillée..." id="newDesc" rows="3" required placeholder="Description détaillée..."></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Ajouter au catalogue en direct</button>
             </form>
