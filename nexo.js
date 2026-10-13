@@ -1,7 +1,7 @@
 /* Nexo - assistant IA de Studio Code */
 (function(){
   if(window.__nexoLoaded)return;window.__nexoLoaded=true;
-  var URL_WEBHOOK="https://hook.eu1.make.com/6xfdic936hdlke75h3c5qjjuj1bahvcx";
+    var URL_WEBHOOK="https://nexo-chat.elomonchet.workers.dev/";
   var css="#nexo-root{--nx-bg:#0c0b09;--nx-panel:#171510;--nx-accent:#f0d58a;--nx-accent2:#c9a24a;--nx-text:#f4efe3;--nx-muted:#a79f8c;position:fixed;right:16px;bottom:16px;z-index:99999;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}"+
   "#nexo-root *{box-sizing:border-box}"+
   "#nexo-btn{display:flex;align-items:center;gap:10px;border:0;cursor:pointer;color:#17120a;font-weight:700;font-size:15px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--nx-accent),var(--nx-accent2));box-shadow:0 10px 30px rgba(201,162,74,.35);transition:transform .2s}"+
