@@ -21,8 +21,6 @@
   "description": "Développeuse web freelance : création de site vitrine professionnel sur mesure et intégration d'intelligence artificielle (assistants, recherche intelligente, conciergerie virtuelle, programmes sur mesure) pour des activités exigeantes, partout en France.",
   "url": "https://studio-code.fr/",
   "email": "elomonchet@gmail.com",
-  "founder": { "@type": "Person", "name": "Elodie Monchet", "jobTitle": "Développeuse web freelance" },
-  "address": { "@type": "PostalAddress", "streetAddress": "3 rue du Mas", "postalCode": "81200", "addressLocality": "Mazamet", "addressCountry": "FR" },
   "areaServed": { "@type": "Country", "name": "France" },
   "knowsAbout": ["Création de site vitrine", "Site professionnel sur mesure", "Intégration d'intelligence artificielle", "Développement web freelance"]
 }
@@ -162,6 +160,8 @@
 </style>
 </head>
 <body>
+<style>.promo-bar{background:linear-gradient(90deg,#c9a24a,#f1dca0,#c9a24a);color:#141008;text-align:center;padding:10px 16px;font:600 14px/1.45 'Inter',system-ui,sans-serif}.promo-bar s{opacity:.65;margin:0 4px}.promo-bar strong{font-size:16px}.promo-bar a{color:#141008;text-decoration:underline;margin-left:12px;white-space:nowrap}.promo-tag{display:inline-block;background:#141008;color:#f1dca0;padding:2px 10px;margin-right:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px}</style>
+<div class="promo-bar" role="note"><span class="promo-tag">Offre de lancement</span>-100 € sur votre site vitrine : à partir de <s>1 200 €</s> <strong>1 100 €</strong> jusqu'au 31 décembre 2026<a href="#contact">J'en profite</a></div>
 
 <header class="site-header">
   <div class="container navbar">
@@ -288,7 +288,7 @@
     <div class="about-text reveal">
       <span class="eyebrow">Qui je suis</span>
       <div class="section-head" style="margin-bottom: 28px;"><h2>Une seule interlocutrice, du premier échange à la mise en ligne.</h2></div>
-      <p>Je m'appelle <strong>Elodie Monchet</strong>. Je conçois et je code des sites internet sur mesure pour des activités qui ont besoin d'un site à leur image — pas d'un modèle de plus.</p>
+      <p>Je suis <strong>développeuse web freelance</strong>. Je conçois et je code des sites internet sur mesure pour des activités qui ont besoin d'un site à leur image — pas d'un modèle de plus.</p>
       <p>Mon travail part toujours de votre histoire : ce qui vous distingue, votre clientèle, le ton que vous voulez donner. La structure, les textes et le design en découlent, jamais l'inverse.</p>
       <p>Quand c'est pertinent, j'intègre aussi de <strong>l'intelligence artificielle</strong> à votre site : un assistant qui répond à vos visiteurs, une recherche intelligente, une conciergerie virtuelle — comme dans les réalisations présentées plus haut.</p>
       <p>Je travaille <strong>100 % à distance</strong>, par écrit, depuis Mazamet, dans le Tarn — à un rythme qui laisse le temps à chaque décision d'être la bonne.</p>
@@ -296,7 +296,7 @@
     <aside class="card id-card reveal">
       <div class="id-head">
         <div class="avatar" aria-hidden="true">ÉM</div>
-        <div><strong>Elodie Monchet</strong><span>Studio Code</span></div>
+        <div><strong>Studio Code</strong><span>Développeuse web freelance</span></div>
       </div>
       <div class="kv"><span>basée à</span><span>Mazamet, Tarn</span></div>
       <div class="kv"><span>clients</span><span>Partout en France</span></div>
@@ -373,7 +373,7 @@
 
 <footer class="site-footer">
   <div class="container footer-row">
-    <span>© 2026 Studio Code · Elodie Monchet, EI · Mazamet</span>
+    <span>© 2026 Studio Code · Entreprise individuelle</span>
     <nav aria-label="Liens de pied de page">
       <a href="#realisations">Réalisations</a>
       <a href="avis.html">Laisser un avis</a>
@@ -404,7 +404,7 @@
     const activity = document.getElementById('activity').value.trim();
     const details = document.getElementById('details').value.trim();
     const body = [
-      'Bonjour Elodie,', '',
+      'Bonjour,', '',
       activity ? 'Mon activité : ' + activity : null,
       details ? '\n' + details : null,
       '', 'Merci !'
