@@ -24,22 +24,41 @@
   "#nexo-send{border:0;border-radius:12px;padding:0 16px;font-weight:700;cursor:pointer;color:#17120a;background:linear-gradient(135deg,var(--nx-accent),var(--nx-accent2))}"+
   "#nexo-send:disabled{opacity:.5;cursor:default}"+
   "#nexo-legal{padding:7px 14px 10px;font-size:11px;color:var(--nx-muted);background:var(--nx-panel);line-height:1.35}"+
+  "#nexo-mic{border:1px solid rgba(255,255,255,.12);background:var(--nx-bg);color:var(--nx-accent);border-radius:12px;width:44px;min-width:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}"+
+  "#nexo-mic.on{background:var(--nx-accent);color:#17120a;animation:nxp 1s infinite}"+
+  "#nexo-voice{background:none;border:0;color:var(--nx-muted);cursor:pointer;padding:4px 6px;display:flex;align-items:center}#nexo-voice.on{color:var(--nx-accent)}"+
+  "#nexo-tools{display:flex;align-items:center;gap:4px}"+
   "@media (prefers-reduced-motion:reduce){#nexo-btn,#nexo-btn .dot{animation:none;transition:none}}";
   var html='<button id="nexo-btn" type="button" aria-label="Discuter avec Nexo, assistant IA de Studio Code"><span class="dot"></span>Discuter avec Nexo</button>'+
   '<section id="nexo-win" role="dialog" aria-label="Chat avec Nexo, assistant IA de Studio Code">'+
-  '<div id="nexo-head"><div><b>Nexo</b><small>Assistant IA de Studio Code</small></div><button id="nexo-close" type="button" aria-label="Fermer le chat">&times;</button></div>'+
+  '<div id="nexo-head"><div><b>Nexo</b><small>Assistant IA de Studio Code</small></div><div id="nexo-tools"><button id="nexo-voice" type="button" aria-pressed="false" aria-label="Activer ou couper la voix de Nexo" title="Voix de Nexo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button id="nexo-close" type="button" aria-label="Fermer le chat">&times;</button></div></div>'+
   '<div id="nexo-log"></div>'+
-  '<form id="nexo-form" autocomplete="off"><input id="nexo-input" type="text" maxlength="500" placeholder="Votre question..." aria-label="Votre message" required><button id="nexo-send" type="submit">Envoyer</button></form>'+
-  '<div id="nexo-legal">Nexo est une intelligence artificielle. Votre message est traité par un service d\'IA et peut être transmis à Studio Code pour vous répondre. Ne saisissez pas de données sensibles.</div>'+
+  '<form id="nexo-form" autocomplete="off"><input id="nexo-input" type="text" maxlength="500" placeholder="Votre question..." aria-label="Votre message" required><button id="nexo-mic" type="button" aria-label="Parler avec le micro" title="Parler"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></button><button id="nexo-send" type="submit">Envoyer</button></form>'+
+  '<div id="nexo-legal">Nexo est une intelligence artificielle. Votre message est traité par un service d\'IA et peut être transmis à Studio Code pour vous répondre. Ne saisissez pas de données sensibles. Avec le micro, la reconnaissance vocale est assurée par votre navigateur.</div>'+
   '</section>';
   function start(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
     var root=document.createElement("div");root.id="nexo-root";root.setAttribute("aria-live","polite");root.innerHTML=html;document.body.appendChild(root);
-    var log=root.querySelector("#nexo-log"),form=root.querySelector("#nexo-form"),input=root.querySelector("#nexo-input"),send=root.querySelector("#nexo-send"),greeted=false,busy=false;
+    var log=root.querySelector("#nexo-log"),form=root.querySelector("#nexo-form"),input=root.querySelector("#nexo-input"),send=root.querySelector("#nexo-send"),greeted=false,busy=false,hist=[],voiceOn=false,rec=null,mic=root.querySelector("#nexo-mic"),vbtn=root.querySelector("#nexo-voice"),SR=window.SpeechRecognition||window.webkitSpeechRecognition,TTS=window.speechSynthesis;
+    if(!SR)mic.style.display="none";if(!TTS)vbtn.style.display="none";
+    function syncVoice(){vbtn.classList.toggle("on",voiceOn);vbtn.setAttribute("aria-pressed",voiceOn?"true":"false")}
+    function stopVoice(){if(TTS)TTS.cancel()}
+    function speak(t){if(!voiceOn||!TTS)return;stopVoice();var u=new SpeechSynthesisUtterance(t);u.lang="fr-FR";var vs=TTS.getVoices().filter(function(x){return /^fr/i.test(x.lang)});if(vs[0])u.voice=vs[0];u.rate=1.02;TTS.speak(u)}
+    vbtn.addEventListener("click",function(){voiceOn=!voiceOn;if(!voiceOn)stopVoice();syncVoice()});
+    mic.addEventListener("click",function(){
+      if(rec){rec.stop();return}
+      stopVoice();
+      rec=new SR();rec.lang="fr-FR";rec.interimResults=false;rec.maxAlternatives=1;
+      rec.onstart=function(){mic.classList.add("on")};
+      rec.onresult=function(e){var t=e.results[0][0].transcript;if(t){input.value=t;voiceOn=true;syncVoice();if(form.requestSubmit)form.requestSubmit();else send.click()}};
+      rec.onerror=function(e){if(e.error==="not-allowed"||e.error==="service-not-allowed")add("Le micro est bloqué. Autorisez-le dans votre navigateur ou écrivez votre message.","nx-bot")};
+      rec.onend=function(){mic.classList.remove("on");rec=null};
+      try{rec.start()}catch(x){rec=null}
+    });
     function add(text,cls){var d=document.createElement("div");d.className="nx-m "+cls;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
     function open(){root.classList.add("open");if(!greeted){greeted=true;add("Bonjour, je suis Nexo, l'assistant IA de Studio Code. Posez-moi vos questions sur nos offres, nos tarifs ou votre projet de site.","nx-bot")}input.focus()}
     root.querySelector("#nexo-btn").addEventListener("click",open);
-    root.querySelector("#nexo-close").addEventListener("click",function(){root.classList.remove("open")});
+    root.querySelector("#nexo-close").addEventListener("click",function(){root.classList.remove("open");stopVoice()});
     form.addEventListener("submit",function(e){
       e.preventDefault();
       var msg=input.value.trim();if(!msg||busy)return;
@@ -47,9 +66,9 @@
       add(msg,"nx-me");
       var wait=add("Nexo écrit...","nx-bot nx-typing");
       var ctrl=new AbortController(),to=setTimeout(function(){ctrl.abort()},45000);
-      fetch(URL_WEBHOOK+"?message="+encodeURIComponent(msg),{signal:ctrl.signal})
+      fetch(URL_WEBHOOK+"?message="+encodeURIComponent(msg)+"&h="+encodeURIComponent(JSON.stringify(hist.slice(-5))),{signal:ctrl.signal})
         .then(function(r){if(!r.ok)throw 0;return r.text()})
-        .then(function(t){wait.className="nx-m nx-bot";wait.textContent=t.trim()||"Je n'ai pas pu répondre, pouvez-vous reformuler ?"})
+        .then(function(t){wait.className="nx-m nx-bot";var rep=t.trim()||"Je n'ai pas pu répondre, pouvez-vous reformuler ?";wait.textContent=rep;hist.push({role:"user",content:msg.slice(0,260)});hist.push({role:"assistant",content:rep.slice(0,260)});speak(rep)})
         .catch(function(){wait.className="nx-m nx-bot";wait.textContent="Désolé, je rencontre un souci technique. Vous pouvez réessayer dans un instant ou utiliser le formulaire de devis."})
         .finally(function(){clearTimeout(to);busy=false;send.disabled=false;log.scrollTop=log.scrollHeight;input.focus()});
     });
