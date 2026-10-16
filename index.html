@@ -289,6 +289,12 @@
 <a href="#contact" class="btn btn-ghost">En parler</a></div>
 </div>
 <div class="garanties"><span>Devis gratuit et sans engagement</span><span>Tarif annoncé avant de commencer, sans surprise</span><span>Paiement en 3 fois</span></div>
+
+<div class="remise" style="margin:28px auto 0;max-width:760px;padding:22px 24px;border:1.5px solid var(--accent);border-radius:14px;text-align:center;background:rgba(212,175,110,.08)">
+<strong style="display:block;font-size:1.25rem;color:var(--accent);margin-bottom:6px">−30 € sur votre site</strong>
+<span>Remise de bienvenue offerte à toute personne qui me contacte par e-mail et commande un site. Cochez simplement la case dans le formulaire de contact. Sans commande de site, pas de remise, et aucune obligation.</span>
+<a href="#contact" class="btn btn-ghost" style="margin-top:14px;display:inline-block">Je veux ma remise</a>
+</div>
 </div></section>
 <section class="px" id="maintenance"><div class="container">
 <span class="eyebrow">Suivi &amp; maintenance</span>
@@ -350,6 +356,30 @@
     </div>
   </a>
 </section>
+
+<section class="px" id="avis"><div class="container">
+<span class="eyebrow">Avis</span>
+<h2>Ce que disent mes clients.</h2>
+<div class="avis-liste" id="avisListe"><p class="avis-vide">Chargement des avis…</p></div>
+<form class="avis-form" id="avisForm" novalidate>
+<h3>Laisser un avis</h3>
+<label for="avisNom">Votre prénom</label>
+<input type="text" id="avisNom" maxlength="40" autocomplete="given-name" required>
+<label id="avisNoteLabel">Votre note</label>
+<div class="avis-notes" role="radiogroup" aria-labelledby="avisNoteLabel">
+<input type="radio" name="note" id="n5" value="5"><label for="n5" title="5 sur 5">★</label>
+<input type="radio" name="note" id="n4" value="4"><label for="n4" title="4 sur 5">★</label>
+<input type="radio" name="note" id="n3" value="3"><label for="n3" title="3 sur 5">★</label>
+<input type="radio" name="note" id="n2" value="2"><label for="n2" title="2 sur 5">★</label>
+<input type="radio" name="note" id="n1" value="1"><label for="n1" title="1 sur 5">★</label>
+</div>
+<label for="avisTexte">Votre avis</label>
+<textarea id="avisTexte" maxlength="500" required></textarea>
+<div class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" id="avisSite" tabindex="-1" autocomplete="off"></label></div>
+<div class="cta-row"><button type="submit" class="btn btn-primary" id="avisBtn">Publier mon avis</button></div>
+<div class="avis-msg" id="avisMsg" role="status" aria-live="polite"></div>
+</form>
+</div></section>
 
 <section class="section" id="methode" style="padding-bottom: 60px;">
   <div class="container">
@@ -443,29 +473,6 @@
 .avis-msg.err{color:#ff9b9b}
 .avis-legal{font-size:13px;color:#b9b2a0;margin-top:12px;line-height:1.5}
 </style>
-<section class="px" id="avis"><div class="container">
-<span class="eyebrow">Avis</span>
-<h2>Ce que disent mes clients.</h2>
-<div class="avis-liste" id="avisListe"><p class="avis-vide">Chargement des avis…</p></div>
-<form class="avis-form" id="avisForm" novalidate>
-<h3>Laisser un avis</h3>
-<label for="avisNom">Votre prénom</label>
-<input type="text" id="avisNom" maxlength="40" autocomplete="given-name" required>
-<label id="avisNoteLabel">Votre note</label>
-<div class="avis-notes" role="radiogroup" aria-labelledby="avisNoteLabel">
-<input type="radio" name="note" id="n5" value="5"><label for="n5" title="5 sur 5">★</label>
-<input type="radio" name="note" id="n4" value="4"><label for="n4" title="4 sur 5">★</label>
-<input type="radio" name="note" id="n3" value="3"><label for="n3" title="3 sur 5">★</label>
-<input type="radio" name="note" id="n2" value="2"><label for="n2" title="2 sur 5">★</label>
-<input type="radio" name="note" id="n1" value="1"><label for="n1" title="1 sur 5">★</label>
-</div>
-<label for="avisTexte">Votre avis</label>
-<textarea id="avisTexte" maxlength="500" required></textarea>
-<div class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" id="avisSite" tabindex="-1" autocomplete="off"></label></div>
-<div class="cta-row"><button type="submit" class="btn btn-primary" id="avisBtn">Publier mon avis</button></div>
-<div class="avis-msg" id="avisMsg" role="status" aria-live="polite"></div>
-</form>
-</div></section>
 <script>
 (function(){
   var API="https://avis-studio-code.studio-code.workers.dev/";
@@ -565,7 +572,8 @@
           <label for="details">Votre projet en quelques mots</label>
           <textarea id="details" placeholder="Ce que vous avez en tête, ce qui vous distingue, vos références éventuelles…"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Préparer mon e-mail</button>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;margin:10px 0 14px"><input type="checkbox" id="remise" style="margin-top:4px"><span>Je souhaite la remise de 30 € (valable uniquement si je commande un site). J'accepte que Studio Code me réponde par e-mail et me recontacte à propos de mon projet. Je peux me désinscrire à tout moment en le demandant par e-mail.</span></label>
+<button type="submit" class="btn btn-primary">Préparer mon e-mail</button>
         <small>Ce bouton ouvre votre messagerie avec un e-mail pré-rempli. Il ne reste qu'à l'envoyer.</small>
       </form>
     </div>
@@ -610,6 +618,7 @@
       'Bonjour,', '',
       activity ? 'Mon activité : ' + activity : null,
       details ? '\n' + details : null,
+      document.getElementById('remise').checked ? '\nJe souhaite la remise de 30 € (valable si je commande un site). J\'accepte d\'être recontacté(e) par e-mail à propos de mon projet.' : null,
       '', 'Merci !'
     ].filter(l => l !== null).join('\n');
     const subject = 'Projet sur mesure' + (activity ? ' · ' + activity : '');
