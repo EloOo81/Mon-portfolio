@@ -1,95 +1,269 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <Title>Salon de coiffure</Title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-    <h1>L'Atelier Capillaire</h1>
-    <img src="images/coiffure.jpg" alt="ciseaux de coiffure">
-    <p>Un savoir faire unique au service de votre style,dans une ambiance chaleureuse et conviviale</p>
-    <h2>Nos prestations</h2>
-    <ul>
-        <li>Coupe et brushing 45 euros</li>
-        <li>Coloration 55 euros</li>
-        <li>Mèche 70 euros</li>
-        <li>Balayage 160 euros</li>
-        <li>Décoloration tête complète 180 euros</li>
-        <li>Lissage brésilien 200 euros</li>
-        <li>Forfait mariage 250 euros</li>
-    </ul>
-    <div id="horaires">
-    <h2>Horaires d'ouverture</h2>
-    <button onclick="toggleHoraires()">Voir les horaires</button>
-    <ul>
-        <li>lundi : fermé</li>
-        <li>mardi : 9h - 20h</li>
-        <li>mercredi : 9h - 20h</li>
-        <li>jeudi : 9h - 20h</li>
-        <li>vendredi : 9h - 20h</li>
-        <li>samedi : 9h - 20h</li>
-        <li>dimanche : fermé</li>
-    </ul>
-    </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>L'Atelier Capillaire – Salon de coiffure | Site de démonstration</title>
+<meta name="description" content="L'Atelier Capillaire, salon de coiffure : coupe, couleur, balayage et soins dans une ambiance chaleureuse. Site de démonstration réalisé par Studio Code.">
+<style>
+:root{--prune:#2a1233;--prune2:#1a0a22;--corail:#ff7f66;--peche:#ffc9b3;--creme:#fff4ec;--lilas:#6d3d7c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;background:var(--creme);color:var(--prune);line-height:1.65;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s}
+header.fond{background:rgba(26,10,34,.95);box-shadow:0 4px 22px rgba(0,0,0,.3)}
+nav{display:flex;align-items:center;justify-content:space-between;max-width:1040px;margin:0 auto;padding:16px 22px}
+.logo{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:24px;color:#fff;text-decoration:none}
+.logo b{color:var(--corail)}
+.liens{display:flex;gap:26px;list-style:none}
+.liens a{color:#fff;text-decoration:none;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0;border-bottom:2px solid transparent;transition:border-color .25s}
+.liens a:hover{border-color:var(--corail)}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;background:linear-gradient(120deg,rgba(26,10,34,.92) 0,rgba(42,18,51,.78) 55%,rgba(109,61,124,.55) 100%),url("images/coiffure.jpg") center/cover fixed;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,127,102,.45),rgba(255,127,102,0) 68%);animation:pulse 9s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.hero-in{position:relative;z-index:2;padding:120px 22px 80px;max-width:1040px;margin:0 auto;width:100%}
+.etiquette{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--corail);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,10vw,104px);line-height:1.02;font-weight:400;max-width:760px}
+.hero h1 i{color:var(--corail)}
+.hero p{max-width:520px;font-size:clamp(17px,2.6vw,21px);margin:22px 0 32px;color:var(--peche)}
+.btn{display:inline-block;background:var(--corail);color:var(--prune2);font-weight:800;letter-spacing:.05em;text-decoration:none;padding:16px 34px;border:none;border-radius:999px;font-size:15px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,127,102,.45)}
+.btn.clair{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55);margin-left:10px}
+.statut{display:inline-flex;align-items:center;gap:10px;margin-top:34px;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border-radius:999px;padding:10px 20px;font-size:14px}
+.point{width:11px;height:11px;border-radius:50%;background:#888}
+.point.ouvert{background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:onde 2s infinite}
+.point.ferme{background:#f87171}
+@keyframes onde{70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+section{padding:92px 0}
+h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.1;margin-bottom:12px}
+h2 i{color:var(--corail)}
+.puces{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
+.puce{border:2px solid var(--prune);background:transparent;color:var(--prune);padding:9px 20px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;transition:all .25s}
+.puce.actif,.puce:hover{background:var(--prune);color:#fff}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.carte{background:#fff;border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(42,18,51,.1);transition:transform .25s,box-shadow .25s;border-top:5px solid var(--corail);animation:monte .5s both}
+.carte:hover{transform:translateY(-8px);box-shadow:0 18px 38px rgba(42,18,51,.18)}
+.carte h3{font-size:19px;margin-bottom:6px}
+.carte p{font-size:14px;color:#6b5575;margin-bottom:14px;min-height:42px}
+.carte .prix{font-family:Georgia,serif;font-size:28px;color:var(--corail);font-weight:700}
+@keyframes monte{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.sombre{background:var(--prune);color:#fff}
+.sombre h2 i{color:var(--corail)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.horaires{list-style:none;margin-top:20px}
+.horaires li{display:flex;justify-content:space-between;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.15);font-size:17px}
+.horaires li.aujourdhui{color:var(--corail);font-weight:800}
+.avis-boite{background:rgba(255,255,255,.08);border-radius:22px;padding:30px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
+.avis-texte{font-family:Georgia,serif;font-size:22px;line-height:1.5;font-style:italic;transition:opacity .4s}
+.avis-nom{margin-top:18px;color:var(--peche);font-weight:700}
+.avis-nav{display:flex;gap:8px;margin-top:20px;align-items:center}
+.avis-nav button{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:18px;cursor:pointer}
+.avis-nav button:hover{background:var(--corail);border-color:var(--corail);color:var(--prune2)}
+.avis-note{font-size:12px;color:var(--peche);opacity:.8;margin-left:8px}
+.formulaire{background:#fff;border-radius:26px;padding:32px;box-shadow:0 20px 50px rgba(42,18,51,.14);display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:780px;margin-top:24px}
+.formulaire label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin-bottom:6px}
+.formulaire input,.formulaire select{width:100%;padding:14px 16px;border:2px solid #e8d8e8;border-radius:12px;font-size:16px;font-family:inherit;color:var(--prune);background:#fff}
+.formulaire input:focus,.formulaire select:focus{outline:none;border-color:var(--corail);box-shadow:0 0 0 4px rgba(255,127,102,.2)}
+.plein{grid-column:1/-1}
+#message-confirmation{display:none;grid-column:1/-1;background:var(--prune);color:#fff;border-radius:14px;padding:18px 20px;font-size:17px}
+#message-confirmation.visible{display:block;animation:monte .5s both}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px}
+.contact div{background:rgba(255,255,255,.08);border-radius:18px;padding:22px}
+.contact h4{color:var(--corail);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+footer{background:var(--prune2);color:var(--peche);padding:28px 0;font-size:13px;text-align:center}
+.revele{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.revele.vu{opacity:1;transform:none}
+@media(max-width:760px){.liens{display:none}.duo{grid-template-columns:1fr;gap:34px}.formulaire{grid-template-columns:1fr;padding:22px}section{padding:68px 0}.hero{background-attachment:scroll}.btn.clair{margin:12px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.revele{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header id="haut">
+<nav>
+<a class="logo" href="#accueil">L'Atelier <b>Capillaire</b></a>
+<ul class="liens">
+<li><a href="#prestations">Prestations</a></li>
+<li><a href="#infos">Horaires</a></li>
+<li><a href="#rendez-vous">Rendez-vous</a></li>
+</ul>
+</nav>
+</header>
 
-    <h2>Avis clients</h2>
-    <button onclick="afficherAvis()">voir un avis client</button>
-    <p id="AvisAleatoire"></p>
-    <p class="avis"><strong>Sophie M. :</strong> "Accueil au top résultat magnifique, je recommande !"</p>
-    <p class="avis"><strong>Laura T. :</strong> "Équipe très professionnelle, merci pour votre travail" !"</p>
-    <p class="avis"><strong>Leila M. :</strong> "Résultat sublime et un accueil super"</p>
-    <section id="rendez-vous">
-        <h2>Prendre rendez-vous</h2>
-        <form id="form-rdv">
-            <label for="nom">Nom et prénom</label>
-            <input type="text" id="nom" name="nom" required>
+<section id="accueil" class="hero" style="padding:0">
+<div class="hero-in">
+<p class="etiquette">Salon de coiffure · Paris</p>
+<h1>Votre style, <i>sublimé</i></h1>
+<p>Un savoir-faire unique au service de votre style, dans une ambiance chaleureuse et conviviale.</p>
+<a class="btn" href="#rendez-vous">Prendre rendez-vous</a><a class="btn clair" href="#prestations">Voir les prestations</a>
+<div><span class="statut"><span class="point" id="point"></span><span id="statut-texte">Vérification des horaires…</span></span></div>
+</div>
+</section>
 
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" required>
+<section id="prestations">
+<div class="wrap">
+<p class="etiquette">Nos prestations</p>
+<h2>Chaque cheveu a son <i>histoire</i></h2>
+<div class="puces" role="tablist">
+<button class="puce actif" data-f="tout">Tout</button>
+<button class="puce" data-f="coupe">Coupe</button>
+<button class="puce" data-f="couleur">Couleur</button>
+<button class="puce" data-f="soin">Lissage</button>
+<button class="puce" data-f="occasion">Occasions</button>
+</div>
+<div class="grille" id="grille"></div>
+<p style="margin-top:20px;font-size:14px;color:#6b5575">Tarifs donnés à titre d'exemple : site de démonstration.</p>
+</div>
+</section>
 
-            <label for="service">Service souhaité</label>
-            <select id="service" name="service" required>
-                <option value="">_ _ Choisissez un service _ _</option>
-                <option value="coupe">Coupe et brushing</option>
-                <option value="coloration">Coloration</option>
-                <option value="meche">Mèche</option>
-                <option value="balayage">Balayage</option>
-                <option value="decoloration">Décoloration</option>
-                <option value="lissage">Lissage</option>
-                <option value="mariage">Mariage</option>
-                </select>
+<section id="infos" class="sombre">
+<div class="wrap duo">
+<div class="revele">
+<p class="etiquette">Horaires d'ouverture</p>
+<h2>Quand nous <i>trouver</i></h2>
+<ul class="horaires" id="horaires"></ul>
+</div>
+<div class="revele">
+<p class="etiquette">Avis clients</p>
+<h2>Elles en <i>parlent</i></h2>
+<div class="avis-boite">
+<div><p class="avis-texte" id="avis-texte"></p><p class="avis-nom" id="avis-nom"></p></div>
+<div class="avis-nav"><button id="prec" aria-label="Avis précédent">‹</button><button id="suiv" aria-label="Avis suivant">›</button><span class="avis-note">Avis fictifs – site de démonstration</span></div>
+</div>
+</div>
+</div>
+</section>
 
-                <label for="date">Date souhaitée</label>
-                <input type="date" id="date" name="date" required>
+<section id="rendez-vous">
+<div class="wrap">
+<p class="etiquette">Réservation</p>
+<h2>Prendre <i>rendez-vous</i></h2>
+<p>Choisissez votre prestation et votre créneau.</p>
+<form class="formulaire" id="form-rdv" novalidate>
+<div><label for="nom">Nom et prénom</label><input type="text" id="nom" required autocomplete="name"></div>
+<div><label for="telephone">Téléphone</label><input type="tel" id="telephone" required autocomplete="tel"></div>
+<div class="plein"><label for="service">Service souhaité</label>
+<select id="service" required>
+<option value="">Choisissez un service</option>
+<option>Coupe et brushing</option><option>Coloration</option><option>Mèche</option><option>Balayage</option><option>Décoloration</option><option>Lissage brésilien</option><option>Forfait mariage</option>
+</select></div>
+<div><label for="date">Date souhaitée</label><input type="date" id="date" required></div>
+<div><label for="heure">Heure souhaitée</label>
+<select id="heure" required>
+<option value="">Choisissez une heure</option>
+<option>9h00</option><option>10h00</option><option>11h00</option><option>14h00</option><option>15h00</option><option>16h00</option><option>17h00</option><option>18h00</option>
+</select></div>
+<div class="plein"><button class="btn" type="submit">Envoyer la demande</button></div>
+<div id="message-confirmation" role="status"></div>
+</form>
+</div>
+</section>
 
-                <label for="heure">Heure souhaitée</label>
-                <select id="heure" name="heure" required>
-                    <option value="9h00">9h00</option>
-                    <option value="10h00">10h00</option>
-                    <option value="11h00">11h00</option>
-                    <option value="14h00">14h00</option>
-                    <option value="15h00">15h00</option>
-                    <option value="16h00">16h00</option>
-                    <option value="17h00">17h00</option>
-                    <option value="18h00">18h00</option>
-                </select>
+<section class="sombre" style="padding:70px 0">
+<div class="wrap">
+<p class="etiquette">Contact</p>
+<h2>Venez <i>nous voir</i></h2>
+<div class="contact">
+<div><h4>Adresse</h4><p>10 rue de la Val<br>75000 Paris</p><p><a href="https://www.google.com/maps?q=10+rue+de+la+Val+75000+PARIS">Voir sur la carte</a></p></div>
+<div><h4>Téléphone</h4><p><a href="tel:0123456789">01 23 45 67 89</a></p></div>
+<div><h4>Suivez-nous</h4><p><a href="https://www.instagram.com">Instagram</a></p></div>
+</div>
+</div>
+</section>
 
-                <button type="submit">Envoyer la demande</button>
-        </form>
-        <p id="message-confirmation"></p>
-    </section>
-    <h2>Information de contact</h2>
-    <p><strong>10 Rue de la Val 75000 PARIS</strong></p>
-    <p><strong><a href="https://www.google.com/maps?q=10+rue+de+la+Val+75000+PARIS">Voir sur la carte</a></strong></p>
-    <p><strong><a href="tel:0123456789">01 23 45 67 89</a></strong></p>
-    <h2>Suivez-nous</h2>
-    <p><a href="https://www.instagram.com">Instagram</a></p>
-    <footer>
-        <p>&copy; 2026 L' Atelier Capillaire - Tous droits réservés</p>
-    </footer>
-    </body>
-    <script src="script.js"></script>
+<footer>
+<p>© 2026 L'Atelier Capillaire – Tous droits réservés · Site de démonstration réalisé par Studio Code, informations fictives.</p>
+</footer>
+
+<script>
+(function(){
+var prestations=[
+["Coupe et brushing","Coupe sur mesure et mise en forme.","45 €","coupe"],
+["Coloration","Une couleur uniforme, éclatante.","55 €","couleur"],
+["Mèche","Des reflets lumineux et naturels.","70 €","couleur"],
+["Balayage","Un dégradé de lumière tout en douceur.","160 €","couleur"],
+["Décoloration tête complète","Pour passer au blond en toute sécurité.","180 €","couleur"],
+["Lissage brésilien","Des cheveux lisses et brillants.","200 €","soin"],
+["Forfait mariage","Coiffure complète pour le grand jour.","250 €","occasion"]
+];
+var grille=document.getElementById("grille");
+function montrer(f){
+grille.innerHTML="";var i=0;
+prestations.forEach(function(p){
+if(f!=="tout"&&p[3]!==f)return;
+var c=document.createElement("div");c.className="carte";c.style.animationDelay=(i*70)+"ms";i++;
+var h=document.createElement("h3");h.textContent=p[0];
+var d=document.createElement("p");d.textContent=p[1];
+var pr=document.createElement("span");pr.className="prix";pr.textContent=p[2];
+c.appendChild(h);c.appendChild(d);c.appendChild(pr);grille.appendChild(c);
+});
+}
+document.querySelectorAll(".puce").forEach(function(b){
+b.addEventListener("click",function(){
+document.querySelectorAll(".puce").forEach(function(x){x.classList.remove("actif");});
+b.classList.add("actif");montrer(b.getAttribute("data-f"));
+});
+});
+montrer("tout");
+
+var jours=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+var ouvert=[false,false,true,true,true,true,true];
+var ul=document.getElementById("horaires");
+var auj=new Date().getDay();
+jours.slice(1).concat(jours[0]).forEach(function(nom){
+var idx=jours.indexOf(nom);
+var li=document.createElement("li");if(idx===auj)li.className="aujourdhui";
+var a=document.createElement("span");a.textContent=nom.charAt(0).toUpperCase()+nom.slice(1);
+var b=document.createElement("span");b.textContent=ouvert[idx]?"9h – 20h":"Fermé";
+li.appendChild(a);li.appendChild(b);ul.appendChild(li);
+});
+var maintenant=new Date();var h=maintenant.getHours();
+var estOuvert=ouvert[auj]&&h>=9&&h<20;
+var point=document.getElementById("point");var texte=document.getElementById("statut-texte");
+point.className="point "+(estOuvert?"ouvert":"ferme");
+texte.textContent=estOuvert?"Ouvert maintenant · jusqu'à 20h":"Fermé actuellement · ouvert du mardi au samedi, de 9h à 20h";
+
+var avis=[
+["Accueil au top, résultat magnifique, je recommande !","Sophie M."],
+["Équipe très professionnelle, merci pour votre travail !","Laura T."],
+["Résultat sublime et un accueil super.","Leila M."]
+];
+var k=0;var tx=document.getElementById("avis-texte");var nm=document.getElementById("avis-nom");
+function afficherAvis(){
+tx.style.opacity=0;
+setTimeout(function(){tx.textContent="« "+avis[k][0]+" »";nm.textContent="— "+avis[k][1];tx.style.opacity=1;},250);
+}
+document.getElementById("suiv").addEventListener("click",function(){k=(k+1)%avis.length;afficherAvis();});
+document.getElementById("prec").addEventListener("click",function(){k=(k+avis.length-1)%avis.length;afficherAvis();});
+afficherAvis();
+setInterval(function(){k=(k+1)%avis.length;afficherAvis();},7000);
+
+var dateEl=document.getElementById("date");
+var a0=new Date();
+dateEl.min=a0.getFullYear()+"-"+String(a0.getMonth()+1).padStart(2,"0")+"-"+String(a0.getDate()).padStart(2,"0");
+document.getElementById("form-rdv").addEventListener("submit",function(e){
+e.preventDefault();
+var nom=document.getElementById("nom").value.trim();
+var tel=document.getElementById("telephone").value.trim();
+var s=document.getElementById("service").value;
+var date=dateEl.value;var heure=document.getElementById("heure").value;
+var m=document.getElementById("message-confirmation");
+m.classList.add("visible");
+if(!nom||tel.length<6||!s||!date||!heure){m.textContent="Merci de remplir tous les champs avant d'envoyer votre demande.";return;}
+var dj=new Date(date+"T12:00:00");
+if(!ouvert[dj.getDay()]){m.textContent="Le salon est fermé le dimanche et le lundi. Choisissez un autre jour, du mardi au samedi.";return;}
+var jolie=dj.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+m.textContent="Merci "+nom+" ! Votre demande de « "+s+" » est enregistrée pour le "+jolie+" à "+heure+". (Démonstration : aucun message n'est envoyé.)";
+});
+
+var haut=document.getElementById("haut");
+function scrolle(){haut.classList.toggle("fond",window.scrollY>40);}
+window.addEventListener("scroll",scrolle);scrolle();
+var obs=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vu");obs.unobserve(x.target);}});},{threshold:.15});
+document.querySelectorAll(".revele").forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
 </html>
-
-    
-    
