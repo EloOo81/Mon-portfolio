@@ -1564,5 +1564,39 @@ document.body.appendChild(b);
 if(document.readyState!=='loading'){setTimeout(init,300);}else{document.addEventListener('DOMContentLoaded',function(){setTimeout(init,300);});}
 })();
 </script>
+<style>
+#auraVoix{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid #d4af5a;background:#14110c;color:#d4af5a;font-size:18px;cursor:pointer;margin-left:6px}
+#auraVoix.on{background:#d4af5a;color:#14110c}
+</style>
+<script>
+(function(){
+var LANGS={fr:'fr-FR',en:'en-GB',ru:'ru-RU',ar:'ar-SA',zh:'zh-CN',it:'it-IT',es:'es-ES',th:'th-TH'};
+var HOM=/thomas|daniel|paul|jacques|henri|male|homme|david|mark|george|james|diego|jorge|pablo|luca|yuri|pavel|maxim|hemant|ravi|ichiro|kangkang|yunyang|naayf|hamed|majed|niwat|premwadee_m/i;
+var FEM=/am[ée]lie|audrey|aur[ée]lie|marie|julie|hortense|denise|eloise|brigitte|female|femme|samantha|karen|moira|serena|susan|zira|hazel|libby|sonia|elsa|isabella|paola|alice|elena|monica|paulina|helena|laura|tessa|victoria|xiaoxiao|xiaoyi|ting-ting|meijia|zariyah|hoda|kanya|premwadee|milena|katya|irina|google/i;
+function pick(lang){
+var vs=speechSynthesis.getVoices().filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf(lang.slice(0,2).toLowerCase())===0;});
+if(!vs.length)return null;
+var f=vs.filter(function(v){return FEM.test(v.name)&&!HOM.test(v.name);});
+if(f.length)return f[0];
+var n=vs.filter(function(v){return !HOM.test(v.name);});
+return n[0]||vs[0];}
+function init(){
+if(!('speechSynthesis' in window))return;
+var area=document.querySelector('.chat-input-area,#chat-input-area');if(!area)return;
+var b=document.createElement('button');b.id='auraVoix';b.type='button';b.textContent='🔊';b.title='Écouter Aura';b.setAttribute('aria-label','Écouter la dernière réponse d\'Aura');
+b.addEventListener('click',function(){
+if(speechSynthesis.speaking){speechSynthesis.cancel();b.classList.remove('on');return;}
+var m=document.querySelectorAll('#chatMessages .chat-message.bot');if(!m.length)return;
+var txt=m[m.length-1].textContent.trim();if(!txt||txt.indexOf('Aura écrit')===0)return;
+var sel=document.getElementById('langSelect');var code=LANGS[(sel&&sel.value)||'fr']||'fr-FR';
+var u=new SpeechSynthesisUtterance(txt);u.lang=code;var v=pick(code);if(v){u.voice=v;u.lang=v.lang;}
+u.pitch=1.1;u.rate=0.97;
+u.onend=u.onerror=function(){b.classList.remove('on');};
+b.classList.add('on');speechSynthesis.speak(u);});
+area.appendChild(b);
+speechSynthesis.getVoices();}
+if(document.readyState!=='loading'){setTimeout(init,400);}else{document.addEventListener('DOMContentLoaded',function(){setTimeout(init,400);});}
+})();
+</script>
 </body>
 </html>
