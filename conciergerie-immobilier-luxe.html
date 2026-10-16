@@ -580,7 +580,7 @@
         <p id="heroSubtitle">L'Art de l'Immobilier d'Exception redéfini par l'Intelligence Artificielle</p>
         
         <div class="ai-concierge">
-            <input aria-label="Ex: Chalet montagne, cuisine, jardin, DPE..." type="text" id="globalSearchInput" placeholder="Ex: Chalet montagne, cuisine, jardin, DPE...">
+            <input aria-label="Décrivez votre bien idéal : maison moderne avec piscine, château, vue mer…" type="text" id="globalSearchInput" placeholder="Décrivez votre bien idéal : maison moderne avec piscine, château, vue mer…">
             <button id="globalSearchBtn">Rechercher</button>
         </div>
     </header>
@@ -618,9 +618,9 @@
 
             <!-- Chatbot local -->
             <div class="property-chat">
-                <div class="chat-header" id="chatHeaderTitle">✨ Assistant Virtuel Privé de la Propriété</div>
+                <div class="chat-header" style="display:flex;align-items:center;gap:12px"><svg viewBox="0 -30 200 230" width="40" height="46" aria-hidden="true" style="flex:none"><defs><linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3dc9a"/><stop offset="1" stop-color="#c9a24a"/></linearGradient></defs><circle cx="100" cy="100" r="78" fill="#14110c" stroke="#d4af5a" stroke-width="6"/><ellipse cx="62" cy="116" rx="9" ry="5.5" fill="#e8907a" opacity=".45"/><ellipse cx="138" cy="116" rx="9" ry="5.5" fill="#e8907a" opacity=".45"/><rect x="68" y="76" width="14" height="32" rx="7" fill="#d4af5a"/><rect x="118" y="76" width="14" height="32" rx="7" fill="#d4af5a"/><path d="M64 76 L56 68 M69 72 L64 62 M75 71 L73 60M136 76 L144 68 M131 72 L136 62 M125 71 L127 60" stroke="#d4af5a" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M82 128 Q100 144 118 128" fill="none" stroke="#a78bfa" stroke-width="7" stroke-linecap="round"/><path d="M40 100 Q36 38 100 28 Q150 30 166 74 Q132 52 96 58 Q60 62 40 100Z" fill="url(#ag)"/><circle cx="24" cy="112" r="5" fill="url(#ag)"/><circle cx="176" cy="112" r="5" fill="url(#ag)"/></svg><span id="chatHeaderTitle">Aura · assistante virtuelle</span></div>
                 <div class="chat-messages" id="chatMessages">
-                    <div class="chat-message bot" id="chatWelcome">Bonjour. Posez-moi vos questions précises sur le jardin, les commodités, le DPE, le chauffage ou la cuisine.</div>
+                    <div class="chat-message bot" id="chatWelcome">Bonjour, je suis Aura, votre assistante privée. Posez-moi toutes vos questions sur ce bien : jardin, commodités, DPE, chauffage, cuisine…</div>
                 </div>
                 <div class="chat-input-area">
                     <input aria-label="Ex: Proche commodités ? DPE ? Jardin ?..." type="text" id="chatInput" placeholder="Ex: Proche commodités ? DPE ? Jardin ?...">
@@ -760,7 +760,7 @@
                     adminBtn: "⚙️ Espace Admin",
                     heroTitle: "AURA PRESTIGE",
                     heroSubtitle: "L'Art de l'Immobilier d'Exception redéfini par l'Intelligence Artificielle",
-                    searchPlaceholder: "Ex: Chalet montagne, cuisine, jardin, DPE...",
+                    searchPlaceholder: "Décrivez votre bien idéal : maison moderne avec piscine, château, vue mer…",
                     searchBtn: "Rechercher",
                     sectionTitle: "Sélections Exclusives",
                     galleryHeader: "Galerie Photos (6 espaces exclusifs)",
@@ -768,7 +768,7 @@
                     financeBtn: "💰 Simulateur Financier",
                     rdvBtn: "📅 Prendre un RDV Privé",
                     chatTitle: "✨ Assistant Virtuel Privé de la Propriété",
-                    chatWelcome: "Bonjour. Posez-moi vos questions précises sur le jardin, les commodités, le DPE, le chauffage ou la cuisine.",
+                    chatWelcome: "Bonjour, je suis Aura, votre assistante privée. Posez-moi toutes vos questions sur ce bien : jardin, commodités, DPE, chauffage, cuisine…",
                     chatPlaceholder: "Ex: Proche commodités ? DPE ? Jardin ?...",
                     chatSend: "Envoyer",
                     finTitle: "💰 Simulateur de Financement",
@@ -798,7 +798,7 @@
                     financeBtn: "💰 Financial Simulator",
                     rdvBtn: "📅 Book Private Tour",
                     chatTitle: "✨ Private Property Virtual Assistant",
-                    chatWelcome: "Hello. Ask me specific questions about the garden, amenities, energy rating, heating, or kitchen.",
+                    chatWelcome: "Hello, I am Aura, your private assistant. Ask me anything about this property: garden, amenities, energy rating, heating, kitchen…",
                     chatPlaceholder: "Ex: Near amenities? Energy rating? Garden?...",
                     chatSend: "Send",
                     finTitle: "💰 Financial Simulator",
@@ -1377,33 +1377,56 @@
             const chatInput = document.getElementById("chatInput");
             const chatSend = document.getElementById("chatSend");
 
-            function envoyerMessageChat() {
+            const AURA_IA = "https://aura-ia.studio-code.workers.dev/";
+            let chatHistory = [];
+            let chatHistoryId = null;
+
+            function reponseLocale(text) {
+                const query = text.toLowerCase();
+                let reply = "Je n'ai pas cette information pour le moment. Je vous invite à prendre un rendez-vous privé pour le " + currentProperty.title + ".";
+                if (query.includes("cuisine")) { reply = currentProperty.cuisine; }
+                else if (query.includes("bain") || query.includes("eau") || query.includes("douche")) { reply = currentProperty.sdb; }
+                else if (query.includes("chauffage") || query.includes("dpe") || query.includes("clim")) { reply = currentProperty.chauffage + " — " + currentProperty.dpe; }
+                else if (query.includes("jardin") || query.includes("terrain")) { reply = currentProperty.jardin; }
+                else if (query.includes("commodite") || query.includes("commerce")) { reply = currentProperty.commodites; }
+                return reply;
+            }
+
+            async function envoyerMessageChat() {
                 const text = chatInput.value.trim();
                 if (text === "" || !currentProperty) return;
+                if (chatHistoryId !== currentProperty.id) { chatHistory = []; chatHistoryId = currentProperty.id; }
 
                 const userMsg = document.createElement("div");
                 userMsg.className = "chat-message user";
                 userMsg.textContent = text;
                 chatMessages.appendChild(userMsg);
                 chatInput.value = "";
+
+                const botMsg = document.createElement("div");
+                botMsg.className = "chat-message bot";
+                botMsg.textContent = "Aura écrit…";
+                chatMessages.appendChild(botMsg);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
 
-                setTimeout(() => {
-                    const botMsg = document.createElement("div");
-                    botMsg.className = "chat-message bot";
-                    const query = text.toLowerCase();
-                    let reply = `[Expert AURA] Prestations de très haut standing pour le ${currentProperty.title}.`;
-
-                    if (query.includes("cuisine")) { reply = currentProperty.cuisine; }
-                    else if (query.includes("bain") || query.includes("eau") || query.includes("douche")) { reply = currentProperty.sdb; }
-                    else if (query.includes("chauffage") || query.includes("dpe") || query.includes("clim")) { reply = `${currentProperty.chauffage} — ${currentProperty.dpe}`; }
-                    else if (query.includes("jardin") || query.includes("terrain")) { reply = currentProperty.jardin; }
-                    else if (query.includes("commodite") || query.includes("commerce")) { reply = currentProperty.commodites; }
-
-                    botMsg.textContent = reply;
-                    chatMessages.appendChild(botMsg);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 600);
+                let reply = "";
+                try {
+                    const p = currentProperty;
+                    const r = await fetch(AURA_IA, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            mode: "chat", lang: currentLang, question: text, history: chatHistory.slice(-6),
+                            property: { title: p.title, price: p.price, surface: p.surface, details: p.details, chambres: p.chambres, cuisine: p.cuisine, sdb: p.sdb, chauffage: p.chauffage, jardin: p.jardin, commodites: p.commodites, dpe: p.dpe, desc: p.desc }
+                        })
+                    });
+                    const j = await r.json();
+                    reply = (j && j.reply) ? String(j.reply) : "";
+                } catch (e) { reply = ""; }
+                if (!reply) reply = reponseLocale(text);
+                botMsg.textContent = reply;
+                chatHistory.push({ role: "user", content: text }, { role: "assistant", content: reply });
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
 
             chatSend.addEventListener("click", envoyerMessageChat);
@@ -1413,13 +1436,63 @@
             const globalSearchInput = document.getElementById("globalSearchInput");
             const globalSearchBtn = document.getElementById("globalSearchBtn");
 
-            function lancerRecherche() {
-                const query = globalSearchInput.value.trim().toLowerCase();
-                if (query === "") { renderGrid(database); return; }
-                const results = database.filter(prop => 
+            function filtreBudget(q, liste) {
+                const s = q.toLowerCase();
+                const max = s.match(/(moins de|maximum|max\.?|jusqu'à|under|below|less than|budget de)\s*(\d+(?:[.,]\d+)?)\s*(millions?|m\b)/);
+                const min = s.match(/(plus de|au moins|minimum|over|above|more than)\s*(\d+(?:[.,]\d+)?)\s*(millions?|m\b)/);
+                let r = liste;
+                if (max) { const v = parseFloat(max[2].replace(",", ".")) * 1000000; r = r.filter(p => p.rawPrice <= v); }
+                if (min) { const v = parseFloat(min[2].replace(",", ".")) * 1000000; r = r.filter(p => p.rawPrice >= v); }
+                return r;
+            }
+
+            function afficherMessageAura(texte) {
+                let el = document.getElementById("auraSearchMsg");
+                if (!el) {
+                    el = document.createElement("div");
+                    el.id = "auraSearchMsg";
+                    el.style.cssText = "margin:14px auto 0;max-width:720px;color:#e8dcc0;font-size:.95rem;line-height:1.5;text-align:center;min-height:1.4em";
+                    document.querySelector(".ai-concierge").insertAdjacentElement("afterend", el);
+                }
+                el.textContent = texte;
+            }
+
+            async function lancerRecherche() {
+                const brut = globalSearchInput.value.trim();
+                const query = brut.toLowerCase();
+                if (brut === "") { renderGrid(database); afficherMessageAura(""); return; }
+                const local = () => database.filter(prop =>
                     prop.title.toLowerCase().includes(query) || prop.desc.toLowerCase().includes(query) || prop.tags.some(t => query.includes(t))
                 );
-                renderGrid(results.length > 0 ? results : database);
+                afficherMessageAura("Aura analyse votre demande…");
+                try {
+                    const r = await fetch(AURA_IA, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            mode: "search", query: brut,
+                            properties: database.map(p => ({ id: p.id, title: p.title, details: p.details, desc: p.desc, surface: p.surface, rawPrice: p.rawPrice }))
+                        })
+                    });
+                    const j = await r.json();
+                    let liste = (j.ids || []).map(id => database.find(p => p.id === id)).filter(Boolean);
+                    const filtree = filtreBudget(brut, liste.length ? liste : database);
+                    if (liste.length && filtree.length) {
+                        renderGrid(filtree);
+                        afficherMessageAura(filtree.length === liste.length && j.message ? j.message : "Voici les biens qui correspondent le mieux à votre demande.");
+                    } else if (liste.length && !filtree.length) {
+                        renderGrid(database);
+                        afficherMessageAura("Aucun bien ne correspond exactement à ce budget. Voici toute la sélection.");
+                    } else {
+                        const loc = local();
+                        renderGrid(loc.length ? loc : database);
+                        afficherMessageAura("");
+                    }
+                } catch (e) {
+                    const loc = local();
+                    renderGrid(loc.length ? loc : database);
+                    afficherMessageAura("");
+                }
             }
 
             globalSearchBtn.addEventListener("click", lancerRecherche);
@@ -1442,7 +1515,7 @@
                 document.getElementById("openTourBtn").textContent = l.tourBtn;
                 document.getElementById("openFinanceBtn").textContent = l.financeBtn;
                 document.getElementById("openRdvBtn").textContent = l.rdvBtn;
-                document.getElementById("chatHeaderTitle").textContent = l.chatTitle;
+                document.getElementById("chatHeaderTitle").textContent = ({fr:"Aura · assistante virtuelle",en:"Aura · virtual assistant",ru:"Aura · виртуальный помощник",ar:"Aura · المساعدة الافتراضية",zh:"Aura · 虚拟助理",it:"Aura · assistente virtuale",es:"Aura · asistente virtual",th:"Aura · ผู้ช่วยเสมือน"})[currentLang] || "Aura";
                 document.getElementById("chatWelcome").textContent = l.chatWelcome;
                 document.getElementById("chatInput").placeholder = l.chatPlaceholder;
                 document.getElementById("chatSend").textContent = l.chatSend;
@@ -1464,5 +1537,65 @@
             });
         });
     </script>
+<style>
+#auraBubble{position:fixed;right:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:10px;background:#14110c;color:#f3e9d0;border:2px solid #d4af5a;border-radius:999px;padding:6px 16px 6px 6px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.5);font:600 14px system-ui,sans-serif;animation:auraPulse 2.5s infinite}
+#auraBubble .av{width:48px;height:48px;border-radius:50%;background:#0b0a08;overflow:hidden;flex:none}
+#auraBubble .av svg{width:100%;height:100%}
+@keyframes auraPulse{0%,100%{box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 0 rgba(212,175,90,.5)}50%{box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 10px rgba(212,175,90,0)}}
+</style>
+<script>
+(function(){
+function init(){
+var src=document.querySelector('.chat-header svg');
+var b=document.createElement('div');b.id='auraBubble';b.setAttribute('role','button');b.setAttribute('aria-label','Parler à Aura, assistante virtuelle');
+b.innerHTML='<span class="av"></span><span>Parler à Aura</span>';
+if(src){b.querySelector('.av').appendChild(src.cloneNode(true));}
+b.addEventListener('click',function(){
+var modal=document.getElementById('propertyModal');
+var open=modal&&getComputedStyle(modal).display!=='none';
+function go(){var c=document.getElementById('chatInput');var box=document.querySelector('.property-chat');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}if(c){setTimeout(function(){c.focus({preventScroll:true});},500);}}
+if(open){go();return;}
+var card=document.querySelector('.card .card-img-wrapper');
+if(card){card.click();setTimeout(go,600);}
+});
+document.body.appendChild(b);
+}
+if(document.readyState!=='loading'){setTimeout(init,300);}else{document.addEventListener('DOMContentLoaded',function(){setTimeout(init,300);});}
+})();
+</script>
+<style>
+#auraVoix{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid #d4af5a;background:#14110c;color:#d4af5a;font-size:18px;cursor:pointer;margin-left:6px}
+#auraVoix.on{background:#d4af5a;color:#14110c}
+</style>
+<script>
+(function(){
+var LANGS={fr:'fr-FR',en:'en-GB',ru:'ru-RU',ar:'ar-SA',zh:'zh-CN',it:'it-IT',es:'es-ES',th:'th-TH'};
+var HOM=/thomas|daniel|paul|jacques|henri|male|homme|david|mark|george|james|diego|jorge|pablo|luca|yuri|pavel|maxim|hemant|ravi|ichiro|kangkang|yunyang|naayf|hamed|majed|niwat|premwadee_m/i;
+var FEM=/am[ée]lie|audrey|aur[ée]lie|marie|julie|hortense|denise|eloise|brigitte|female|femme|samantha|karen|moira|serena|susan|zira|hazel|libby|sonia|elsa|isabella|paola|alice|elena|monica|paulina|helena|laura|tessa|victoria|xiaoxiao|xiaoyi|ting-ting|meijia|zariyah|hoda|kanya|premwadee|milena|katya|irina|google/i;
+function pick(lang){
+var vs=speechSynthesis.getVoices().filter(function(v){return v.lang&&v.lang.toLowerCase().indexOf(lang.slice(0,2).toLowerCase())===0;});
+if(!vs.length)return null;
+var f=vs.filter(function(v){return FEM.test(v.name)&&!HOM.test(v.name);});
+if(f.length)return f[0];
+var n=vs.filter(function(v){return !HOM.test(v.name);});
+return n[0]||vs[0];}
+function init(){
+if(!('speechSynthesis' in window))return;
+var area=document.querySelector('.chat-input-area,#chat-input-area');if(!area)return;
+var b=document.createElement('button');b.id='auraVoix';b.type='button';b.textContent='🔊';b.title='Écouter Aura';b.setAttribute('aria-label','Écouter la dernière réponse d\'Aura');
+b.addEventListener('click',function(){
+if(speechSynthesis.speaking){speechSynthesis.cancel();b.classList.remove('on');return;}
+var m=document.querySelectorAll('#chatMessages .chat-message.bot');if(!m.length)return;
+var txt=m[m.length-1].textContent.trim();if(!txt||txt.indexOf('Aura écrit')===0)return;
+var sel=document.getElementById('langSelect');var code=LANGS[(sel&&sel.value)||'fr']||'fr-FR';
+var u=new SpeechSynthesisUtterance(txt);u.lang=code;var v=pick(code);if(v){u.voice=v;u.lang=v.lang;}
+u.pitch=1.1;u.rate=0.97;
+u.onend=u.onerror=function(){b.classList.remove('on');};
+b.classList.add('on');speechSynthesis.speak(u);});
+area.appendChild(b);
+speechSynthesis.getVoices();}
+if(document.readyState!=='loading'){setTimeout(init,400);}else{document.addEventListener('DOMContentLoaded',function(){setTimeout(init,400);});}
+})();
+</script>
 </body>
 </html>
