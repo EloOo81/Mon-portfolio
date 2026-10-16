@@ -1590,7 +1590,7 @@ var m=document.querySelectorAll('#chatMessages .chat-message.bot');if(!m.length)
 var txt=m[m.length-1].textContent.trim();if(!txt||txt.indexOf('Aura écrit')===0)return;
 var sel=document.getElementById('langSelect');var code=LANGS[(sel&&sel.value)||'fr']||'fr-FR';
 var u=new SpeechSynthesisUtterance(txt);u.lang=code;var v=pick(code);if(v){u.voice=v;u.lang=v.lang;}
-u.pitch=1.1;u.rate=0.97;
+u.pitch=1.2;u.rate=1.08;u.volume=1;
 u.onend=u.onerror=function(){b.classList.remove('on');};
 b.classList.add('on');speechSynthesis.speak(u);});
 area.appendChild(b);
