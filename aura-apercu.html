@@ -1538,5 +1538,31 @@
             });
         });
     </script>
+<style>
+#auraBubble{position:fixed;right:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:10px;background:#14110c;color:#f3e9d0;border:2px solid #d4af5a;border-radius:999px;padding:6px 16px 6px 6px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.5);font:600 14px system-ui,sans-serif;animation:auraPulse 2.5s infinite}
+#auraBubble .av{width:48px;height:48px;border-radius:50%;background:#0b0a08;overflow:hidden;flex:none}
+#auraBubble .av svg{width:100%;height:100%}
+@keyframes auraPulse{0%,100%{box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 0 rgba(212,175,90,.5)}50%{box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 0 10px rgba(212,175,90,0)}}
+</style>
+<script>
+(function(){
+function init(){
+var src=document.querySelector('#chat-header svg');
+var b=document.createElement('div');b.id='auraBubble';b.setAttribute('role','button');b.setAttribute('aria-label','Parler à Aura, assistante virtuelle');
+b.innerHTML='<span class="av"></span><span>Parler à Aura</span>';
+if(src){b.querySelector('.av').appendChild(src.cloneNode(true));}
+b.addEventListener('click',function(){
+var modal=document.getElementById('propertyModal');
+var open=modal&&getComputedStyle(modal).display!=='none';
+function go(){var c=document.getElementById('chatInput');var box=document.querySelector('.property-chat');if(box){box.scrollIntoView({behavior:'smooth',block:'center'});}if(c){setTimeout(function(){c.focus({preventScroll:true});},500);}}
+if(open){go();return;}
+var card=document.querySelector('.card .card-img-wrapper');
+if(card){card.click();setTimeout(go,600);}
+});
+document.body.appendChild(b);
+}
+if(document.readyState!=='loading'){setTimeout(init,300);}else{document.addEventListener('DOMContentLoaded',function(){setTimeout(init,300);});}
+})();
+</script>
 </body>
 </html>
