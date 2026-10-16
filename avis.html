@@ -118,7 +118,7 @@
       'Autorisation de publication : oui'
     ].filter(Boolean);
     const subject = 'Nouvel avis client — ' + val('nom') + ' (' + note + '/5)';
-    window.location.href = 'mailto:elomonchet@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:contact.studio.code@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
     submitBtn.textContent = '✓ Messagerie ouverte : cliquez sur « Envoyer »';
     submitBtn.disabled = true;
   });
