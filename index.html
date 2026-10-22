@@ -203,7 +203,6 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#formules">Formules</a></li>
-      <li><a href="#avis">Avis</a></li>
       <li><a href="#methode">Méthode</a></li>
       <li><a href="#apropos">À propos</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -230,7 +229,6 @@
   </div></div>
   <div class="scroll-cue" aria-hidden="true"></div>
 </section>
-<a class="avis-strip" id="avisStrip" href="#avis" style="display:none;max-width:560px;margin:-10px auto 26px;padding:12px 20px;border:1px solid rgba(217,72,15,.45);border-radius:40px;text-align:center;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.04)"></a>
 
 
 <style>
@@ -265,30 +263,7 @@
 <div class="cta-row"><a href="#" class="btn btn-primary" onclick="var b=document.getElementById('nexo-btn')||(document.getElementById('nexo-root')&&document.getElementById('nexo-root').shadowRoot&&document.getElementById('nexo-root').shadowRoot.getElementById('nexo-btn'));if(b){b.click();}return false;">Tester Nexo en direct</a><a href="#contact" class="btn btn-ghost">Demander un devis gratuit</a><a href="https://larucheia.fr/" target="_blank" rel="noopener" class="btn btn-ghost">Essayer La Ruche IA, démo gratuite</a></div>
 </div></section>
 
-<section class="px" id="avis"><div class="container">
-<span class="eyebrow">Avis</span>
-<h2>Ils m'ont fait confiance.</h2>
-<p class="avis-resume" id="avisResume" style="font-size:1.15rem;color:var(--accent);margin:6px 0 18px"></p>
-<div class="avis-liste" id="avisListe"><p class="avis-vide">Chargement des avis…</p></div>
-<form class="avis-form" id="avisForm" novalidate>
-<h3>Laisser un avis</h3>
-<label for="avisNom">Votre prénom</label>
-<input type="text" id="avisNom" maxlength="40" autocomplete="given-name" required>
-<label id="avisNoteLabel">Votre note</label>
-<div class="avis-notes" role="radiogroup" aria-labelledby="avisNoteLabel">
-<input type="radio" name="note" id="n5" value="5"><label for="n5" title="5 sur 5">★</label>
-<input type="radio" name="note" id="n4" value="4"><label for="n4" title="4 sur 5">★</label>
-<input type="radio" name="note" id="n3" value="3"><label for="n3" title="3 sur 5">★</label>
-<input type="radio" name="note" id="n2" value="2"><label for="n2" title="2 sur 5">★</label>
-<input type="radio" name="note" id="n1" value="1"><label for="n1" title="1 sur 5">★</label>
-</div>
-<label for="avisTexte">Votre avis</label>
-<textarea id="avisTexte" maxlength="500" required></textarea>
-<div class="hp" aria-hidden="true"><label>Ne pas remplir <input type="text" id="avisSite" tabindex="-1" autocomplete="off"></label></div>
-<div class="cta-row"><button type="submit" class="btn btn-primary" id="avisBtn">Publier mon avis</button></div>
-<div class="avis-msg" id="avisMsg" role="status" aria-live="polite"></div>
-</form>
-</div></section>
+
 <style>
 .formules{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
 .formule{position:relative;border:1px solid rgba(217,72,15,.3);background:rgba(255,255,255,.025);border-radius:22px;padding:30px;display:flex;flex-direction:column}
@@ -468,42 +443,7 @@
 .avis-msg.err{color:#c92a2a}
 .avis-legal{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5}
 </style>
-<script>
-(function(){
-  var API="https://avis-studio-code.studio-code.workers.dev/";
-  var liste=document.getElementById("avisListe"),form=document.getElementById("avisForm"),msg=document.getElementById("avisMsg"),btn=document.getElementById("avisBtn");
-  function dateFr(d){try{return new Date(d).toLocaleDateString("fr-FR",{month:"long",year:"numeric"})}catch(e){return ""}}
-  function affiche(a){
-    liste.textContent="";
-    if(!a.length){var p=document.createElement("p");p.className="avis-vide";p.textContent="Soyez le premier à laisser un avis.";liste.appendChild(p);return}
-    a.forEach(function(x){
-      var c=document.createElement("div");c.className="avis-carte";
-      var s=document.createElement("div");s.className="avis-etoiles";s.setAttribute("aria-label",x.r+" sur 5");s.textContent="★".repeat(x.r)+"☆".repeat(5-x.r);
-      var t=document.createElement("p");t.textContent=x.t;
-      var m=document.createElement("small");m.textContent=x.n+" · "+dateFr(x.d);
-      c.appendChild(s);c.appendChild(t);c.appendChild(m);liste.appendChild(c);
-    });
-  }
-  function charge(){
-    fetch(API).then(function(r){return r.json()}).then(affiche).catch(function(){liste.textContent="";var p=document.createElement("p");p.className="avis-vide";p.textContent="Les avis ne sont pas disponibles pour le moment.";liste.appendChild(p)});
-  }
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    var note=form.querySelector("input[name=note]:checked");
-    msg.className="avis-msg";msg.textContent="";
-    if(!note){msg.className="avis-msg err";msg.textContent="Merci de choisir une note.";return}
-    btn.disabled=true;
-    fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nom:document.getElementById("avisNom").value,note:note.value,texte:document.getElementById("avisTexte").value,site:document.getElementById("avisSite").value})})
-    .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})
-    .then(function(o){
-      if(o.ok){msg.textContent=o.j.publie===false?"Merci ! Votre avis sera publié après validation.":"Merci ! Votre avis est publié.";form.reset();charge()}
-      else{msg.className="avis-msg err";msg.textContent=o.j.erreur||"Une erreur est survenue."}
-      btn.disabled=false;
-    }).catch(function(){msg.className="avis-msg err";msg.textContent="Impossible d'envoyer pour le moment. Réessayez plus tard.";btn.disabled=false});
-  });
-  charge();
-})();
-</script>
+
 <section class="section" id="faq" style="padding-top: 20px;">
   <div class="container">
     <div class="section-head center reveal">
@@ -582,7 +522,7 @@
     <span>© 2026 Studio Code · Entreprise individuelle</span>
     <nav aria-label="Liens de pied de page">
       <a href="#realisations">Réalisations</a>
-      <a href="#avis">Laisser un avis</a>
+      <a href="avis.html">Laisser un avis</a>
       <a href="mentions-legales.html" style="font-size:11px;color:var(--muted);opacity:.85">Mentions légales</a>
     </nav>
   </div>
@@ -621,9 +561,7 @@
   });
 })();
 </script>
-<script>
-(function(){fetch('https://avis-studio-code.studio-code.workers.dev/').then(function(r){return r.json()}).then(function(a){if(!Array.isArray(a)||!a.length)return;var s=0;a.forEach(function(x){s+=Number(x.r)||0});var m=(s/a.length).toFixed(1).replace('.',',');var txt='★★★★★ '+m+'/5 · '+a.length+' avis';var st=document.getElementById('avisStrip');if(st){st.textContent=txt+' — voir les avis';st.style.display='block'}var rs=document.getElementById('avisResume');if(rs)rs.textContent=txt}).catch(function(){})})();
-</script>
+
 <script src="/nexo.js" defer></script>
 </body>
 </html>
