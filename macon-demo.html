@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maçonnerie Bertrand — Maçon à Castres, Mazamet et dans le Tarn (81)</title>
+<meta name="description" content="Maçon dans le Tarn : extension, rénovation, ravalement de façade, terrasse, fondations. Estimation de budget en ligne, devis gratuit sous 48 h, garantie décennale.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Maçonnerie Bertrand — Maçon dans le Tarn">
+<meta property="og:description" content="Extension, rénovation, façade, terrasse. Estimez votre budget en 1 minute et obtenez un devis gratuit sous 48 h.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1f2430">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Maçonnerie Bertrand (site de démonstration)",
+  "description": "Entreprise de maçonnerie : extension, rénovation, ravalement de façade, terrasse, fondations.",
+  "telephone": "+33563000000",
+  "email": "contact@maconnerie-bertrand.fr",
+  "address": { "@type": "PostalAddress", "addressLocality": "Castres", "postalCode": "81100", "addressRegion": "Occitanie", "addressCountry": "FR" },
+  "areaServed": ["Castres", "Mazamet", "Albi", "Graulhet", "Lavaur", "Revel", "Labruguière", "Carmaux"],
+  "openingHours": "Mo-Fr 08:00-18:00"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Le devis est-il vraiment gratuit ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Le devis est gratuit, détaillé et sans engagement. Il est envoyé sous 48 h après la visite ou l'étude de votre demande." } },
+    { "@type": "Question", "name": "Faut-il un permis de construire pour une extension ?", "acceptedAnswer": { "@type": "Answer", "text": "Cela dépend de la surface créée et de votre commune. Au-delà de 20 m², une demande d'autorisation est en général nécessaire. Nous vous aidons à le vérifier avant de démarrer." } },
+    { "@type": "Question", "name": "Quels sont vos délais pour démarrer un chantier ?", "acceptedAnswer": { "@type": "Answer", "text": "En général de 3 à 8 semaines selon la saison et la taille du chantier. Les petites réparations urgentes sont traitées plus vite." } },
+    { "@type": "Question", "name": "Êtes-vous assuré en garantie décennale ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, tous les chantiers de structure sont couverts par notre garantie décennale. L'attestation est jointe à chaque devis." } }
+  ]
+}
+</script>
+<style>
+:root {
+  --ink: #1f2430;
+  --ink-2: #2e3545;
+  --sand: #f5f2ec;
+  --concrete: #e7e3da;
+  --orange: #e4571b;
+  --orange-d: #bf4410;
+  --muted: #5b6270;
+  --white: #fff;
+  --ok: #2b7a4b;
+  --radius: 10px;
+  --shadow: 0 12px 32px rgba(31,36,48,.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif; color: var(--ink); background: var(--sand); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+section { padding: 76px 0; }
+.eyebrow { display: block; color: var(--orange-d); font-weight: 700; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 8px; }
+h1, h2, h3 { line-height: 1.2; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); margin-bottom: 12px; }
+.lead { color: var(--muted); max-width: 640px; font-size: 17px; }
+.section-head { margin-bottom: 40px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 8px; border: 2px solid transparent; font-weight: 700; font-size: 15.5px; transition: transform .15s, background .2s, color .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-primary:hover { background: var(--orange-d); }
+.btn-ghost { background: transparent; border-color: rgba(255,255,255,.55); color: #fff; }
+.btn-ghost:hover { background: #fff; color: var(--ink); }
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { background: var(--ink-2); }
+
+/* Top bar + header */
+.topbar { background: var(--ink); color: #c9cdd6; font-size: 13.5px; }
+.topbar .container { display: flex; justify-content: space-between; gap: 16px; padding-top: 8px; padding-bottom: 8px; flex-wrap: wrap; }
+.topbar a { color: #fff; font-weight: 600; }
+header.site { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--concrete); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+.logo { font-weight: 800; font-size: 19px; letter-spacing: .3px; display: flex; align-items: center; gap: 10px; }
+.logo-mark { width: 30px; height: 30px; border-radius: 6px; background: var(--orange); display: grid; place-items: center; }
+.logo-mark svg { width: 18px; height: 18px; }
+.logo b { color: var(--orange-d); }
+.menu { display: flex; gap: 26px; list-style: none; align-items: center; }
+.menu a { font-weight: 600; font-size: 14.5px; color: var(--ink-2); }
+.menu a:hover { color: var(--orange-d); }
+.menu .btn { padding: 9px 18px; font-size: 14px; color: #fff; }
+.burger { display: none; background: none; border: 0; width: 44px; height: 44px; }
+.burger span { display: block; width: 24px; height: 2.5px; background: var(--ink); margin: 5px auto; border-radius: 2px; }
+
+/* Hero */
+.hero { background: linear-gradient(120deg, rgba(31,36,48,.96) 0%, rgba(31,36,48,.88) 60%, rgba(31,36,48,.8) 100%), repeating-linear-gradient(0deg, #39414f 0 30px, #2b3240 30px 33px); color: #fff; padding: 72px 0 84px; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+.tag { display: inline-block; background: rgba(228,87,27,.18); color: #ffb48f; border: 1px solid rgba(228,87,27,.5); padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+.hero h1 { font-size: clamp(32px, 4.6vw, 50px); margin-bottom: 16px; }
+.hero h1 em { font-style: normal; color: #ff9a68; }
+.hero p.sub { color: #d3d7df; font-size: 18px; max-width: 540px; margin-bottom: 28px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+.hero-points { list-style: none; display: grid; gap: 8px; color: #d3d7df; font-size: 15px; }
+.hero-points li::before { content: "✓"; color: #ff9a68; font-weight: 800; margin-right: 10px; }
+
+/* Estimateur */
+.estimator { background: #fff; color: var(--ink); border-radius: 14px; padding: 26px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.estimator h2 { font-size: 21px; margin-bottom: 4px; }
+.estimator .hint { color: var(--muted); font-size: 13.5px; margin-bottom: 16px; }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--ink-2); }
+.field select, .field input[type=number], .field input[type=text], .field input[type=tel], .field input[type=email], .field textarea { width: 100%; padding: 11px 12px; border: 1.5px solid #d9d4c9; border-radius: 8px; font: inherit; background: #fff; color: var(--ink); }
+.field textarea { min-height: 96px; resize: vertical; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { margin: 0; padding: 10px; border: 1.5px solid #d9d4c9; border-radius: 8px; text-align: center; cursor: pointer; font-weight: 600; font-size: 14px; }
+.seg input:checked + label { border-color: var(--orange); background: #fff1ea; color: var(--orange-d); }
+.seg input:focus-visible + label { outline: 3px solid var(--orange); outline-offset: 2px; }
+.result { background: var(--ink); color: #fff; border-radius: 10px; padding: 16px 18px; margin: 4px 0 14px; }
+.result small { color: #aeb4c0; display: block; font-size: 12.5px; }
+.result strong { font-size: 25px; display: block; margin: 2px 0; }
+.result-actions { display: grid; gap: 8px; }
+.result-actions .btn { padding: 11px 16px; font-size: 14.5px; }
+
+/* Trust */
+.trust { background: var(--concrete); padding: 26px 0; }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center; }
+.trust-grid strong { display: block; font-size: 30px; color: var(--orange-d); line-height: 1.1; }
+.trust-grid span { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card { background: #fff; border: 1px solid var(--concrete); border-radius: var(--radius); padding: 26px 24px; transition: transform .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.ico { width: 48px; height: 48px; border-radius: 10px; background: #fff1ea; display: grid; place-items: center; margin-bottom: 14px; }
+.ico svg { width: 26px; height: 26px; stroke: var(--orange-d); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.card h3 { font-size: 18px; margin-bottom: 6px; }
+.card p { color: var(--muted); font-size: 15px; }
+
+/* Process */
+.process-bg { background: var(--ink); color: #fff; }
+.process-bg .lead { color: #b9bfcb; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+.step { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 24px 20px; counter-increment: s; }
+.step::before { content: counter(s); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--orange); font-weight: 800; margin-bottom: 14px; }
+.step h3 { font-size: 17px; margin-bottom: 6px; }
+.step p { color: #b9bfcb; font-size: 14.5px; }
+
+/* Réalisations */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.chip { padding: 8px 16px; border-radius: 99px; border: 1.5px solid #d9d4c9; background: #fff; font-weight: 600; font-size: 14px; }
+.chip[aria-pressed=true] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tile { border: 0; padding: 0; text-align: left; border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: 0 2px 10px rgba(31,36,48,.07); transition: transform .2s, box-shadow .2s; }
+.tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.tile[hidden] { display: none; }
+.tile .pic { height: 170px; display: block; }
+.tile .cap { padding: 14px 16px 16px; display: block; }
+.tile .cap b { display: block; font-size: 15.5px; }
+.tile .cap small { color: var(--muted); font-size: 13.5px; }
+.p-extension { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), repeating-linear-gradient(0deg, #b5623f 0 21px, #e9dccb 21px 24px); }
+.p-facade { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), linear-gradient(#e8dcc6, #d8c7a8); }
+.p-terrasse { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), repeating-linear-gradient(90deg, #aaa398 0 70px, #8f887d 70px 73px), #aaa398; }
+.p-mur { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), repeating-linear-gradient(0deg, #9a9488 0 26px, #7f796e 26px 29px); }
+.p-fondation { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), repeating-linear-gradient(45deg, #8d9399 0 14px, #7b8187 14px 28px); }
+.p-cloture { background: linear-gradient(0deg, rgba(31,36,48,.25), transparent 50%), repeating-linear-gradient(0deg, #a89f8c 0 34px, #8d8573 34px 37px); }
+.note { margin-top: 16px; color: var(--muted); font-size: 13.5px; font-style: italic; }
+dialog { border: 0; border-radius: 14px; padding: 0; max-width: 440px; width: calc(100% - 32px); box-shadow: 0 30px 80px rgba(0,0,0,.4); }
+dialog::backdrop { background: rgba(20,24,32,.6); }
+dialog .pic { height: 150px; }
+dialog .body { padding: 22px; }
+dialog h3 { font-size: 20px; margin-bottom: 4px; }
+dialog dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 14px 0 18px; font-size: 14.5px; }
+dialog dt { font-weight: 700; color: var(--ink-2); }
+dialog .row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Zone */
+.zone { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.towns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.towns span { background: #fff; border: 1px solid var(--concrete); border-radius: 99px; padding: 7px 16px; font-weight: 600; font-size: 14.5px; }
+.zone-box { background: #fff; border-radius: 14px; padding: 28px; box-shadow: var(--shadow); }
+.zone-box h3 { margin-bottom: 8px; }
+.zone-box ul { list-style: none; display: grid; gap: 8px; margin-top: 12px; color: var(--muted); }
+.zone-box li::before { content: "✓"; color: var(--ok); font-weight: 800; margin-right: 10px; }
+
+/* FAQ */
+.faq { max-width: 800px; }
+details { background: #fff; border: 1px solid var(--concrete); border-radius: var(--radius); margin-bottom: 12px; }
+summary { padding: 18px 22px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 22px; color: var(--orange-d); line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { padding: 0 22px 20px; color: var(--muted); }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; background: #fff; border-radius: 16px; padding: 38px; box-shadow: var(--shadow); }
+.contact h3 { font-size: 21px; margin-bottom: 10px; }
+.contact .infos { display: grid; gap: 14px; margin-top: 20px; font-size: 15.5px; }
+.contact .infos a { font-weight: 700; color: var(--orange-d); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.msg { margin-top: 12px; font-weight: 600; font-size: 14.5px; display: none; }
+.msg.show { display: block; color: var(--ok); }
+.msg.err { color: #b3261e; }
+.hp { position: absolute; left: -9999px; }
+
+footer.site { background: var(--ink); color: #b9bfcb; padding: 34px 0 90px; font-size: 14px; }
+footer.site .container { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+footer.site strong { color: #fff; }
+
+/* Assistant IA */
+.fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; background: var(--orange); color: #fff; border: 0; border-radius: 99px; padding: 14px 20px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,.3); display: flex; gap: 10px; align-items: center; }
+.fab:hover { background: var(--orange-d); }
+.chat { position: fixed; right: 18px; bottom: 84px; z-index: 70; width: 380px; max-width: calc(100vw - 24px); height: 540px; max-height: calc(100vh - 110px); background: #fff; border-radius: 16px; box-shadow: 0 24px 70px rgba(0,0,0,.35); display: none; flex-direction: column; overflow: hidden; }
+.chat.open { display: flex; }
+.chat-head { background: var(--ink); color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+.chat-head strong { display: block; font-size: 15.5px; }
+.chat-head small { color: #aeb4c0; font-size: 12.5px; }
+.chat-head button { background: none; border: 0; color: #fff; font-size: 24px; width: 40px; height: 40px; }
+.chat-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--sand); }
+.bubble { max-width: 86%; padding: 10px 14px; border-radius: 14px; font-size: 14.5px; white-space: pre-wrap; }
+.bubble.bot { background: #fff; border: 1px solid var(--concrete); border-bottom-left-radius: 4px; align-self: flex-start; }
+.bubble.me { background: var(--ink); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+.quick { display: flex; flex-wrap: wrap; gap: 8px; align-self: flex-start; }
+.quick button { background: #fff; border: 1.5px solid var(--orange); color: var(--orange-d); border-radius: 99px; padding: 7px 14px; font-weight: 600; font-size: 13.5px; }
+.quick button:hover { background: #fff1ea; }
+.chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--concrete); background: #fff; }
+.chat-form input { flex: 1; min-width: 0; padding: 11px 12px; border: 1.5px solid #d9d4c9; border-radius: 8px; font: inherit; }
+.chat-form button { flex-shrink: 0; background: var(--ink); color: #fff; border: 0; border-radius: 8px; padding: 0 16px; font-weight: 700; }
+.chat-foot { font-size: 11.5px; color: var(--muted); text-align: center; padding: 0 12px 8px; background: #fff; }
+.callbar { display: none; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } .btn, .card, .tile { transition: none; } }
+
+@media (max-width: 900px) {
+  .hero-grid, .zone, .contact { grid-template-columns: 1fr; }
+  .services, .gallery { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu { display: none; position: absolute; top: 66px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 18px 22px; gap: 16px; border-bottom: 1px solid var(--concrete); align-items: flex-start; }
+  .menu.open { display: flex; }
+  .burger { display: block; }
+  .contact { padding: 24px; }
+}
+@media (max-width: 600px) {
+  section { padding: 56px 0; }
+  .services, .gallery, .steps { grid-template-columns: 1fr; }
+  .row2 { grid-template-columns: 1fr; }
+  .topbar .hide-s { display: none; }
+  .fab { bottom: 74px; }
+  .chat { bottom: 138px; max-height: calc(100vh - 160px); }
+  .callbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; background: #fff; border-top: 1px solid var(--concrete); }
+  .callbar a { padding: 15px; text-align: center; font-weight: 800; }
+  .callbar a:first-child { background: var(--orange); color: #fff; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span class="hide-s">Artisan maçon · Castres, Mazamet, Albi et tout le Tarn (81)</span>
+    <span>Lun–Ven 8 h–18 h · <a href="tel:+33563000000">05 63 00 00 00</a></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="container nav">
+    <a class="logo" href="#accueil" aria-label="Maçonnerie Bertrand, accueil">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11M10 21v-6h4v6"/></svg></span>
+      <span>MAÇONNERIE <b>BERTRAND</b></span>
+    </a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <ul class="menu" id="menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#methode">Méthode</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#zone">Zone</a></li>
+      <li><a href="#faq">Questions</a></li>
+      <li><a class="btn btn-primary" href="#contact">Devis gratuit</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">Artisan maçon · Tarn (81)</span>
+      <h1>Votre maçon dans le Tarn : des travaux <em>solides</em>, propres et chiffrés avant de commencer.</h1>
+      <p class="sub">Extension, rénovation, façade, terrasse, fondations. Vous connaissez le budget probable en 1 minute, puis vous recevez un devis détaillé sous 48 h.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">Demander un devis gratuit</a>
+        <button class="btn btn-ghost" type="button" data-open-chat>Parler à l'assistant</button>
+      </div>
+      <ul class="hero-points">
+        <li>Garantie décennale sur les chantiers de structure</li>
+        <li>Un seul interlocuteur du devis à la réception</li>
+        <li>Chantier nettoyé chaque soir, délais annoncés tenus</li>
+      </ul>
+    </div>
+
+    <form class="estimator" id="estimator" aria-labelledby="est-title" onsubmit="return false">
+      <h2 id="est-title">Estimez votre budget</h2>
+      <p class="hint">Fourchette indicative, calculée sur les prix moyens du Tarn.</p>
+      <div class="field">
+        <label for="est-type">Type de travaux</label>
+        <select id="est-type"></select>
+      </div>
+      <div class="field">
+        <label for="est-qty" id="est-qty-label">Surface (m²)</label>
+        <input type="number" id="est-qty" min="1" max="500" value="20" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label id="est-finish-label">Finition</label>
+        <div class="seg" role="radiogroup" aria-labelledby="est-finish-label">
+          <input type="radio" name="finish" id="f1" value="1" checked><label for="f1">Standard</label>
+          <input type="radio" name="finish" id="f2" value="1.2"><label for="f2">Soignée</label>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <small>Budget estimé, TTC</small>
+        <strong id="est-out">—</strong>
+        <small id="est-note">Hors accès difficile et démolition.</small>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-primary" type="button" id="est-quote">Demander un devis précis</button>
+        <button class="btn btn-dark" type="button" id="est-ai">Affiner avec l'assistant</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="container trust-grid">
+    <div><strong>15 ans</strong><span>d'expérience</span></div>
+    <div><strong>48 h</strong><span>pour recevoir votre devis</span></div>
+    <div><strong>Décennale</strong><span>sur tous les ouvrages de structure</span></div>
+    <div><strong>+120</strong><span>chantiers réalisés (démo)</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos services</span>
+      <h2>Tous vos travaux de maçonnerie</h2>
+      <p class="lead">Du petit ouvrage au chantier complet, chaque étape est faite par la même équipe.</p>
+    </div>
+    <div class="services">
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18M8 7v5M16 12v5M12 7v0"/></svg></div><h3>Maçonnerie générale</h3><p>Murs, cloisons, ouvertures et structures en parpaing, brique ou pierre.</p></article>
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div><h3>Extension et rénovation</h3><p>Agrandissement, surélévation, aménagement de combles, reprise de structure.</p></article>
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 9h16M4 15h16"/></svg></div><h3>Ravalement de façade</h3><p>Nettoyage, réparation des fissures et enduit pour protéger et embellir.</p></article>
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 20v-4h12v4M9 16v-4h6v4"/></svg></div><h3>Fondations et dalles</h3><p>Fouilles, semelles, dalles de garage ou d'abri avant construction.</p></article>
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 18l9-5 9 5-9 4-9-4zM3 13l9-5 9 5"/></svg></div><h3>Terrasse et dallage</h3><p>Terrasses, allées et cours en dalle, pavé ou béton désactivé.</p></article>
+      <article class="card reveal"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div><h3>Petits travaux</h3><p>Murets, clôtures, réparations : aucun chantier n'est trop petit.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="process-bg" id="methode">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:#ff9a68">Notre méthode</span>
+      <h2>Du premier appel à la réception du chantier</h2>
+      <p class="lead">Vous savez où vous en êtes à chaque étape. Pas de mauvaise surprise sur le prix.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Échange et visite</h3><p>Vous décrivez votre projet, nous passons sur place si besoin. C'est gratuit.</p></div>
+      <div class="step reveal"><h3>Devis détaillé</h3><p>Matériaux, main-d'œuvre et délais ligne par ligne, sous 48 h.</p></div>
+      <div class="step reveal"><h3>Chantier suivi</h3><p>Planning respecté, point à chaque étape clé, chantier propre.</p></div>
+      <div class="step reveal"><h3>Réception</h3><p>Visite finale ensemble, remise des garanties et des documents.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="realisations">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Réalisations</span>
+      <h2>Quelques chantiers dans le Tarn</h2>
+      <p class="lead">Cliquez sur un chantier pour voir ce qui a été fait.</p>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtrer les réalisations">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">Tous</button>
+      <button class="chip" type="button" data-f="structure" aria-pressed="false">Structure</button>
+      <button class="chip" type="button" data-f="exterieur" aria-pressed="false">Extérieur</button>
+    </div>
+    <div class="gallery" id="gallery"></div>
+    <p class="note">Visuels et détails de démonstration : à remplacer par les vraies photos de chantier du client.</p>
+  </div>
+</section>
+
+<section id="zone" style="background:var(--concrete)">
+  <div class="container zone">
+    <div class="reveal">
+      <span class="eyebrow">Zone d'intervention</span>
+      <h2>Un maçon proche de chez vous</h2>
+      <p class="lead">Basés à Castres, nous intervenons dans tout le Tarn et ses alentours.</p>
+      <div class="towns"><span>Castres</span><span>Mazamet</span><span>Albi</span><span>Graulhet</span><span>Lavaur</span><span>Revel</span><span>Labruguière</span><span>Carmaux</span></div>
+    </div>
+    <div class="zone-box reveal">
+      <h3>Pourquoi un artisan local ?</h3>
+      <ul>
+        <li>Réactivité en cas d'urgence ou de malfaçon</li>
+        <li>Connaissance des règles d'urbanisme de votre commune</li>
+        <li>Fournisseurs de matériaux à proximité, donc des délais courts</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container faq">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2>Ce que l'on nous demande le plus</h2>
+    </div>
+    <details><summary>Le devis est-il vraiment gratuit ?</summary><p>Oui. Il est gratuit, détaillé et sans engagement. Vous le recevez sous 48 h après la visite ou l'étude de votre demande.</p></details>
+    <details><summary>Faut-il un permis de construire pour une extension ?</summary><p>Cela dépend de la surface créée et de votre commune. Au-delà de 20 m², une autorisation est en général nécessaire. Nous vous aidons à le vérifier avant de démarrer.</p></details>
+    <details><summary>Quels sont vos délais pour démarrer un chantier ?</summary><p>En général de 3 à 8 semaines selon la saison et la taille du chantier. Les petites réparations urgentes sont traitées plus vite.</p></details>
+    <details><summary>Êtes-vous assuré en garantie décennale ?</summary><p>Oui, tous les chantiers de structure sont couverts. L'attestation est jointe à chaque devis.</p></details>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="container">
+    <div class="contact">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h3>Parlons de votre projet</h3>
+        <p class="lead" style="font-size:15.5px">Décrivez vos travaux : nous revenons vers vous sous 48 h avec un devis gratuit.</p>
+        <div class="infos">
+          <div>Téléphone<br><a href="tel:+33563000000">05 63 00 00 00</a></div>
+          <div>E-mail<br><a href="mailto:contact@maconnerie-bertrand.fr">contact@maconnerie-bertrand.fr</a></div>
+          <div>Zone<br>Castres et tout le Tarn (81)</div>
+          <div>Horaires<br>Lundi au vendredi, 8 h–18 h</div>
+        </div>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="row2">
+          <div class="field"><label for="nom">Nom</label><input type="text" id="nom" autocomplete="name" required></div>
+          <div class="field"><label for="tel">Téléphone</label><input type="tel" id="tel" autocomplete="tel" required></div>
+        </div>
+        <div class="field"><label for="email">E-mail</label><input type="email" id="email" autocomplete="email" required></div>
+        <div class="field"><label for="message">Votre projet</label><textarea id="message" required placeholder="Type de travaux, commune, surface, délai souhaité…"></textarea></div>
+        <input class="hp" type="text" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+        <p class="msg" id="form-msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div><strong>Maçonnerie Bertrand</strong><br>Artisan maçon · Castres et Tarn (81)</div>
+    <div>Site de démonstration réalisé par Elodie, Studio Code.<br>Nom, coordonnées et chiffres fictifs.</div>
+  </div>
+</footer>
+
+<div class="callbar"><a href="tel:+33563000000">Appeler</a><a href="#contact">Devis gratuit</a></div>
+
+<button class="fab" type="button" id="fab" aria-expanded="false" aria-controls="chat">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg>
+  Assistant devis
+</button>
+
+<section class="chat" id="chat" aria-label="Assistant devis" style="padding:0">
+  <div class="chat-head">
+    <div><strong>Assistant devis</strong><small id="chat-mode">Qualifie votre projet en 1 minute</small></div>
+    <button type="button" id="chat-close" aria-label="Fermer l'assistant">×</button>
+  </div>
+  <div class="chat-log" id="chat-log" aria-live="polite"></div>
+  <form class="chat-form" id="chat-form">
+    <input type="text" id="chat-input" placeholder="Écrivez votre message…" aria-label="Votre message" autocomplete="off">
+    <button type="submit">Envoyer</button>
+  </form>
+  <p class="chat-foot">Assistant automatique : il ne remplace pas un devis. Un artisan vous recontacte.</p>
+</section>
+
+<dialog id="dlg">
+  <span class="pic" id="dlg-pic"></span>
+  <div class="body">
+    <h3 id="dlg-title"></h3>
+    <p id="dlg-place" style="color:var(--muted)"></p>
+    <dl id="dlg-dl"></dl>
+    <div class="row">
+      <button class="btn btn-primary" type="button" id="dlg-quote">Un chantier similaire ?</button>
+      <button class="btn btn-dark" type="button" id="dlg-close">Fermer</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ========= CONFIGURATION =========
+   AI_ENDPOINT : adresse du Worker Cloudflare (voir dossier worker/).
+   Laissé vide, l'assistant fonctionne en mode guidé (démo, sans IA).
+   Aucune clé secrète ne doit jamais être écrite dans ce fichier. */
+const CONFIG = {
+  AI_ENDPOINT: "",
+  LEAD_EMAIL: "contact@maconnerie-bertrand.fr"
+};
+
+/* ========= Données ========= */
+const WORKS = {
+  extension: { label: "Extension / rénovation (gros œuvre)", unit: "m²", min: 1400, max: 2000, def: 20 },
+  facade:    { label: "Ravalement de façade", unit: "m²", min: 35, max: 70, def: 80 },
+  terrasse:  { label: "Terrasse / dallage", unit: "m²", min: 70, max: 130, def: 25 },
+  fondation: { label: "Fondations / dalle", unit: "m²", min: 90, max: 160, def: 30 },
+  cloture:   { label: "Muret / clôture", unit: "ml", min: 120, max: 250, def: 15 },
+  ouverture: { label: "Ouverture dans un mur porteur", unit: "ouverture(s)", min: 900, max: 2500, def: 1 }
+};
+const PROJECTS = [
+  { id: 1, cat: "structure", pic: "p-extension", title: "Extension de maison", place: "Castres", dl: { Surface: "28 m²", Durée: "7 semaines", Travaux: "Fondations, murs en brique, dalle, ouverture sur l'existant" } },
+  { id: 2, cat: "exterieur", pic: "p-facade", title: "Ravalement de façade", place: "Mazamet", dl: { Surface: "120 m²", Durée: "2 semaines", Travaux: "Nettoyage, rebouchage des fissures, enduit à la chaux" } },
+  { id: 3, cat: "exterieur", pic: "p-terrasse", title: "Terrasse dallée", place: "Albi", dl: { Surface: "35 m²", Durée: "5 jours", Travaux: "Terrassement, hérisson, dalle, pose de carrelage extérieur" } },
+  { id: 4, cat: "structure", pic: "p-mur", title: "Reprise de mur en pierre", place: "Graulhet", dl: { Longueur: "9 ml", Durée: "10 jours", Travaux: "Dépose, reprise en sous-œuvre, rejointoiement" } },
+  { id: 5, cat: "structure", pic: "p-fondation", title: "Dalle et fondations de garage", place: "Lavaur", dl: { Surface: "36 m²", Durée: "8 jours", Travaux: "Fouilles, semelles filantes, ferraillage, dalle béton" } },
+  { id: 6, cat: "exterieur", pic: "p-cloture", title: "Clôture en pierre", place: "Revel", dl: { Longueur: "22 ml", Durée: "6 jours", Travaux: "Fondation, montage en pierre, chaperon" } }
+];
+const eur = n => new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(n) + " €";
+const $ = s => document.querySelector(s);
+
+/* ========= Menu mobile ========= */
+const burger = $("#burger"), menu = $("#menu");
+burger.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+menu.addEventListener("click", e => { if (e.target.closest("a")) { menu.classList.remove("open"); burger.setAttribute("aria-expanded", false); } });
+
+/* ========= Estimateur ========= */
+const selType = $("#est-type"), inQty = $("#est-qty");
+Object.entries(WORKS).forEach(([k, w]) => selType.add(new Option(w.label, k)));
+function updateEstimate() {
+  const w = WORKS[selType.value];
+  $("#est-qty-label").textContent = w.unit === "m²" ? "Surface (m²)" : w.unit === "ml" ? "Longueur (mètres linéaires)" : "Nombre d'ouvertures";
+  const qty = Math.max(1, Math.min(500, parseFloat(inQty.value) || 0));
+  const f = parseFloat(document.querySelector("input[name=finish]:checked").value);
+  const lo = Math.round(w.min * qty * f / 100) * 100, hi = Math.round(w.max * qty * f / 100) * 100;
+  $("#est-out").textContent = eur(Math.max(lo, 100)) + " – " + eur(Math.max(hi, 200));
+  return { w, qty, f, lo, hi };
+}
+selType.addEventListener("change", () => { inQty.value = WORKS[selType.value].def; updateEstimate(); });
+inQty.addEventListener("input", updateEstimate);
+document.querySelectorAll("input[name=finish]").forEach(r => r.addEventListener("change", updateEstimate));
+function estimateText() {
+  const e = updateEstimate();
+  return e.w.label + " : " + e.qty + " " + e.w.unit + ", finition " + (e.f > 1 ? "soignée" : "standard") + ", budget indicatif " + eur(e.lo) + " à " + eur(e.hi) + ".";
+}
+$("#est-quote").addEventListener("click", () => {
+  $("#message").value = "Bonjour, je souhaite un devis. " + estimateText() + "\nCommune : ";
+  $("#contact").scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => $("#nom").focus({ preventScroll: true }), 600);
+});
+$("#est-ai").addEventListener("click", () => openChat("Mon estimation : " + estimateText()));
+inQty.value = WORKS[selType.value].def; updateEstimate();
+
+/* ========= Réalisations ========= */
+const gallery = $("#gallery");
+gallery.innerHTML = PROJECTS.map(p => `<button class="tile reveal" type="button" data-id="${p.id}" data-cat="${p.cat}"><span class="pic ${p.pic}"></span><span class="cap"><b>${p.title}</b><small>${p.place}</small></span></button>`).join("");
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === c));
+  document.querySelectorAll(".tile").forEach(t => { t.hidden = !(c.dataset.f === "all" || t.dataset.cat === c.dataset.f); });
+}));
+const dlg = $("#dlg");
+gallery.addEventListener("click", e => {
+  const t = e.target.closest(".tile"); if (!t) return;
+  const p = PROJECTS.find(x => x.id == t.dataset.id);
+  $("#dlg-pic").className = "pic " + p.pic;
+  $("#dlg-title").textContent = p.title;
+  $("#dlg-place").textContent = p.place + " (Tarn)";
+  $("#dlg-dl").innerHTML = Object.entries(p.dl).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+  dlg.dataset.title = p.title; dlg.showModal();
+});
+$("#dlg-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+$("#dlg-quote").addEventListener("click", () => {
+  dlg.close();
+  $("#message").value = "Bonjour, j'ai un projet similaire à : " + dlg.dataset.title + ".\nCommune : ";
+  $("#contact").scrollIntoView({ behavior: "smooth" });
+});
+
+/* ========= Formulaire de contact ========= */
+const form = $("#contact-form"), fmsg = $("#form-msg");
+function say(text, err) { fmsg.textContent = text; fmsg.className = "msg show" + (err ? " err" : ""); }
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  if ($("#website").value) return; // anti-spam
+  const data = { nom: $("#nom").value.trim(), tel: $("#tel").value.trim(), email: $("#email").value.trim(), message: $("#message").value.trim() };
+  if (!data.nom || !data.tel || !/^\S+@\S+\.\S+$/.test(data.email) || !data.message) { say("Merci de remplir tous les champs avec un e-mail valide.", true); return; }
+  if (CONFIG.AI_ENDPOINT) {
+    try {
+      const r = await fetch(CONFIG.AI_ENDPOINT.replace(/\/$/, "") + "/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error();
+      say("Merci, votre demande est bien partie. Réponse sous 48 h."); form.reset(); return;
+    } catch (_) { /* repli e-mail ci-dessous */ }
+  }
+  const body = `Nom : ${data.nom}\nTéléphone : ${data.tel}\nE-mail : ${data.email}\n\n${data.message}`;
+  location.href = "mailto:" + CONFIG.LEAD_EMAIL + "?subject=" + encodeURIComponent("Demande de devis : " + data.nom) + "&body=" + encodeURIComponent(body);
+  say("Votre application e-mail s'ouvre avec votre demande prête à envoyer (mode démo).");
+});
+
+/* ========= Assistant ========= */
+const chat = $("#chat"), log = $("#chat-log"), cform = $("#chat-form"), cin = $("#chat-input");
+let started = false, history = [], step = 0, lead = {};
+function bubble(text, who) { const b = document.createElement("div"); b.className = "bubble " + who; b.textContent = text; log.appendChild(b); log.scrollTop = log.scrollHeight; return b; }
+function quick(options, onPick) {
+  const q = document.createElement("div"); q.className = "quick";
+  options.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.textContent = o; b.addEventListener("click", () => { q.remove(); onPick(o); }); q.appendChild(b); });
+  log.appendChild(q); log.scrollTop = log.scrollHeight;
+}
+function openChat(prefill) {
+  chat.classList.add("open"); $("#fab").setAttribute("aria-expanded", true);
+  if (!started) { started = true; $("#chat-mode").textContent = CONFIG.AI_ENDPOINT ? "Assistant IA" : "Mode guidé (démo)"; greet(); }
+  if (prefill) handleUser(prefill);
+  else cin.focus();
+}
+function greet() {
+  bubble("Bonjour, je suis l'assistant de Maçonnerie Bertrand. Je note votre projet pour que l'artisan puisse vous rappeler avec les bonnes informations.", "bot");
+  if (CONFIG.AI_ENDPOINT) bubble("Quel type de travaux envisagez-vous, et dans quelle commune ?", "bot");
+  else askStep();
+}
+const STEPS = [
+  { q: "Quel type de travaux envisagez-vous ?", opts: ["Extension", "Façade", "Terrasse", "Fondations", "Clôture / muret", "Autre"], key: "travaux" },
+  { q: "Dans quelle commune se trouve le chantier ?", key: "commune" },
+  { q: "Pour quand souhaitez-vous démarrer ?", opts: ["Urgent", "Sous 3 mois", "Dans 3 à 6 mois", "Je me renseigne"], key: "delai" },
+  { q: "Un détail utile à nous donner ? (surface, accès, contraintes). Écrivez « non » sinon.", key: "detail" },
+  { q: "Pour finir, quel est votre nom et votre numéro de téléphone ?", key: "contact" }
+];
+function askStep() { const s = STEPS[step]; bubble(s.q, "bot"); if (s.opts) quick(s.opts, handleUser); }
+async function handleUser(text) {
+  bubble(text, "me"); history.push({ role: "user", content: text });
+  if (CONFIG.AI_ENDPOINT) return aiTurn();
+  lead[STEPS[step].key] = text; step++;
+  if (step < STEPS.length) return askStep();
+  const summary = `Demande de devis\nTravaux : ${lead.travaux}\nCommune : ${lead.commune}\nDélai : ${lead.delai}\nDétail : ${lead.detail}\nContact : ${lead.contact}`;
+  bubble("Merci, voici le résumé :\n\n" + summary, "bot");
+  quick(["Envoyer au maçon"], () => {
+    $("#message").value = summary; $("#nom").value = ($("#nom").value || (lead.contact || "").split(/[,\d]/)[0].trim());
+    chat.classList.remove("open"); $("#contact").scrollIntoView({ behavior: "smooth" });
+    bubble("Votre résumé est dans le formulaire de contact. Il ne reste qu'à vérifier vos coordonnées.", "bot");
+  });
+  step = 0; lead = {};
+}
+async function aiTurn() {
+  const wait = bubble("…", "bot");
+  try {
+    const r = await fetch(CONFIG.AI_ENDPOINT.replace(/\/$/, "") + "/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: history.slice(-12) }) });
+    if (!r.ok) throw new Error();
+    const j = await r.json();
+    wait.textContent = j.reply || "Je n'ai pas bien compris, pouvez-vous reformuler ?";
+    history.push({ role: "assistant", content: wait.textContent });
+  } catch (_) {
+    wait.textContent = "L'assistant est indisponible pour le moment. Vous pouvez remplir le formulaire de contact ou appeler le 05 63 00 00 00.";
+  }
+}
+$("#fab").addEventListener("click", () => chat.classList.contains("open") ? $("#chat-close").click() : openChat());
+$("#chat-close").addEventListener("click", () => { chat.classList.remove("open"); $("#fab").setAttribute("aria-expanded", false); });
+document.querySelectorAll("[data-open-chat]").forEach(b => b.addEventListener("click", () => openChat()));
+cform.addEventListener("submit", e => { e.preventDefault(); const t = cin.value.trim(); if (!t) return; cin.value = ""; handleUser(t); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && chat.classList.contains("open")) $("#chat-close").click(); });
+
+/* ========= Animations d'apparition + compteurs ========= */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if ("IntersectionObserver" in window && !reduce) {
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+} else document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+</script>
+</body>
+</html>
