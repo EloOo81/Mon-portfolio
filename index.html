@@ -194,8 +194,6 @@
 </style>
 </head>
 <body>
-<style>.promo-bar{background:linear-gradient(90deg,var(--accent),#f76707,var(--accent));color:#ffffff;text-align:center;padding:10px 16px;font:600 14px/1.45 'Inter',system-ui,sans-serif}.promo-bar s{opacity:.65;margin:0 4px}.promo-bar strong{font-size:16px}.promo-bar a{color:#ffffff;text-decoration:underline;margin-left:12px;white-space:nowrap}.promo-tag{display:inline-block;background:#ffffff;color:#f76707;padding:2px 10px;margin-right:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px}</style>
-<div class="promo-bar" role="note"><span class="promo-tag">Offre de lancement</span>Un avantage sur votre site vitrine jusqu'au 31 décembre 2026 · devis gratuit · paiement en 3 fois<a href="#contact">J'en profite</a></div>
 
 <header class="site-header">
   <div class="container navbar">
@@ -296,11 +294,6 @@
 </div>
 <div class="garanties"><span>Devis gratuit et sans engagement</span><span>Tarif annoncé avant de commencer, sans surprise</span><span>Paiement en 3 fois</span></div>
 
-<div class="remise" style="margin:28px auto 0;max-width:760px;padding:22px 24px;border:1.5px solid var(--accent);border-radius:14px;text-align:center;background:rgba(217,72,15,.06)">
-<strong style="display:block;font-size:1.25rem;color:var(--accent);margin-bottom:6px">Une remise sur votre site</strong>
-<span style="display:block">Remise de bienvenue offerte à toute personne qui me contacte par e-mail et commande un site. Cochez simplement la case dans le formulaire de contact. Sans commande de site, pas de remise, et aucune obligation.</span><br>
-<a href="#contact" class="btn btn-ghost" style="margin-top:14px;display:inline-block">Je veux ma remise</a>
-</div>
 </div></section>
 <section class="px" id="maintenance"><div class="container">
 <span class="eyebrow">Suivi &amp; maintenance</span>
@@ -505,7 +498,6 @@
           <label for="details">Votre projet en quelques mots</label>
           <textarea id="details" placeholder="Ce que vous avez en tête, ce qui vous distingue, vos références éventuelles…"></textarea>
         </div>
-        <label style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;margin:10px 0 14px"><input type="checkbox" id="remise" style="margin-top:4px"><span>Je souhaite la remise de bienvenue (valable uniquement si je commande un site). J'accepte que Studio Code me réponde par e-mail et me recontacte à propos de mon projet. Je peux me désinscrire à tout moment en le demandant par e-mail.</span></label>
 <button type="submit" class="btn btn-primary">Préparer mon e-mail</button>
         <small>Ce bouton ouvre votre messagerie avec un e-mail pré-rempli. Il ne reste qu'à l'envoyer.</small>
       </form>
@@ -551,7 +543,6 @@
       'Bonjour,', '',
       activity ? 'Mon activité : ' + activity : null,
       details ? '\n' + details : null,
-      document.getElementById('remise').checked ? '\nJe souhaite la remise de bienvenue (valable si je commande un site). J\'accepte d\'être recontacté(e) par e-mail à propos de mon projet.' : null,
       '', 'Merci !'
     ].filter(l => l !== null).join('\n');
     const subject = 'Projet sur mesure' + (activity ? ' · ' + activity : '');
