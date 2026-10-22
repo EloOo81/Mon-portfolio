@@ -41,7 +41,7 @@
   "knowsAbout": ["Création de site internet pour artisans et commerçants", "Création de site vitrine", "Site professionnel sur mesure", "Intégration d'intelligence artificielle", "Développement web freelance"]
 }
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment se passe un projet sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Tout commence par un échange écrit sur votre activité et vos besoins. Je vous propose ensuite une direction et un devis détaillé, sans engagement de votre part avant validation."}},{"@type":"Question","name":"Combien coûte un site sur mesure ?","acceptedAnswer":{"@type":"Answer","text":"Chaque site étant conçu spécifiquement, le prix dépend de son ampleur : nombre de pages, fonctionnalités, niveau de personnalisation. Le devis est gratuit et sans engagement, et le tarif final vous est annoncé avant de commencer, sans surprise. Paiement possible en 3 fois."}},{"@type":"Question","name":"Peut-on payer en 3 fois ?","acceptedAnswer":{"@type":"Answer","text":"Oui, en trois paiements d'un montant égal : 1 sur 3 à la commande, 2 sur 3 pendant la création du site, 3 sur 3 à la livraison, avant la mise en ligne."}},{"@type":"Question","name":"Faut-il se déplacer ou prendre rendez-vous ?","acceptedAnswer":{"@type":"Answer","text":"Non, tout se passe par écrit, simplement. Je peux créer votre site où que vous soyez, par exemple dans le Tarn (Mazamet, Castres, Albi), de l'Aude (Carcassonne, Castelnaudary, Limoux, Narbonne), de la Haute-Garonne (Toulouse) et de l'Hérault (Béziers, Montpellier), ainsi que partout en France."}},{"@type":"Question","name":"Les réalisations présentées sont-elles de vraies démonstrations ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Chaque site présenté est pleinement fonctionnel et consultable en conditions réelles, dans un cadre de démonstration, sans connexion à des données réelles."}},{"@type":"Question","name":"Je n'ai pas de nom de domaine ni d'hébergement, que faire ?","acceptedAnswer":{"@type":"Answer","text":"Ce sont des services que vous souscrivez de votre côté, par exemple chez OVH ou Netlify. Si vous ne savez pas par où commencer, je peux vous orienter."}},{"@type":"Question","name":"Puis-je faire évoluer mon site après la livraison ?","acceptedAnswer":{"@type":"Answer","text":"Un temps d'ajustement est inclus juste après la livraison pour affiner les derniers détails. Au-delà, vous pouvez choisir une maintenance mensuelle facultative ou demander un devis pour une évolution ponctuelle."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien de temps faut-il pour avoir mon site ?","acceptedAnswer":{"@type":"Answer","text":"Cela dépend du nombre de pages et de la rapidité avec laquelle vous m'envoyez vos photos et vos textes. Le délai est annoncé dans le devis, avant de commencer."}},{"@type":"Question","name":"Qu'est-ce que je dois vous fournir ?","acceptedAnswer":{"@type":"Answer","text":"Quelques photos de vos chantiers, vos coordonnées, la liste de vos services et votre zone d'intervention. Si vous n'avez pas tout, on commence avec ce que vous avez et je vous guide."}},{"@type":"Question","name":"Combien ça coûte ?","acceptedAnswer":{"@type":"Answer","text":"Le prix dépend du nombre de pages et des options choisies. Le devis est gratuit et sans engagement, le tarif est annoncé avant de commencer, sans surprise, et le paiement est possible en 3 fois."}},{"@type":"Question","name":"Je ne suis pas à l'aise avec l'informatique, est-ce un problème ?","acceptedAnswer":{"@type":"Answer","text":"Non. Tout se passe par écrit, sans déplacement, et je m'occupe de la technique. Pour le nom de domaine et l'hébergement (par exemple chez OVH), je vous explique et je vous oriente."}},{"@type":"Question","name":"Mon site apparaîtra-t-il sur Google ?","acceptedAnswer":{"@type":"Answer","text":"Je prépare votre site pour être bien lu par Google, avec les bases du référencement local. Personne ne peut garantir une première place : cela dépend aussi de la concurrence et du temps."}},{"@type":"Question","name":"Puis-je modifier mon site plus tard ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Un temps d'ajustement est inclus juste après la livraison. Ensuite, vous pouvez choisir une maintenance mensuelle facultative ou demander un devis pour une modification ponctuelle."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -181,6 +181,7 @@
 .hero-grid .hero-content .eyebrow{justify-content:flex-start}
 .hero-grid .hero-rule{margin:0 0 30px}
 .hero-grid .hero-lead{margin:0 0 36px;max-width:680px}
+.hero-trust{margin:18px 0 0;font-size:14px;font-weight:600;color:var(--ink-soft)}
 .hero-grid .hero-ctas{justify-content:flex-start}
 .hero-visual img{width:100%;height:auto;border-radius:22px;border:1px solid rgba(217,72,15,.28);box-shadow:0 30px 80px rgba(201,162,74,.18),0 0 0 1px rgba(124,92,255,.12)}
 .hero-monogram{opacity:.6}
@@ -225,6 +226,7 @@
       <a href="#realisations" class="btn btn-primary">Voir mes réalisations</a>
       <a href="#contact" class="btn btn-ghost">Discuter de mon projet</a>
     </div>
+    <p class="hero-trust">Devis gratuit et sans engagement · Paiement en 3 fois · Tarif annoncé avant de commencer</p>
     <p class="sectors">Maçons <span>·</span> Plaquistes <span>·</span> Couvreurs <span>·</span> Plombiers <span>·</span> Électriciens <span>·</span> Peintres <span>·</span> Chauffagistes</p>
   </div></div>
   <div class="scroll-cue" aria-hidden="true"></div>
@@ -452,32 +454,28 @@
     </div>
     <div class="faq-list reveal">
       <details class="faq-item">
-        <summary>Comment se passe un projet sur mesure ?</summary>
-        <p>Tout commence par un échange écrit sur votre activité et vos besoins. Je vous propose ensuite une direction et un devis détaillé, sans engagement de votre part avant validation.</p>
+        <summary>Combien de temps faut-il pour avoir mon site ?</summary>
+        <p>Cela dépend du nombre de pages et de la rapidité avec laquelle vous m'envoyez vos photos et vos textes. Le délai est annoncé dans le devis, avant de commencer.</p>
       </details>
       <details class="faq-item">
-        <summary>Combien coûte un site sur mesure ?</summary>
-        <p>Chaque site étant conçu spécifiquement, le prix dépend de son ampleur : nombre de pages, fonctionnalités, niveau de personnalisation. Le devis est gratuit et sans engagement, et le tarif final vous est annoncé avant de commencer, sans surprise.</p>
+        <summary>Qu'est-ce que je dois vous fournir ?</summary>
+        <p>Quelques photos de vos chantiers, vos coordonnées, la liste de vos services et votre zone d'intervention. Si vous n'avez pas tout, on commence avec ce que vous avez et je vous guide.</p>
       </details>
       <details class="faq-item">
-        <summary>Peut-on payer en 3 fois ?</summary>
-        <p>Oui, en trois paiements d'un montant égal. Paiement 1 sur 3 : à la commande, pour lancer la création. Paiement 2 sur 3 : pendant la création, quand je vous présente la première version. Paiement 3 sur 3 : à la livraison, avant la mise en ligne.</p>
+        <summary>Combien ça coûte ?</summary>
+        <p>Le prix dépend du nombre de pages et des options choisies. Le devis est gratuit et sans engagement, le tarif est annoncé avant de commencer, sans surprise, et le paiement est possible en 3 fois.</p>
       </details>
       <details class="faq-item">
-        <summary>Faut-il se déplacer ou prendre rendez-vous ?</summary>
-        <p>Non. Tout se passe par écrit, simplement, que vous soyez à Mazamet, Castres, Carcassonne, Toulouse ou ailleurs en France. Je suis basée à Mazamet et je peux créer votre site, que vous soyez dans le Tarn, l'Aude, la Haute-Garonne, l'Hérault ou ailleurs en France.</p>
+        <summary>Je ne suis pas à l'aise avec l'informatique, est-ce un problème ?</summary>
+        <p>Non. Tout se passe par écrit, sans déplacement, et je m'occupe de la technique. Pour le nom de domaine et l'hébergement (par exemple chez OVH), je vous explique et je vous oriente.</p>
       </details>
       <details class="faq-item">
-        <summary>Les réalisations présentées sont-elles de vraies démonstrations ?</summary>
-        <p>Oui. Chaque site présenté est pleinement fonctionnel et consultable en conditions réelles — recherche, simulateur, assistant inclus — dans un cadre de démonstration, sans connexion à des données réelles.</p>
+        <summary>Mon site apparaîtra-t-il sur Google ?</summary>
+        <p>Je prépare votre site pour être bien lu par Google, avec les bases du référencement local. Personne ne peut garantir une première place : cela dépend aussi de la concurrence et du temps.</p>
       </details>
       <details class="faq-item">
-        <summary>Je n'ai pas de nom de domaine ni d'hébergement, que faire ?</summary>
-        <p>Ce sont des services que vous souscrivez de votre côté, par exemple chez OVH ou Netlify. Si vous ne savez pas par où commencer, indiquez-le-moi, je peux vous orienter.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Puis-je faire évoluer mon site après la livraison ?</summary>
-        <p>Bien sûr. Un temps d'ajustement est inclus juste après la livraison pour affiner les derniers détails. Au-delà, chaque évolution fait l'objet d'un tarif simple, annoncé à l'avance.</p>
+        <summary>Puis-je modifier mon site plus tard ?</summary>
+        <p>Oui. Un temps d'ajustement est inclus juste après la livraison. Ensuite, vous pouvez choisir une maintenance mensuelle facultative ou demander un devis pour une modification ponctuelle.</p>
       </details>
     </div>
   </div>
