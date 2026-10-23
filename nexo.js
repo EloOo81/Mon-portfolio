@@ -34,13 +34,14 @@
   "#nexo-mic.on{background:var(--nx-accent);color:#17120a;animation:nxp 1s infinite}"+
   "#nexo-voice{background:none;border:0;color:var(--nx-muted);cursor:pointer;padding:4px 6px;display:flex;align-items:center}#nexo-voice.on{color:var(--nx-accent)}"+
   "#nexo-tools{display:flex;align-items:center;gap:4px}"+
+  "#nexo-form,#nexo-voice{display:none!important}.nx-opts{display:flex;flex-direction:column;gap:8px;align-self:stretch;margin:2px 0}.nx-opt{border:1px solid rgba(255,138,61,.55);background:var(--nx-panel);color:var(--nx-text);border-radius:12px;padding:11px 14px;font-size:14.5px;text-align:left;cursor:pointer;font-family:inherit}.nx-opt:hover{border-color:var(--nx-accent)}.nx-go{background:linear-gradient(135deg,var(--nx-accent),var(--nx-accent2));color:#17120a;font-weight:700;text-align:center;border:0}.nx-tel{border:1px solid rgba(255,255,255,.18);background:var(--nx-bg);color:var(--nx-text);border-radius:12px;padding:11px 12px;font-size:16px;font-family:inherit}"+
   "@media (prefers-reduced-motion:reduce){#nexo-btn,#nexo-btn .dot{animation:none;transition:none}}";
   var html='<button id="nexo-btn" type="button" aria-label="Discuter avec Nexo, assistant IA de Studio Code"><img alt="" src="'+AV+'"><span>Discuter avec Nexo<small>Assistant IA de Studio Code</small></span></button>'+
   '<section id="nexo-win" role="dialog" aria-label="Chat avec Nexo, assistant IA de Studio Code">'+
   '<div id="nexo-head"><div><b>Nexo</b><small>Assistant IA de Studio Code</small></div><div id="nexo-tools"><button id="nexo-voice" type="button" aria-pressed="false" aria-label="Activer ou couper la voix de Nexo" title="Voix de Nexo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button id="nexo-close" type="button" aria-label="Fermer le chat">&times;</button></div></div>'+
   '<div id="nexo-log"></div>'+
   '<form id="nexo-form" autocomplete="off"><input id="nexo-input" type="text" maxlength="500" placeholder="Votre question..." aria-label="Votre message" required><button id="nexo-mic" type="button" aria-label="Parler avec le micro" title="Parler"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></button><button id="nexo-send" type="submit">Envoyer</button></form>'+
-  '<div id="nexo-legal">Nexo est une intelligence artificielle. Votre message est traité par un service d\'IA et peut être transmis à Studio Code pour vous répondre. Ne saisissez pas de données sensibles. Avec le micro, la reconnaissance vocale est assurée par votre navigateur.</div>'+
+  '<div id="nexo-legal">Nexo pose des questions simples. Votre demande est envoyée par e-mail, depuis votre messagerie, à Studio Code, uniquement pour vous rappeler.</div>'+
   '</section>';
   function start(){
     var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
@@ -62,22 +63,37 @@
       try{rec.start()}catch(x){rec=null}
     });
     function add(text,cls){var d=document.createElement("div");d.className="nx-m "+cls;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
-    function open(){root.classList.add("open");if(!greeted){greeted=true;var hero=document.createElement("img");hero.src=HERO;hero.alt="Nexo, assistant IA de Studio Code";hero.className="nx-hero";log.appendChild(hero);add("Bonjour, je suis Nexo, l'assistant IA de Studio Code. Posez-moi vos questions sur nos offres, nos tarifs ou votre projet de site.","nx-bot")}input.focus()}
+    function open(){root.classList.add("open");if(!greeted){greeted=true;var hero=document.createElement("img");hero.src=HERO;hero.alt="Nexo, assistant IA de Studio Code";hero.className="nx-hero";log.appendChild(hero);add("Bonjour, je suis Nexo, l'assistant de Studio Code. Quelques questions rapides pour préparer votre projet de site. Cela prend 1 minute.","nx-bot");runFlow()}}
+    var answers=[],STEPS=[
+      {k:"Métier",q:"Quel est votre métier ?",o:["Maçon","Plaquiste ou peintre","Couvreur ou chauffagiste","Autre artisan du bâtiment"]},
+      {k:"Ville",q:"Dans quelle ville travaillez-vous ?",o:["Mazamet","Castres","Albi","Autre ville"]},
+      {k:"Site actuel",q:"Avez-vous déjà un site internet ?",o:["Non, pas encore","Oui, mais à refaire"]},
+      {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 700 €)","Site avec assistant IA (assistant de devis, assistant d'accueil, réponses aux questions fréquentes… à partir de 1 100 €)","Je ne sais pas encore"]}
+    ];
+    function clearOpts(){var o=log.querySelector(".nx-opts");if(o)o.remove()}
+    function runFlow(i){
+      i=i||0;clearOpts();
+      if(i>=STEPS.length){return askPhone()}
+      var s=STEPS[i];add(s.q,"nx-bot");
+      var box=document.createElement("div");box.className="nx-opts";
+      s.o.forEach(function(label){var b=document.createElement("button");b.type="button";b.className="nx-opt";b.textContent=label;b.addEventListener("click",function(){answers.push(s.k+" : "+label);clearOpts();add(label,"nx-me");runFlow(i+1)});box.appendChild(b)});
+      log.appendChild(box);log.scrollTop=log.scrollHeight;
+    }
+    function askPhone(){
+      add("Dernière étape : à quel numéro peut-on vous rappeler ?","nx-bot");
+      var f=document.createElement("form");f.className="nx-opts";
+      f.innerHTML='<input type="tel" class="nx-tel" placeholder="Votre numéro de téléphone" aria-label="Votre numéro de téléphone" inputmode="tel" maxlength="20" required><button type="submit" class="nx-opt nx-go">Continuer</button>';
+      f.addEventListener("submit",function(e){e.preventDefault();var v=f.querySelector("input").value.trim();if(!v)return;answers.push("Téléphone : "+v);f.remove();add(v,"nx-me");finish()});
+      log.appendChild(f);log.scrollTop=log.scrollHeight;f.querySelector("input").focus();
+    }
+    function finish(){
+      add("Merci ! Cliquez sur le bouton ci-dessous : un e-mail déjà rempli s'ouvre, il ne reste qu'à l'envoyer. Je vous rappelle sous 48 h. Vous pouvez aussi écrire à contact.studio.code@gmail.com.","nx-bot");
+      var b=document.createElement("button");b.type="button";b.className="nx-opt nx-go";b.textContent="Envoyer ma demande par e-mail";
+      b.addEventListener("click",function(){var body="Bonjour,\n\nVoici ma demande de site internet :\n\n"+answers.join("\n")+"\n\nMerci !";window.location.href="mailto:contact.studio.code@gmail.com?subject="+encodeURIComponent("Demande de site internet")+"&body="+encodeURIComponent(body)});
+      var box=document.createElement("div");box.className="nx-opts";box.appendChild(b);log.appendChild(box);log.scrollTop=log.scrollHeight;
+    }
     root.querySelector("#nexo-btn").addEventListener("click",open);
     root.querySelector("#nexo-close").addEventListener("click",function(){root.classList.remove("open");stopVoice()});
-    form.addEventListener("submit",function(e){
-      e.preventDefault();
-      var msg=input.value.trim();if(!msg||busy)return;
-      busy=true;send.disabled=true;input.value="";
-      add(msg,"nx-me");
-      var wait=add("Nexo écrit...","nx-bot nx-typing");
-      var ctrl=new AbortController(),to=setTimeout(function(){ctrl.abort()},45000);
-      fetch(URL_WEBHOOK+"?message="+encodeURIComponent(msg)+"&h="+encodeURIComponent(JSON.stringify(hist.slice(-5))),{signal:ctrl.signal})
-        .then(function(r){if(!r.ok)throw 0;return r.text()})
-        .then(function(t){wait.className="nx-m nx-bot";var rep=t.trim()||"Je n'ai pas pu répondre, pouvez-vous reformuler ?";wait.textContent=rep;hist.push({role:"user",content:msg.slice(0,260)});hist.push({role:"assistant",content:rep.slice(0,260)});speak(rep)})
-        .catch(function(){wait.className="nx-m nx-bot";wait.textContent="Désolé, je rencontre un souci technique. Vous pouvez réessayer dans un instant ou utiliser le formulaire de devis."})
-        .finally(function(){clearTimeout(to);busy=false;send.disabled=false;log.scrollTop=log.scrollHeight;input.focus()});
-    });
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
