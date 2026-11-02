@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Informations pour votre site | Studio Code</title>
+<meta name="theme-color" content="#ffffff">
+<style>
+:root{--bg:#ffffff;--card:#f6f3ee;--gold:#d9480f;--text:#1f2328;--muted:#5a626b;--line:#e3ddd2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);padding:16px 0}
+header a{color:var(--gold);text-decoration:none;font-weight:700;letter-spacing:.04em}
+h1{font-family:Georgia,serif;font-size:clamp(26px,6vw,38px);line-height:1.2;margin:34px 0 12px;color:var(--gold)}
+h2{font-family:Georgia,serif;font-size:21px;margin:0 0 14px}
+p{color:var(--muted);margin:0 0 14px}
+.lead{font-size:17px;color:var(--text)}
+fieldset{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px;margin:22px 0}
+legend{font-family:Georgia,serif;font-size:20px;padding:0 8px;color:var(--text)}
+label{display:block;font-weight:600;margin:14px 0 4px}
+label small{display:block;font-weight:400;color:var(--muted)}
+input,textarea{width:100%;padding:12px;border:1px solid #cfc7b8;border-radius:10px;font:inherit;background:#fff;color:var(--text)}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.req{color:var(--gold)}
+.note{background:#fff;border:1px dashed var(--gold);border-radius:12px;padding:14px;color:var(--text);margin-top:16px}
+button{display:block;width:100%;background:var(--gold);color:#fff;font:inherit;font-weight:700;border:0;border-radius:999px;padding:15px 22px;cursor:pointer;margin:6px 0 10px}
+button:hover{filter:brightness(1.07)}
+.small{font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="/">Studio Code</a></div></header>
+<main class="wrap">
+<h1>Les informations pour créer votre site</h1>
+<p class="lead">Merci pour votre confiance. Pour commencer votre site, j'ai besoin de quelques informations. Remplissez ce que vous pouvez : tout ce qui manque, nous le verrons ensemble au téléphone.</p>
+<p class="small">Les champs marqués d'une étoile <span class="req">*</span> sont à remplir.</p>
+
+<form id="infos" novalidate>
+<fieldset>
+<legend>Vous</legend>
+<label for="nom">Votre nom et prénom <span class="req">*</span></label>
+<input id="nom" name="Nom et prénom" type="text" autocomplete="name" required>
+<label for="tel">Votre téléphone <span class="req">*</span></label>
+<input id="tel" name="Téléphone" type="tel" inputmode="tel" autocomplete="tel" required>
+<label for="mail">Votre adresse e-mail <span class="req">*</span></label>
+<input id="mail" name="E-mail" type="email" autocomplete="email" required>
+</fieldset>
+
+<fieldset>
+<legend>Votre entreprise</legend>
+<label for="entreprise">Nom de l'entreprise <span class="req">*</span></label>
+<input id="entreprise" name="Nom de l'entreprise" type="text" required>
+<label for="metier">Votre métier exact <span class="req">*</span><small>Par exemple : maçon, plaquiste, peintre en bâtiment, couvreur…</small></label>
+<input id="metier" name="Métier exact" type="text" required>
+<label for="villes">Les villes où vous travaillez <span class="req">*</span></label>
+<input id="villes" name="Villes d'intervention" type="text" required>
+<label for="services">La liste de vos services <span class="req">*</span><small>Un service par ligne.</small></label>
+<textarea id="services" name="Services" required></textarea>
+<label for="siret">Votre numéro de SIRET<small>Obligatoire pour les mentions légales du site.</small></label>
+<input id="siret" name="SIRET" type="text" inputmode="numeric">
+<label for="adresse">Adresse de l'entreprise</label>
+<input id="adresse" name="Adresse de l'entreprise" type="text" autocomplete="street-address">
+<label for="telpro">Téléphone de l'entreprise<small>Seulement s'il est différent du vôtre.</small></label>
+<input id="telpro" name="Téléphone de l'entreprise" type="tel" inputmode="tel">
+<label for="mailpro">E-mail de l'entreprise<small>Seulement s'il est différent du vôtre.</small></label>
+<input id="mailpro" name="E-mail de l'entreprise" type="email">
+</fieldset>
+
+<fieldset>
+<legend>L'image de votre site</legend>
+<label for="logo">Votre logo et vos couleurs<small>Si vous en avez. Sinon, je m'en occupe.</small></label>
+<textarea id="logo" name="Logo et couleurs"></textarea>
+<label for="domaine">Votre nom de domaine<small>Si vous en avez déjà un (par exemple monentreprise.fr). Sinon, nous en parlerons au téléphone.</small></label>
+<input id="domaine" name="Nom de domaine" type="text">
+<div class="note"><strong>Vos photos de chantiers</strong><br>Si vous en avez, envoyez-en 5 à 10. Elles seront à joindre à l'e-mail qui s'ouvre quand vous cliquez sur le bouton ci-dessous.</div>
+</fieldset>
+
+<fieldset>
+<legend>Autre chose ?</legend>
+<label for="autre">Un souhait, une idée, une question<small>Facultatif.</small></label>
+<textarea id="autre" name="Autre"></textarea>
+</fieldset>
+
+<button type="submit">Envoyer mes informations</button>
+<p class="small" id="msg" role="status">Un e-mail déjà rempli s'ouvre : joignez vos photos, puis envoyez-le.</p>
+</form>
+</main>
+<footer><div class="wrap">Vos informations servent uniquement à créer votre site. <a href="mentions-legales.html">Mentions légales</a></div></footer>
+
+<script>
+(function(){
+  var form=document.getElementById('infos'),msg=document.getElementById('msg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var manque=[];
+    form.querySelectorAll('[required]').forEach(function(c){if(!c.value.trim())manque.push(c)});
+    if(manque.length){msg.textContent='Merci de remplir les champs marqués d\'une étoile.';manque[0].focus();return}
+    var lignes=[];
+    form.querySelectorAll('input,textarea').forEach(function(c){
+      var v=c.value.trim();
+      lignes.push(c.name+' : '+(v||'—'));
+    });
+    var entreprise=document.getElementById('entreprise').value.trim();
+    var corps='Bonjour,\n\nVoici les informations pour créer mon site :\n\n'+lignes.join('\n')+'\n\n(Je joins mes photos de chantiers à cet e-mail.)\n\nMerci !';
+    window.location.href='mailto:contact.studio.code@gmail.com?subject='+encodeURIComponent('Informations pour mon site - '+entreprise)+'&body='+encodeURIComponent(corps);
+    msg.textContent='Votre e-mail est prêt. Joignez vos photos, puis envoyez-le.';
+  });
+})();
+</script>
+</body>
+</html>
