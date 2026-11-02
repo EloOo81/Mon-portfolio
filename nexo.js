@@ -68,7 +68,7 @@
       {k:"Métier",q:"Quel est votre métier ?",o:["Maçon","Plaquiste ou peintre","Couvreur ou chauffagiste","Autre artisan du bâtiment"]},
       {k:"Ville",q:"Dans quelle ville travaillez-vous ?",o:["Mazamet","Castres","Albi","Autre ville"]},
       {k:"Site actuel",q:"Avez-vous déjà un site internet ?",o:["Non, pas encore","Oui, mais à refaire"]},
-      {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 700 €)","Site avec assistant IA (assistant de devis, assistant d'accueil, réponses aux questions fréquentes… à partir de 1 100 €)","Je ne sais pas encore"]}
+      {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 299 €)","Site avec assistant IA (assistant de devis, assistant d'accueil, réponses aux questions fréquentes… à partir de 699 €)","Je ne sais pas encore"]}
     ];
     function clearOpts(){var o=log.querySelector(".nx-opts");if(o)o.remove()}
     function runFlow(i){
