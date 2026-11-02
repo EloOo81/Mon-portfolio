@@ -68,13 +68,13 @@
       {k:"Métier",q:"Quel est votre métier ?",o:["Maçon","Plaquiste ou peintre","Couvreur ou chauffagiste","Autre artisan du bâtiment"]},
       {k:"Ville",q:"Dans quelle ville travaillez-vous ?",o:["Mazamet","Castres","Albi","Autre ville"]},
       {k:"Site actuel",q:"Avez-vous déjà un site internet ?",o:["Non, pas encore","Oui, mais à refaire"]},
-      {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 299 €)","Site avec assistant IA (assistant de devis, assistant d'accueil, réponses aux questions fréquentes… à partir de 699 €)","Je ne sais pas encore"]}
+      {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 299 €)","Site avec assistant IA (un assistant comme Nexo, qui accueille vos visiteurs et prend leurs premières informations… à partir de 699 €)","Je ne sais pas encore"]}
     ];
     function clearOpts(){var o=log.querySelector(".nx-opts");if(o)o.remove()}
     function snap(redo){trail.push({n:answers.length,l:log.children.length,redo:redo})}
     function addBack(box){if(trail.length<2)return;var b=document.createElement("button");b.type="button";b.className="nx-opt nx-back";b.style.opacity=".8";b.textContent="← Revenir en arrière";b.addEventListener("click",goBack);box.appendChild(b)}
     function goBack(){trail.pop();var p=trail.pop();if(!p)return;while(log.children.length>p.l)log.removeChild(log.lastChild);answers.length=p.n;p.redo()}
-    function askText(q,k,ph,optional,cb){snap(function(){askText(q,k,ph,optional,cb)});add(q,"nx-bot");var f=document.createElement("form");f.className="nx-opts";var inp=document.createElement("input");inp.type="text";inp.className="nx-tel";inp.placeholder=ph;inp.setAttribute("aria-label",ph);inp.maxLength=120;if(!optional)inp.required=true;var bt=document.createElement("button");bt.type="submit";bt.className="nx-opt nx-go";bt.textContent="Continuer";f.appendChild(inp);f.appendChild(bt);addBack(f);f.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v&&!optional)return;answers.push(k+" : "+(v||"Non précisé"));f.remove();add(v||"Je n'ai pas l'adresse","nx-me");cb()});log.appendChild(f);log.scrollTop=log.scrollHeight;inp.focus()}
+    function askText(q,k,ph,optional,cb){snap(function(){askText(q,k,ph,optional,cb)});add(q,"nx-bot");var f=document.createElement("form");f.className="nx-opts";var inp=document.createElement("input");inp.type=(k==="E-mail"?"email":"text");inp.className="nx-tel";inp.placeholder=ph;inp.setAttribute("aria-label",ph);inp.maxLength=120;if(!optional)inp.required=true;var bt=document.createElement("button");bt.type="submit";bt.className="nx-opt nx-go";bt.textContent="Continuer";f.appendChild(inp);f.appendChild(bt);addBack(f);f.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v&&!optional)return;answers.push(k+" : "+(v||"Non précisé"));f.remove();add(v||"Je n'ai pas l'adresse","nx-me");cb()});log.appendChild(f);log.scrollTop=log.scrollHeight;inp.focus()}
     function askChoice(q,k,opts,cb){snap(function(){askChoice(q,k,opts,cb)});add(q,"nx-bot");var box=document.createElement("div");box.className="nx-opts";opts.forEach(function(label){var b=document.createElement("button");b.type="button";b.className="nx-opt";b.textContent=label;b.addEventListener("click",function(){answers.push(k+" : "+label);clearOpts();add(label,"nx-me");cb()});box.appendChild(b)});addBack(box);log.appendChild(box);log.scrollTop=log.scrollHeight}
     function next(s,label,i){
       if(s.k==="Métier"&&label==="Autre artisan du bâtiment"){answers.pop();return askText("Quel est votre métier exact ?","Métier","Ex. : carreleur, charpentier, terrassier…",false,function(){runFlow(i+1)})}
@@ -94,7 +94,7 @@
       snap(askPhone);add("Dernière étape : à quel numéro peut-on vous rappeler ?","nx-bot");
       var f=document.createElement("form");f.className="nx-opts";
       f.innerHTML='<input type="tel" class="nx-tel" placeholder="Votre numéro de téléphone" aria-label="Votre numéro de téléphone" inputmode="tel" maxlength="20" required><button type="submit" class="nx-opt nx-go">Continuer</button>';
-      f.addEventListener("submit",function(e){e.preventDefault();var v=f.querySelector("input").value.trim();if(!v)return;answers.push("Téléphone : "+v);f.remove();add(v,"nx-me");finish()});
+      f.addEventListener("submit",function(e){e.preventDefault();var v=f.querySelector("input").value.trim();if(!v)return;answers.push("Téléphone : "+v);f.remove();add(v,"nx-me");askText("Et votre adresse e-mail, pour vous envoyer un récapitulatif ?","E-mail","Votre adresse e-mail",false,finish)});
       addBack(f);log.appendChild(f);log.scrollTop=log.scrollHeight;f.querySelector("input").focus();
     }
     function finish(){
