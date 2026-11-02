@@ -98,10 +98,10 @@
       addBack(f);log.appendChild(f);log.scrollTop=log.scrollHeight;f.querySelector("input").focus();
     }
     function finish(){
-      add("Merci ! Cliquez sur le bouton ci-dessous : un e-mail déjà rempli s'ouvre, il ne reste qu'à l'envoyer. Je vous rappelle sous 48 h. Vous pouvez aussi écrire à contact.studio.code@gmail.com.","nx-bot");
+      snap(finish);add("Merci ! Cliquez sur le bouton ci-dessous : un e-mail déjà rempli s'ouvre, il ne reste qu'à l'envoyer. Je vous rappelle sous 48 h. Vous pouvez aussi écrire à contact.studio.code@gmail.com.","nx-bot");
       var b=document.createElement("button");b.type="button";b.className="nx-opt nx-go";b.textContent="Envoyer ma demande par e-mail";
       b.addEventListener("click",function(){var body="Bonjour,\n\nVoici ma demande de site internet :\n\n"+answers.join("\n")+"\n\nMerci !";window.location.href="mailto:contact.studio.code@gmail.com?subject="+encodeURIComponent("Demande de site internet")+"&body="+encodeURIComponent(body)});
-      var box=document.createElement("div");box.className="nx-opts";box.appendChild(b);log.appendChild(box);log.scrollTop=log.scrollHeight;
+      var box=document.createElement("div");box.className="nx-opts";box.appendChild(b);addBack(box);log.appendChild(box);log.scrollTop=log.scrollHeight;
     }
     root.querySelector("#nexo-btn").addEventListener("click",open);
     root.querySelector("#nexo-close").addEventListener("click",function(){root.classList.remove("open");stopVoice()});
