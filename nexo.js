@@ -64,16 +64,20 @@
     });
     function add(text,cls){var d=document.createElement("div");d.className="nx-m "+cls;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
     function open(){root.classList.add("open");if(!greeted){greeted=true;var hero=document.createElement("img");hero.src=HERO;hero.alt="Nexo, assistant IA de Studio Code";hero.className="nx-hero";log.appendChild(hero);add("Bonjour, je suis Nexo, l'assistant de Studio Code. Quelques questions rapides pour préparer votre projet de site. Cela prend 1 minute.","nx-bot");runFlow()}}
-    var answers=[],STEPS=[
+    var answers=[],trail=[],STEPS=[
       {k:"Métier",q:"Quel est votre métier ?",o:["Maçon","Plaquiste ou peintre","Couvreur ou chauffagiste","Autre artisan du bâtiment"]},
       {k:"Ville",q:"Dans quelle ville travaillez-vous ?",o:["Mazamet","Castres","Albi","Autre ville"]},
       {k:"Site actuel",q:"Avez-vous déjà un site internet ?",o:["Non, pas encore","Oui, mais à refaire"]},
       {k:"Site souhaité",q:"Quel type de site vous intéresse ?",o:["Site simple (à partir de 299 €)","Site avec assistant IA (assistant de devis, assistant d'accueil, réponses aux questions fréquentes… à partir de 699 €)","Je ne sais pas encore"]}
     ];
     function clearOpts(){var o=log.querySelector(".nx-opts");if(o)o.remove()}
-    function askText(q,k,ph,optional,cb){add(q,"nx-bot");var f=document.createElement("form");f.className="nx-opts";var inp=document.createElement("input");inp.type="text";inp.className="nx-tel";inp.placeholder=ph;inp.setAttribute("aria-label",ph);inp.maxLength=120;if(!optional)inp.required=true;var bt=document.createElement("button");bt.type="submit";bt.className="nx-opt nx-go";bt.textContent="Continuer";f.appendChild(inp);f.appendChild(bt);f.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v&&!optional)return;answers.push(k+" : "+(v||"Non précisé"));f.remove();add(v||"Je n'ai pas l'adresse","nx-me");cb()});log.appendChild(f);log.scrollTop=log.scrollHeight;inp.focus()}
-    function askChoice(q,k,opts,cb){add(q,"nx-bot");var box=document.createElement("div");box.className="nx-opts";opts.forEach(function(label){var b=document.createElement("button");b.type="button";b.className="nx-opt";b.textContent=label;b.addEventListener("click",function(){answers.push(k+" : "+label);clearOpts();add(label,"nx-me");cb()});box.appendChild(b)});log.appendChild(box);log.scrollTop=log.scrollHeight}
+    function snap(redo){trail.push({n:answers.length,l:log.children.length,redo:redo})}
+    function addBack(box){if(trail.length<2)return;var b=document.createElement("button");b.type="button";b.className="nx-opt nx-back";b.style.opacity=".8";b.textContent="← Revenir en arrière";b.addEventListener("click",goBack);box.appendChild(b)}
+    function goBack(){trail.pop();var p=trail.pop();if(!p)return;while(log.children.length>p.l)log.removeChild(log.lastChild);answers.length=p.n;p.redo()}
+    function askText(q,k,ph,optional,cb){snap(function(){askText(q,k,ph,optional,cb)});add(q,"nx-bot");var f=document.createElement("form");f.className="nx-opts";var inp=document.createElement("input");inp.type="text";inp.className="nx-tel";inp.placeholder=ph;inp.setAttribute("aria-label",ph);inp.maxLength=120;if(!optional)inp.required=true;var bt=document.createElement("button");bt.type="submit";bt.className="nx-opt nx-go";bt.textContent="Continuer";f.appendChild(inp);f.appendChild(bt);addBack(f);f.addEventListener("submit",function(e){e.preventDefault();var v=inp.value.trim();if(!v&&!optional)return;answers.push(k+" : "+(v||"Non précisé"));f.remove();add(v||"Je n'ai pas l'adresse","nx-me");cb()});log.appendChild(f);log.scrollTop=log.scrollHeight;inp.focus()}
+    function askChoice(q,k,opts,cb){snap(function(){askChoice(q,k,opts,cb)});add(q,"nx-bot");var box=document.createElement("div");box.className="nx-opts";opts.forEach(function(label){var b=document.createElement("button");b.type="button";b.className="nx-opt";b.textContent=label;b.addEventListener("click",function(){answers.push(k+" : "+label);clearOpts();add(label,"nx-me");cb()});box.appendChild(b)});addBack(box);log.appendChild(box);log.scrollTop=log.scrollHeight}
     function next(s,label,i){
+      if(s.k==="Métier"&&label==="Autre artisan du bâtiment"){answers.pop();return askText("Quel est votre métier exact ?","Métier","Ex. : carreleur, charpentier, terrassier…",false,function(){runFlow(i+1)})}
       if(s.k==="Ville"&&label==="Autre ville"){answers.pop();return askText("Quelle est votre ville ?","Ville","Nom de votre ville",false,function(){runFlow(i+1)})}
       if(s.k==="Site actuel"&&label==="Oui, mais à refaire"){return askChoice("Que souhaitez-vous faire sur votre site ?","Refonte",["Le refaire entièrement","Refaire une partie (pages, photos, design)","Changer seulement des textes ou des infos","Je ne sais pas encore"],function(){askText("Quelle est l'adresse de votre site actuel ?","Site actuel (adresse)","Adresse de votre site",true,function(){runFlow(i+2)})})}
       runFlow(i+1)
@@ -81,17 +85,17 @@
     function runFlow(i){
       i=i||0;clearOpts();
       if(i>=STEPS.length){return askPhone()}
-      var s=STEPS[i];add(s.q,"nx-bot");
+      var s=STEPS[i];snap(function(){runFlow(i)});add(s.q,"nx-bot");
       var box=document.createElement("div");box.className="nx-opts";
       s.o.forEach(function(label){var b=document.createElement("button");b.type="button";b.className="nx-opt";b.textContent=label;b.addEventListener("click",function(){answers.push(s.k+" : "+label);clearOpts();add(label,"nx-me");next(s,label,i)});box.appendChild(b)});
-      log.appendChild(box);log.scrollTop=log.scrollHeight;
+      addBack(box);log.appendChild(box);log.scrollTop=log.scrollHeight;
     }
     function askPhone(){
-      add("Dernière étape : à quel numéro peut-on vous rappeler ?","nx-bot");
+      snap(askPhone);add("Dernière étape : à quel numéro peut-on vous rappeler ?","nx-bot");
       var f=document.createElement("form");f.className="nx-opts";
       f.innerHTML='<input type="tel" class="nx-tel" placeholder="Votre numéro de téléphone" aria-label="Votre numéro de téléphone" inputmode="tel" maxlength="20" required><button type="submit" class="nx-opt nx-go">Continuer</button>';
       f.addEventListener("submit",function(e){e.preventDefault();var v=f.querySelector("input").value.trim();if(!v)return;answers.push("Téléphone : "+v);f.remove();add(v,"nx-me");finish()});
-      log.appendChild(f);log.scrollTop=log.scrollHeight;f.querySelector("input").focus();
+      addBack(f);log.appendChild(f);log.scrollTop=log.scrollHeight;f.querySelector("input").focus();
     }
     function finish(){
       add("Merci ! Cliquez sur le bouton ci-dessous : un e-mail déjà rempli s'ouvre, il ne reste qu'à l'envoyer. Je vous rappelle sous 48 h. Vous pouvez aussi écrire à contact.studio.code@gmail.com.","nx-bot");
