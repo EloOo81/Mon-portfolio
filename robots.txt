@@ -1,5 +1,17 @@
 User-agent: *
 Disallow: /archive/
+Disallow: /malt-assets/
+Disallow: /conciergerie-immobilier-luxe.html
+Disallow: /hotel-conciergerie.html
+Disallow: /agent-ia-email.html
+Disallow: /agent-factures-devis.html
+Disallow: /agent-immobilier.html
+Disallow: /spa-premium.html
+Disallow: /cabinet-juridique.html
+Disallow: /aura-apercu.html
+Disallow: /fleuriste-demo.html
+Disallow: /site.css
+Disallow: /commande.html
 Allow: /
 
 Sitemap: https://studio-code.fr/sitemap.xml
